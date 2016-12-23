@@ -17,10 +17,6 @@ Vue.use(Element);
 Vue.use(VueRouter);
 Vue.use(VueResource);
 
-if () {
-
-}
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
