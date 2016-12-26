@@ -30,4 +30,9 @@ export default [
     path: '/original',
     component: Original,
   },
+  {
+    name: '影视收益权转让管理',
+    path: '/transfer',
+    component: Original,
+  },
 ];
