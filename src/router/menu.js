@@ -1,14 +1,14 @@
 // 项目管理
 import Project from '../containers/Project';
-import ProjectShow from '../containers/Project/Show';
 import ProjectCreate from '../containers/Project/Create';
+import ProjectRegister from '../containers/Project/Register';
 
 export default [
   {
     name: '项目管理',
     path: '/project',
     component: Project,
-    redirect: '/project/show',
+    redirect: '/project/create',
     children: [
       {
         name: '新建项目',
@@ -16,9 +16,9 @@ export default [
         component: ProjectCreate,
       },
       {
-        name: '展示项目',
-        path: 'show',
-        component: ProjectShow,
+        name: '项目登记',
+        path: 'register',
+        component: ProjectRegister,
       },
     ],
   },

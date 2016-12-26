@@ -1,9 +1,12 @@
 <template>
 <el-tabs class="el-col-24" type="border-card">
-  <el-tab-pane label="项目描述">
+  <el-tab-pane label="待登记">
 
   </el-tab-pane>
-  <el-tab-pane label="项目份额">
+  <el-tab-pane label="已登记">
+
+  </el-tab-pane>
+  <el-tab-pane label="已清算">
 
   </el-tab-pane>
 </el-tabs>
@@ -11,7 +14,7 @@
 
 <script>
 export default {
-  name: 'Create',
+  name: 'Register',
 };
 </script>
 

@@ -26,8 +26,8 @@ export default {
         type: 'item',
       },
       {
-        name: '展示项目',
-        link: '/project/show',
+        name: '项目登记',
+        link: '/project/register',
         icon: 'document',
         type: 'item',
       },
