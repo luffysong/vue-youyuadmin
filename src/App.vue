@@ -67,6 +67,7 @@ body, html {
   color: @dark-gray;
   overflow: hidden;
   padding-top: 60px;
+  padding-bottom: 100px;
 }
 
 .app-wrapper {
