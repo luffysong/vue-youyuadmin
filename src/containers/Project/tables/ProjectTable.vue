@@ -5,6 +5,8 @@
   border>
   <el-table-column
     fixed
+    sortable
+    align="center"
     prop="id"
     label="项目ID"
     width="150">
@@ -15,11 +17,19 @@
     width="200">
   </el-table-column>
   <el-table-column
-    prop="maker"
+    inline-template
     label="制片方"
     width="200">
+    <el-popover trigger="hover" placement="top">
+      <p>片名: {{ row.name }}</p>
+      <div slot="reference">
+        <el-tag>{{ row.maker }}</el-tag>
+      </div>
+    </el-popover>
   </el-table-column>
   <el-table-column
+    sortable
+    align="center"
     prop="registerTime"
     label="登记时间"
     width="200">
