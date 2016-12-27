@@ -26,6 +26,19 @@ export default [
     name: '影视收益权转让管理',
     path: '/transfer',
     component: resolve => require(['../containers/Transfer'], resolve), // eslint-disable-line
+    redirect: '/transfer/list',
+    children: [
+      {
+        name: '影视收益权转让列表',
+        path: 'list',
+        component: resolve => require(['../containers/Transfer/List'], resolve), // eslint-disable-line
+      },
+      {
+        name: 'TransferDetail',
+        path: 'detail/:id',
+        component: resolve => require(['../containers/Transfer/Detail'], resolve), // eslint-disable-line
+      },
+    ],
   },
   {
     name: '投资人审核',

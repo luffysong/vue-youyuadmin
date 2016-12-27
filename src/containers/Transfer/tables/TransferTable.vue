@@ -67,10 +67,12 @@
     align="center"
     label="操作"
     width="200">
-    <el-button type="info"
-      icon="view" size="small">
-      查看
-    </el-button>
+    <router-link :to='{name: "TransferDetail", params: {id: row.id}}'>
+      <el-button type="info"
+        icon="view" size="small">
+          查看
+      </el-button>
+    </router-link>
   </el-table-column>
 </el-table>
 </template>
