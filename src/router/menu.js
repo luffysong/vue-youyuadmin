@@ -23,14 +23,14 @@ export default [
     component: resolve => require(['../containers/Original'], resolve), // eslint-disable-line
   },
   {
-    name: '影视收益权转让管理',
+    name: 'Transfer',
     path: '/transfer',
     component: resolve => require(['../containers/Transfer'], resolve), // eslint-disable-line
     redirect: '/transfer/list',
     children: [
       {
-        name: '影视收益权转让列表',
-        path: 'list',
+        name: 'TransferList',
+        path: 'list(\\?:status)?',
         component: resolve => require(['../containers/Transfer/List'], resolve), // eslint-disable-line
       },
       {
