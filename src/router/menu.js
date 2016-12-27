@@ -1,17 +1,17 @@
 export default [
   {
-    name: '项目管理',
+    name: 'Project',
     path: '/project',
     component: resolve => require(['../containers/Project'], resolve), // eslint-disable-line
     redirect: '/project/create',
     children: [
       {
-        name: '新建项目',
+        name: 'ProjectCreate',
         path: 'create',
         component: resolve => require(['../containers/Project/Create'], resolve), // eslint-disable-line
       },
       {
-        name: '项目登记',
+        name: 'ProjectRegister',
         path: 'register',
         component: resolve => require(['../containers/Project/Register'], resolve), // eslint-disable-line
       },
@@ -30,7 +30,7 @@ export default [
     children: [
       {
         name: 'TransferList',
-        path: 'list(\\?:status)?',
+        path: 'list',
         component: resolve => require(['../containers/Transfer/List'], resolve), // eslint-disable-line
       },
       {
@@ -45,7 +45,7 @@ export default [
     path: '/investor',
     component: resolve => require(['../containers/Investor'], resolve), // eslint-disable-line
   }, {
-    name: '订单管理',
+    name: 'Order',
     path: '/order',
     component: resolve => require(['../containers/Order'], resolve), // eslint-disable-line
   },
