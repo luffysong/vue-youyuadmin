@@ -77,10 +77,6 @@ body, html {
   font-size: 0.875rem;
 }
 
-.animated {
-  animation-duration: .4s;
-}
-
 .nprogress-container {
   position: fixed !important;
   top: 0;
