@@ -8,8 +8,6 @@ import VueRouter from 'vue-router';
  * Internal dependencies
  */
 import menus from './menu';
-import Home from '../containers/Home';
-import NoAuth from '../containers/NoAuth';
 
 Vue.use(VueRouter);
 
@@ -30,12 +28,12 @@ const routes = [
   {
     name: 'Home',
     path: '/',
-    component: Home,
+    component: resolve => require(['../containers/Home'], resolve), // eslint-disable-line
   },
   {
     name: 'NoAuth',
     path: '/noauth',
-    component: NoAuth,
+    component: resolve => require(['../containers/NoAuth'], resolve), // eslint-disable-line
   },
   ...generateRoutesFromMenu(menus),
   {
