@@ -20,7 +20,7 @@ export default [
   {
     name: '初始份额转让管理',
     path: '/original',
-    component: resolve => require(['../containers/Original'], resolve), // eslint-disable-line
+    component: resolve => require(['../containers/Original/index.vue'], resolve), // eslint-disable-line
   },
   {
     name: 'Transfer',
