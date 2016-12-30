@@ -22,6 +22,7 @@
 /**
  * Internal dependencies
  */
+import * as types from '../../store/types';
 import OrderTable from './tables/OrderTable';
 
 export default {
@@ -30,7 +31,7 @@ export default {
     OrderTable,
   },
   mounted() {
-    this.$store.dispatch('hideSidebar');
+    this.$store.dispatch(types.HIDE_SIDEBAR);
   },
 };
 </script>

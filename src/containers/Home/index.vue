@@ -3,10 +3,15 @@
 </template>
 
 <script>
+/**
+ * Internal dependencies
+ */
+import * as types from '../../store/types';
+
 export default {
   name: 'Home',
   mounted() {
-    this.$store.dispatch('setSidebarData', this.sidebarData);
+    this.$store.dispatch(types.SET_SIDEBAR_DATA, this.sidebarData);
   },
   data() {
     return {

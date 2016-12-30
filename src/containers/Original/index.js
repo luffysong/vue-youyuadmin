@@ -2,6 +2,11 @@
  * External dependencies
  */
 import Vue from 'vue';
+
+/**
+ * Internal dependencies
+ */
+import * as types from '../../store/types';
 import OriginForm from './tables/OriginForm.vue';
 
 const ENUM_STATUS = {
@@ -122,7 +127,7 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch('hideSidebar');
+    this.$store.dispatch(types.HIDE_SIDEBAR);
   },
   created() {
     inits.call(this);

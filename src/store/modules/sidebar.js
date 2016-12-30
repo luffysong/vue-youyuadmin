@@ -11,13 +11,13 @@ const initialState = {
 const getters = {};
 
 const actions = {
-  hideSidebar({ commit }) {
+  [types.HIDE_SIDEBAR]({ commit }) {
     commit(types.HIDE_SIDEBAR);
   },
-  toggleSidebar({ commit }) {
+  [types.TOGGLE_SIDEBAR]({ commit }) {
     commit(types.TOGGLE_SIDEBAR);
   },
-  setSidebarData({ commit }, data) {
+  [types.SET_SIDEBAR_DATA]({ commit }, data) {
     commit(types.SET_SIDEBAR_DATA, data);
   },
 };

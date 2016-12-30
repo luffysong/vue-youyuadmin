@@ -3,6 +3,11 @@
 </template>
 
 <script>
+/**
+ * Internal dependencies
+ */
+import * as types from '../../store/types';
+
 export default {
   name: 'ProjectWrapper',
   mounted() {
@@ -21,7 +26,7 @@ export default {
       },
     ];
 
-    this.$store.dispatch('setSidebarData', data);
+    this.$store.dispatch(types.SET_SIDEBAR_DATA, data);
   },
 };
 </script>
