@@ -18,7 +18,7 @@ export default [
     ],
   },
   {
-    name: '初始份额转让管理',
+    name: 'OriginShareTransfer',
     path: '/original',
     component: resolve => require(['../containers/Original/index.vue'], resolve), // eslint-disable-line
   },
