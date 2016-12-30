@@ -46,8 +46,9 @@ function goto(s, type) {
 
 // 初始化
 // 如果没有query 默认设置为‘待审核’
-function inits(s) {
+function inits() {
   // debugger
+  const s = this;
   const query = {};
   // 判断进入页面时的tab
   let type = s.$route.query.type;
@@ -78,6 +79,9 @@ export default {
       getData(this, {
         type: vuedom.name,
       });
+    },
+    curChange() {
+      console.log(1);
     },
   },
   data() {
@@ -124,7 +128,7 @@ export default {
     this.$store.dispatch('hideSidebar');
   },
   created() {
-    inits(this);
+    inits.call(this);
     console.log('create');
   },
   beforeUpdate() {

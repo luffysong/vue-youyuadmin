@@ -1,5 +1,5 @@
-<template src="./index.html" />
+<template src='./index.html' />
 
-<script src="./index.js"></script>
+<script src='./index.js'></script>
 
-<style lang="less" scoped></style>
+<style src='./index.less' lang="less" scoped></style>

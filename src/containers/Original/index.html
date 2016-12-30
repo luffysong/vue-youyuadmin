@@ -41,4 +41,15 @@
       <origin-form :dataTable="REJECT"/>
     </el-tab-pane>
   </el-tabs>
+
+  <div class="block">
+    <span class="demonstration"> </span>
+    <el-pagination
+      layout="prev, pager, next"
+      :page-size="10"
+      :total="0"
+      @current-change="curChange"
+    >
+    </el-pagination>
+  </div>
 </div>
