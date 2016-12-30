@@ -70,9 +70,6 @@ export default {
     canReuse: true,
   },
   methods: {
-    ...mapMutations([
-      'hideSidebar',
-    ]),
     // tab 点击事件
     tabchange(vuedom) {
       goto(this, vuedom.name);
