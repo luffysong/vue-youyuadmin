@@ -3,20 +3,10 @@
 </template>
 
 <script>
-/**
- * External dependencies
- */
-import { mapMutations } from 'vuex';
-
 export default {
   name: 'Home',
-  methods: {
-    ...mapMutations([
-      'setSidebarData',
-    ]),
-  },
   mounted() {
-    this.setSidebarData(this.sidebarData);
+    this.$store.dispatch('setSidebarData', this.sidebarData);
   },
   data() {
     return {

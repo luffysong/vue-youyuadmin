@@ -16,20 +16,10 @@
 </template>
 
 <script>
-/**
- * External dependencies
- */
-import { mapMutations } from 'vuex';
-
 export default {
   name: 'Investor',
-  methods: {
-    ...mapMutations([
-      'hideSidebar',
-    ]),
-  },
   mounted() {
-    this.hideSidebar();
+    this.$store.dispatch('hideSidebar');
   },
 };
 </script>

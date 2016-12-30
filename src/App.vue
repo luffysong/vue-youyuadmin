@@ -1,10 +1,10 @@
 <template>
-<div class="container" :class="{'no-sidebar': !config.sidebarStatus}">
+<div class="container" :class="{'no-sidebar': !sidebar.show}">
   <nprogress-container></nprogress-container>
-  <nav-bar :data="config.userInfo"></nav-bar>
+  <nav-bar :data="{}"></nav-bar>
   <el-row>
-    <side-bar :show="config.sidebarStatus" :data="config.sidebarData"></side-bar>
-    <el-col :span="config.sidebarStatus ? 19 : 22" :offset="config.sidebarStatus ? 4 : 1">
+    <side-bar :show="sidebar.show" :data="sidebar.data"></side-bar>
+    <el-col :span="sidebar.show ? 19 : 22" :offset="sidebar.show ? 4 : 1">
       <level-bar></level-bar>
       <transition
         mode="out-in"
@@ -40,8 +40,8 @@ export default {
     NprogressContainer,
   },
   computed: {
-    config() {
-      return this.$store.state.config;
+    sidebar() {
+      return this.$store.state.sidebar;
     },
   },
 };

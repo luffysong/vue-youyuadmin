@@ -2,15 +2,11 @@
  * External dependencies
  */
 import Vue from 'vue';
-import { mapMutations } from 'vuex';
 import OriginForm from './tables/OriginForm.vue';
 
 export default {
   name: 'Original',
   methods: {
-    ...mapMutations([
-      'hideSidebar',
-    ]),
     getData() {
       console.log(123);
     },
@@ -31,7 +27,7 @@ export default {
     };
   },
   mounted() {
-    this.hideSidebar();
+    this.$store.dispatch('hideSidebar');
   },
   created() {
     console.log('tab1', this.$route.query);

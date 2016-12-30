@@ -3,18 +3,8 @@
 </template>
 
 <script>
-/**
- * External dependencies
- */
-import { mapMutations } from 'vuex';
-
 export default {
   name: 'ProjectWrapper',
-  methods: {
-    ...mapMutations([
-      'setSidebarData',
-    ]),
-  },
   mounted() {
     const data = [
       {
@@ -25,7 +15,7 @@ export default {
       },
     ];
 
-    this.setSidebarData(data);
+    this.$store.dispatch('setSidebarData', data);
   },
 };
 </script>

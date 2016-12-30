@@ -26,9 +26,6 @@ Vue.use(VueResource);
 
 sync(store, router);
 
-const { state } = store;
-const { config } = state;
-
 Object.keys(filters).forEach((key) => {
   Vue.filter(key, filters[key]);
 });
@@ -40,9 +37,6 @@ Vue.config.devtools = true;
 const nprogress = new NProgress({ parent: '.nprogress-container' });
 
 router.beforeEach((route, redirect, next) => {
-  if (config.sidebarStatus) {
-    // config.sidebarStatus = false;
-  }
   next();
 });
 

@@ -20,11 +20,6 @@
 
 <script>
 /**
- * External dependencies
- */
-import { mapMutations } from 'vuex';
-
-/**
  * Internal dependencies
  */
 import OrderTable from './tables/OrderTable';
@@ -34,13 +29,8 @@ export default {
   components: {
     OrderTable,
   },
-  methods: {
-    ...mapMutations([
-      'hideSidebar',
-    ]),
-  },
   mounted() {
-    this.hideSidebar();
+    this.$store.dispatch('hideSidebar');
   },
 };
 </script>
