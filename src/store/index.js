@@ -12,6 +12,7 @@ import * as actions from './actions';
 import * as mutations from './mutations';
 // Modules
 import sidebar from './modules/sidebar';
+import originlist from './modules/originlist';
 
 Vue.use(Vuex);
 
@@ -22,6 +23,7 @@ const store = new Vuex.Store({
   mutations,
   modules: {
     sidebar,
+    originlist,
   },
   strict: debug,
   plugins: debug ? [createLogger()] : [],
