@@ -48,7 +48,8 @@ export default {
 <style lang="less">
 @import './variables.less';
 
-body, html {
+body,
+html {
   font-size: 16px;
 }
 
@@ -58,7 +59,7 @@ body, html {
 
 .container {
   position: relative;
-  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
