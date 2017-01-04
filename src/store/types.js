@@ -16,3 +16,5 @@ export const OriginListLISTED = 'OriginListLISTED';
 export const OriginListCOMPLETE = 'OriginListCOMPLETE';
 export const OriginListINVALID = 'OriginListINVALID';
 export const OriginListREJECT = 'OriginListREJECT';
+export const OriginListPage = 'OriginListPage';
+export const OriginListTotal = 'OriginListTotal';

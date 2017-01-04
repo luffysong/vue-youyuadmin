@@ -18,7 +18,7 @@
         </el-input>
       </el-form-item>
       <el-form-item>
-        <el-button>搜索</el-button>
+        <el-button @click="search">搜索</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -26,19 +26,19 @@
   <el-tabs class="el-col-24" type="border-card"
            :active-name="curTab" @tab-click="tabchange">
     <el-tab-pane label="待审核" name="PENDING">
-      <origin-form :dataTable="PENDING"/>
+      <origin-form :dataTable="PENDING.items"/>
     </el-tab-pane>
     <el-tab-pane label="已挂牌" name="LISTED">
-      <origin-form :dataTable="LISTED"/>
+      <origin-form :dataTable="LISTED.items"/>
     </el-tab-pane>
     <el-tab-pane label="已成交" name="COMPLETE">
-      <origin-form :dataTable="COMPLETE"/>
+      <origin-form :dataTable="COMPLETE.items"/>
     </el-tab-pane>
     <el-tab-pane label="已失效" name="INVALID">
-      <origin-form :dataTable="INVALID"/>
+      <origin-form :dataTable="INVALID.items"/>
     </el-tab-pane>
     <el-tab-pane label="已驳回" name="REJECT">
-      <origin-form :dataTable="REJECT"/>
+      <origin-form :dataTable="REJECT.items"/>
     </el-tab-pane>
   </el-tabs>
 
@@ -47,7 +47,7 @@
     <el-pagination
       layout="prev, pager, next"
       :page-size="10"
-      :total="0"
+      :total="total"
       @current-change="curChange"
     >
     </el-pagination>

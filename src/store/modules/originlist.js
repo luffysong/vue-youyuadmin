@@ -7,7 +7,12 @@ import * as types from '../types';
 const initialState = {
   loading: false,
   data: {
-    PENDING: {},
+    PENDING: {
+      page: 1,
+      total: 1,
+      items: [],
+      params: {},
+    },
     LISTED: {},
     COMPLETE: {},
     INVALID: {},
@@ -16,28 +21,32 @@ const initialState = {
 };
 
 const getters = {
-  [types.OriginListPENDING]: state => state.data.PENDING.body,
-  [types.OriginListLISTED]: state => state.data.LISTED.body,
-  [types.OriginListCOMPLETE]: state => state.data.COMPLETE.body,
-  [types.OriginListINVALID]: state => state.data.INVALID.body,
-  [types.OriginListREJECT]: state => state.data.REJECT.body,
+  [types.OriginListPENDING]: state => state.data.PENDING,
+  [types.OriginListLISTED]: state => state.data.LISTED,
+  [types.OriginListCOMPLETE]: state => state.data.COMPLETE,
+  [types.OriginListINVALID]: state => state.data.INVALID,
+  [types.OriginListREJECT]: state => state.data.REJECT,
+  [types.OriginListPage]: state => state.data.REJECT,
 };
 
 const actions = {
   [types.ORIGINLIST_REQ]({ commit }, params) {
-    const url = `http://localhost:10001/static/origin.json?${params.TYPE}=${params.TYPEVAL}`;
+    const url = `http://localhost:10001/static/origin.json?type=${params.type}&page=${params.page}&keyword=${params.keyword}`;
     commit(types.ORIGINLIST_REQ);
     Vue.http.get(url, {
       emulateJSON: true,
     }).then((data) => {
-      commit(types.ORIGINLIST_REQ_SUC, {
-        data,
-        params,
-      });
-    }, (err) => {
+      if (data.body.code === 0) {
+        commit(types.ORIGINLIST_REQ_SUC, {
+          page: data.body.data.current_page,
+          total: data.body.data.total,
+          items: data.body.data.data,
+          params,
+        });
+      }
+    }, () => {
       commit(types.ORIGINLIST_REQ_ERR, {
-        data: err,
-        params,
+
       });
     });
   },
@@ -55,11 +64,11 @@ const mutations = {
   },
   [types.ORIGINLIST_REQ_SUC](state, data) {
     state.loading = false;
-    state.data[data.params.TYPEVAL] = data.data;
+    state.data[data.params.type] = data;
   },
   [types.ORIGINLIST_REQ_ERR](state, data) {
     state.loading = false;
-    state.data[data.params.TYPEVAL] = data.data;
+    state.data[data.params.type] = data;
   },
 };
 

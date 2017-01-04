@@ -8,54 +8,24 @@ import { mapGetters } from 'vuex';
 import * as types from '../../store/types';
 import OriginForm from './tables/OriginForm.vue';
 
-const ENUM_STATUS = {
-  // 待审核
-  PENDING: 'datapending',
-  // 已挂牌
-  LISTED: 'datalisted',
-  // 已成交
-  COMPLETE: 'datacomplete',
-  // 已失效
-  INVALID: 'datainvalid',
-  // 已驳回
-  REJECT: 'datareject',
-  // list 类型
-  TYPE: 'type',
-  // 页码
-  PAGE: 'page',
-  // 搜索词
-  KEY_WORD: 'keyword',
-};
-
-const dataStore = {};
-
 // 获取数据
 function getData(s, query) {
-  // 当前标签
-  dataStore.curTab = query[ENUM_STATUS.TYPE];
   // 设置 tab 高亮
-  s.$set(s, 'curTab', dataStore.curTab);
+  s.$set(s, 'curTab', query.type);
   // 触发 action
   s.$store.dispatch(types.ORIGINLIST_REQ, {
-    TYPEVAL: query[ENUM_STATUS.TYPE],
-    TYPE: ENUM_STATUS.TYPE,
+    type: query.type,
+    page: query.page,
+    keyword: query.keyword,
   });
-
-  // const url = `http://localhost:10001/static/origin.json?${ENUM_STATUS[query.type]}`;
-  // Vue.http.get(url, {
-  //   emulateJSON: true,
-  // }).then((data) => {
-  //   dataStore[query.type].body = data.body;
-  //   s.$set(s, query.type, dataStore[query.type].body);
-  // });
 }
 
 // 路由跳转
-function goto(s, type) {
+function goto(s, params) {
   s.$router.push({
     path: '/original',
     query: {
-      [ENUM_STATUS.TYPE]: type,
+      type: params.type,
     },
   });
 }
@@ -66,33 +36,55 @@ function inits() {
   // debugger
   const s = this;
   const query = {
-    [ENUM_STATUS.TYPE]: s.$route.query[ENUM_STATUS.TYPE],
-    [ENUM_STATUS.PAGE]: s.$route.query[ENUM_STATUS.PAGE],
-    [ENUM_STATUS.KEY_WORD]: s.$route.query[ENUM_STATUS.KEY_WORD],
+    type: s.$route.query.type,
+    page: s.$route.query.page,
+    keyword: s.$route.query.keyword,
   };
-  if (!query[ENUM_STATUS.TYPE]) {
-    query[ENUM_STATUS.TYPE] = 'PENDING';
+  if (!query.type) {
+    query.type = 'PENDING';
   }
-  // Object.keys(ENUM_STATUS).forEach((val) => {
-  //   if (ENUM_STATUS[val] === type) {
-  //     query.type = val;
-  //   }
-  // });
+  if (!query.page) {
+    query.page = 1;
+  }
+  if (!query.keyword) {
+    query.keyword = '';
+  }
   getData(s, query);
 }
 
 export default {
   name: 'Original',
+  props: {
+
+  },
   methods: {
     // tab 点击事件
     tabchange(vuedom) {
-      goto(this, vuedom.name);
-      getData(this, {
+      const params = {
         type: vuedom.name,
-      });
+        page: 1,
+        keyword: encodeURIComponent(this.$data.keyword),
+      };
+      goto(this, params);
+      getData(this, params);
     },
-    curChange() {
-      console.log(1);
+    curChange(cs) {
+      const params = {
+        type: this.curTab,
+        page: cs,
+        keyword: encodeURIComponent(this.keyword),
+      };
+      goto(this, params);
+      getData(this, params);
+    },
+    search() {
+      const params = {
+        type: this.curTab,
+        page: 1,
+        keyword: encodeURIComponent(this.keyword),
+      };
+      goto(this, params);
+      getData(this, params);
     },
   },
   computed: {
@@ -103,21 +95,18 @@ export default {
       INVALID: [types.OriginListINVALID],
       REJECT: [types.OriginListREJECT],
     }),
+    page() {
+      return this[this.curTab].page;
+    },
+    total() {
+      return this[this.curTab].total;
+    },
   },
   data() {
-    // Object.keys(ENUM_STATUS).forEach((val) => {
-    //   // 初始化 dataStore
-    //   dataStore[val] = {};
-    //   dataStore[val].body = [];
-    // });
-
     return {
-      curTab: dataStore.curTab,
-      // PENDING: dataStore.PENDING.body,
-      // LISTED: dataStore.LISTED.body,
-      // COMPLETE: dataStore.COMPLETE.body,
-      // INVALID: dataStore.INVALID.body,
-      // REJECT: dataStore.REJECT.body,
+      curTab: '',
+      page: '',
+      total: '',
       searchOptions: [
         {
           label: '项目名称',
@@ -142,6 +131,7 @@ export default {
       ],
       searchType: '',
       keyword: '',
+
     };
   },
   mounted() {
