@@ -26,30 +26,30 @@
   <el-tabs class="el-col-24" type="border-card"
            :active-name="curTab" @tab-click="tabchange">
     <el-tab-pane label="待审核" name="PENDING">
-      <origin-form :dataTable="PENDING.items"/>
+      <div v-if="curTab === 'PENDING'">
+        <origin-form :dataTable="PENDING" key="PENDING" :dataChangePage="curChange"/>
+      </div>
     </el-tab-pane>
     <el-tab-pane label="已挂牌" name="LISTED">
-      <origin-form :dataTable="LISTED.items"/>
+      <div v-if="curTab === 'LISTED'">
+        <origin-form :dataTable="LISTED"  key="LISTED" :dataChangePage="curChange"/>
+      </div>
     </el-tab-pane>
     <el-tab-pane label="已成交" name="COMPLETE">
-      <origin-form :dataTable="COMPLETE.items"/>
+      <div v-if="curTab === 'COMPLETE'">
+        <origin-form :dataTable="COMPLETE" key="COMPLETE" :dataChangePage="curChange"/>
+      </div>
     </el-tab-pane>
     <el-tab-pane label="已失效" name="INVALID">
-      <origin-form :dataTable="INVALID.items"/>
+      <div v-if="curTab === 'INVALID'">
+        <origin-form :dataTable="INVALID" key="INVALID" :dataChangePage="curChange"/>
+      </div>
     </el-tab-pane>
     <el-tab-pane label="已驳回" name="REJECT">
-      <origin-form :dataTable="REJECT.items"/>
+      <div v-if="curTab === 'REJECT'">
+        <origin-form :dataTable="REJECT" key="REJECT" :dataChangePage="curChange"/>
+      </div>
     </el-tab-pane>
   </el-tabs>
 
-  <div class="block">
-    <span class="demonstration"> </span>
-    <el-pagination
-      layout="prev, pager, next"
-      :page-size="10"
-      :total="total"
-      @current-change="curChange"
-    >
-    </el-pagination>
-  </div>
 </div>

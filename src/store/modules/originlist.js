@@ -8,15 +8,40 @@ const initialState = {
   loading: false,
   data: {
     PENDING: {
+      type: 'PENDING',
       page: 1,
       total: 1,
       items: [],
       params: {},
     },
-    LISTED: {},
-    COMPLETE: {},
-    INVALID: {},
-    REJECT: {},
+    LISTED: {
+      type: 'LISTED',
+      page: 1,
+      total: 1,
+      items: [],
+      params: {},
+    },
+    COMPLETE: {
+      type: 'COMPLETE',
+      page: 1,
+      total: 1,
+      items: [],
+      params: {},
+    },
+    INVALID: {
+      type: 'INVALID',
+      page: 1,
+      total: 1,
+      items: [],
+      params: {},
+    },
+    REJECT: {
+      type: 'REJECT',
+      page: 1,
+      total: 1,
+      items: [],
+      params: {},
+    },
   },
 };
 
@@ -38,6 +63,7 @@ const actions = {
     }).then((data) => {
       if (data.body.code === 0) {
         commit(types.ORIGINLIST_REQ_SUC, {
+          type: params.type,
           page: data.body.data.current_page,
           total: data.body.data.total,
           items: data.body.data.data,

@@ -1,12 +1,35 @@
 export default {
   name: 'ProjectTable',
   props: {
-    dataTable: Array,
+    dataTable: Object,
+    dataChangePage: Function,
+  },
+  methods: {
+
+  },
+  computed: {
   },
   data() {
     return {
-      table: {
-      },
     };
+  },
+  mounted() {
+    console.log('mounted', this);
+    // this.$store.dispatch(types.HIDE_SIDEBAR);
+  },
+  created() {
+    console.log('create');
+  },
+  beforeUpdate() {
+    console.log('before');
+  },
+  beforeMount() {
+    console.log('beforeMount');
+  },
+  updated() {
+    console.log('updated');
+  },
+  components: {
+
   },
 };

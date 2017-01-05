@@ -52,6 +52,8 @@ function inits() {
   getData(s, query);
 }
 
+let curTabCache;
+
 export default {
   name: 'Original',
   props: {
@@ -63,12 +65,16 @@ export default {
       const params = {
         type: vuedom.name,
         page: 1,
-        keyword: encodeURIComponent(this.$data.keyword),
+        keyword: encodeURIComponent(this.keyword),
       };
       goto(this, params);
       getData(this, params);
     },
     curChange(cs) {
+      if (curTabCache !== this.curTab) {
+        curTabCache = this.curTab;
+        return;
+      }
       const params = {
         type: this.curTab,
         page: cs,
@@ -95,18 +101,10 @@ export default {
       INVALID: [types.OriginListINVALID],
       REJECT: [types.OriginListREJECT],
     }),
-    page() {
-      return this[this.curTab].page;
-    },
-    total() {
-      return this[this.curTab].total;
-    },
   },
   data() {
     return {
       curTab: '',
-      page: '',
-      total: '',
       searchOptions: [
         {
           label: '项目名称',
@@ -131,7 +129,6 @@ export default {
       ],
       searchType: '',
       keyword: '',
-
     };
   },
   mounted() {
