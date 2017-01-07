@@ -1,6 +1,5 @@
 <template>
 <div class="container" :class="{'no-sidebar': !sidebar.show}">
-  <nprogress-container></nprogress-container>
   <nav-bar :data="{}"></nav-bar>
   <el-row>
     <side-bar :show="sidebar.show" :data="sidebar.data"></side-bar>
@@ -20,7 +19,6 @@
 /**
  * External dependencies
  */
-import NprogressContainer from 'vue-nprogress/src/NprogressContainer';
 
 /**
  * Internal dependencies
@@ -35,7 +33,6 @@ export default {
     NavBar,
     SideBar,
     LevelBar,
-    NprogressContainer,
   },
   computed: {
     sidebar() {
