@@ -1,0 +1,60 @@
+<template>
+  <div class="origin-share-transfer">
+    <div class="search">
+      <el-form :inline="true">
+        <el-form-item>
+          <el-select class="select" v-model="searchType" placeholder="请选择">
+            <el-option
+              v-for="item in searchOptions"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item>
+          <el-input
+            class="input"
+            placeholder="请输入内容"
+            v-model="keyword">
+          </el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button @click="search">搜索</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+
+    <el-tabs class="el-col-24" type="border-card"
+             :active-name="curTab" @tab-click="tabchange">
+      <el-tab-pane label="待审核" name="PENDING">
+        <div v-if="curTab === 'PENDING'">
+          <origin-form :dataTable="PENDING" key="PENDING" :dataChangePage="curChange"/>
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="已挂牌" name="LISTED">
+        <div v-if="curTab === 'LISTED'">
+          <origin-form :dataTable="LISTED"  key="LISTED" :dataChangePage="curChange"/>
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="已成交" name="COMPLETE">
+        <div v-if="curTab === 'COMPLETE'">
+          <origin-form :dataTable="COMPLETE" key="COMPLETE" :dataChangePage="curChange"/>
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="已失效" name="INVALID">
+        <div v-if="curTab === 'INVALID'">
+          <origin-form :dataTable="INVALID" key="INVALID" :dataChangePage="curChange"/>
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="已驳回" name="REJECT">
+        <div v-if="curTab === 'REJECT'">
+          <origin-form :dataTable="REJECT" key="REJECT" :dataChangePage="curChange"/>
+        </div>
+      </el-tab-pane>
+    </el-tabs>
+
+  </div>
+
+</template>
+<script src='./list.js'></script>
+

@@ -1,5 +1,3 @@
-<template src='./index.html' />
-
-<script src='./index.js'></script>
-
-<style src='./index.less' lang="less" scoped></style>
+<template>
+  <router-view></router-view>
+</template>

@@ -21,15 +21,17 @@ export default [
     name: 'OriginShareTransfer',
     path: '/original',
     component: resolve => require(['../containers/Original/index.vue'], resolve), // eslint-disable-line
+    redirect: '/original/list',
     children: [
       {
         name: 'OriginalList',
         path: 'list',
+        component: resolve => require(['../containers/OriginalList/List.vue'], resolve), // eslint-disable-line
       },
       {
         name: 'OriginalDetail',
         path: 'detail/:id',
-        component: resolve => require(['../containers/Original/detail/Detail.vue'], resolve), // eslint-disable-line
+        component: resolve => require(['../containers/OriginalDetail/Detail.vue'], resolve), // eslint-disable-line
       },
     ],
   },
