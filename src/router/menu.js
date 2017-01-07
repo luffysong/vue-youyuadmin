@@ -18,6 +18,7 @@ export default [
     ],
   },
   {
+    // 初始份额转让管理
     name: 'OriginShareTransfer',
     path: '/original',
     component: resolve => require(['../containers/Original/index.vue'], resolve), // eslint-disable-line
@@ -36,6 +37,7 @@ export default [
     ],
   },
   {
+    // 影视类收益权转让管理
     name: 'Transfer',
     path: '/transfer',
     component: resolve => require(['../containers/Transfer'], resolve), // eslint-disable-line
@@ -44,12 +46,12 @@ export default [
       {
         name: 'TransferList',
         path: 'list',
-        component: resolve => require(['../containers/Transfer/List'], resolve), // eslint-disable-line
+        component: resolve => require(['../containers/TransferList/List.vue'], resolve), // eslint-disable-line
       },
       {
         name: 'TransferDetail',
         path: 'detail/:id',
-        component: resolve => require(['../containers/Transfer/Detail'], resolve), // eslint-disable-line
+        component: resolve => require(['../containers/TransferDetail/Detail.vue'], resolve), // eslint-disable-line
       },
     ],
   },
