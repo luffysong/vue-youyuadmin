@@ -23,7 +23,7 @@ function getData(s, query) {
 // 路由跳转
 function goto(s, params) {
   s.$router.push({
-    path: '/original',
+    path: '/original/list',
     query: {
       type: params.type,
     },

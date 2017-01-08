@@ -44,6 +44,10 @@ const initialState = {
 
 const getters = {
   [types.TransferListPENDING]: state => state.data.PENDING,
+  [types.TransferListLISTED]: state => state.data.LISTED,
+  [types.TransferListCOMPLETE]: state => state.data.COMPLETE,
+  [types.TransferListINVALID]: state => state.data.INVALID,
+  [types.TransferListREJECT]: state => state.data.REJECT,
 };
 
 const actions = {

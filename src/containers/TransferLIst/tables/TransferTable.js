@@ -1,52 +1,37 @@
+
 export default {
   name: 'TransferTable',
+  props: {
+    dataTable: Object,
+    dataChangePage: Function,
+  },
+  methods: {
+  },
+  computed: {
+  },
   data() {
+    console.log(this.dataTable)
     return {
-      table: {
-        content: [
-          {
-            id: '100001',
-            name: '1神奇动物在哪里',
-            maker: '华纳影业',
-            user: '李冰冰',
-            percent: '20%',
-            applyTime: '2016-12-18 20:40',
-            auditor: '汤圆儿',
-          }, {
-            id: '00001',
-            name: '神奇动物在哪里',
-            maker: '华纳影业',
-            user: '李冰冰',
-            percent: '20%',
-            applyTime: '2016-12-18 20:40',
-            auditor: '汤圆儿',
-          }, {
-            id: '00001',
-            name: '神奇动物在哪里',
-            maker: '华纳影业',
-            user: '李冰冰',
-            percent: '20%',
-            applyTime: '2016-12-18 20:40',
-            auditor: '汤圆儿',
-          }, {
-            id: '00001',
-            name: '神奇动物在哪里',
-            maker: '华纳影业',
-            user: '李冰冰',
-            percent: '20%',
-            applyTime: '2016-12-18 20:40',
-            auditor: '汤圆儿',
-          }, {
-            id: '00001',
-            name: '神奇动物在哪里',
-            maker: '华纳影业',
-            user: '李冰冰',
-            percent: '20%',
-            applyTime: '2016-12-18 20:40',
-            auditor: '汤圆儿',
-          },
-        ],
-      },
+
     };
+  },
+  mounted() {
+    console.log('mounted');
+    // this.$store.dispatch(types.HIDE_SIDEBAR);
+  },
+  created() {
+    console.log('created');
+  },
+  beforeUpdate() {
+    console.log('beforeUpdate');
+  },
+  beforeMount() {
+    console.log('beforeMount');
+  },
+  updated() {
+    console.log('updated');
+  },
+  components: {
+
   },
 };

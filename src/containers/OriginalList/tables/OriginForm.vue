@@ -1,3 +1,70 @@
-<template src="./OriginForm.html" />
+<template>
+  <div>
+    <el-table
+      :data="dataTable.items"
+      stripe
+      border>
+      <el-table-column
+        fixed
+        prop="id"
+        label="项目ID"
+        width="150">
+      </el-table-column>
+      <el-table-column
+        prop="name"
+        label="项目名称"
+        width="200">
+      </el-table-column>
+      <el-table-column
+        prop="maker"
+        label="制片方"
+        width="200">
+      </el-table-column>
+      <el-table-column
+        prop="registerTime"
+        label="登记时间"
+        width="200">
+      </el-table-column>
+      <el-table-column
+        fixed="right"
+        inline-template
+        align="center"
+        label="操作"
+        width="200">
+        <el-button-group>
+          <!-- <el-button type="success"
+			icon="circle-check" size="small">
+			显示
+		  </el-button> -->
+          <el-button type="info"
+                     icon="view" size="small">
+            查看
+          </el-button>
+        </el-button-group>
+      </el-table-column>
+    </el-table>
+
+    <div class="block">
+      <span class="demonstration"> </span>
+      <el-pagination
+        layout="prev, pager, next, jumper"
+        :current-page="dataTable.page"
+        :page-size="10"
+        :total="dataTable.total"
+        @current-change="dataChangePage"
+      >
+      </el-pagination>
+    </div>
+    {{dataTable.page}}=={{dataTable.type}}
+  </div>
+
+</template>
 <script src="./OriginForm.js"></script>
-<style lang="less" scoped src="./OriginForm.less" scoped> </style>
+<style lang="less" scoped>
+  .block {
+    clear: both;
+    text-align: right;
+    padding: 10px 0 0;
+  }
+
+</style>

@@ -6,19 +6,31 @@
         "id": "11",
         "name": "1111神奇动物在哪里1",
         "maker": "华纳影业",
-        "registerTime": "登记时间"
+        "transfer": "达芬奇",
+        "listedShare": "10%",
+        "listedPrice": "1000元",
+        "applyTime": "2017-01-01",
+        "auditor": "审核人"
       },
       {
-        "id": "00001",
-        "name": "神奇动物在哪里",
+        "id": "11",
+        "name": "1111神奇动物在哪里1",
         "maker": "华纳影业",
-        "registerTime": "登记时间"
+        "transfer": "达芬奇",
+        "listedShare": "10%",
+        "listedPrice": "1000元",
+        "applyTime": "2017-01-01",
+        "auditor": "审核人"
       },
       {
-        "id": "00001",
-        "name": "神奇动物在哪里",
+        "id": "11",
+        "name": "1111神奇动物在哪里1",
         "maker": "华纳影业",
-        "registerTime": "登记时间"
+        "transfer": "达芬奇",
+        "listedShare": "10%",
+        "listedPrice": "1000元",
+        "applyTime": "2017-01-01",
+        "auditor": "审核人"
       }
     ],
     "current_page": 12,
