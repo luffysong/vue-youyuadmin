@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import * as types from '../types';
 
-const initialState = {
+const initState = {
   loading: false,
   data: {
     PENDING: {
@@ -95,7 +95,7 @@ const mutations = {
 };
 
 export default {
-  state: initialState,
+  state: initState,
   getters,
   actions,
   mutations,

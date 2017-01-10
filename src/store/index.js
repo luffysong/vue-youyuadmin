@@ -14,6 +14,7 @@ import * as mutations from './mutations';
 import sidebar from './modules/sidebar';
 import originlist from './modules/originlist';
 import transferlist from './modules/transferlist';
+import transferdetail from './modules/transferdetail';
 
 Vue.use(Vuex);
 
@@ -26,6 +27,7 @@ const store = new Vuex.Store({
     sidebar,
     originlist,
     transferlist,
+    transferdetail,
   },
   strict: debug,
   plugins: debug ? [createLogger()] : [],

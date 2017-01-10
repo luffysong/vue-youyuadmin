@@ -30,3 +30,11 @@ export const TransferListLISTED = 'TransferListLISTED';
 export const TransferListCOMPLETE = 'TransferListCOMPLETE';
 export const TransferListINVALID = 'TransferListINVALID';
 export const TransferListREJECT = 'TransferListREJECT';
+
+// TransferDetail getdata '影视收益权转让管理' 获取详情数据
+export const TRANSFERDETAIL_REQ = 'TRANSFERDETAIL_REQ';
+export const TRANSFERDETAIL_SUC = 'TRANSFERDETAIL_SUC';
+export const TRANSFERDETAIL_ERR = 'TRANSFERDETAIL_ERR';
+
+// TransferDetail getter
+export const TransferDetailData = 'TransferDetailData';
