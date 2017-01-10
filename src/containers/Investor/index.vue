@@ -1,18 +1,9 @@
 <template>
-<el-tabs class="el-col-24" type="border-card">
-  <el-tab-pane label="待审核">
+  <div>
+    1234567890
+    <router-view></router-view>
 
-  </el-tab-pane>
-  <el-tab-pane label="已通过">
-
-  </el-tab-pane>
-  <el-tab-pane label="已驳回">
-
-  </el-tab-pane>
-  <el-tab-pane label="全部">
-
-  </el-tab-pane>
-</el-tabs>
+  </div>
 </template>
 
 <script>
@@ -25,6 +16,8 @@ export default {
   name: 'Investor',
   mounted() {
     this.$store.dispatch(types.HIDE_SIDEBAR);
+  },
+  components: {
   },
 };
 </script>

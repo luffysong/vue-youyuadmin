@@ -56,10 +56,46 @@ export default [
     ],
   },
   {
-    name: '投资人审核',
+    name: 'Investor',
     path: '/investor',
-    component: resolve => require(['../containers/Investor'], resolve), // eslint-disable-line
-  }, {
+    component: resolve => require(['../containers/Investor/index.vue'], resolve), // eslint-disable-line
+    redirect: '/investor/list/pending',
+    children: [
+      {
+        name: 'InvestorList',
+        path: 'list',
+        component: resolve => require(['../containers/InvestorList/list.vue'], resolve), // eslint-disable-line
+        redirect: '/investor/list/pending',
+        children: [
+          {
+            name: 'InvestorPending',
+            path: 'pending',
+            component: resolve => require(['../containers/InvestorListPending/pending.vue'], resolve), // eslint-disable-line
+          },
+          {
+            name: 'InvestorPass',
+            path: 'pass',
+            component: resolve => require(['../containers/InvestorListPass/pass.vue'], resolve), // eslint-disable-line
+          },
+          {
+            name: 'InvestorReject',
+            path: 'reject',
+            component: resolve => require(['../containers/InvestorListReject/reject.vue'], resolve), // eslint-disable-line
+          },
+          {
+            name: 'InvestorAll',
+            path: 'all',
+            component: resolve => require(['../containers/InvestorListAll/all.vue'], resolve), // eslint-disable-line
+          },
+        ],
+      },
+      // {
+      //   name: 'InvestorDetail',
+      //   path: 'detail/:id',
+      // },
+    ],
+  },
+  {
     name: 'Order',
     path: '/order',
     component: resolve => require(['../containers/Order'], resolve), // eslint-disable-line
