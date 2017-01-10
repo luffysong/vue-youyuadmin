@@ -89,10 +89,11 @@ export default [
           },
         ],
       },
-      // {
-      //   name: 'InvestorDetail',
-      //   path: 'detail/:id',
-      // },
+      {
+        name: 'InvestorDetail',
+        path: 'detail/:id',
+        component: resolve => require(['../containers/InvestorDetail/detail.vue'], resolve), // eslint-disable-line
+      },
     ],
   },
   {

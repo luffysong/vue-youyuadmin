@@ -48,4 +48,4 @@
 
 </template>
 <style src='' scoped lang="less"> </style>
-<script src=''> </script>
+<script src='./detail.js'> </script>
