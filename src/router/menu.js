@@ -64,18 +64,18 @@ export default [
       {
         name: 'InvestorList',
         path: 'list',
-        component: resolve => require(['../containers/InvestorList/list.vue'], resolve), // eslint-disable-line
+        component: resolve => require(['../containers/InvestorList/list'], resolve), // eslint-disable-line
         redirect: '/investor/list/pending',
         children: [
           {
             name: 'InvestorPending',
             path: 'pending',
-            component: resolve => require(['../containers/InvestorListPending/pending.vue'], resolve), // eslint-disable-line
+            component: resolve => require(['../containers/InvestorListPending/pending'], resolve), // eslint-disable-line
           },
           {
             name: 'InvestorPass',
             path: 'pass',
-            component: resolve => require(['../containers/InvestorListPass/pass.vue'], resolve), // eslint-disable-line
+            component: resolve => require(['../containers/InvestorListPass/pass'], resolve), // eslint-disable-line
           },
           {
             name: 'InvestorReject',
