@@ -136,16 +136,12 @@ export default {
   },
   created() {
     inits.call(this);
-    console.log('create');
   },
   beforeUpdate() {
-    console.log('before');
   },
   beforeMount() {
-    console.log('beforeMount');
   },
   updated() {
-    console.log('updated');
   },
   components: {
     OriginForm,

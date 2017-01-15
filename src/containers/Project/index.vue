@@ -19,8 +19,8 @@ export default {
         type: 'item',
       },
       {
-        name: '项目登记',
-        link: '/project/register',
+        name: '项目列表',
+        link: '/project/list',
         icon: 'document',
         type: 'item',
       },

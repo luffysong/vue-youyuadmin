@@ -31,12 +31,10 @@
 /**
  * Internal dependencies
  */
-import NewShareForm from './NewShareForm';
 
 export default {
   name: 'DescriptionForm',
   components: {
-    NewShareForm,
   },
   data() {
     return {

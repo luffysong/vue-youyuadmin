@@ -102,21 +102,16 @@ export default {
     };
   },
   mounted() {
-    console.log('mounted');
     this.$store.dispatch(types.HIDE_SIDEBAR);
   },
   created() {
     inits.call(this);
-    console.log('created');
   },
   beforeUpdate() {
-    console.log('beforeUpdate');
   },
   beforeMount() {
-    console.log('beforeMount');
   },
   updated() {
-    console.log('updated');
   },
   components: {
     TransferTable,

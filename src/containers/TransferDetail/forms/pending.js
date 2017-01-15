@@ -2,7 +2,6 @@ export default {
   name: 'TransferFormPending',
   props: ['form'],
   data() {
-    console.log(this.form, 'form');
     return {
       id: this.form.data.id,
       projectName: this.form.data.projectName,
@@ -30,7 +29,6 @@ export default {
     },
     handleSubmit() {
       this.$refs.form.validate((valid) => {
-        console.log(valid, 'v');
       });
     },
   },

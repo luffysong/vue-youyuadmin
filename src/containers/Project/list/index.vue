@@ -1,16 +1,12 @@
 <template>
-  <div>
-    6789
-    <InvestorListPendingTable/>
-  </div>
+  <router-view></router-view>
 </template>
 <script>
-  // import { mapGetters } from 'vuex';
-  // import * as types from '../../store/types';
-  import InvestorListPendingTable from './table/table';
+//  import { mapGetters } from 'vuex';
+//  import * as types from '../../store/types';
 
   export default {
-    name: 'InvestorListPending',
+    name: 'listindex',
     props: {
     },
     methods: {
@@ -34,14 +30,10 @@
     updated() {
     },
     components: {
-      InvestorListPendingTable,
+
     },
   };
 
 </script>
 <style scoped lang="less">
-
 </style>
-
-
-

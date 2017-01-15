@@ -94,20 +94,15 @@
       };
     },
     mounted() {
-      console.log('mounted');
       // this.$store.dispatch(types.HIDE_SIDEBAR);
     },
     created() {
-      console.log('created');
     },
     beforeUpdate() {
-      console.log('beforeUpdate');
     },
     beforeMount() {
-      console.log('beforeMount');
     },
     updated() {
-      console.log('updated');
     },
     components: {
 
