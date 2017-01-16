@@ -7,9 +7,9 @@ export default [
     redirect: '/project/list/unregistered',
     children: [
       {
-        name: 'list',
+        name: 'List',
         path: 'list',
-        components: resolve => require(['../containers/Project/list/index'], resolve), // eslint-disable-line
+        component: resolve => require(['../containers/Project/list/index'], resolve), // eslint-disable-line
         redirect: '/project/list/unregistered',
         children: [
           {
@@ -37,32 +37,33 @@ export default [
       {
         name: 'detail',
         path: 'detail',
-        components: resolve => require(['../containers/Project/detail/index'], resolve), // eslint-disable-line
+        component: resolve => require(['../containers/Project/detail/index'], resolve), // eslint-disable-line
+        redirect: '/project/list/unregistered',
         children: [
           {
             name: 'desc',
-            path: 'desc',
-            components: resolve => require(['../containers/Project/detail/desc'], resolve), // eslint-disable-line
+            path: 'desc/:id',
+            component: resolve => require(['../containers/Project/detail/desc'], resolve), // eslint-disable-line
           },
           {
             name: 'originShare',
             path: 'originShare',
-            components: resolve => require(['../containers/Project/detail/originShare'], resolve), // eslint-disable-line
+            component: resolve => require(['../containers/Project/detail/originShare'], resolve), // eslint-disable-line
           },
           {
             name: 'transferShare',
             path: 'transferShare',
-            components: resolve => require(['../containers/Project/detail/transferShare'], resolve), // eslint-disable-line
+            component: resolve => require(['../containers/Project/detail/transferShare'], resolve), // eslint-disable-line
           },
           {
             name: 'transferEarn',
             path: 'transferEarn',
-            components: resolve => require(['../containers/Project/detail/transferEarn'], resolve), // eslint-disable-line
+            component: resolve => require(['../containers/Project/detail/transferEarn'], resolve), // eslint-disable-line
           },
           {
             name: 'projectProgress',
             path: 'projectProgress',
-            components: resolve => require(['../containers/Project/detail/projectProgress'], resolve), // eslint-disable-line
+            component: resolve => require(['../containers/Project/detail/projectProgress'], resolve), // eslint-disable-line
           },
         ],
       },

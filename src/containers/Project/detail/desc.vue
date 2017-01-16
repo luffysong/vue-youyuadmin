@@ -1,11 +1,7 @@
 <template>
   <div>
-
-    <ProjectNav :activeTab="activeTab"/>
+    <DetailNav :activeTab="activeTab"/>
     <DescriptionForm />
-
-
-
   </div>
 </template>
 
@@ -15,19 +11,22 @@
  */
 import ShareForm from '../customParts/ShareForm';
 import DescriptionForm from '../customParts/DescriptionForm';
-import ProjectNav from '../customParts/ProjectNav';
+import DetailNav from '../customParts/DetailNav';
 
 export default {
-  name: 'Create',
+  name: 'desc',
   data() {
     return {
-      activeTab: 'transferOriginShare',
+      activeTab: 'desc',
     };
   },
   components: {
     ShareForm,
     DescriptionForm,
-    ProjectNav,
+    DetailNav,
+  },
+  mounted() {
+
   },
 };
 </script>

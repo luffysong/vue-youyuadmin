@@ -38,3 +38,17 @@ export const TRANSFERDETAIL_ERR = 'TRANSFERDETAIL_ERR';
 
 // TransferDetail getter
 export const TransferDetailData = 'TransferDetailData';
+
+// 项目管理 获取list 数据
+export const ProjectListReq = 'ProjectListReq';
+export const ProjectListSuc = 'ProjectListSuc';
+export const ProjectListErr = 'ProjectListErr';
+
+// 项目管理 getter
+export const ProjectListData = 'ProjectListData';
+export const ProjectDisplayData = 'ProjectDisplayData';
+
+// 项目管理 项目显示、隐藏控制
+export const ProjectDisplayReq = 'ProjectDisplayReq';
+export const ProjectDisplaySuc = 'ProjectDisplaySuc';
+export const ProjectDisplayErr = 'ProjectDisplayErr';

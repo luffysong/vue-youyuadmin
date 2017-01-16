@@ -15,6 +15,7 @@ import sidebar from './modules/sidebar';
 import originlist from './modules/originlist';
 import transferlist from './modules/transferlist';
 import transferdetail from './modules/transferdetail';
+import projectlist from './modules/projectlist';
 
 Vue.use(Vuex);
 
@@ -28,6 +29,7 @@ const store = new Vuex.Store({
     originlist,
     transferlist,
     transferdetail,
+    projectlist,
   },
   strict: debug,
   plugins: debug ? [createLogger()] : [],

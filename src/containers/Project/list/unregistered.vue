@@ -1,40 +1,59 @@
 <template>
   <div>
-    未注册list
+    <ListNav :activeTab="activeTab" />
+    <ProjectTable :data="listdata" :displayHandle="displayHandle"/>
+
   </div>
 </template>
 <script>
-//  import { mapGetters } from 'vuex';
-//  import * as types from '../../store/types';
+import { mapGetters } from 'vuex';
+import * as types from '../../../store/types';
+import ListNav from '../customParts/ListNav';
+import ProjectTable from '../customParts/ProjectTable';
 
-  export default {
-    name: 'Unregistered',
-    props: {
+export default {
+  name: 'Unregistered', // 未登记
+  props: ['ProjectList'],
+  methods: {
+    displayHandle(...cs) {
+      console.log(cs, 'displayHandle');
+//      this.$store.dispatch()
     },
-    methods: {
-    },
-    computed: {
-    },
-    data() {
-      return {
-
-      };
-    },
-    mounted() {
-      // this.$store.dispatch(types.HIDE_SIDEBAR);
-    },
-    created() {
-    },
-    beforeUpdate() {
-    },
-    beforeMount() {
-    },
-    updated() {
-    },
-    components: {
+    toDetail() {
 
     },
-  };
+  },
+  computed: {
+    ...mapGetters({
+      listdata: [types.ProjectListData],
+    }),
+  },
+  data() {
+    setTimeout(() => {
+      console.log(this.listdata, this.sdata, 'data'); // 怎么赋值给 this.sdata ???
+    }, 3000);
+    return {
+      activeTab: 'unregistered',
+      sdata: this.listdata,
+    };
+  },
+  mounted() {
+    // this.$store.dispatch(types.HIDE_SIDEBAR);
+    this.$store.dispatch(types.ProjectListReq, { type: 'a' });
+  },
+  created() {
+  },
+  beforeUpdate() {
+  },
+  beforeMount() {
+  },
+  updated() {
+  },
+  components: {
+    ListNav,
+    ProjectTable,
+  },
+};
 
 </script>
 <style scoped lang="less">
