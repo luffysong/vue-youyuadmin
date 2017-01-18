@@ -11,11 +11,13 @@ import createLogger from 'vuex/dist/logger';
 import * as actions from './actions';
 import * as mutations from './mutations';
 // Modules
+import dict from './modules/dict';
 import sidebar from './modules/sidebar';
 import originlist from './modules/originlist';
 import transferlist from './modules/transferlist';
 import transferdetail from './modules/transferdetail';
 import projectlist from './modules/projectlist';
+import projectdetail from './modules/projectdetail';
 
 Vue.use(Vuex);
 
@@ -25,11 +27,13 @@ const store = new Vuex.Store({
   actions,
   mutations,
   modules: {
+    dict,
     sidebar,
     originlist,
     transferlist,
     transferdetail,
     projectlist,
+    projectdetail,
   },
   strict: debug,
   plugins: debug ? [createLogger()] : [],

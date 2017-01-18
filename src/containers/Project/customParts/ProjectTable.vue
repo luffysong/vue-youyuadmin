@@ -54,11 +54,12 @@
         <el-button-group>
           <el-button type="success"
                      icon="circle-check" size="small"
-                     @click="displayHandle">
+                     @click="displayHandle(row.id)">
             显示
           </el-button>
           <el-button type="info"
-                     icon="view" size="small">
+                     icon="view" size="small"
+                      @click="toDetail(row.id)">
             查看
           </el-button>
         </el-button-group>
@@ -84,6 +85,7 @@ export default {
   props: {
     data: Object,
     displayHandle: Function,
+    toDetail: Function,
   },
   data() {
     return {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <ListNav :activeTab="activeTab" />
-    <ProjectTable :data="listdata" :displayHandle="displayHandle"/>
+    <ProjectTable :data="listdata" :displayHandle="displayHandle" :toDetail="toDetail"/>
 
   </div>
 </template>
@@ -19,8 +19,11 @@ export default {
       console.log(cs, 'displayHandle');
 //      this.$store.dispatch()
     },
-    toDetail() {
-
+    toDetail(...cs) {
+      console.log(cs, 'toDetail');
+      this.$router.push({
+        path: `/project/detail/desc/${cs[0]}`,
+      });
     },
   },
   computed: {

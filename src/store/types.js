@@ -52,3 +52,8 @@ export const ProjectDisplayData = 'ProjectDisplayData';
 export const ProjectDisplayReq = 'ProjectDisplayReq';
 export const ProjectDisplaySuc = 'ProjectDisplaySuc';
 export const ProjectDisplayErr = 'ProjectDisplayErr';
+
+// 项目管理 项目详情
+export const ProjectDetailReq = 'ProjectDetailReq';
+export const ProjectDetailSuc = 'ProjectDetailSuc';
+export const ProjectDetailErr = 'ProjectDetailErr';

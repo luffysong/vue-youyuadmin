@@ -17,6 +17,7 @@
     "animate.css": "^3.5.2",
     "element-ui": "^1.0.8",
     "js-cookie": "^2.1.3",
+    "lodash": "^4.17.4",
     "normalize.css": "^5.0.0",
     "vue": "^2.1.0",
     "vue-nprogress": "^0.1.4",
