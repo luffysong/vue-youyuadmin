@@ -1,5 +1,10 @@
 export default [
   {
+    name: 'Demo',
+    path: '/demo',
+    component: resolve => require(['../containers/Demo/index'], resolve), // eslint-disable-line
+  },
+  {
     // 项目管理
     name: 'Project',
     path: '/project',
@@ -41,28 +46,33 @@ export default [
         redirect: '/project/list/unregistered',
         children: [
           {
+            name: 'create',
+            path: 'create',
+            component: resolve => require(['../containers/Project/detail/create'], resolve), // eslint-disable-line
+          },
+          {
             name: 'desc',
             path: 'desc/:id',
             component: resolve => require(['../containers/Project/detail/desc'], resolve), // eslint-disable-line
           },
           {
             name: 'originShare',
-            path: 'originShare',
+            path: 'originShare/:id',
             component: resolve => require(['../containers/Project/detail/originShare'], resolve), // eslint-disable-line
           },
           {
             name: 'transferShare',
-            path: 'transferShare',
+            path: 'transferShare/:id',
             component: resolve => require(['../containers/Project/detail/transferShare'], resolve), // eslint-disable-line
           },
           {
             name: 'transferEarn',
-            path: 'transferEarn',
+            path: 'transferEarn/:id',
             component: resolve => require(['../containers/Project/detail/transferEarn'], resolve), // eslint-disable-line
           },
           {
             name: 'projectProgress',
-            path: 'projectProgress',
+            path: 'projectProgress/:id',
             component: resolve => require(['../containers/Project/detail/projectProgress'], resolve), // eslint-disable-line
           },
         ],

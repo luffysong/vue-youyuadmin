@@ -33,6 +33,7 @@
     </ul>
   </div>
 </template>
+
 <script>
   import Vue from 'vue';
   // import { mapGetters } from 'vuex';
@@ -130,39 +131,6 @@
 //      getToken();
       // console.log('mounted');
       // this.$store.dispatch(types.HIDE_SIDEBAR);
-
-      /* Vue.http.put('/api/movie/5', {
-        id: 5,
-        desc_img: [
-          {
-            url: 'http://img31.mtime.cn/pi/2016/07/01/090210.74394346_1000X1000.jpg',
-          },
-          {
-            url: 'http://img31.mtime.cn/pi/2016/07/12/090612.12971511_1000X1000.jpg',
-          },
-        ],
-        name: '123',
-        producer: '42',
-        scriptwriter: '32',
-        director: '2',
-        transferable_ratio: 0.8,
-        type: '影片类型',
-        release_date: '上映日期',
-        story_description: '剧情描述',
-        budget: '预算',
-        record_number: '备案号',
-        shoot_licence_number: '拍摄许可证',
-        list_img: '列表图',
-        header_img: '详情页头图',
-        stage: '10',
-        protagonist: '78',
-
-      }, {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        emulateJSON: true,
-      }); */
 
     },
     created() {
