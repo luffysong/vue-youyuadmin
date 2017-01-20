@@ -13,14 +13,11 @@ import ProjectTable from '../customParts/ProjectTable';
 
 export default {
   name: 'Unregistered', // 未登记
-  props: ['ProjectList'],
   methods: {
-    displayHandle(...cs) {
-      console.log(cs, 'displayHandle');
+    displayHandle() {
 //      this.$store.dispatch()
     },
     toDetail(...cs) {
-      console.log(cs, 'toDetail');
       this.$router.push({
         path: `/project/detail/desc/${cs[0]}`,
       });

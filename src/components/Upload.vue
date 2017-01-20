@@ -124,14 +124,23 @@
           policy: '',
           signature: '',
         },
-        fileList: this.pFileList,
+        fileList: (() => {
+          const arrNew = [];
+          this.pFileList.forEach((el) => {
+            const item = {
+              name: '',
+              url: el,
+            };
+            arrNew.push(item);
+          });
+          return arrNew;
+        })(),
       };
     },
     mounted() {
 //      getToken();
-      // console.log('mounted');
+      console.log(this.pFileList, this.pFileList[0].url, 'dd');
       // this.$store.dispatch(types.HIDE_SIDEBAR);
-
     },
     created() {
       // console.log('created');

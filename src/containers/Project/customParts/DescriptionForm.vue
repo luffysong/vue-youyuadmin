@@ -79,7 +79,7 @@
       </el-col>
     </el-form-item>
     <el-form-item label="首页列表图">
-      <Upload :pFileList="detaildata.desc_img" v-if="detaildata.desc_img" />
+      <Upload :pFileList="fileListFn(detaildata.list_img)" v-if="detaildata.desc_img" />
     </el-form-item>
 
     <el-form-item>
@@ -99,6 +99,7 @@
     props: {
       origindata: Object,
     },
+
     data() {
       const dict = _.cloneDeep(this.$store.state.dict);
       const tempData = _.cloneDeep(this.origindata);
@@ -165,6 +166,14 @@
       },
       changes() {
         console.log(this.detaildata, 'c');
+      },
+      fileListFn(...cs) {
+        if (typeof cs[0] === 'string') {
+          const arr = [];
+          arr.push(cs[0]);
+          return arr;
+        }
+        return cs[0];
       },
     },
     components: {
