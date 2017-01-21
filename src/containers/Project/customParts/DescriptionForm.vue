@@ -1,52 +1,52 @@
 <template>
 
-  <el-form ref="form" :rules="rules" :model="detaildata" label-width="160px">
+  <el-form ref="form" :rules="rules" :model="origindata" label-width="160px">
     <el-form-item label="项目名称" prop="name">
       <el-col :span="8">
-        <el-input v-model="detaildata.name"></el-input>
+        <el-input v-model="origindata.name"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="制片方" prop="producer">
       <el-col :span="8">
-        <el-input v-model="detaildata.producer"></el-input>
+        <el-input v-model="origindata.producer"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="导演" prop="director">
       <el-col :span="8">
-        <el-input v-model="detaildata.director"></el-input>
+        <el-input v-model="origindata.director"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="编剧" prop="scriptwriter">
       <el-col :span="8">
-        <el-input v-model="detaildata.scriptwriter"></el-input>
+        <el-input v-model="origindata.scriptwriter"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="主演" prop="protagonist">
       <el-col :span="8">
-        <el-input v-model="detaildata.protagonist"></el-input>
+        <el-input v-model="origindata.protagonist"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="电影类型" prop="type">
       <el-col :span="8">
-        <el-input v-model="detaildata.type"></el-input>
+        <el-input v-model="origindata.type"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="上映时间" prop="release_date">
       <el-col :span="8">
         <el-date-picker type="date" placeholder="选择日期"
-                        v-model="detaildata.release_date"
+                        v-model="origindata.release_date"
                         style="width: 100%;"></el-date-picker>
       </el-col>
     </el-form-item>
     <el-form-item label="剧情简介" prop="story_description">
       <el-col :span="8">
         <el-input type="textarea" :rows="4"
-                  v-model="detaildata.story_description"></el-input>
+                  v-model="origindata.story_description"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="初始份额可转让比例" prop="transferable_ratio">
       <el-col :span="8">
-        <el-input v-model="detaildata.transferable_ratio">
+        <el-input v-model="origindata.transferable_ratio">
           <template slot="append">%</template>
         </el-input>
       </el-col>
@@ -54,7 +54,7 @@
 
     <el-form-item label="项目预算金额" prop="budget">
       <el-col :span="8">
-        <el-input v-model="detaildata.budget">
+        <el-input v-model="origindata.budget">
           <template slot="prepend">￥</template>
           <template slot="append">元</template>
         </el-input>
@@ -62,29 +62,37 @@
     </el-form-item>
     <el-form-item label="备案立项号" prop="record_number">
       <el-col :span="8">
-        <el-input v-model="detaildata.record_number"></el-input>
+        <el-input v-model="origindata.record_number"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="拍摄许可证号" prop="shoot_licence_number">
       <el-col :span="8">
-        <el-input v-model="detaildata.shoot_licence_number"></el-input>
+        <el-input v-model="origindata.shoot_licence_number"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="项目阶段" prop="stage">
       <el-col :span="8">
-        <el-select v-model="detaildata.stage" placeholder="项目阶段" @change="changes">
+        <el-select v-model="origindata.stage" placeholder="项目阶段" @change="changes">
           <el-option v-for="it in dict.stage"
                      :label="it.label" :value="it.value"></el-option>
         </el-select>
       </el-col>
     </el-form-item>
     <el-form-item label="首页列表图">
-      <Upload :pFileList="fileListFn(detaildata.list_img)" v-if="detaildata.desc_img" />
+      <Upload :pFileList="fileListFn(origindata.list_img)" :pCallback="uploadCallback" pType="list_img" />
+    </el-form-item>
+
+    <el-form-item label="详情页头图">
+      <Upload :pFileList="fileListFn(origindata.header_img)" :pCallback="uploadCallback" pType="header_img" />
+    </el-form-item>
+
+    <el-form-item label="详情页项目介绍图">
+      <Upload :pFileList="fileListFn(origindata.desc_img)" :pCallback="uploadCallback" pType="desc_img" />
     </el-form-item>
 
     <el-form-item>
       <el-button type="primary" @click="handleSubmit">保存</el-button>
-      <el-button @click="handleReset">重置</el-button>
+      <el-button @click="handlePublish">发布</el-button>
     </el-form-item>
 
   </el-form>
@@ -98,14 +106,13 @@
     name: 'DescriptionForm',
     props: {
       origindata: Object,
+      submitCallback: Function,
     },
 
     data() {
       const dict = _.cloneDeep(this.$store.state.dict);
-      const tempData = _.cloneDeep(this.origindata);
       return {
         dict,
-        detaildata: tempData,
         rules: {
           name: [
             { required: true, message: '请输入项目名称', trigger: 'blur' },
@@ -125,9 +132,9 @@
           type: [
             { required: true, message: '请输入电影类型', trigger: 'blur' },
           ],
-          release_date: [
-            { required: true, message: '请输入上映时间', trigger: 'blur' },
-          ],
+//          release_date: [
+//            { required: true, message: '请输入上映时间', trigger: 'blur' },
+//          ],
           story_description: [
             { required: true, message: '请输入剧情简介', trigger: 'blur' },
           ],
@@ -143,9 +150,9 @@
           shoot_licence_number: [
             { required: true, message: '请输入拍摄许可证号', trigger: 'blur' },
           ],
-          stage: [
-            { required: true, message: '请输入项目阶段', trigger: 'blur' },
-          ],
+//          stage: [
+//            { required: true, message: '请输入项目阶段', trigger: 'blur' },
+//          ],
         },
       };
     },
@@ -158,19 +165,35 @@
       },
       handleError() {
       },
-      handleReset() {
-        this.$refs.form.resetFields();
-      },
+//      handleReset() {
+//        this.$refs.form.resetFields();
+//      },
       handleSubmit() {
-        this.$refs.form.validate();
+//        this.$refs.form.validate();
+        this.submitCallback(this.origindata);
+      },
+      handlePublish() {
+
       },
       changes() {
         console.log(this.detaildata, 'c');
       },
+      // upload 组件使用 callback
+      uploadCallback(params) {
+        if (params.type === 'header_img') {
+          params.value = params.value[0].url;
+        } else if (params.type === 'list_img') {
+          params.value = params.value[0].url;
+        }
+        this.origindata[params.type] = params.value;
+      },
       fileListFn(...cs) {
+        // 此处数据处理说明，组件需要数组，但实际需求中，有可能是一个字符串
         if (typeof cs[0] === 'string') {
           const arr = [];
-          arr.push(cs[0]);
+          if (cs[0].length > 0) {
+            arr.push(cs[0]);
+          }
           return arr;
         }
         return cs[0];

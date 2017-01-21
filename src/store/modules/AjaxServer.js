@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import moment from 'moment';
 
 const server = {
   // 项目管理 - 获取 list 数据， 参数 status -> list 类型
@@ -23,6 +24,7 @@ const server = {
   // 项目管理 - 创建项目
   createProject(params) {
     const { sendData } = params;
+    sendData.release_date = moment(sendData.release_date).format('YYYY-MM-DD');
     return Vue.http.post('/api/movie', sendData, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',

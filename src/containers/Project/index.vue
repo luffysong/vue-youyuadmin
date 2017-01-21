@@ -16,7 +16,7 @@ export default {
     const data = [
       {
         name: '新建项目',
-        link: '/project/create',
+        link: '/project/detail/create',
         icon: 'plus',
         type: 'item',
       },

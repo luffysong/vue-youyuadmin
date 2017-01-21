@@ -54,7 +54,6 @@ export default {
     ProjectTable,
   },
 };
-
 </script>
 <style scoped lang="less">
 </style>

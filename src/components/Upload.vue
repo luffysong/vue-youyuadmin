@@ -72,6 +72,8 @@
     name: 'Upload',
     props: {
       pFileList: Array,
+      pCallback: Function,
+      pType: String,
     },
     methods: {
       handleBefore(...cs) {
@@ -84,7 +86,6 @@
           }
           return false;
         }, () => {
-          console.log('上传错误');
         });
       },
       handleSuccess(...cs) {
@@ -92,14 +93,17 @@
           url: `${uploadUrlParams.url}${cs[0].url}`,
         });
         this.percent = 0;
+        this.pCallback({
+          type: this.pType,
+          value: this.fileList,
+        });
       },
       handleRemove(...cs) {
         this.fileList = cs[1];
       },
       handlePreview() {
       },
-      handleError(...cs) {
-        console.log(cs, 'err');
+      handleError() {
       },
       handleProgress(e) {
         this.percent = e.percent;
@@ -138,8 +142,6 @@
       };
     },
     mounted() {
-//      getToken();
-      console.log(this.pFileList, this.pFileList[0].url, 'dd');
       // this.$store.dispatch(types.HIDE_SIDEBAR);
     },
     created() {
