@@ -180,12 +180,16 @@
       },
       // upload 组件使用 callback
       uploadCallback(params) {
-        if (params.type === 'header_img') {
-          params.value = params.value[0].url;
-        } else if (params.type === 'list_img') {
-          params.value = params.value[0].url;
+        let tempVal;
+        if (params.type === 'header_img' || params.type === 'list_img') {
+          tempVal = params.value[0].url;
+        } else if (params.type === 'desc_img') {
+          tempVal = [];
+          params.value.forEach((el) => {
+            tempVal.push(el.url);
+          });
         }
-        this.origindata[params.type] = params.value;
+        this.origindata[params.type] = tempVal;
       },
       fileListFn(...cs) {
         // 此处数据处理说明，组件需要数组，但实际需求中，有可能是一个字符串

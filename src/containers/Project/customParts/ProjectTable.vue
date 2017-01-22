@@ -8,17 +8,17 @@
         fixed
         sortable
         align="center"
-        prop="movie.id"
+        prop="id"
         label="项目ID"
         width="150">
       </el-table-column>
       <el-table-column
-        prop="movie.name"
+        prop="name"
         label="项目名称"
         width="200">
       </el-table-column>
       <el-table-column
-        prop="movie.producer"
+        prop="producer"
         label="制片方"
         width="200">
       </el-table-column>

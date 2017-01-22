@@ -39,7 +39,7 @@ export default {
   },
   mounted() {
     // this.$store.dispatch(types.HIDE_SIDEBAR);
-    this.$store.dispatch(types.ProjectListReq, { type: 'a' });
+    this.$store.dispatch(types.ProjectListReq, { status: 10 });
   },
   created() {
   },

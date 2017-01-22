@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <el-upload
@@ -38,6 +37,8 @@
   import Vue from 'vue';
   // import { mapGetters } from 'vuex';
   // import * as types from '../store/types';
+  import _ from 'lodash';
+
   const uploadUrlParams = {
     token: '//rongtest07.36kr.com/api/upload/form-api',
     api: '//v0.api.upyun.com',
@@ -89,9 +90,10 @@
         });
       },
       handleSuccess(...cs) {
-        this.fileList.push({
+        const p = {
           url: `${uploadUrlParams.url}${cs[0].url}`,
-        });
+        };
+        this.fileList.push(p);
         this.percent = 0;
         this.pCallback({
           type: this.pType,
@@ -113,6 +115,10 @@
       },
       del(...cs) {
         this.fileList.splice(cs, 1);
+        this.pCallback({
+          type: this.pType,
+          value: this.fileList,
+        });
       },
     },
     computed: {
@@ -130,6 +136,17 @@
         },
         fileList: (() => {
           const arrNew = [];
+          if (_.isPlainObject(this.pFileList[0])) {
+            console.log(this.pFileList);
+//            a = this.pFileList;
+//            return a;
+
+            this.pFileList.forEach((el) => {
+              arrNew.push(el);
+            });
+            return arrNew;
+//            return this.pFileList;
+          }
           this.pFileList.forEach((el) => {
             const item = {
               name: '',
@@ -161,47 +178,47 @@
 
 </script>
 <style scoped lang="css">
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 
-li {
-  float: left;
-  margin: 0 10px 0 0;
-}
+  li {
+    float: left;
+    margin: 0 10px 0 0;
+  }
 
-.tip {
-  margin: -10px 0 0;
-}
+  .tip {
+    margin: -10px 0 0;
+  }
 
-.del {
-  margin: 0;
-  text-align: center;
-  cursor: pointer;
-  color: #00d6ff;
-}
+  .del {
+    margin: 0;
+    text-align: center;
+    cursor: pointer;
+    color: #00d6ff;
+  }
 
-.img {
-  width: 120px;
-  height: 120px;
-  background-size: contain;
-  background-position: center center;
-  background-repeat: no-repeat;
-  border: 1px solid #d3d7db;
-}
+  .img {
+    width: 120px;
+    height: 120px;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border: 1px solid #d3d7db;
+  }
 
-.progress {
-  width: 360px;
-  height: 3px;
-  border-radius: 3px;
-  margin-bottom: 15px;
-}
+  .progress {
+    width: 360px;
+    height: 3px;
+    border-radius: 3px;
+    margin-bottom: 15px;
+  }
 
-.bar {
-  background: #19dc1c;
-  height: 3px;
-  width: 0;
-}
+  .bar {
+    background: #19dc1c;
+    height: 3px;
+    width: 0;
+  }
 </style>

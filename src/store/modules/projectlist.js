@@ -1,14 +1,14 @@
 import Vue from 'vue';
 import * as types from '../types';
+import server from './AjaxServer';
 
 const initialState = {
   loading: false,
   ProjectList: {
     data: [
       {
-        movie: {
-
-        },
+        is_hide: false,
+        movie: {},
       },
     ],
   },
@@ -16,16 +16,17 @@ const initialState = {
 
 const getters = {
   [types.ProjectListData]: state => state.ProjectList,
+  // 条目显隐
   [types.ProjectDisplayData]: state => state.ProjectDisplay,
 };
 
 const actions = {
   // 获取list数据
   [types.ProjectListReq]({ commit }, params) {
-    const url = `/api/movie-listing?type=${params.type}`;
-    commit(types.ProjectListReq);
-    Vue.http.get(url, {
-      emulateJSON: true,
+    server.getProjectList({
+      sendData: {
+        status: params.status,
+      },
     }).then((data) => {
       if (data.body.code === 0) {
         commit(types.ProjectListSuc, {
@@ -35,6 +36,7 @@ const actions = {
     }, () => {
       commit(types.ProjectListErr, {});
     });
+    commit(types.ProjectListReq);
   },
   [types.ProjectListSuc]({ commit }, data) {
     commit(types.ProjectListSuc, data);
