@@ -35,6 +35,7 @@ const server = {
   // 项目管理 - 修改项目
   fixProject(params) {
     const { id, sendData } = params;
+    sendData.release_date = moment(sendData.release_date).format('YYYY-MM-DD');
     return Vue.http.put(`/api/movie/${id}`, sendData, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',

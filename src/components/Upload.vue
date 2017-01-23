@@ -1,33 +1,36 @@
 <template>
   <div>
-    <el-upload
-      :action="action"
-      type="drag"
-      :default-file-list="fileList"
-      :show-upload-list=false
-      :data="dataParams"
-      :multiple="false"
-      :on-progress="handleProgress"
-      :on-preview="handlePreview"
-      :on-remove="handleRemove"
-      :on-success="handleSuccess"
-      :on-error="handleError"
-      :before-upload="handleBefore"
-    >
-      <i class="el-icon-upload"></i>
-      <div class="el-dragger__text">
-        将文件拖到此处，或<em>点击上传</em>
-        <p class="tip">只能上传jpg/png文件，且不超过500kb</p>
+    <div v-if="!pDisabled">
+      <el-upload
+        :action="action"
+        type="drag"
+        :default-file-list="fileList"
+        :show-upload-list=false
+        :data="dataParams"
+        :multiple="false"
+        :on-progress="handleProgress"
+        :on-preview="handlePreview"
+        :on-remove="handleRemove"
+        :on-success="handleSuccess"
+        :on-error="handleError"
+        :before-upload="handleBefore"
+      >
+        <i class="el-icon-upload"></i>
+        <div class="el-dragger__text">
+          将文件拖到此处，或<em>点击上传</em>
+          <p class="tip">只能上传jpg/png文件，且不超过500kb</p>
+        </div>
+      </el-upload>
+      <div class="progress" :span="8">
+        <div class="bar" :style="progressWidth"></div>
       </div>
-    </el-upload>
-    <div class="progress" :span="8">
-      <div class="bar" :style="progressWidth"></div>
     </div>
+
     <ul>
       <li v-for="(it, i) in fileList">
         <div class="img" :style="backgroundFn(it.url)">
         </div>
-        <p class="del" @click="del(i)">删除</p>
+        <p class="del" @click="del(i)" v-if="!pDisabled">删除</p>
       </li>
     </ul>
   </div>
@@ -75,6 +78,7 @@
       pFileList: Array,
       pCallback: Function,
       pType: String,
+      pDisabled: Boolean,
     },
     methods: {
       handleBefore(...cs) {
@@ -137,7 +141,6 @@
         fileList: (() => {
           const arrNew = [];
           if (_.isPlainObject(this.pFileList[0])) {
-            console.log(this.pFileList);
 //            a = this.pFileList;
 //            return a;
 
@@ -220,5 +223,16 @@
     background: #19dc1c;
     height: 3px;
     width: 0;
+  }
+</style>
+<style lang="css">
+  /* 覆盖样式 */
+  .el-dragger {
+    height: 140px;
+    width: 280px;
+  }
+
+  .el-dragger .el-icon-upload {
+    margin: 10px 0;
   }
 </style>

@@ -29,9 +29,9 @@ export default {
     }),
   },
   data() {
-    setTimeout(() => {
-      console.log(this.listdata, this.sdata, 'data'); // 怎么赋值给 this.sdata ???
-    }, 3000);
+//    setTimeout(() => {
+//      console.log(this.listdata, this.sdata, 'data'); // 怎么赋值给 this.sdata ???
+//    }, 3000);
     return {
       activeTab: 'unregistered',
       sdata: this.listdata,

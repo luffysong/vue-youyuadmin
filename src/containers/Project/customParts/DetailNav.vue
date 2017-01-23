@@ -19,8 +19,8 @@
       activeTab: String,
     },
     methods: {
-      handleClick(tab, event) {
-        console.log(tab, event);
+      handleClick() {
+
       },
     },
     computed: {

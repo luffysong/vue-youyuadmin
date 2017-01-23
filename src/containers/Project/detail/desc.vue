@@ -2,7 +2,7 @@
   <div>
     <DetailNav :activeTab="activeTab"/>
     <div v-if="detaildata.id">
-      <DescriptionForm :origindata="detaildata" :submitCallback="submitCallback"/>
+      <DescriptionForm :porigindata="detaildata" :submitCallback="submitCallback"/>
     </div>
   </div>
 </template>
@@ -32,7 +32,6 @@ export default {
   },
   methods: {
     submitCallback(data) {
-      console.log(this.$route);
       server.fixProject({
         id: this.$route.params.id,
         sendData: data,
