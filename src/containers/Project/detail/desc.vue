@@ -2,7 +2,7 @@
   <div>
     <DetailNav :activeTab="activeTab"/>
     <div v-if="detaildata.id">
-      <DescriptionForm :porigindata="detaildata" :submitCallback="submitCallback"/>
+      <DescriptionForm :porigindata="detaildata"/>
     </div>
   </div>
 </template>
@@ -16,7 +16,6 @@ import * as types from '../../../store/types';
 import ShareForm from '../customParts/ShareForm';
 import DescriptionForm from '../customParts/DescriptionForm';
 import DetailNav from '../customParts/DetailNav';
-import server from '../../../store/modules/AjaxServer';
 
 export default {
   name: 'desc',
@@ -31,12 +30,6 @@ export default {
     };
   },
   methods: {
-    submitCallback(data) {
-      server.fixProject({
-        id: this.$route.params.id,
-        sendData: data,
-      });
-    },
   },
   components: {
     ShareForm,

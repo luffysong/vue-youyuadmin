@@ -101,8 +101,9 @@
     </el-form-item>
 
     <el-form-item>
-      <el-button type="primary" @click="handleSubmit">保存</el-button>
-      <el-button @click="handlePublish">发布</el-button>
+      <!--<el-button type="primary" @click="handleSubmit">保存</el-button>-->
+      <!--<el-button @click="handlePublish">发布</el-button>-->
+      <Buttonc :buttonData="buttonData" />
     </el-form-item>
   </el-form>
 </template>
@@ -110,12 +111,13 @@
 <script>
   import _ from 'lodash';
   import Upload from '../../../components/Upload';
+  import server from '../../../store/modules/AjaxServer';
+  import Buttonc from './Button';
 
   export default {
     name: 'DescriptionForm',
     props: {
       porigindata: Object,
-      submitCallback: Function,
     },
     mounted() {
     },
@@ -123,6 +125,21 @@
       return {
         dict: _.cloneDeep(this.$store.state.dict),
         origindata: _.cloneDeep(this.porigindata),
+        buttonData: [
+          {
+            desc: '保存',
+            callback: () => {
+              this.handleSubmit();
+            },
+          },
+          {
+            type: 'success',
+            desc: '发布',
+            callback: () => {
+              this.handlePublish();
+            },
+          },
+        ],
         rules: {
           name: [
             { required: true, message: '请输入项目名称', trigger: 'blur' },
@@ -167,7 +184,7 @@
       };
     },
     methods: {
-      // date change
+      // datepicker change
       changeDateVal(...cs) {
         console.log(cs, 'c');
         this.origindata.release_date = cs[0];
@@ -185,10 +202,20 @@
 //      },
       handleSubmit() {
 //        this.$refs.form.validate();
-        this.submitCallback(this.origindata);
+        server.fixProject({
+          id: this.$route.params.id,
+          sendData: this.origindata,
+        });
       },
       handlePublish() {
-
+        const id = this.$route.params.id;
+        server.changeProject({
+          id,
+          sendData: {
+            id,
+            status: 10,
+          },
+        });
       },
       // 项目阶段change
       changes() {
@@ -225,6 +252,7 @@
     },
     components: {
       Upload,
+      Buttonc,
     },
   };
 </script>
