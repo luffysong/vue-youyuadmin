@@ -8,6 +8,9 @@
 # install dependencies
 npm install
 
+# build dll
+npm run dll
+
 # serve with hot reload at localhost:10001
 npm run dev
 

@@ -19,6 +19,7 @@ module.exports = {
   dev: {
     env: require('./dev.env'),
     port: 10001,
+    dllPath: path.resolve(__dirname, '../static/dll'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {

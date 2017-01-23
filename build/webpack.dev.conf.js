@@ -1,3 +1,4 @@
+var fs = require('fs');
 var path = require('path');
 var config = require('../config')
 var webpack = require('webpack')
@@ -11,6 +12,13 @@ var StyleLintPlugin = require('stylelint-webpack-plugin')
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
   baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
 })
+
+const manifestPath = path.resolve(config.dev.dllPath, 'lib.json')
+
+if (!fs.existsSync(manifestPath)) {
+  console.error('The DLL manifest is missing. Please run `yarn run dll`');
+  process.exit(0);
+}
 
 module.exports = merge(baseWebpackConfig, {
   module: {
@@ -38,6 +46,10 @@ module.exports = merge(baseWebpackConfig, {
       files: '../src/**/*.@(?(l)?(e|c)ss|vue|html)',
       failOnError: false,
       extractStyleTagsFromHtml: true,
-    })
+    }),
+    new webpack.DllReferencePlugin({
+        context: process.cwd(),
+        manifest: require(manifestPath),
+    }),
   ]
 })
