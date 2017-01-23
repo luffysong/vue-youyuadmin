@@ -9,6 +9,8 @@
   </head>
   <body>
     <div id="app"></div>
+    <% if(process.env.NODE_ENV === 'development') { %>
     <script src="/static/dll/lib.dll.js"></script>
+    <% } %>
   </body>
 </html>
