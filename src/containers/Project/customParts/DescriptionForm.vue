@@ -3,32 +3,38 @@
   <el-form ref="form" :rules="rules" :model="origindata" label-width="160px">
     <el-form-item label="项目名称" prop="name">
       <el-col :span="8">
-        <el-input v-model="origindata.name" :disabled="origindata.status !== 10"></el-input>
+        <el-input v-model="origindata.name"
+                  :disabled="origindata.status !== 10"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="制片方" prop="producer">
       <el-col :span="8">
-        <el-input v-model="origindata.producer" :disabled="origindata.status !== 10"></el-input>
+        <el-input v-model="origindata.producer"
+                  :disabled="origindata.status !== 10"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="导演" prop="director">
       <el-col :span="8">
-        <el-input v-model="origindata.director" :disabled="origindata.status !== 10"></el-input>
+        <el-input v-model="origindata.director"
+                  :disabled="origindata.status !== 10"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="编剧" prop="scriptwriter">
       <el-col :span="8">
-        <el-input v-model="origindata.scriptwriter" :disabled="origindata.status !== 10"></el-input>
+        <el-input v-model="origindata.scriptwriter"
+                  :disabled="origindata.status !== 10"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="主演" prop="protagonist">
       <el-col :span="8">
-        <el-input v-model="origindata.protagonist" :disabled="origindata.status !== 10"></el-input>
+        <el-input v-model="origindata.protagonist"
+                  :disabled="origindata.status !== 10"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="电影类型" prop="type">
       <el-col :span="8">
-        <el-input v-model="origindata.type" :disabled="origindata.status !== 10"></el-input>
+        <el-input v-model="origindata.type"
+                  :disabled="origindata.status !== 10"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="上映时间" prop="release_date">
@@ -43,12 +49,14 @@
     <el-form-item label="剧情简介" prop="story_description">
       <el-col :span="8">
         <el-input type="textarea" :rows="4"
-                  v-model="origindata.story_description" :disabled="origindata.status !== 10"></el-input>
+                  v-model="origindata.story_description"
+                  :disabled="origindata.status !== 10"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="初始份额可转让比例" prop="transferable_ratio">
       <el-col :span="8">
-        <el-input v-model="origindata.transferable_ratio" :disabled="origindata.status !== 10">
+        <el-input v-model="origindata.transferable_ratio"
+                  :disabled="origindata.status !== 10">
           <template slot="append">%</template>
         </el-input>
       </el-col>
@@ -56,7 +64,8 @@
 
     <el-form-item label="项目预算金额" prop="budget">
       <el-col :span="8">
-        <el-input v-model="origindata.budget" :disabled="origindata.status !== 10">
+        <el-input v-model="origindata.budget"
+                  :disabled="origindata.status !== 10">
           <template slot="prepend">￥</template>
           <template slot="append">元</template>
         </el-input>
@@ -64,12 +73,14 @@
     </el-form-item>
     <el-form-item label="备案立项号" prop="record_number">
       <el-col :span="8">
-        <el-input v-model="origindata.record_number" :disabled="origindata.status !== 10"></el-input>
+        <el-input v-model="origindata.record_number"
+                  :disabled="origindata.status !== 10"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="拍摄许可证号" prop="shoot_licence_number">
       <el-col :span="8">
-        <el-input v-model="origindata.shoot_licence_number" :disabled="origindata.status !== 10"></el-input>
+        <el-input v-model="origindata.shoot_licence_number"
+                  :disabled="origindata.status !== 10"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="项目阶段" prop="stage">
@@ -103,7 +114,7 @@
     <el-form-item>
       <!--<el-button type="primary" @click="handleSubmit">保存</el-button>-->
       <!--<el-button @click="handlePublish">发布</el-button>-->
-      <Buttonc :buttonData="buttonData" />
+      <Buttonc :buttonData="buttonData"/>
     </el-form-item>
   </el-form>
 </template>
@@ -125,21 +136,25 @@
       return {
         dict: _.cloneDeep(this.$store.state.dict),
         origindata: _.cloneDeep(this.porigindata),
-        buttonData: [
-          {
-            desc: '保存',
-            callback: () => {
-              this.handleSubmit();
-            },
-          },
-          {
-            type: 'success',
-            desc: '发布',
-            callback: () => {
-              this.handlePublish();
-            },
-          },
-        ],
+        buttonData: (() => {
+          const params = [];
+          if (this.porigindata.status === 10) {
+            params.push({
+              desc: '保存',
+              callback: () => {
+                this.handleSubmit();
+              },
+            });
+            params.push({
+              type: 'success',
+              desc: '发布',
+              callback: () => {
+                this.handlePublish();
+              },
+            });
+          }
+          return params;
+        })(),
         rules: {
           name: [
             { required: true, message: '请输入项目名称', trigger: 'blur' },

@@ -38,12 +38,6 @@ const actions = {
     });
     commit(types.ProjectListReq);
   },
-  [types.ProjectListSuc]({ commit }, data) {
-    commit(types.ProjectListSuc, data);
-  },
-  [types.ProjectListErr]({ commit }, data) {
-    commit(types.ProjectListErr, data);
-  },
   // 设置 显示、隐藏
   [types.ProjectDisplayReq]({ commit }, params) {
     const url = `http://localhost:10001/static/projectlist.json?type=${params.type}&tt=1`;
@@ -59,12 +53,6 @@ const actions = {
     }, () => {
       commit(types.ProjectDisplayErr, {});
     });
-  },
-  [types.ProjectDisplaySuc]({ commit }, data) {
-    commit(types.ProjectDisplaySuc, data);
-  },
-  [types.ProjectDisplayErr]({ commit }, data) {
-    commit(types.ProjectDisplayErr, data);
   },
 };
 

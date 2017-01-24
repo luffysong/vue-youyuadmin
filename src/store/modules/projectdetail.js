@@ -31,12 +31,6 @@ const actions = {
       commit(types.ProjectDetailErr, {});
     });
   },
-  [types.ProjectDetailSuc]({ commit }, data) {
-    commit(types.ProjectDetailSuc, data);
-  },
-  [types.ProjectDetailErr]({ commit }, data) {
-    commit(types.ProjectDetailErr, data);
-  },
 
 };
 
