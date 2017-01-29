@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DetailNav :activeTab="activeTab"/>
+    <DetailNav :activeTab="activeTab" :id="detaildata.id"/>
     <div v-if="detaildata.id">
       <DescriptionForm :porigindata="detaildata"/>
     </div>

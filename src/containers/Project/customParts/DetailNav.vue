@@ -1,33 +1,40 @@
 <template>
   <el-tabs :active-name="activeTab" @tab-click="handleClick">
-    <el-tab-pane label="项目描述" name="desc" />
-    <el-tab-pane label="初始份额登记" name="originShare" />
+    <el-tab-pane label="项目描述" name="desc"/>
+    <el-tab-pane label="初始份额登记" name="originShare"/>
     <el-tab-pane label="可转让初始份额" name="transferShare"/>
-    <el-tab-pane label="可转让收益权" name="transferEarn" />
+    <el-tab-pane label="可转让收益权" name="transferEarn"/>
   </el-tabs>
 
 </template>
 <script>
 
-//  import { mapGetters } from 'vuex';
-//  import * as types from '../../store/types';
+  //  import { mapGetters } from 'vuex';
+  //  import * as types from '../../store/types';
 
   export default {
     name: 'DetailNav',
     props: {
       // 穿参数，当前激活tab，'desc  originshare  transferOriginShare  transferEarn'
       activeTab: String,
+      // 当前项目 id
+      id: [Number, String],
     },
     methods: {
-      handleClick() {
-
+      handleClick(...cs) {
+        console.log(cs[0].name, this.$router);
+        if (cs[0].name === this.activeTab) return;
+        this.$router.push({
+          name: cs[0].name,
+          params: {
+            id: this.id,
+          },
+        });
       },
     },
-    computed: {
-    },
+    computed: {},
     data() {
-      return {
-      };
+      return {};
     },
     mounted() {
       // this.$store.dispatch(types.HIDE_SIDEBAR);
@@ -40,9 +47,7 @@
     },
     updated() {
     },
-    components: {
-
-    },
+    components: {},
   };
 </script>
 <style scoped lang="less">

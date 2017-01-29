@@ -57,3 +57,8 @@ export const ProjectDisplayErr = 'ProjectDisplayErr';
 export const ProjectDetailReq = 'ProjectDetailReq';
 export const ProjectDetailSuc = 'ProjectDetailSuc';
 export const ProjectDetailErr = 'ProjectDetailErr';
+
+// 项目管理 初始份额登记
+export const PROJECTORIGINSHARE_REQ = 'PROJECTORIGINSHARE_REQ';
+export const PROJECTORIGINSHARE_SUC = 'PROJECTORIGINSHARE_SUC';
+export const PROJECTORIGINSHARE_ERR = 'PROJECTORIGINSHARE_ERR';

@@ -1,35 +1,46 @@
+
 <template>
   <div>
-    originshareregister
+    <DetailNav activeTab="originShare" :id="id"></DetailNav>
+    <div >
+      <TotalInfo :poriginData="listData"></TotalInfo>
+      <ShareForm :poriginData="listData"></ShareForm>
+    </div>
+
   </div>
 </template>
 <script>
-//  import { mapGetters } from 'vuex';
-//  import * as types from '../../store/types';
-  import server from '../../../store/modules/AjaxServer';
+  /* eslint-disable */
+  //  import { mapGetters } from 'vuex';
+  import * as types from '../../../store/types';
+  import TotalInfo from '../customParts/TotalInfo';
+  import ShareForm from '../customParts/ShareForm';
+  import DetailNav from '../customParts/DetailNav';
 
   export default {
     name: 'originShareRegister',
-    props: {
-    },
-    methods: {
-    },
+    props: {},
+    methods: {},
     computed: {
+      listData() {
+        console.log(this.$store.state.projectdetail.ProjectOriginShare);
+        return this.$store.state.projectdetail.ProjectOriginShare;
+      },
     },
     data() {
       return {
-
+        id: this.$route.params.id,
       };
     },
     mounted() {
-      // console.log('mounted');
-      // this.$store.dispatch(types.HIDE_SIDEBAR);
-      server.getProjectDetail({
-        id: 9,
+      this.$store.dispatch(types.PROJECTORIGINSHARE_REQ, {
+        movie_id: this.id,
       });
     },
     components: {
-
+      DetailNav,
+      TotalInfo,
+      ShareForm,
     },
   };
 
