@@ -1,7 +1,7 @@
 <template>
   <div class="share-form">
     <el-form ref="form" :model="form" :rules="rules" label-width="160px">
-      <div class="wrap" v-for="item in localdata.list">
+      <div class="wrap" v-for="(item, index) in localdata.list">
         <el-form-item label="身份类型">
           <el-col>
             <template>
@@ -38,7 +38,7 @@
             </el-input>
           </el-col>
         </el-form-item>
-        <el-button type="danger">删除</el-button>
+        <el-button type="danger" @click="del(index)">删除</el-button>
 
       </div>
 
@@ -110,6 +110,9 @@
       },
       cancelCallback() {
         this.$refs.dia.close();
+      },
+      del(index) {
+        this.localdata.list.splice(index, 1);
       },
     },
   };
