@@ -1,59 +1,61 @@
 <template>
   <div>
-    <ListNav :activeTab="activeTab" />
-    <ProjectTable :data="listdata" :displayHandle="displayHandle" :toDetail="toDetail"/>
+    <ListNav :activeTab="activeTab"/>
+    <ProjectTable :data="listdata"
+                  :displayHandle="displayHandle"
+                  :toDetail="toDetail"/>
 
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex';
-import * as types from '../../../store/types';
-import ListNav from '../customParts/ListNav';
-import ProjectTable from '../customParts/ProjectTable';
+  import { mapGetters } from 'vuex';
+  import * as types from '../../../store/types';
+  import ListNav from '../customParts/ListNav';
+  import ProjectTable from '../customParts/ProjectTable';
 
-export default {
-  name: 'Unregistered', // 未登记
-  methods: {
-    displayHandle() {
+  export default {
+    name: 'Unregistered', // 未登记
+    methods: {
+      displayHandle() {
 //      this.$store.dispatch()
+      },
+      toDetail(...cs) {
+        this.$router.push({
+          path: `/project/detail/desc/${cs[0]}`,
+        });
+      },
     },
-    toDetail(...cs) {
-      this.$router.push({
-        path: `/project/detail/desc/${cs[0]}`,
-      });
+    computed: {
+      ...mapGetters({
+        listdata: [types.ProjectListData],
+      }),
     },
-  },
-  computed: {
-    ...mapGetters({
-      listdata: [types.ProjectListData],
-    }),
-  },
-  data() {
+    data() {
 //    setTimeout(() => {
 //      console.log(this.listdata, this.sdata, 'data'); // 怎么赋值给 this.sdata ???
 //    }, 3000);
-    return {
-      activeTab: 'unregistered',
-      sdata: this.listdata,
-    };
-  },
-  mounted() {
-    // this.$store.dispatch(types.HIDE_SIDEBAR);
-    this.$store.dispatch(types.ProjectListReq, { status: 10 });
-  },
-  created() {
-  },
-  beforeUpdate() {
-  },
-  beforeMount() {
-  },
-  updated() {
-  },
-  components: {
-    ListNav,
-    ProjectTable,
-  },
-};
+      return {
+        activeTab: 'unregistered',
+        sdata: this.listdata,
+      };
+    },
+    mounted() {
+      // this.$store.dispatch(types.HIDE_SIDEBAR);
+      this.$store.dispatch(types.ProjectListReq, { status: 10 });
+    },
+    created() {
+    },
+    beforeUpdate() {
+    },
+    beforeMount() {
+    },
+    updated() {
+    },
+    components: {
+      ListNav,
+      ProjectTable,
+    },
+  };
 </script>
 <style scoped lang="less">
 </style>

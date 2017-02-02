@@ -2,7 +2,7 @@
 <template>
   <div>
     <DetailNav activeTab="originShare" :id="id"></DetailNav>
-    <div >
+    <div  v-if="listData.list != undefined">
       <TotalInfo :poriginData="listData"></TotalInfo>
       <ShareForm :poriginData="listData"></ShareForm>
     </div>

@@ -5,10 +5,10 @@
         <el-form-item label="身份类型">
           <el-col>
             <template>
-              <el-radio class="radio" v-model="item.certificate_type" label="1">
+              <el-radio class="radio" v-model="item.certificate_type" :label="1">
                 个人（身份证）
               </el-radio>
-              <el-radio class="radio" v-model="item.certificate_type" label="2">
+              <el-radio class="radio" v-model="item.certificate_type" :label="2">
                 企业（社会统一信用代码）
               </el-radio>
             </template>
@@ -63,6 +63,7 @@
    */
   import _ from 'lodash';
   import NewShareFormPop from './NewShareFormPop';
+  import server from '../../../store/modules/AjaxServer';
 
   export default {
     name: 'DescriptionForm',
@@ -100,6 +101,12 @@
       },
       handleSubmit() {
         this.$refs.form.validate();
+        server.createOriginShare({
+          sendData: {
+            movie_id: this.$route.params.id,
+            items: this.localdata,
+          },
+        });
       },
       addShare() {
         this.dialog.visible = true;

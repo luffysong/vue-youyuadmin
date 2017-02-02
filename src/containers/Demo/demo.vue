@@ -218,12 +218,12 @@
       });
 
       server.getUserRealInfoDetail({
-        id: 446,
+        id: 248570,
         sendData: {},
       });
 
       server.changeUser({
-        id: 446,
+        id: 248570,
         sendData: {
           status: 2,
         },

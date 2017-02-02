@@ -197,6 +197,7 @@ const server = {
   // 可转让资产（初始份额、收益权）
   getAssetsList(params) {
     const { sendData } = params;
+    // return Vue.http.get('/static/transferShare.json', {
     return Vue.http.get('/api/movie-assets', {
       params: sendData,
       headers: {

@@ -4,6 +4,7 @@
     <el-tab-pane label="初始份额登记" name="originShare"/>
     <el-tab-pane label="可转让初始份额" name="transferShare"/>
     <el-tab-pane label="可转让收益权" name="transferEarn"/>
+    <el-tab-pane label="项目进度" name="projectProgress"/>
   </el-tabs>
 
 </template>

@@ -114,7 +114,7 @@
     <el-form-item>
       <!--<el-button type="primary" @click="handleSubmit">保存</el-button>-->
       <!--<el-button @click="handlePublish">发布</el-button>-->
-      <Buttonc :buttonData="buttonData"/>
+      <Buttons :buttonData="buttonData"/>
     </el-form-item>
   </el-form>
 </template>
@@ -123,7 +123,7 @@
   import _ from 'lodash';
   import Upload from '../../../components/Upload';
   import server from '../../../store/modules/AjaxServer';
-  import Buttonc from './Button';
+  import Buttons from './Button';
 
   export default {
     name: 'DescriptionForm',
@@ -201,7 +201,6 @@
     methods: {
       // datepicker change
       changeDateVal(...cs) {
-        console.log(cs, 'c');
         this.origindata.release_date = cs[0];
       },
       handleRemove() {
@@ -267,7 +266,7 @@
     },
     components: {
       Upload,
-      Buttonc,
+      Buttons,
     },
   };
 </script>

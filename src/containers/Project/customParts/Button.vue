@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="isDisplay">
     <span v-for="it in buttonData" class="button-wrap">
       <el-button :type="it.type" @click="it.callback">{{it.desc}}</el-button>
     </span>
@@ -21,6 +21,10 @@
             callback: () => {},
           },
         ],
+      },
+      isDisplay: {
+        type: Boolean,
+        default: true,
       },
     },
     methods: {},
