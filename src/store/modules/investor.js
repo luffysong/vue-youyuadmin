@@ -11,9 +11,13 @@ const initialState = {
   passList: {},
   rejectListLoading: false,
   rejectList: {},
+
+  detailLoading: false,
+  detail: {},
 };
 
 const actions = {
+  // 获取list
   [types.INVESTORLIST_REQ]({ commit }, params) {
     commit(types.INVESTORLIST_REQ, params);
     const { sendData } = params;
@@ -23,6 +27,22 @@ const actions = {
       if (res.body.code === 0) {
         commit(types.INVESTORLIST_SUC, {
           sendData,
+          data: res.body.data,
+        });
+      }
+    });
+  },
+  // 获取detail
+  [types.INVESTORDETAIL_REQ]({ commit }, params) {
+    commit(types.INVESTORDETAIL_REQ);
+    const { id } = params;
+    const { sendData } = params;
+    server.getUserRealInfoDetail({
+      id,
+      sendData,
+    }).then((res) => {
+      if (res.body.code === 0) {
+        commit(types.INVESTORDETAIL_SUC, {
           data: res.body.data,
         });
       }
@@ -56,6 +76,14 @@ const mutations = {
     const list = ENUM_INVESTOR_STATUS[status];
     state[loading] = false;
     state[list] = data;
+  },
+  [types.INVESTORDETAIL_REQ](state) {
+    state.detailLoading = true;
+  },
+  [types.INVESTORDETAIL_SUC](state, params) {
+    state.detailLoading = false;
+    const { data } = params;
+    state.detail = data;
   },
 };
 

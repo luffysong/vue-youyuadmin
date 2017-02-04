@@ -33,7 +33,7 @@
         align="center"
         label="操作"
         width="200">
-        <el-button type="info"
+        <el-button type="info" @click="toDetail(row.uid)"
                    icon="view" size="small">
           查看
         </el-button>
@@ -54,21 +54,24 @@
 </template>
 <style src='' scoped lang="less"></style>
 <script>
-  import dict from '../../../store/modules/dict';
+  import mixins from './mixins';
 
   export default {
     name: 'InvestorListTable',
     props: {
       plist: Object,
     },
-    filters: {
-      memberTransfer(cs) {
-        const type = dict.state.member_type;
-        return type[cs];
-      },
-    },
+    mixins: [mixins],
     methods: {
       dataChangePage() {
+      },
+      toDetail(...cs) {
+        this.$router.push({
+          name: 'InvestorDetail',
+          params: {
+            id: cs[0],
+          },
+        });
       },
     },
     computed: {},
