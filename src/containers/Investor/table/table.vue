@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-table
-      :data="dataTable"
+      :data="plist.data"
       stripe
       border>
       <el-table-column
@@ -13,7 +13,9 @@
       <el-table-column
         prop="member_type"
         label="会员类型"
+        inline-template
         width="200">
+        <span>{{row.member_type | memberTransfer}}</span>
       </el-table-column>
       <el-table-column
         prop="created_at"
@@ -25,76 +27,56 @@
         label="审核人"
         width="200">
       </el-table-column>
-
       <el-table-column
         fixed="right"
         inline-template
         align="center"
         label="操作"
         width="200">
-        <el-button-group>
-          <!-- <el-button type="success"
-			icon="circle-check" size="small">
-			显示
-		  </el-button> -->
-          <el-button type="info"
-                     icon="view" size="small">
-            查看
-          </el-button>
-        </el-button-group>
+        <el-button type="info"
+                   icon="view" size="small">
+          查看
+        </el-button>
       </el-table-column>
     </el-table>
 
     <div class="block">
-      <span class="demonstration"> </span>
       <el-pagination
         layout="prev, pager, next, jumper"
-        :current-page="dataTable.page"
+        :current-page="plist.page"
         :page-size="10"
-        :total="dataTable.total"
+        :total="plist.total"
         @current-change="dataChangePage"
       >
       </el-pagination>
     </div>
-    {{dataTable.page}}=={{dataTable.type}}
   </div>
 </template>
-<style src='' scoped lang="less"> </style>
+<style src='' scoped lang="less"></style>
 <script>
-  // import { mapGetters } from 'vuex';
-  // import * as types from '../../store/types';
+  import dict from '../../../store/modules/dict';
 
   export default {
-    name: 'InvestorListPassTable',
+    name: 'InvestorListTable',
     props: {
+      plist: Object,
+    },
+    filters: {
+      memberTransfer(cs) {
+        const type = dict.state.member_type;
+        return type[cs];
+      },
     },
     methods: {
       dataChangePage() {
-
       },
     },
-    computed: {
-    },
+    computed: {},
     data() {
       return {
-        dataTable: [
-          {
-            certificate_name: 1,
-            member_type: 2,
-            created_at: 11111,
-            operator: 'aa',
-          },
-          {
-            certificate_name: 1,
-            member_type: 2,
-            created_at: 1,
-            operator: 'aa',
-          },
-        ],
       };
     },
     mounted() {
-      // this.$store.dispatch(types.HIDE_SIDEBAR);
     },
     created() {
     },
@@ -104,9 +86,7 @@
     },
     updated() {
     },
-    components: {
-
-    },
+    components: {},
   };
 
 </script>

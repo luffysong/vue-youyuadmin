@@ -7,7 +7,7 @@
       <el-tab-pane label="全部" name="all"></el-tab-pane>
     </el-tabs>
     <div>
-      <router-view> </router-view>
+      <router-view />
     </div>
   </div>
 </template>
