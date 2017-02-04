@@ -15,12 +15,7 @@
 
   export default {
     name: 'DetailNav',
-    props: {
-      // 穿参数，当前激活tab，'desc  originshare  transferOriginShare  transferEarn'
-      activeTab: String,
-      // 当前项目 id
-      id: [Number, String],
-    },
+    props: {},
     methods: {
       handleClick(...cs) {
         console.log(cs[0].name, this.$router);
@@ -28,14 +23,16 @@
         this.$router.push({
           name: cs[0].name,
           params: {
-            id: this.id,
+            id: this.$route.params.id,
           },
         });
       },
     },
     computed: {},
     data() {
-      return {};
+      return {
+        activeTab: this.$route.name,
+      };
     },
     mounted() {
       // this.$store.dispatch(types.HIDE_SIDEBAR);

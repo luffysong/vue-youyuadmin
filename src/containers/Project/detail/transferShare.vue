@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DetailNav activeTab="transferShare" :id="id"></DetailNav>
+    <!--<DetailNav activeTab="transferShare" :id="id" />-->
     <div v-if="listData.list != undefined">
       <TotalInfo :poriginData="listData"></TotalInfo>
       <ShareForm :poriginData="listData"></ShareForm>

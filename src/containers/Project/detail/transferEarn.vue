@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DetailNav activeTab="transferEarn" :id="id"></DetailNav>
+    <!--<DetailNav activeTab="transferEarn" :id="id" />-->
     <!--可以通过这种形式触发渲染 {{listData}}-->
     <div v-if="listData.list != undefined">
       <TotalInfo :poriginData="listData"></TotalInfo>
