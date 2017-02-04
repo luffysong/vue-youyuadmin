@@ -1,39 +1,8 @@
 <template>
-<el-tabs class="el-col-24" type="border-card">
-  <el-tab-pane label="待付保证金">
-    <order-table />
-  </el-tab-pane>
-  <el-tab-pane label="已付保证金">
-    <order-table />
-  </el-tab-pane>
-  <el-tab-pane label="待付剩余款">
-    <order-table />
-  </el-tab-pane>
-  <el-tab-pane label="付款完成">
-    <order-table />
-  </el-tab-pane>
-  <el-tab-pane label="交易关闭">
-    <order-table />
-  </el-tab-pane>
-</el-tabs>
+  <router-view />
 </template>
 
 <script>
-/**
- * Internal dependencies
- */
-import * as types from '../../store/types';
-import OrderTable from './tables/OrderTable';
-
-export default {
-  name: 'Order',
-  components: {
-    OrderTable,
-  },
-  mounted() {
-    this.$store.dispatch(types.HIDE_SIDEBAR);
-  },
-};
 </script>
 
 <style lang="less" scoped>

@@ -18,6 +18,7 @@ import transferlist from './modules/transferlist';
 import transferdetail from './modules/transferdetail';
 import projectlist from './modules/projectlist';
 import projectdetail from './modules/projectdetail';
+import order from './modules/order';
 
 Vue.use(Vuex);
 
@@ -34,6 +35,7 @@ const store = new Vuex.Store({
     transferdetail,
     projectlist,
     projectdetail,
+    order,
   },
   strict: debug,
   plugins: debug ? [createLogger()] : [],

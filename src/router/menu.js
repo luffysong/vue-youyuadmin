@@ -161,6 +161,39 @@ export default [
   {
     name: 'Order',
     path: '/order',
-    component: resolve => require(['../containers/Order'], resolve), // eslint-disable-line
+    component: resolve => require(['../containers/Order/index'], resolve), // eslint-disable-line
+    redirect: '/order/unpaidDeposit',
+    children: [
+      {
+        name: 'orderUnpaidDeposit',
+        path: 'unpaidDeposit',
+        component: resolve => require(['../containers/Order/unpaidDeposit'], resolve), // eslint-disable-line
+      },
+      {
+        name: 'orderPaidDeposit',
+        path: 'paidDeposit',
+        component: resolve => require(['../containers/Order/paidDeposit'], resolve), // eslint-disable-line
+      },
+      {
+        name: 'orderUnpaidBalance',
+        path: 'unpaidBalance',
+        component: resolve => require(['../containers/Order/unpaidBalance'], resolve), // eslint-disable-line
+      },
+      {
+        name: 'orderPaid',
+        path: 'paid',
+        component: resolve => require(['../containers/Order/paid'], resolve), // eslint-disable-line
+      },
+      {
+        name: 'orderClosed',
+        path: 'closed',
+        component: resolve => require(['../containers/Order/closed'], resolve), // eslint-disable-line
+      },
+      {
+        name: 'orderDetail',
+        path: 'detail/:id',
+        component: resolve => require(['../containers/Order/detail'], resolve), // eslint-disable-line
+      },
+    ],
   },
 ];
