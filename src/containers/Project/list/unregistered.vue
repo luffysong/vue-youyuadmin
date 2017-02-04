@@ -1,6 +1,5 @@
 <template>
   <div>
-    <ListNav :activeTab="activeTab"/>
     <ProjectTable :data="listdata"
                   :displayHandle="displayHandle"
                   :toDetail="toDetail"/>
@@ -10,7 +9,6 @@
 <script>
   import { mapGetters } from 'vuex';
   import * as types from '../../../store/types';
-  import ListNav from '../customParts/ListNav';
   import ProjectTable from '../customParts/ProjectTable';
 
   export default {
@@ -35,7 +33,6 @@
 //      console.log(this.listdata, this.sdata, 'data'); // 怎么赋值给 this.sdata ???
 //    }, 3000);
       return {
-        activeTab: 'unregistered',
         sdata: this.listdata,
       };
     },
@@ -52,7 +49,6 @@
     updated() {
     },
     components: {
-      ListNav,
       ProjectTable,
     },
   };

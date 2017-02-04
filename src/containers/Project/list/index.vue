@@ -1,23 +1,21 @@
 <template>
   <div>
-    <router-view />
+    <ListNav />
+    <router-view/>
   </div>
 </template>
 <script>
-//  import { mapGetters } from 'vuex';
-//  import * as types from '../../store/types';
+  //  import { mapGetters } from 'vuex';
+  //  import * as types from '../../store/types';
+  import ListNav from '../customParts/ListNav';
 
   export default {
     name: 'listindex',
-    props: {
-    },
-    methods: {
-    },
-    computed: {
-    },
+    props: {},
+    methods: {},
+    computed: {},
     data() {
       return {
-
       };
     },
     mounted() {
@@ -32,6 +30,7 @@
     updated() {
     },
     components: {
+      ListNav,
     },
   };
 

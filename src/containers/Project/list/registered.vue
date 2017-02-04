@@ -1,31 +1,57 @@
 <template>
-  <el-tabs class="el-col-24" type="border-card">
-    <el-tab-pane label="待登记">
-      <project-table />
-    </el-tab-pane>
-    <el-tab-pane label="已登记">
-      <project-table />
-    </el-tab-pane>
-    <el-tab-pane label="已清算">
-      <project-table />
-    </el-tab-pane>
-  </el-tabs>
-</template>
+  <div>
+    <ProjectTable :data="listdata"
+                  :displayHandle="displayHandle"
+                  :toDetail="toDetail"/>
 
+  </div>
+</template>
 <script>
-  /**
-   * Internal dependencies
-   */
+  import { mapGetters } from 'vuex';
+  import * as types from '../../../store/types';
   import ProjectTable from '../customParts/ProjectTable';
 
   export default {
-    name: 'Register',
+    name: 'Registered', // 已登记
+    methods: {
+      displayHandle() {
+        //      this.$store.dispatch()
+      },
+      toDetail(...cs) {
+        this.$router.push({
+          path: `/project/detail/desc/${cs[0]}`,
+        });
+      },
+    },
+    computed: {
+      ...mapGetters({
+        listdata: [types.ProjectListData],
+      }),
+    },
+    data() {
+      //    setTimeout(() => {
+      //      console.log(this.listdata, this.sdata, 'data'); // 怎么赋值给 this.sdata ???
+      //    }, 3000);
+      return {
+        sdata: this.listdata,
+      };
+    },
+    mounted() {
+      // this.$store.dispatch(types.HIDE_SIDEBAR);
+      this.$store.dispatch(types.ProjectListReq, { status: 20 });
+    },
+    created() {
+    },
+    beforeUpdate() {
+    },
+    beforeMount() {
+    },
+    updated() {
+    },
     components: {
       ProjectTable,
     },
   };
 </script>
-
-<style lang="less" scoped>
-
+<style scoped lang="less">
 </style>
