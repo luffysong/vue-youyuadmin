@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import * as types from '../types';
 import server from './AjaxServer';
 
@@ -14,7 +15,7 @@ const initialState = {
   paidList: {},
   closedList: {},
   // 详情数据
-  detailLoading: {},
+  detailLoading: false,
   detail: {},
 };
 
@@ -29,6 +30,23 @@ const actions = {
       if (res.body.code === 0) {
         commit(types.ORDERLIST_SUC, {
           sendData,
+          data: res.body.data,
+        });
+      }
+    });
+  },
+  // 获取订单detail
+  [types.ORDERDETAIL_REQ]({ commit }, params) {
+    commit(types.ORDERDETAIL_REQ, params);
+    const { sendData, id, callback } = params;
+    server.getOrderDetail({
+      id,
+      sendData,
+    }).then((res) => {
+      if (res.body.code === 0) {
+        commit(types.ORDERDETAIL_SUC, {
+          id,
+          callback,
           data: res.body.data,
         });
       }
@@ -69,6 +87,18 @@ const mutations = {
   // [types.ORDERLIST_ERR](state, params) {
   //
   // },
+
+  // 获取订单detail
+  [types.ORDERDETAIL_REQ](state) {
+    state.detailLoading = true;
+  },
+  [types.ORDERDETAIL_SUC](state, params) {
+    state.detailLoading = false;
+    const { data, callback } = params;
+    console.log(data);
+    state.detail = data.info;
+    callback(_.cloneDeep(data.info));
+  },
 };
 
 export default {
