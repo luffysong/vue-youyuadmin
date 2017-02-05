@@ -145,7 +145,6 @@
         sendData: {},
         callback: (data) => {
           this.form = data;
-          console.log(this.form);
         },
       });
     },

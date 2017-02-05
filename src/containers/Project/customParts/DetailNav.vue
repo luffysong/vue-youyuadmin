@@ -18,7 +18,6 @@
     props: {},
     methods: {
       handleClick(...cs) {
-        console.log(cs[0].name, this.$router);
         if (cs[0].name === this.activeTab) return;
         this.$router.push({
           name: cs[0].name,

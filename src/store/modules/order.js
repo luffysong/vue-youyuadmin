@@ -95,7 +95,6 @@ const mutations = {
   [types.ORDERDETAIL_SUC](state, params) {
     state.detailLoading = false;
     const { data, callback } = params;
-    console.log(data);
     state.detail = data.info;
     callback(_.cloneDeep(data.info));
   },

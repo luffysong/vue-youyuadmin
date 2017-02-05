@@ -54,8 +54,7 @@ const actions = {
       if (res.body.code === 0) {
         commit(types.PROJECTORIGINSHARE_SUC, res.body.data);
       }
-    }, (err) => {
-      console.log(err);
+    }, () => {
     });
   },
 
@@ -71,8 +70,7 @@ const actions = {
           ...params,
         });
       }
-    }, (err) => {
-      console.log(err, '获取“可转让初始份额、可转让收益”list');
+    }, () => {
     });
   },
   // 获取“项目进度”list
@@ -88,8 +86,7 @@ const actions = {
         });
         params.callback(res.body.data.list);
       }
-    }, (err) => {
-      console.log(err, '获取“可转让初始份额、可转让收益”list');
+    }, () => {
     });
   },
 };
@@ -127,14 +124,11 @@ const mutations = {
     const { type } = params.sendData;
     if (type === ENUM.SHARE) {
       state.ProjectTransferShare.loading = true;
-      console.log(1, 'req');
     } else if (type === ENUM.EARN) {
       state.ProjectTransferEarn.loading = true;
-      console.log(2, 'req');
     }
   },
   [types.PROJECTTRANSFERSHARE_SUC](state, data) {
-    console.log(data);
     const { type } = data.sendData;
     const tempArr = [];
     data.data.forEach((el) => {
@@ -158,10 +152,8 @@ const mutations = {
     const { type } = data.sendData;
     if (type === ENUM.SHARE) {
       state.ProjectTransferShare.loading = false;
-      console.log(1, 'err');
     } else if (type === ENUM.EARN) {
       state.ProjectTransferEarn.loading = false;
-      console.log(2, 'err');
     }
   },
 

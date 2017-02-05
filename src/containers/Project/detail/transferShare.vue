@@ -52,7 +52,6 @@
       // console.log('beforeMount');
     },
     updated() {
-      console.log('updated');
     },
     components: {
       DetailNav,

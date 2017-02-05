@@ -23,7 +23,6 @@
     methods: {},
     computed: {
       listData() {
-        console.log(this.$store.state.projectdetail.ProjectOriginShare);
         return this.$store.state.projectdetail.ProjectOriginShare;
       },
     },

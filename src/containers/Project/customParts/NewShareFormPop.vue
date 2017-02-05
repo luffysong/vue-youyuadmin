@@ -80,7 +80,6 @@ export default {
   },
   methods: {
     handleReset() {
-      console.log(this.$refs);
       this.cancelCallback();
       this.$refs.form.resetFields();
     },

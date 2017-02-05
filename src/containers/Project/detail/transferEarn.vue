@@ -52,16 +52,12 @@
       });
     },
     created() {
-       console.log('created');
     },
     beforeUpdate() {
-       console.log('beforeUpdate');
     },
     beforeMount() {
-       console.log('beforeMount');
     },
     updated() {
-       console.log('updated');
     },
     components: {
       DetailNav,

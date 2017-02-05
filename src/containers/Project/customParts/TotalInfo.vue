@@ -48,7 +48,6 @@
         let total = 0;
         if (this.poriginData.list) {
           this.poriginData.list.forEach((el) => {
-            console.log(el.share);
             total += Number(el.share);
           });
           return total * 100;

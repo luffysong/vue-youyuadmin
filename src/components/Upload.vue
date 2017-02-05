@@ -141,14 +141,14 @@
         fileList: (() => {
           const arrNew = [];
           if (_.isPlainObject(this.pFileList[0])) {
-//            a = this.pFileList;
-//            return a;
+            //            a = this.pFileList;
+            //            return a;
 
             this.pFileList.forEach((el) => {
               arrNew.push(el);
             });
             return arrNew;
-//            return this.pFileList;
+            //            return this.pFileList;
           }
           this.pFileList.forEach((el) => {
             const item = {

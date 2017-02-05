@@ -39,7 +39,6 @@
     beforeMount() {
     },
     updated() {
-      console.log('update');
     },
     components: {
       InvestorList,

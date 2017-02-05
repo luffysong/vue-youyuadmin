@@ -100,20 +100,15 @@
       };
     },
     mounted() {
-      // console.log('mounted');
       this.getlist();
     },
     created() {
-      console.log('created');
     },
     beforeUpdate() {
-      console.log('beforeUpdate');
     },
     beforeMount() {
-      console.log('beforeMount');
     },
     updated() {
-      console.log('update');
     },
     components: {
       NewProgress,
