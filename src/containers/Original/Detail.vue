@@ -1,28 +1,24 @@
 <template>
   <div>
     <div v-if="type === 'PENDING'">
-      <OriginalDetailPending></OriginalDetailPending>
+      <OriginalDetailPending />
     </div>
     <div v-if="type === 'LISTED'">
-      <OriginalDetailListed></OriginalDetailListed>
+      <OriginalDetailListed />
     </div>
   </div>
 </template>
 <script>
   // import { mapGetters } from 'vuex';
   // import * as types from '../../store/types';
-  import OriginalDetailPending from './form/pending.vue';
-  import OriginalDetailListed from './form/listed.vue';
+  import OriginalDetailPending from './form/pending';
+  import OriginalDetailListed from './form/listed';
 
   export default {
     name: 'OriginalDetail',
-    props: {
-    },
-    methods: {
-
-    },
-    computed: {
-    },
+    props: {},
+    methods: {},
+    computed: {},
     data() {
       return {
         type: 'PENDING',

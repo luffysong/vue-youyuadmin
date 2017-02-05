@@ -83,18 +83,18 @@ export default [
     // 初始份额转让管理
     name: 'OriginShareTransfer',
     path: '/original',
-    component: resolve => require(['../containers/Original/index.vue'], resolve), // eslint-disable-line
+    component: resolve => require(['../containers/Original/index'], resolve), // eslint-disable-line
     redirect: '/original/list',
     children: [
       {
         name: 'OriginalList',
         path: 'list',
-        component: resolve => require(['../containers/OriginalList/List.vue'], resolve), // eslint-disable-line
+        component: resolve => require(['../containers/Original/list'], resolve), // eslint-disable-line
       },
       {
         name: 'OriginalDetail',
         path: 'detail/:id',
-        component: resolve => require(['../containers/OriginalDetail/Detail.vue'], resolve), // eslint-disable-line
+        component: resolve => require(['../containers/Original/Detail'], resolve), // eslint-disable-line
       },
     ],
   },
@@ -108,12 +108,12 @@ export default [
       {
         name: 'TransferList',
         path: 'list',
-        component: resolve => require(['../containers/TransferList/List.vue'], resolve), // eslint-disable-line
+        component: resolve => require(['../containers/Transfer/List.vue'], resolve), // eslint-disable-line
       },
       {
         name: 'TransferDetail',
         path: 'detail/:id',
-        component: resolve => require(['../containers/TransferDetail/Detail.vue'], resolve), // eslint-disable-line
+        component: resolve => require(['../containers/Transfer/Detail.vue'], resolve), // eslint-disable-line
       },
     ],
   },
