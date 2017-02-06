@@ -36,7 +36,6 @@ const mutations = {
     state.loading = false;
     state.detail = data.resdata;
     if (callback) {
-      console.log(data.resdata.id);
       callback(data.resdata.id);
     }
   },

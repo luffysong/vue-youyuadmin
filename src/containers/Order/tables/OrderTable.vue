@@ -14,18 +14,15 @@
       </el-table-column>
       <el-table-column
         align="center"
-        prop="projectName"
+        prop="movie.name"
         label="项目名称"
-        inline-template
         width="200">
-        <span>接口无此字段</span>
       </el-table-column>
       <el-table-column
         align="center"
-        inline-template
         label="支付人"
+        prop="user.real_info.certificate"
         width="200">
-        <span>接口无此字段</span>
       </el-table-column>
       <el-table-column
         align="center"
@@ -69,7 +66,7 @@
         width="200">
         <ul class="split">
           <li>{{row.bill.trade_deposit.created_at}}</li>
-          <li>{{row.bill.trade_balance.created_at}}</li>
+          <li>{{row.open_balance_time}}</li>
         </ul>
       </el-table-column>
       <el-table-column

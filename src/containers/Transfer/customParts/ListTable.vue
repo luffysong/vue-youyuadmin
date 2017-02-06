@@ -27,33 +27,33 @@
       <el-table-column
         align="center"
         label="转让人"
-        prop="movie.name"
+        prop="transferor.name"
         width="200">
       </el-table-column>
       <el-table-column
         sortable
         align="center"
-        prop="listedShare"
+        prop="share"
         label="挂牌份额"
         width="200">
       </el-table-column>
       <el-table-column
         sortable
         align="center"
-        prop="listedShare"
+        prop="price"
         label="挂牌价格"
         width="200">
       </el-table-column>
       <el-table-column
         sortable
         align="center"
-        prop="applyTime"
+        prop="created_at"
         label="申请时间"
         width="200">
       </el-table-column>
       <el-table-column
         align="center"
-        prop="auditor"
+        prop="operator.name"
         label="审核人"
         width="200">
       </el-table-column>

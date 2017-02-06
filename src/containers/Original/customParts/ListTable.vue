@@ -21,22 +21,22 @@
         width="200">
       </el-table-column>
       <el-table-column
-        prop="created_at"
+        prop="publish_time"
         label="登记时间"
         width="200">
       </el-table-column>
       <el-table-column
-        prop="created_at"
+        prop="transferor.name"
         label="转让人"
         width="200">
       </el-table-column>
       <el-table-column
-        prop="created_at"
+        prop="asset.share"
         label="原始份额"
         width="200">
       </el-table-column>
       <el-table-column
-        prop="created_at"
+        prop="share"
         label="挂牌份额"
         width="200">
       </el-table-column>

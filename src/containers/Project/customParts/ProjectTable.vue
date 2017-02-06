@@ -25,7 +25,7 @@
       <el-table-column
         sortable
         align="center"
-        prop="created_at"
+        prop="publish_time"
         label="登记时间"
         width="200">
       </el-table-column>
@@ -33,14 +33,14 @@
       <el-table-column
         sortable
         align="center"
-        prop="release_at"
+        prop="release_date"
         label="上映时间"
         width="200">
       </el-table-column>
       <el-table-column
         sortable
         align="center"
-        prop="created_at"
+        prop="settlement_time"
         label="清算时间"
         width="200">
       </el-table-column>

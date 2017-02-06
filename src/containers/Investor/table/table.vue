@@ -23,7 +23,7 @@
         width="200">
       </el-table-column>
       <el-table-column
-        prop="operator"
+        prop="operator.name"
         label="审核人"
         width="200">
       </el-table-column>
