@@ -84,15 +84,43 @@ export default [
     name: 'OriginShareTransfer',
     path: '/original',
     component: resolve => require(['../containers/Original/index'], resolve), // eslint-disable-line
-    redirect: '/original/list',
+    redirect: '/original/list/pending',
     children: [
       {
         name: 'OriginalList',
         path: 'list',
-        component: resolve => require(['../containers/Original/list'], resolve), // eslint-disable-line
+        component: resolve => require(['../containers/Original/list/listindex'], resolve), // eslint-disable-line
+        redirect: '/original/list/pending',
+        children: [
+          {
+            name: 'OriginListPending',
+            path: 'pending',
+            component: resolve => require(['../containers/Original/list/pending'], resolve), // eslint-disable-line
+          },
+          {
+            name: 'OriginListListed',
+            path: 'listed',
+            component: resolve => require(['../containers/Original/list/listed'], resolve), // eslint-disable-line
+          },
+          {
+            name: 'OriginListComplete',
+            path: 'complete',
+            component: resolve => require(['../containers/Original/list/complete'], resolve), // eslint-disable-line
+          },
+          {
+            name: 'OriginListInvalid',
+            path: 'invalid',
+            component: resolve => require(['../containers/Original/list/invalid'], resolve), // eslint-disable-line
+          },
+          {
+            name: 'OriginListReject',
+            path: 'reject',
+            component: resolve => require(['../containers/Original/list/reject'], resolve), // eslint-disable-line
+          },
+        ],
       },
       {
-        name: 'OriginalDetail',
+        name: 'OriginDetail',
         path: 'detail/:id',
         component: resolve => require(['../containers/Original/Detail'], resolve), // eslint-disable-line
       },
@@ -162,35 +190,43 @@ export default [
     name: 'Order',
     path: '/order',
     component: resolve => require(['../containers/Order/index'], resolve), // eslint-disable-line
-    redirect: '/order/unpaidDeposit',
+    redirect: '/order/list/unpaidDeposit',
     children: [
       {
-        name: 'orderUnpaidDeposit',
-        path: 'unpaidDeposit',
-        component: resolve => require(['../containers/Order/unpaidDeposit'], resolve), // eslint-disable-line
+        name: 'OrderList',
+        path: 'list',
+        component: resolve => require(['../containers/Order/list/listindex'], resolve), // eslint-disable-line
+        redirect: '/order/list/unpaidDeposit',
+        children: [
+          {
+            name: 'orderUnpaidDeposit',
+            path: 'unpaidDeposit',
+            component: resolve => require(['../containers/Order/list/unpaidDeposit'], resolve), // eslint-disable-line
+          },
+          {
+            name: 'orderPaidDeposit',
+            path: 'paidDeposit',
+            component: resolve => require(['../containers/Order/list/paidDeposit'], resolve), // eslint-disable-line
+          },
+          {
+            name: 'orderUnpaidBalance',
+            path: 'unpaidBalance',
+            component: resolve => require(['../containers/Order/list/unpaidBalance'], resolve), // eslint-disable-line
+          },
+          {
+            name: 'orderPaid',
+            path: 'paid',
+            component: resolve => require(['../containers/Order/list/paid'], resolve), // eslint-disable-line
+          },
+          {
+            name: 'orderClosed',
+            path: 'closed',
+            component: resolve => require(['../containers/Order/list/closed'], resolve), // eslint-disable-line
+          },
+        ],
       },
       {
-        name: 'orderPaidDeposit',
-        path: 'paidDeposit',
-        component: resolve => require(['../containers/Order/paidDeposit'], resolve), // eslint-disable-line
-      },
-      {
-        name: 'orderUnpaidBalance',
-        path: 'unpaidBalance',
-        component: resolve => require(['../containers/Order/unpaidBalance'], resolve), // eslint-disable-line
-      },
-      {
-        name: 'orderPaid',
-        path: 'paid',
-        component: resolve => require(['../containers/Order/paid'], resolve), // eslint-disable-line
-      },
-      {
-        name: 'orderClosed',
-        path: 'closed',
-        component: resolve => require(['../containers/Order/closed'], resolve), // eslint-disable-line
-      },
-      {
-        name: 'orderDetail',
+        name: 'OrderDetail',
         path: 'detail/:id',
         component: resolve => require(['../containers/Order/detail'], resolve), // eslint-disable-line
       },

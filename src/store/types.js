@@ -5,19 +5,15 @@ export const HIDE_SIDEBAR = 'youyu/HIDE_SIDEBAR';
 export const TOGGLE_SIDEBAR = 'youyu/TOGGLE_SIDEBAR';
 export const SET_SIDEBAR_DATA = 'youyu/SET_SIDEBAR_DATA';
 
-// OriginListGetData ‘初始份额转让’获取list数据
+// 初始份额转, 获取list数据
 export const ORIGINLIST_REQ = 'ORIGINLIST_REQ';
-export const ORIGINLIST_REQ_SUC = 'ORIGINLIST_REQ_SUC';
-export const ORIGINLIST_REQ_ERR = 'ORIGINLIST_REQ_ERR';
+export const ORIGINLIST_SUC = 'ORIGINLIST_SUC';
+export const ORIGINLIST_ERR = 'ORIGINLIST_ERR';
 
-// OriginListGetData Getter ‘初始份额转让’
-export const OriginListPENDING = 'OriginListPENDING';
-export const OriginListLISTED = 'OriginListLISTED';
-export const OriginListCOMPLETE = 'OriginListCOMPLETE';
-export const OriginListINVALID = 'OriginListINVALID';
-export const OriginListREJECT = 'OriginListREJECT';
-export const OriginListPage = 'OriginListPage';
-export const OriginListTotal = 'OriginListTotal';
+// 初始份额转让，获取详情数据
+export const ORIGINDETAIL_REQ = 'ORIGINDETAIL_REQ';
+export const ORIGINDETAIL_SUC = 'ORIGINDETAIL_SUC';
+export const ORIGINDETAIL_ERR = 'ORIGINDETAIL_ERR';
 
 // OriginListGetData ‘影视收益权转让管理’ 获取list数据
 export const TRANSFERLIST_REQ = 'TRANSFERLIST_REQ';

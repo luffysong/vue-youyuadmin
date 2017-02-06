@@ -140,7 +140,7 @@ const server = {
   },
 
 
-  // 挂牌 获取 list
+  // 挂牌 获取 list (原始份额转让管理)
   getQuotedList(params) {
     const { sendData } = params;
     return Vue.http.get('/api/movie-listing', {

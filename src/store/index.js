@@ -14,6 +14,7 @@ import * as mutations from './mutations';
 import dict from './modules/dict';
 import sidebar from './modules/sidebar';
 import originlist from './modules/originlist';
+import origindetail from './modules/origindetail';
 import transferlist from './modules/transferlist';
 import transferdetail from './modules/transferdetail';
 import projectlist from './modules/projectlist';
@@ -32,6 +33,7 @@ const store = new Vuex.Store({
     dict,
     sidebar,
     originlist,
+    origindetail,
     transferlist,
     transferdetail,
     projectlist,

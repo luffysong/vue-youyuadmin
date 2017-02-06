@@ -13,9 +13,7 @@
 
   export default {
     name: 'OrderListNav',
-    props: {
-      activeTab: String,
-    },
+    props: {},
     methods: {
       handleClick(...cs) {
         if (cs[0].name === this.activeTab) return;
@@ -29,7 +27,7 @@
     },
     data() {
       return {
-
+        activeTab: this.$route.name,
       };
     },
   };

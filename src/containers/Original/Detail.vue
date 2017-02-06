@@ -1,31 +1,33 @@
 <template>
-  <div>
-    <div v-if="type === 'PENDING'">
-      <OriginalDetailPending />
-    </div>
-    <div v-if="type === 'LISTED'">
-      <OriginalDetailListed />
-    </div>
+  <div v-if="detailData.info">
+    <DetailForm :pDetailData="detailData"/>
   </div>
 </template>
 <script>
-  // import { mapGetters } from 'vuex';
-  // import * as types from '../../store/types';
-  import OriginalDetailPending from './form/pending';
-  import OriginalDetailListed from './form/listed';
+  import * as types from '../../store/types';
+  import DetailForm from './customParts/DetailForm';
 
   export default {
     name: 'OriginalDetail',
     props: {},
     methods: {},
-    computed: {},
+    computed: {
+      detailData() {
+        return this.$store.state.origindetail.detail;
+      },
+    },
     data() {
-      return {
-        type: 'PENDING',
-      };
+      return {};
     },
     mounted() {
-      // this.$store.dispatch(types.HIDE_SIDEBAR);
+      this.$store.dispatch(types.HIDE_SIDEBAR);
+      const id = this.$route.params.id;
+      this.$store.dispatch(types.ORIGINDETAIL_REQ, {
+        id,
+        sendData: {
+          id,
+        },
+      });
     },
     created() {
     },
@@ -36,8 +38,7 @@
     updated() {
     },
     components: {
-      OriginalDetailPending,
-      OriginalDetailListed,
+      DetailForm,
     },
   };
 
