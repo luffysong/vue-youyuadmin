@@ -1,52 +1,38 @@
 <template>
-  <div>
-    <div v-if='detailData.type === "pending"'>
-      <TransferFormPending :form="detailData" />
-    </div>
-    <div v-else-if='detailData.type === "listed"'>
-      <TransferFormListed :form="detailData"/>
-    </div>
+  <div v-if="detailData.info">
+    <DetailForm :pDetailData="detailData"/>
   </div>
 
 </template>
 
 <script>
-
-  import { mapGetters } from 'vuex';
   import * as types from '../../store/types';
-  import TransferFormPending from './forms/pending';
-  import TransferFormListed from './forms/listed';
-
-  function getData() {
-    this.$store.dispatch(types.TRANSFERDETAIL_REQ, {
-      type: this.$route.query.type,
-    });
-  }
-  function init() {
-    getData.call(this);
-  }
+  import DetailForm from './customParts/DetailForm';
 
   export default {
     name: 'TransferDetail',
-    props: {
-    },
-    methods: {
-    },
+    props: {},
+    methods: {},
     computed: {
-      ...mapGetters({
-        detailData: [types.TransferDetailData],
-      }),
+      detailData() {
+        return this.$store.state.transferdetail.detail;
+      },
     },
     data() {
-      return {
-
-      };
+      return {};
     },
     mounted() {
-      // this.$store.dispatch(types.HIDE_SIDEBAR);
+      this.$store.dispatch(types.HIDE_SIDEBAR);
+      const id = this.$route.params.id;
+      this.$store.dispatch(types.HIDE_SIDEBAR);
+      this.$store.dispatch(types.TRANSFERDETAIL_REQ, {
+        id,
+        sendData: {
+          id,
+        },
+      });
     },
     created() {
-      init.call(this);
     },
     beforeUpdate() {
     },
@@ -55,8 +41,7 @@
     updated() {
     },
     components: {
-      TransferFormPending,
-      TransferFormListed,
+      DetailForm,
     },
   };
 

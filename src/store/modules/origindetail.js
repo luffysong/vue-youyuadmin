@@ -1,7 +1,3 @@
-/**
- * Internal dependencies
- */
-// import Vue from 'vue';
 import * as types from '../types';
 import server from './AjaxServer';
 

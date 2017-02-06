@@ -17,7 +17,7 @@ export const ORIGINDETAIL_ERR = 'ORIGINDETAIL_ERR';
 
 // ========================
 
-// OriginListGetData ‘影视收益权转让管理’ 获取list数据
+// TransferList ‘影视收益权转让管理’ 获取list数据
 export const TRANSFERLIST_REQ = 'TRANSFERLIST_REQ';
 export const TRANSFERLIST_SUC = 'TRANSFERLIST_SUC';
 export const TRANSFERLIST_ERR = 'TRANSFERLIST_ERR';
@@ -26,9 +26,6 @@ export const TRANSFERLIST_ERR = 'TRANSFERLIST_ERR';
 export const TRANSFERDETAIL_REQ = 'TRANSFERDETAIL_REQ';
 export const TRANSFERDETAIL_SUC = 'TRANSFERDETAIL_SUC';
 export const TRANSFERDETAIL_ERR = 'TRANSFERDETAIL_ERR';
-
-// TransferDetail getter
-export const TransferDetailData = 'TransferDetailData';
 
 // =========================
 
