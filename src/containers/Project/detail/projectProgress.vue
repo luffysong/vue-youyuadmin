@@ -28,9 +28,7 @@
   </div>
 </template>
 <script>
-  /* eslint-disable */
   import _ from 'lodash';
-  import { mapGetters } from 'vuex';
   import * as types from '../../../store/types';
   import server from '../../../store/modules/AjaxServer';
   import NewProgress from '../customParts/NewProgress';
@@ -44,12 +42,10 @@
         this.confirm.visible = true;
       },
       confirmDel() {
-        const id = this.$route.params.id;
+        const id = this.confirm.delId;
         server.delProjectProgress({
           id,
-          sendData: {
-            id: this.confirm.delId,
-          },
+          sendData: {},
         }).then(() => {
           this.confirm.visible = false;
           this.getlist();

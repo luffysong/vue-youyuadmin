@@ -3,7 +3,7 @@
     <el-form ref="form" :model="detailData.info" :rules="rules" label-width="160px">
       <el-form-item label="申请人" prop="name">
         <el-col :span="8">
-          <el-input v-model="detailData.info.user.base.name" :disabled="true">
+          <el-input v-model="detailData.info.certificate_name" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
@@ -24,15 +24,15 @@
           </el-select>
         </el-col>
       </el-form-item>
-      <el-form-item label="申请时间" prop="applyTime">
+      <el-form-item label="申请时间" prop="created_at">
         <el-col :span="8">
-          <el-input v-model="detailData.info.applyTime" :disabled="true">
+          <el-input v-model="detailData.info.created_at" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
-      <el-form-item label="开户类型" prop="accountType">
+      <el-form-item label="开户类型" prop="identity_type">
         <el-col :span="8">
-          <el-input v-model="detailData.info.accountType" :disabled="true">
+          <el-input v-model="detailData.info.identity_type" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>

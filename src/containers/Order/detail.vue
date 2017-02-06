@@ -30,17 +30,17 @@
           <el-input v-model="form.created_at"></el-input>
         </el-form-item>
         <el-form-item label="完成时间">
-          <el-input v-model="form.created_at"></el-input>
+          <el-input v-model="form.success_time"></el-input>
         </el-form-item>
         <el-form-item label="关闭时间">
-          <el-input v-model="form.created_at"></el-input>
+          <el-input v-model="form.failure_time"></el-input>
         </el-form-item>
       </div>
 
       <div class="deposit-bill">
         <h5>保证金订单</h5>
         <el-form-item label="订单号">
-          <el-input v-model="form.trade_deposit.goods_id"></el-input>
+          <el-input v-model="form.trade_deposit.business_id"></el-input>
         </el-form-item>
         <el-form-item label="订单金额">
           <el-input v-model="form.trade_deposit.amount"></el-input>
@@ -54,14 +54,14 @@
           <el-input v-model="form.trade_deposit.created_at"></el-input>
         </el-form-item>
         <el-form-item label="付款时间">
-          <el-input v-model="form.trade_deposit.updated_at"></el-input>
+          <el-input v-model="form.trade_deposit.notify_time"></el-input>
         </el-form-item>
       </div>
 
       <div class="balance-bill">
         <h5>尾款订单</h5>
         <el-form-item label="订单号">
-          <el-input v-model="form.trade_balance.goods_id"></el-input>
+          <el-input v-model="form.trade_balance.business_id"></el-input>
         </el-form-item>
         <el-form-item label="订单金额">
           <el-input v-model="form.trade_balance.amount"></el-input>
@@ -75,7 +75,7 @@
           <el-input v-model="form.trade_balance.created_at"></el-input>
         </el-form-item>
         <el-form-item label="付款时间">
-          <el-input v-model="form.trade_balance.updated_at"></el-input>
+          <el-input v-model="form.trade_balance.notify_time"></el-input>
         </el-form-item>
       </div>
     </el-form>

@@ -111,7 +111,7 @@
     methods: {
       toDetail(...cs) {
         this.$router.push({
-          name: 'orderDetail',
+          name: 'OrderDetail',
           params: { id: cs[0] },
         });
       },
