@@ -1,9 +1,9 @@
 <template>
   <el-tabs :active-name="activeTab" @tab-click="handleClick">
-    <el-tab-pane label="待登记" name="unregistered"/>
-    <el-tab-pane label="已登记" name="registered"/>
-    <el-tab-pane label="已上映" name="release"/>
-    <el-tab-pane label="已清算" name="liquidation"/>
+    <el-tab-pane label="待登记" name="ProjectListUnregistered"/>
+    <el-tab-pane label="已登记" name="ProjectListRegistered"/>
+    <el-tab-pane label="已上映" name="ProjectListRelease"/>
+    <el-tab-pane label="已清算" name="ProjectListLiquidation"/>
   </el-tabs>
 
 </template>
@@ -24,10 +24,13 @@
         }
       },
     },
-    computed: {},
+    computed: {
+      activeTab() {
+        return this.$route.name;
+      },
+    },
     data() {
       return {
-        activeTab: this.$route.name,
       };
     },
     mounted() {

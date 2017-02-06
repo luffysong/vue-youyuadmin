@@ -5,6 +5,8 @@ export const HIDE_SIDEBAR = 'youyu/HIDE_SIDEBAR';
 export const TOGGLE_SIDEBAR = 'youyu/TOGGLE_SIDEBAR';
 export const SET_SIDEBAR_DATA = 'youyu/SET_SIDEBAR_DATA';
 
+// ========================
+
 // 初始份额转, 获取list数据
 export const ORIGINLIST_REQ = 'ORIGINLIST_REQ';
 export const ORIGINLIST_SUC = 'ORIGINLIST_SUC';
@@ -17,7 +19,7 @@ export const ORIGINDETAIL_ERR = 'ORIGINDETAIL_ERR';
 
 // ========================
 
-// TransferList ‘影视收益权转让管理’ 获取list数据
+// TransferList '影视收益权转让管理' 获取list数据
 export const TRANSFERLIST_REQ = 'TRANSFERLIST_REQ';
 export const TRANSFERLIST_SUC = 'TRANSFERLIST_SUC';
 export const TRANSFERLIST_ERR = 'TRANSFERLIST_ERR';
@@ -42,6 +44,11 @@ export const ProjectListErr = 'ProjectListErr';
 export const ProjectDisplayReq = 'ProjectDisplayReq';
 export const ProjectDisplaySuc = 'ProjectDisplaySuc';
 export const ProjectDisplayErr = 'ProjectDisplayErr';
+
+// 项目管理 创建项目
+export const PROJECTCREATE_REQ = 'PROJECTCREATE_REQ';
+export const PROJECTCREATE_SUC = 'PROJECTCREATE_SUC';
+export const PROJECTCREATE_ERR = 'PROJECTCREATE_ERR';
 
 // 项目管理 项目详情
 export const ProjectDetailReq = 'ProjectDetailReq';

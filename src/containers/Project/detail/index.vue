@@ -1,6 +1,8 @@
 <template>
   <div>
-    <DetailNav />
+    <div v-if="!hideNav">
+      <DetailNav />
+    </div>
     <router-view/>
   </div>
 </template>
@@ -11,7 +13,11 @@
     name: 'detailindex',
     props: {},
     methods: {},
-    computed: {},
+    computed: {
+      hideNav() {
+        return this.$route.name === 'ProjectCreate';
+      },
+    },
     data() {
       return {
       };

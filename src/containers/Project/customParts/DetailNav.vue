@@ -1,10 +1,10 @@
 <template>
   <el-tabs :active-name="activeTab" @tab-click="handleClick">
-    <el-tab-pane label="项目描述" name="desc"/>
-    <el-tab-pane label="初始份额登记" name="originShare"/>
-    <el-tab-pane label="可转让初始份额" name="transferShare"/>
-    <el-tab-pane label="可转让收益权" name="transferEarn"/>
-    <el-tab-pane label="项目进度" name="projectProgress"/>
+    <el-tab-pane label="项目描述" name="ProjectDetailDesc"/>
+    <el-tab-pane label="初始份额登记" name="ProjectDetailOriginShare"/>
+    <el-tab-pane label="可转让初始份额" name="ProjectDetailTransferShare"/>
+    <el-tab-pane label="可转让收益权" name="ProjectDetailTransferEarn"/>
+    <el-tab-pane label="项目进度" name="ProjectDetailProgress"/>
   </el-tabs>
 
 </template>
@@ -18,6 +18,7 @@
     props: {},
     methods: {
       handleClick(...cs) {
+        console.log(cs[0].name, this.activeTab, this.$route.params.id);
         if (cs[0].name === this.activeTab) return;
         this.$router.push({
           name: cs[0].name,
@@ -27,10 +28,13 @@
         });
       },
     },
-    computed: {},
+    computed: {
+      activeTab() {
+        return this.$route.name;
+      },
+    },
     data() {
       return {
-        activeTab: this.$route.name,
       };
     },
     mounted() {

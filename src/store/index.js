@@ -19,6 +19,7 @@ import transferlist from './modules/transferlist';
 import transferdetail from './modules/transferdetail';
 import projectlist from './modules/projectlist';
 import projectdetail from './modules/projectdetail';
+import projectcreate from './modules/projectcreate';
 import order from './modules/order';
 import investor from './modules/investor';
 
@@ -38,6 +39,7 @@ const store = new Vuex.Store({
     transferdetail,
     projectlist,
     projectdetail,
+    projectcreate,
     order,
     investor,
   },
