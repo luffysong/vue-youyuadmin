@@ -64,7 +64,7 @@ const mutations = {
     state[loading] = false;
     state[list] = resdata;
   },
-  [types.ORIGINLIST_REQ_ERR](state) {
+  [types.ORIGINLIST_ERR](state) {
     state.loading = false;
   },
 };

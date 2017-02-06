@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-table
-      :data="dataTable.items"
+      :data="pListData.data"
       stripe
       border>
       <el-table-column
@@ -14,39 +14,34 @@
       </el-table-column>
       <el-table-column
         align="center"
-        prop="name"
+        prop="movie.name"
         label="项目名称"
         width="200">
       </el-table-column>
       <el-table-column
         align="center"
-        inline-template
         label="制片方"
+        prop="movie.producer"
         width="200">
-        <el-popover trigger="hover" placement="top">
-          <p>片名: {{ row.name }}</p>
-          <div slot="reference">
-            <el-tag>{{ row.maker }}</el-tag>
-          </div>
-        </el-popover>
       </el-table-column>
       <el-table-column
         align="center"
-        inline-template
         label="转让人"
+        prop="movie.name"
         width="200">
-        <el-popover trigger="hover" placement="top">
-          <p>片名: {{ row.name }}</p>
-          <div slot="reference">
-            <el-tag>{{ row.transfer }}</el-tag>
-          </div>
-        </el-popover>
       </el-table-column>
       <el-table-column
         sortable
         align="center"
         prop="listedShare"
         label="挂牌份额"
+        width="200">
+      </el-table-column>
+      <el-table-column
+        sortable
+        align="center"
+        prop="listedShare"
+        label="挂牌价格"
         width="200">
       </el-table-column>
       <el-table-column
@@ -76,17 +71,17 @@
         </router-link>
       </el-table-column>
     </el-table>
-    <div class="block">
-      <span class="demonstration"> </span>
-      <el-pagination
-        layout="prev, pager, next, jumper"
-        :current-page="dataTable.page"
-        :page-size="10"
-        :total="dataTable.total"
-        @current-change="dataChangePage"
-      >
-      </el-pagination>
-    </div>
+    <!--<div class="block">-->
+      <!--<span class="demonstration"> </span>-->
+      <!--<el-pagination-->
+        <!--layout="prev, pager, next, jumper"-->
+        <!--:current-page="dataTable.page"-->
+        <!--:page-size="10"-->
+        <!--:total="dataTable.total"-->
+        <!--@current-change="dataChangePage"-->
+      <!--&gt;-->
+      <!--</el-pagination>-->
+    <!--</div>-->
   </div>
 
 </template>
@@ -96,8 +91,7 @@
   export default {
     name: 'TransferTable',
     props: {
-      dataTable: Object,
-      dataChangePage: Function,
+      pListData: Object,
     },
     methods: {
     },

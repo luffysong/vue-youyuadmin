@@ -15,17 +15,12 @@ export const ORIGINDETAIL_REQ = 'ORIGINDETAIL_REQ';
 export const ORIGINDETAIL_SUC = 'ORIGINDETAIL_SUC';
 export const ORIGINDETAIL_ERR = 'ORIGINDETAIL_ERR';
 
+// ========================
+
 // OriginListGetData ‘影视收益权转让管理’ 获取list数据
 export const TRANSFERLIST_REQ = 'TRANSFERLIST_REQ';
-export const TRANSFERLIST_REQ_SUC = 'TRANSFERLIST_REQ_SUC';
-export const TRANSFERLIST_REQ_ERR = 'TRANSFERLIST_REQ_ERR';
-
-// TransferList Getter '影视收益权转让管理'
-export const TransferListPENDING = 'TransferListPENDING';
-export const TransferListLISTED = 'TransferListLISTED';
-export const TransferListCOMPLETE = 'TransferListCOMPLETE';
-export const TransferListINVALID = 'TransferListINVALID';
-export const TransferListREJECT = 'TransferListREJECT';
+export const TRANSFERLIST_SUC = 'TRANSFERLIST_SUC';
+export const TRANSFERLIST_ERR = 'TRANSFERLIST_ERR';
 
 // TransferDetail getdata '影视收益权转让管理' 获取详情数据
 export const TRANSFERDETAIL_REQ = 'TRANSFERDETAIL_REQ';
@@ -34,7 +29,9 @@ export const TRANSFERDETAIL_ERR = 'TRANSFERDETAIL_ERR';
 
 // TransferDetail getter
 export const TransferDetailData = 'TransferDetailData';
+
 // =========================
+
 // 项目管理 getter
 export const ProjectListData = 'ProjectListData';
 export const ProjectDisplayData = 'ProjectDisplayData';

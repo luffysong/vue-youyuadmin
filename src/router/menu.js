@@ -130,13 +130,41 @@ export default [
     // 影视类收益权转让管理
     name: 'Transfer',
     path: '/transfer',
-    component: resolve => require(['../containers/Transfer'], resolve), // eslint-disable-line
-    redirect: '/transfer/list',
+    component: resolve => require(['../containers/Transfer/index'], resolve), // eslint-disable-line
+    redirect: '/transfer/list/pending',
     children: [
       {
         name: 'TransferList',
         path: 'list',
-        component: resolve => require(['../containers/Transfer/List.vue'], resolve), // eslint-disable-line
+        component: resolve => require(['../containers/Transfer/list/listindex.vue'], resolve), // eslint-disable-line
+        redirect: '/transfer/list/pending',
+        children: [
+          {
+            name: 'TransferListPending',
+            path: 'pending',
+            component: resolve => require(['../containers/Transfer/list/pending'], resolve), //eslint-disable-line
+          },
+          {
+            name: 'TransferListListed',
+            path: 'listed',
+            component: resolve => require(['../containers/Transfer/list/listed'], resolve), //eslint-disable-line
+          },
+          {
+            name: 'TransferListComplete',
+            path: 'complete',
+            component: resolve => require(['../containers/Transfer/list/complete'], resolve), //eslint-disable-line
+          },
+          {
+            name: 'TransferListInvalid',
+            path: 'invalid',
+            component: resolve => require(['../containers/Transfer/list/invalid'], resolve), //eslint-disable-line
+          },
+          {
+            name: 'TransferListReject',
+            path: 'reject',
+            component: resolve => require(['../containers/Transfer/list/reject'], resolve), //eslint-disable-line
+          },
+        ],
       },
       {
         name: 'TransferDetail',
