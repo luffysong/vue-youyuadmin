@@ -1,13 +1,14 @@
 <template>
   <div>
-    <div v-if="listData.list != undefined">
+    <div v-if="listData.list">
       <TotalInfo :poriginData="listData"></TotalInfo>
-      <ShareForm :poriginData="listData" :buttonsIsHide="true"></ShareForm>
+      <ShareForm :poriginData="listData" :buttonsIsHide="buttonsIsHide"
+                 :editable="editable"></ShareForm>
     </div>
   </div>
+
 </template>
 <script>
-  import _ from 'lodash';
   import * as types from '../../../store/types';
   import TotalInfo from '../customParts/TotalInfo';
   import ShareForm from '../customParts/ShareForm';
@@ -16,18 +17,26 @@
     name: 'transferShare',
     methods: {},
     computed: {
-//      ...mapGetters({
-//        listData: [types.PROJECTTRANSFERSHARE_GET],
-//      }),
+      //      ...mapGetters({
+      //        listData: [types.PROJECTTRANSFERSHARE_GET],
+      //      }),
       listData() {
-        return _.cloneDeep(this.$store.state.projectdetail.ProjectTransferShare);
-        // ajax 回来后不渲染
-//        return this.$store.state.projectdetail.ProjectTransferShare;
+        const data = this.$store.state.projectdetail.ProjectTransferShare;
+        if (data.movie && data.movie.status === 10) {
+          this.buttonsIsHide = false;
+          this.editable = true;
+        } else {
+          this.buttonsIsHide = true;
+          this.editable = false;
+        }
+        return data;
       },
     },
     data() {
       return {
         id: this.$route.params.id,
+        buttonsIsHide: false,
+        editable: false,
       };
     },
     mounted() {

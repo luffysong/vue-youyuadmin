@@ -1,11 +1,10 @@
-
 <template>
   <div>
-    <div  v-if="listData.list != undefined">
+    <div v-if="listData.list">
       <TotalInfo :poriginData="listData"></TotalInfo>
-      <ShareForm :poriginData="listData" :buttonsIsHide="false"></ShareForm>
+      <ShareForm :poriginData="listData" :buttonsIsHide="buttonsIsHide"
+                 :editable="editable"></ShareForm>
     </div>
-
   </div>
 </template>
 <script>
@@ -19,12 +18,22 @@
     methods: {},
     computed: {
       listData() {
-        return this.$store.state.projectdetail.ProjectOriginShare;
+        const data = this.$store.state.projectdetail.ProjectOriginShare;
+        if (data.movie && data.movie.status === 10) {
+          this.buttonsIsHide = false;
+          this.editable = true;
+        } else {
+          this.buttonsIsHide = true;
+          this.editable = false;
+        }
+        return data;
       },
     },
     data() {
       return {
         id: this.$route.params.id,
+        buttonsIsHide: false,
+        editable: false,
       };
     },
     mounted() {

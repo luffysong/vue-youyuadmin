@@ -11,12 +11,15 @@ const initialState = {
   },
   ProjectTransferShare: {
     loading: false,
+    list: [],
   },
   ProjectTransferEarn: {
     loading: false,
+    list: [],
   },
   ProjectProgress: {
     loading: false,
+    list: [],
   },
 };
 

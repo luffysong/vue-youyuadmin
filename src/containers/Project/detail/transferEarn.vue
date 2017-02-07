@@ -1,45 +1,41 @@
 <template>
   <div>
-    <!--<DetailNav activeTab="transferEarn" :id="id" />-->
-    <!--可以通过这种形式触发渲染 {{listData}}-->
-    <div v-if="listData.list != undefined">
-      <TotalInfo :poriginData="listData"></TotalInfo>
-      <ShareForm :poriginData="listData" :buttonsIsHide="true"></ShareForm>
-    </div>
+    <TotalInfo :poriginData="listData"></TotalInfo>
+    <ShareForm :poriginData="listData" :buttonsIsHide="buttonsIsHide"
+               :editable="editable"></ShareForm>
   </div>
 </template>
 <script>
-  /* eslint-disable */
-  import { mapGetters } from 'vuex';
-  import _ from 'lodash';
   import * as types from '../../../store/types';
   import TotalInfo from '../customParts/TotalInfo';
   import ShareForm from '../customParts/ShareForm';
 
   export default {
     name: 'transferEarn',
-    props: {
-    },
-    methods: {
-    },
+    props: {},
+    methods: {},
     computed: {
       // ajax回来后不渲染
-//      ...mapGetters({
-//        listData: [types.PROJECTTRANSFEREARN_GET],
-//      }),
+      //      ...mapGetters({
+      //        listData: [types.PROJECTTRANSFEREARN_GET],
+      //      }),
       listData() {
-        return _.cloneDeep(this.$store.state.projectdetail.ProjectTransferEarn);
-        // ajax 回来后不渲染
-//        return this.$store.state.projectdetail.ProjectTransferEarn;
+        const data = this.$store.state.projectdetail.ProjectTransferEarn;
+        if (data.movie && data.movie.status === 10) {
+          this.buttonsIsHide = false;
+          this.editable = true;
+        } else {
+          this.buttonsIsHide = true;
+          this.editable = false;
+        }
+        return data;
       },
     },
     data() {
-//      console.log(this.listData);
-//      setTimeout(() => {
-//        console.log(this.listData);
-//      }, 2000);
       return {
         id: this.$route.params.id,
+        buttonsIsHide: false,
+        editable: false,
       };
     },
     mounted() {

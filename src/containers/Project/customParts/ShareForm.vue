@@ -5,10 +5,12 @@
         <el-form-item label="身份类型">
           <el-col>
             <template>
-              <el-radio class="radio" v-model="item.certificate_type" :label="1">
+              <el-radio class="radio" v-model="item.certificate_type" :label="1"
+                        :disabled="!editable">
                 个人（身份证）
               </el-radio>
-              <el-radio class="radio" v-model="item.certificate_type" :label="2">
+              <el-radio class="radio" v-model="item.certificate_type" :label="2"
+                        :disabled="!editable">
                 企业（社会统一信用代码）
               </el-radio>
             </template>
@@ -16,29 +18,30 @@
         </el-form-item>
         <el-form-item label="证件名称" prop="certificate_name">
           <el-col :span="8">
-            <el-input v-model="item.certificate_name"/>
+            <el-input v-model="item.certificate_name" :disabled="!editable"/>
           </el-col>
         </el-form-item>
         <el-form-item label="证件号码" prop="certificate_number">
           <el-col :span="8">
-            <el-input v-model="item.certificate_number"/>
+            <el-input v-model="item.certificate_number" :disabled="!editable"/>
           </el-col>
         </el-form-item>
         <el-form-item label="所占份额" prop="share">
           <el-col :span="8">
-            <el-input v-model="item.share">
+            <el-input v-model="item.share" :disabled="!editable">
               <template slot="append">%</template>
             </el-input>
           </el-col>
         </el-form-item>
         <el-form-item label="投资金额" prop="price">
           <el-col :span="8">
-            <el-input v-model="item.price">
+            <el-input v-model="item.price" :disabled="!editable">
               <template slot="append">元</template>
             </el-input>
           </el-col>
         </el-form-item>
-        <el-button type="danger" @click="del(index)">删除</el-button>
+        <el-button v-if="!buttonsIsHide" type="danger" @click="del(index)">删除
+        </el-button>
 
       </div>
 
@@ -49,10 +52,10 @@
           <el-button @click="handleReset">重置</el-button>
         </el-form-item>
       </div>
-
     </el-form>
     <el-dialog ref="dia" :title="dialog.name" v-model="dialog.visible">
-      <NewShareFormPop :addCallback="addCallback" :cancelCallback="cancelCallback"/>
+      <NewShareFormPop :addCallback="addCallback"
+                       :cancelCallback="cancelCallback"/>
     </el-dialog>
   </div>
 </template>
@@ -66,20 +69,19 @@
   import server from '../../../store/modules/AjaxServer';
 
   export default {
-    name: 'DescriptionForm',
+    name: 'ShareForm',
     components: {
       NewShareFormPop,
     },
     props: {
       poriginData: Object,
+      editable: Boolean,
       buttonsIsHide: {
         type: Boolean,
         default: true,
       },
     },
-    computed: {
-
-    },
+    computed: {},
     data() {
       return {
         radio: 1,
@@ -102,10 +104,12 @@
     methods: {
       handleReset() {
         this.$refs.form.resetFields();
+        this.localdata = _.cloneDeep(this.poriginData);
       },
       handleSubmit() {
         this.$refs.form.validate();
-        server.createOriginShare({
+        server.fixOriginShare({
+          movie_id: this.$route.params.id,
           sendData: {
             movie_id: this.$route.params.id,
             items: this.localdata.list,

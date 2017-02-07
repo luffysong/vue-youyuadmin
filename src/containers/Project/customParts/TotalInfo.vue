@@ -31,12 +31,7 @@
   export default {
     name: 'TotalInfo',
     props: {
-      poriginData: {
-        type: Object,
-        default: () => ({
-          list: [], // default 怎么没有生效？？ 外部有传值时直接用外部，并没有merge
-        }),
-      },
+      poriginData: Object,
     },
     methods: {},
     computed: {
