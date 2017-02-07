@@ -129,7 +129,16 @@
     name: 'DescriptionForm',
     props: {
       porigindata: Object,
-      pbuttons: Array,
+      pbuttons: {
+        type: Array,
+        default: [
+          {
+            type: 'primary',
+            desc: '按钮',
+            callback: () => {},
+          },
+        ],
+      },
     },
     mounted() {
     },
