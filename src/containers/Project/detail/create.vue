@@ -16,7 +16,7 @@
           sendData: data,
           callback: (id) => {
             this.$router.push({
-              name: 'ProjectOriginShare',
+              name: 'ProjectDetailOriginShare',
               params: {
                 id,
               },

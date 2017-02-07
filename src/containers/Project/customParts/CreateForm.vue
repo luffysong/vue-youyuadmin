@@ -36,6 +36,7 @@
           <el-date-picker type="date" placeholder="选择日期"
                           v-model="pOriginData.release_date"
                           @change="changeDateVal"
+                          :picker-options="pickerOptions"
                           style="width: 100%;"/>
         </el-col>
       </el-form-item>
@@ -133,46 +134,51 @@
           });
           return params;
         })(),
+        pickerOptions: {
+          disabledDate(time) {
+            return time.getTime() < Date.now() - 8.64e7;
+          },
+        },
         rules: {
-          //          name: [
-          //            { required: true, message: '请输入项目名称', trigger: 'blur' },
-          //          ],
-          //          producer: [
-          //            { required: true, message: '请输入制片方', trigger: 'blur' },
-          //          ],
-          //          director: [
-          //            { required: true, message: '请输入导演', trigger: 'blur' },
-          //          ],
-          //          scriptwriter: [
-          //            { required: true, message: '请输入编剧', trigger: 'blur' },
-          //          ],
-          //          protagonist: [
-          //            { required: true, message: '请输入主演', trigger: 'blur' },
-          //          ],
-          //          type: [
-          //            { required: true, message: '请输入电影类型', trigger: 'blur' },
-          //          ],
-          //          release_date: [
-          //            { required: true, message: '请输入上映时间', trigger: 'blur' },
-          //          ],
-          //          story_description: [
-          //            { required: true, message: '请输入剧情简介', trigger: 'blur' },
-          //          ],
-          //          transferable_ratio: [
-          //            { required: true, message: '请输入份额', trigger: 'blur' },
-          //          ],
-          //          budget: [
-          //            { required: true, message: '请输入项目预算金额', trigger: 'blur' },
-          //          ],
-          //          record_number: [
-          //            { required: true, message: '请输入备案立项号', trigger: 'blur' },
-          //          ],
-          //          shoot_licence_number: [
-          //            { required: true, message: '请输入拍摄许可证号', trigger: 'blur' },
-          //          ],
-          //          stage: [
-          //            { required: true, message: '请输入项目阶段', trigger: 'blur' },
-          //          ],
+          name: [
+            { required: true, message: '请输入项目名称', trigger: 'blur' },
+          ],
+          producer: [
+            { required: true, message: '请输入制片方', trigger: 'blur' },
+          ],
+          director: [
+            { required: true, message: '请输入导演', trigger: 'blur' },
+          ],
+          scriptwriter: [
+            { required: true, message: '请输入编剧', trigger: 'blur' },
+          ],
+          protagonist: [
+            { required: true, message: '请输入主演', trigger: 'blur' },
+          ],
+          type: [
+            { required: true, message: '请输入电影类型', trigger: 'blur' },
+          ],
+          release_date: [
+            { required: true, message: '请输入上映时间', trigger: 'blur' },
+          ],
+          story_description: [
+            { required: true, message: '请输入剧情简介', trigger: 'blur' },
+          ],
+          transferable_ratio: [
+            { required: true, message: '请输入份额', trigger: 'blur' },
+          ],
+          budget: [
+            { required: true, message: '请输入项目预算金额', trigger: 'blur' },
+          ],
+          record_number: [
+            { required: true, message: '请输入备案立项号', trigger: 'blur' },
+          ],
+          shoot_licence_number: [
+            { required: true, message: '请输入拍摄许可证号', trigger: 'blur' },
+          ],
+          stage: [
+            { required: true, message: '请输入项目阶段', trigger: 'blur' },
+          ],
         },
       };
     },

@@ -1,19 +1,16 @@
 <template>
   <div>
-    <!--<DetailNav activeTab="transferShare" :id="id" />-->
     <div v-if="listData.list != undefined">
       <TotalInfo :poriginData="listData"></TotalInfo>
-      <ShareForm :poriginData="listData"></ShareForm>
+      <ShareForm :poriginData="listData" :buttonsIsHide="true"></ShareForm>
     </div>
   </div>
 </template>
 <script>
-//  import { mapGetters } from 'vuex';
   import _ from 'lodash';
   import * as types from '../../../store/types';
   import TotalInfo from '../customParts/TotalInfo';
   import ShareForm from '../customParts/ShareForm';
-  import DetailNav from '../customParts/DetailNav';
 
   export default {
     name: 'transferShare',
@@ -54,7 +51,6 @@
     updated() {
     },
     components: {
-      DetailNav,
       TotalInfo,
       ShareForm,
     },

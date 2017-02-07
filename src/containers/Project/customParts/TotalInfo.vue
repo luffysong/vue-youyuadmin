@@ -6,7 +6,7 @@
       </el-col>
       <el-col :span="10">
         <el-input :value="totalPeople"
-                  :disabled="false">
+                  :disabled="true">
           <template slot="append">人</template>
         </el-input>
       </el-col>
@@ -17,7 +17,7 @@
       </el-col>
       <el-col :span="10">
         <el-input :value="totalShare"
-                  :disabled="false">
+                  :disabled="true">
           <template slot="append">%</template>
         </el-input>
       </el-col>

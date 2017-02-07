@@ -4,7 +4,7 @@
     <!--可以通过这种形式触发渲染 {{listData}}-->
     <div v-if="listData.list != undefined">
       <TotalInfo :poriginData="listData"></TotalInfo>
-      <ShareForm :poriginData="listData"></ShareForm>
+      <ShareForm :poriginData="listData" :buttonsIsHide="true"></ShareForm>
     </div>
   </div>
 </template>
@@ -15,7 +15,6 @@
   import * as types from '../../../store/types';
   import TotalInfo from '../customParts/TotalInfo';
   import ShareForm from '../customParts/ShareForm';
-  import DetailNav from '../customParts/DetailNav';
 
   export default {
     name: 'transferEarn',
@@ -60,7 +59,6 @@
     updated() {
     },
     components: {
-      DetailNav,
       TotalInfo,
       ShareForm,
     },

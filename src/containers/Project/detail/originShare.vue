@@ -1,21 +1,17 @@
 
 <template>
   <div>
-    <!--<DetailNav activeTab="originShare" :id="id"></DetailNav>-->
     <div  v-if="listData.list != undefined">
       <TotalInfo :poriginData="listData"></TotalInfo>
-      <ShareForm :poriginData="listData"></ShareForm>
+      <ShareForm :poriginData="listData" :buttonsIsHide="false"></ShareForm>
     </div>
 
   </div>
 </template>
 <script>
-  /* eslint-disable */
-  //  import { mapGetters } from 'vuex';
   import * as types from '../../../store/types';
   import TotalInfo from '../customParts/TotalInfo';
   import ShareForm from '../customParts/ShareForm';
-  import DetailNav from '../customParts/DetailNav';
 
   export default {
     name: 'originShareRegister',
@@ -37,7 +33,6 @@
       });
     },
     components: {
-      DetailNav,
       TotalInfo,
       ShareForm,
     },

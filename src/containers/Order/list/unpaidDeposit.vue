@@ -11,7 +11,7 @@
    */
   import _ from 'lodash';
   import * as types from '../../../store/types';
-  import OrderTable from '../tables/OrderTable';
+  import OrderTable from '../customParts/OrderTable';
   import ListNav from '../customParts/ListNav';
 
   export default {

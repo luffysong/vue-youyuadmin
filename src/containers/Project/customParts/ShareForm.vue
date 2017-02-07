@@ -42,7 +42,7 @@
 
       </div>
 
-      <div class="whole-form-operate">
+      <div class="whole-form-operate" v-if="!buttonsIsHide">
         <el-form-item>
           <el-button type="primary" @click="addShare">新建份额</el-button>
           <el-button type="primary" @click="handleSubmit">保存</el-button>
@@ -72,6 +72,10 @@
     },
     props: {
       poriginData: Object,
+      buttonsIsHide: {
+        type: Boolean,
+        default: true,
+      },
     },
     computed: {
 
@@ -104,7 +108,7 @@
         server.createOriginShare({
           sendData: {
             movie_id: this.$route.params.id,
-            items: this.localdata,
+            items: this.localdata.list,
           },
         });
       },
@@ -112,6 +116,7 @@
         this.dialog.visible = true;
       },
       addCallback(data) {
+        data.certificate_type -= 0;
         this.$refs.dia.close();
         this.localdata.list.push(data);
       },
