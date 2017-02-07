@@ -112,9 +112,11 @@
     </el-form-item>
 
     <el-form-item>
-      <!--<el-button type="primary" @click="handleSubmit">保存</el-button>-->
-      <!--<el-button @click="handlePublish">发布</el-button>-->
-      <Buttons :buttonData="buttonData"/>
+      <div class="buttons">
+        <span v-for="it in pbuttons" class="button-wrap">
+          <el-button :type="it.type" @click="it.callback(origindata, form)">{{it.desc}}</el-button>
+        </span>
+      </div>
     </el-form-item>
   </el-form>
 </template>
@@ -122,39 +124,24 @@
 <script>
   import _ from 'lodash';
   import Upload from '../../../components/Upload';
-  import server from '../../../store/modules/AjaxServer';
-  import Buttons from './Button';
 
   export default {
     name: 'DescriptionForm',
     props: {
       porigindata: Object,
+      pbuttons: Array,
     },
     mounted() {
+    },
+    computed: {
+      form() {
+        return this.$refs;
+      },
     },
     data() {
       return {
         dict: _.cloneDeep(this.$store.state.dict),
         origindata: _.cloneDeep(this.porigindata),
-        buttonData: (() => {
-          const params = [];
-          if (this.porigindata.status === 10) {
-            params.push({
-              desc: '保存',
-              callback: () => {
-                this.handleSubmit();
-              },
-            });
-            params.push({
-              type: 'success',
-              desc: '发布',
-              callback: () => {
-                this.handlePublish();
-              },
-            });
-          }
-          return params;
-        })(),
         rules: {
           name: [
             { required: true, message: '请输入项目名称', trigger: 'blur' },
@@ -203,33 +190,11 @@
       changeDateVal(...cs) {
         this.origindata.release_date = cs[0];
       },
-      handleRemove() {
-      },
-      handlePreview() {
-      },
-      handleSuccess() {
-      },
-      handleError() {
-      },
-//      handleReset() {
-//        this.$refs.form.resetFields();
-//      },
+      //      handleReset() {
+      //        this.$refs.form.resetFields();
+      //      },
       handleSubmit() {
-//        this.$refs.form.validate();
-        server.fixProject({
-          id: this.$route.params.id,
-          sendData: this.origindata,
-        });
-      },
-      handlePublish() {
-        const id = this.$route.params.id;
-        server.changeProject({
-          id,
-          sendData: {
-            id,
-            status: 10,
-          },
-        });
+        //        this.$refs.form.validate();
       },
       // 项目阶段change
       changes() {
@@ -266,7 +231,6 @@
     },
     components: {
       Upload,
-      Buttons,
     },
   };
 </script>
@@ -275,5 +239,9 @@
   .el-input.is-disabled .el-input__inner,
   .el-textarea.is-disabled .el-textarea__inner {
     color: #434343;
+  }
+
+  .buttons button {
+    margin-right: 20px;
   }
 </style>
