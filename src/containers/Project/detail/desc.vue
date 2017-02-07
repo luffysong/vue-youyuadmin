@@ -21,7 +21,95 @@
     name: 'desc',
     computed: {
       detaildata() {
-        return _.cloneDeep(this.$store.state.projectdetail.ProjectDetail);
+        const cObject = _.cloneDeep(this.$store.state.projectdetail.ProjectDetail);
+        if (cObject.status === 10) {
+          this.buttons = [
+            {
+              desc: '保存',
+              callback: (...child) => {
+                this.handleSubmit.apply(this, [...child]);
+              },
+            },
+            {
+              type: 'success',
+              desc: '发布上线',
+              callback: (...child) => {
+                this.handlePublish.apply(this, [...child]);
+              },
+            },
+          ];
+          this.handlePublish = () => {
+            const id = this.$route.params.id;
+            server.changeProject({
+              id,
+              sendData: {
+                id,
+                status: 20,
+              },
+            }).then((res) => {
+              if (res.body.code === 0) {
+                this.$router.push({
+                  name: 'ProjectListRegistered',
+                });
+              }
+            });
+          };
+        } else if (cObject.status === 20) {
+          this.buttons = [
+            {
+              type: 'success',
+              desc: '已上映',
+              callback: (...child) => {
+                this.handlePublish.apply(this, [...child]);
+              },
+            },
+          ];
+          this.handlePublish = () => {
+            const id = this.$route.params.id;
+            server.changeProject({
+              id,
+              sendData: {
+                id,
+                status: 30,
+              },
+            }).then((res) => {
+              if (res.body.code === 0) {
+                this.$router.push({
+                  name: 'ProjectListRelease',
+                });
+              }
+            });
+          };
+        } else if (cObject.status === 30) {
+          this.buttons = [
+            {
+              type: 'success',
+              desc: '已清算',
+              callback: (...child) => {
+                this.handlePublish.apply(this, [...child]);
+              },
+            },
+          ];
+          this.handlePublish = () => {
+            const id = this.$route.params.id;
+            server.changeProject({
+              id,
+              sendData: {
+                id,
+                status: 40,
+              },
+            }).then((res) => {
+              if (res.body.code === 0) {
+                this.$router.push({
+                  name: 'ProjectListLiquidation',
+                });
+              }
+            });
+          };
+        } else if (cObject.status === 40) {
+          this.buttons = [];
+        }
+        return cObject;
       },
     },
     data() {
@@ -41,21 +129,7 @@
           },
         },
         activeTab: 'desc',
-        buttons: [
-          {
-            desc: '保存',
-            callback: (...child) => {
-              this.handleSubmit.apply(this, [...child]);
-            },
-          },
-          {
-            type: 'success',
-            desc: '发布上线',
-            callback: (...child) => {
-              this.handlePublish.apply(this, [...child]);
-            },
-          },
-        ],
+        buttons: [],
       };
     },
     methods: {
@@ -76,14 +150,6 @@
         });
       },
       handlePublish() {
-        const id = this.$route.params.id;
-        server.changeProject({
-          id,
-          sendData: {
-            id,
-            status: 20,
-          },
-        });
       },
     },
     components: {
