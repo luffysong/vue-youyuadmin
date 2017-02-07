@@ -7,12 +7,12 @@
       <el-tab-pane label="全部" name="all"></el-tab-pane>
     </el-tabs>
     <div>
-      <router-view />
+      <router-view/>
     </div>
   </div>
 </template>
 <script>
-  // import * as types from '../../store/types';
+  import * as types from '../../store/types';
 
   const pathEmu = {
     InvestorPending: 'pending',
@@ -23,8 +23,7 @@
 
   export default {
     name: 'InvestorList',
-    props: {
-    },
+    props: {},
     methods: {
       tabChange(ev) {
         this.$router.push({
@@ -32,16 +31,14 @@
         });
       },
     },
-    computed: {
-
-    },
+    computed: {},
     data() {
       return {
         active: pathEmu[this.$route.name],
       };
     },
     mounted() {
-      // this.$store.dispatch(types.HIDE_SIDEBAR);
+      this.$store.dispatch(types.HIDE_SIDEBAR);
     },
     created() {
     },
@@ -51,8 +48,7 @@
     },
     updated() {
     },
-    components: {
-    },
+    components: {},
   };
 
 </script>

@@ -8,50 +8,50 @@
           </el-input>
         </el-col>
       </el-form-item>
-      <el-form-item label="项目名称" prop="projectName">
+      <el-form-item label="项目名称" prop="name">
         <el-col :span="8">
           <el-input v-model="pDetailData.info.movie.name" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
-      <el-form-item label="制片方" prop="movieMaker">
+      <el-form-item label="制片方" prop="producer">
         <el-col :span="8">
           <el-input v-model="pDetailData.info.movie.producer" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
-      <el-form-item label="转让方" prop="transferor">
+      <el-form-item label="转让方" prop="certificate_name">
         <el-col :span="8">
           <el-input v-model="pDetailData.info.user.real_info.certificate_name" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
-      <el-form-item label="原始份额" prop="originalShare">
+      <el-form-item label="原始份额" prop="share">
         <el-col :span="8">
           <el-input v-model="pDetailData.info.asset.share" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
-      <el-form-item label="现持有原始份额" prop="ownOriginalShare">
+      <el-form-item label="现持有原始份额" prop="share">
         <el-col :span="8">
           <el-input v-model="pDetailData.info.asset.share"
                     :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
-      <el-form-item label="挂牌份额" prop="listedShare">
+      <el-form-item label="挂牌份额" prop="share">
         <el-col :span="8">
           <el-input v-model="pDetailData.info.share" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
-      <el-form-item label="挂牌价格" prop="listedPrice">
+      <el-form-item label="挂牌价格" prop="price">
         <el-col :span="8">
           <el-input v-model="pDetailData.info.price" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
-      <el-form-item label="申请时间" prop="applyTime">
+      <el-form-item label="申请时间" prop="created_at">
         <el-col :span="8">
           <el-input v-model="pDetailData.info.created_at" :disabled="true">
           </el-input>
@@ -63,7 +63,7 @@
           </el-input>
         </el-col>
       </el-form-item>
-      <el-form-item label="指定受让方名称" prop="assignee">
+      <el-form-item label="指定受让方名称" prop="transferee_certificate_name">
         <el-col :span="8">
           <el-input v-model="pDetailData.info.transferee_certificate_name" :disabled="true">
           </el-input>
