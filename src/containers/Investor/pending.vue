@@ -4,8 +4,6 @@
   </div>
 </template>
 <script>
-//  import { mapGetters } from 'vuex';
-  //  import _ from 'lodash';
   import * as types from '../../store/types';
   import InvestorList from './table/table';
 

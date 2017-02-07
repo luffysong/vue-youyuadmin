@@ -1,7 +1,10 @@
 <template>
-  <div v-if="detailData.info">
-    <DetailForm :pDetailData="detailData"/>
+  <div>
+    <div v-if="detailData.info">
+      <DetailForm :pDetailData="detailData"/>
+    </div>
   </div>
+
 </template>
 <script>
   import * as types from '../../store/types';
