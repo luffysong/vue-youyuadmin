@@ -38,7 +38,7 @@ function send(type, url, body, options) {
     });
   }
 
-  if (type === 'get' ) {
+  if (type === 'get') {
     return Vue.http[type](`${config.apiBase}/api/p/admin/${url}`, {
       params: body,
       credentials: true,
