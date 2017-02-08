@@ -98,3 +98,10 @@ export const INVESTORDETAIL_SUC = 'INVESTORDETAIL_SUC';
 export const INVESTORDETAIL_ERR = 'INVESTORDETAIL_ERR';
 
 export const INVESTORGET = 'INVESTORGET';
+
+// ============
+
+// 收款管理
+export const TRADELIST_REQ = 'TRADELIST_REQ';
+export const TRADELIST_SUC = 'TRADELIST_SUC';
+export const TRADELIST_ERR = 'TRADELIST_ERR';

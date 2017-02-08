@@ -209,38 +209,38 @@ const server = {
     });
   },
 
-  // 订单管理 获取订单 list
-  // getTradeList(params) {
-  //   const { sendData } = params;
-  //   return Vue.http.get('${config.apiBase}/api/financial/trade', {
-  //     params: sendData,
-  //     headers: {
-  //       'Content-Type': 'application/x-www-form-urlencoded',
-  //     },
-  //     emulateJSON: true,
-  //   });
-  // },
-  // 订单管理 获取订单详情
-  // getTradeDetail(params) {
-  //   const { id, sendData } = params;
-  //   return Vue.http.get(`${config.apiBase}/api/financial/trade/${id}`, {
-  //     params: sendData,
-  //     headers: {
-  //       'Content-Type': 'application/x-www-form-urlencoded',
-  //     },
-  //     emulateJSON: true,
-  //   });
-  // },
-  // 订单管理 切换订单状态
-  // changeTrade(params) {
-  //   const { id, sendData } = params;
-  //   return Vue.http.put(`${config.apiBase}/api/financial/trade/${id}`, sendData, {
-  //     headers: {
-  //       'Content-Type': 'application/x-www-form-urlencoded',
-  //     },
-  //     emulateJSON: true,
-  //   });
-  // },
+  // 结算管理 获取订单 list
+  getTradeList(params) {
+    const { sendData } = params;
+    return Vue.http.get(`${config.apiBase}/api/financial/trade`, {
+      params: sendData,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      emulateJSON: true,
+    });
+  },
+  // 结算管理 获取订单详情
+  getTradeDetail(params) {
+    const { id, sendData } = params;
+    return Vue.http.get(`${config.apiBase}/api/financial/trade/${id}`, {
+      params: sendData,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      emulateJSON: true,
+    });
+  },
+  // 结算管理 切换订单状态
+  changeTrade(params) {
+    const { id, sendData } = params;
+    return Vue.http.put(`${config.apiBase}/api/financial/trade/${id}`, sendData, {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      emulateJSON: true,
+    });
+  },
 
   // 投资人审核 获取list
   getUserRealInfoList(params) {

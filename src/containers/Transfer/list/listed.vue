@@ -26,6 +26,7 @@
       this.$store.dispatch(types.TRANSFERLIST_REQ, {
         sendData: {
           status: 3,
+          asset_type: 2,
         },
       });
     },

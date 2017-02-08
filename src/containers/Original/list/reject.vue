@@ -26,6 +26,7 @@
       this.$store.dispatch(types.ORIGINLIST_REQ, {
         sendData: {
           status: 2,
+          asset_type: 1,
         },
       });
     },

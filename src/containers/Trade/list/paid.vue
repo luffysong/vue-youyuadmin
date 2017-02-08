@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <ListTable :pListData="listData"/>
+  <div v-if="listData.data">
+    <ListTable :pList="listData"/>
   </div>
 </template>
 <script>
@@ -9,12 +9,12 @@
   import ListTable from '../customParts/ListTable';
 
   export default {
-    name: 'complete',
+    name: 'TradeListPaid',
     props: {},
     methods: {},
     computed: {
       listData() {
-        return this.$store.state.originlist.complete;
+        return this.$store.state.tradelist.paidList;
       },
     },
     data() {
@@ -23,10 +23,9 @@
     mounted() {
       // console.log('mounted');
       this.$store.dispatch(types.HIDE_SIDEBAR);
-      this.$store.dispatch(types.ORIGINLIST_REQ, {
+      this.$store.dispatch(types.TRADELIST_REQ, {
         sendData: {
-          status: 4,
-          asset_type: 1,
+          status: 2,
         },
       });
     },

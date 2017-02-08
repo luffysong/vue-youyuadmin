@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-table
-      :data="plist.data"
+      :data="pList.data"
       stripe
       border>
       <el-table-column
@@ -9,13 +9,13 @@
         sortable
         align="center"
         prop="id"
-        label="订单号"
+        label="订单ID"
         width="150">
       </el-table-column>
       <el-table-column
         align="center"
-        prop="movie.name"
-        label="项目名称"
+        prop="business_id"
+        label="订单号"
         width="200">
       </el-table-column>
       <el-table-column
@@ -25,55 +25,32 @@
         width="200">
       </el-table-column>
       <el-table-column
+        sortable
         align="center"
-        prop="bill"
-        label="支付状态"
-        inline-template
+        prop="order_movie.movie.name"
+        label="项目"
         width="200">
-        <ul class="split">
-          <li>{{row.bill.trade_deposit.type | tradeStatus}}</li>
-          <li>{{row.bill.trade_balance.type | tradeStatus}}</li>
-        </ul>
-      </el-table-column>
-      <el-table-column
-        align="center"
-        prop="bill"
-        label="类型"
-        inline-template
-        width="200">
-        <ul class="split">
-          <li>保证金</li>
-          <li>尾款</li>
-        </ul>
       </el-table-column>
       <el-table-column
         sortable
         align="center"
-        prop="accept"
+        prop="order_movie.share"
+        label="份额"
+        width="200">
+      </el-table-column>
+      <el-table-column
+        sortable
+        align="center"
+        prop="proceeds"
         label="实收"
-        inline-template
         width="200">
-        <ul class="split">
-          <li>{{row.bill.trade_deposit.proceeds}}</li>
-          <li>{{row.bill.trade_balance.proceeds}}</li>
-        </ul>
       </el-table-column>
+
       <el-table-column
         sortable
         align="center"
-        label="开启时间"
-        inline-template
-        width="200">
-        <ul class="split">
-          <li>{{row.bill.trade_deposit.created_at}}</li>
-          <li>{{row.open_balance_time}}</li>
-        </ul>
-      </el-table-column>
-      <el-table-column
-        sortable
-        align="center"
-        prop="amount"
-        label="总额"
+        prop="created_at"
+        label="下单时间"
         width="200">
       </el-table-column>
       <el-table-column
@@ -99,14 +76,9 @@
   import dict from '../../../store/modules/dict';
 
   export default {
-    name: 'ProjectTable',
+    name: 'ListTable',
     props: {
-      plist: Object,
-    },
-    filters: {
-      tradeStatus(val) {
-        return dict.state.trade_status[val];
-      }
+      pList: Object,
     },
     methods: {
       toDetail(...cs) {
@@ -123,16 +95,4 @@
 </script>
 
 <style lang="less" scoped>
-  .split {
-    padding: 0;
-    list-style: none;
-  }
-
-  li {
-    line-height: 30px;
-  }
-
-  li:first-child {
-    border-bottom: 1px solid #e1e1e1;
-  }
 </style>

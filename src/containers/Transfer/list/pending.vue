@@ -14,8 +14,7 @@
     methods: {},
     computed: {
       listData() {
-//        return this.$store.state.transferlist.pending;
-        return this.$store.state.transferlist.listed;
+        return this.$store.state.transferlist.pending;
       },
     },
     data() {
@@ -26,8 +25,8 @@
       this.$store.dispatch(types.HIDE_SIDEBAR);
       this.$store.dispatch(types.TRANSFERLIST_REQ, {
         sendData: {
-          // status: 1,
-          status: 3,
+          status: 1,
+          asset_type: 2,
         },
       });
     },

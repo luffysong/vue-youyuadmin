@@ -260,4 +260,35 @@ export default [
       },
     ],
   },
+  // 收款管理
+  {
+    name: 'Trade',
+    path: '/trade',
+    component: resolve => require(['../containers/Trade/index'], resolve), // eslint-disable-line
+    redirect: '/trade/list/unpaid',
+    children: [
+      {
+        name: 'TradeList',
+        path: 'list',
+        component: resolve => require(['../containers/Trade/list/listindex'], resolve), // eslint-disable-line
+        children: [
+          {
+            name: 'TradeListUnpaid',
+            path: 'unpaid',
+            component: resolve => require(['../containers/Trade/list/unpaid'], resolve), //eslint-disable-line
+          },
+          {
+            name: 'TradeListPaid',
+            path: 'paid',
+            component: resolve => require(['../containers/Trade/list/paid'], resolve), //eslint-disable-line
+          },
+        ],
+      },
+      {
+        name: 'TradeDetail',
+        path: 'detail/:id',
+        component: resolve => require(['../containers/Trade/detail'], resolve), // eslint-disable-line
+      },
+    ],
+  },
 ];

@@ -21,6 +21,7 @@ import projectlist from './modules/projectlist';
 import projectdetail from './modules/projectdetail';
 import projectcreate from './modules/projectcreate';
 import order from './modules/order';
+import tradelist from './modules/tradelist';
 import investor from './modules/investor';
 
 Vue.use(Vuex);
@@ -41,6 +42,7 @@ const store = new Vuex.Store({
     projectdetail,
     projectcreate,
     order,
+    tradelist,
     investor,
   },
   strict: debug,

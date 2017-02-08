@@ -21,12 +21,12 @@
         width="200">
       </el-table-column>
       <el-table-column
-        prop="publish_time"
+        prop="created_at"
         label="登记时间"
         width="200">
       </el-table-column>
       <el-table-column
-        prop="transferor.name"
+        prop="user.real_info.certificate_name"
         label="转让人"
         width="200">
       </el-table-column>

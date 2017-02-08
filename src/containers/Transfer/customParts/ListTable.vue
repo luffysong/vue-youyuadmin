@@ -27,7 +27,7 @@
       <el-table-column
         align="center"
         label="转让人"
-        prop="transferor.name"
+        prop="user.real_info.certificate_name"
         width="200">
       </el-table-column>
       <el-table-column
