@@ -1,11 +1,13 @@
 import Vue from 'vue';
 import moment from 'moment';
 
+import config from '../../config';
+
 const server = {
   // 项目管理 - 获取 list 数据， 参数 status -> list 类型
   getProjectList(params) {
     const { sendData } = params;
-    return Vue.http.get('/api/movie', {
+    return Vue.http.get(`${config.apiBase}/api/movie`, {
       params: sendData,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -15,7 +17,7 @@ const server = {
   // 项目管理 - 获取项目详情
   getProjectDetail(params) {
     const { id } = params;
-    return Vue.http.get(`/api/movie/${id}`, {
+    return Vue.http.get(`${config.apiBase}/api/movie/${id}`, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -25,7 +27,7 @@ const server = {
   createProject(params) {
     const { sendData } = params;
     sendData.release_date = moment(sendData.release_date).format('YYYY-MM-DD');
-    return Vue.http.post('/api/movie', sendData, {
+    return Vue.http.post(`${config.apiBase}/api/movie`, sendData, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -36,7 +38,7 @@ const server = {
   fixProject(params) {
     const { id, sendData } = params;
     sendData.release_date = moment(sendData.release_date).format('YYYY-MM-DD');
-    return Vue.http.put(`/api/movie/${id}`, sendData, {
+    return Vue.http.put(`${config.apiBase}/api/movie/${id}`, sendData, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -48,7 +50,7 @@ const server = {
   changeProject(params) {
     const { id, sendData } = params;
     sendData.release_date = moment(sendData.release_date).format('YYYY-MM-DD');
-    return Vue.http.put(`/api/movie/${id}/status`, sendData, {
+    return Vue.http.put(`${config.apiBase}/api/movie/${id}/status`, sendData, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -58,7 +60,7 @@ const server = {
   // 项目管理 - 项目显隐
   displayProject(params) {
     const { id, sendData } = params;
-    return Vue.http.put(`/api/movie/${id}/hide`, sendData, {
+    return Vue.http.put(`${config.apiBase}/api/movie/${id}/hide`, sendData, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -69,7 +71,7 @@ const server = {
   // 原始份额管理 获取 list
   getOriginShareList(params) {
     const { sendData } = params;
-    return Vue.http.get('/api/movie-initial-share', {
+    return Vue.http.get(`${config.apiBase}/api/movie-initial-share`, {
       params: sendData,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -79,7 +81,7 @@ const server = {
   // 原始份额管理 创建份额 - 一次传递所有数据，因为有总量相关的校验
   createOriginShare(params) {
     const { sendData } = params;
-    return Vue.http.post('/api/movie-initial-share', sendData, {
+    return Vue.http.post(`${config.apiBase}/api/movie-initial-share`, sendData, {
       headers: {
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -89,7 +91,7 @@ const server = {
   // 原始份额管理 修改份额信息
   fixOriginShare(params) {
     const { movie_id, sendData } = params;
-    return Vue.http.put(`/api/movie-initial-share/${movie_id}`, sendData, { // eslint-disable-line
+    return Vue.http.put(`${config.apiBase}/api/movie-initial-share/${movie_id}`, sendData, { // eslint-disable-line
       headers: {
       //   // 'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -99,7 +101,7 @@ const server = {
   // 项目进展 获取 list
   getProjectProgressList(params) {
     const { sendData } = params;
-    return Vue.http.get('/api/movie-progress', {
+    return Vue.http.get(`${config.apiBase}/api/movie-progress`, {
       params: sendData,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -110,7 +112,7 @@ const server = {
   // 项目进展 创建
   createProjectProgress(params) {
     const { sendData } = params;
-    return Vue.http.post('/api/movie-progress', sendData, {
+    return Vue.http.post(`${config.apiBase}/api/movie-progress`, sendData, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -120,7 +122,7 @@ const server = {
   // 项目进展 修改 todo: method err
   fixProjectProgress(params) {
     const { id, sendData } = params;
-    return Vue.http.put(`/api/movie-progress/${id}`, sendData, {
+    return Vue.http.put(`${config.apiBase}/api/movie-progress/${id}`, sendData, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -130,7 +132,7 @@ const server = {
   // 项目进展 删除
   delProjectProgress(params) {
     const { id, sendData } = params;
-    return Vue.http.delete(`/api/movie-progress/${id}`, {
+    return Vue.http.delete(`${config.apiBase}/api/movie-progress/${id}`, {
       params: sendData,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -143,7 +145,7 @@ const server = {
   // 挂牌 获取 list (原始份额转让管理)
   getQuotedList(params) {
     const { sendData } = params;
-    return Vue.http.get('/api/movie-listing', {
+    return Vue.http.get(`${config.apiBase}/api/movie-listing`, {
       params: sendData,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -154,7 +156,7 @@ const server = {
   // 挂牌 详情
   getQuotedDetail(params) {
     const { id, sendData } = params;
-    return Vue.http.get(`/api/movie-listing/${id}`, {
+    return Vue.http.get(`${config.apiBase}/api/movie-listing/${id}`, {
       params: sendData,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -165,7 +167,7 @@ const server = {
   // 挂牌 状态转换 驳回 挂牌中
   changeQuoted(params) {
     const { id, sendData } = params;
-    return Vue.http.put(`/api/movie-listing/${id}`, sendData, {
+    return Vue.http.put(`${config.apiBase}/api/movie-listing/${id}`, sendData, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -175,7 +177,7 @@ const server = {
   // 订单 获取 list
   getOrderList(params) {
     const { sendData } = params;
-    return Vue.http.get('/api/movie-order', {
+    return Vue.http.get(`${config.apiBase}/api/movie-order`, {
       params: sendData,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -186,7 +188,7 @@ const server = {
   // 订单 详情
   getOrderDetail(params) {
     const { id, sendData } = params;
-    return Vue.http.get(`/api/movie-order/${id}`, {
+    return Vue.http.get(`${config.apiBase}/api/movie-order/${id}`, {
       params: sendData,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -198,7 +200,7 @@ const server = {
   getAssetsList(params) {
     const { sendData } = params;
     // return Vue.http.get('/static/transferShare.json', {
-    return Vue.http.get('/api/movie-assets', {
+    return Vue.http.get(`${config.apiBase}/api/movie-assets`, {
       params: sendData,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -210,7 +212,7 @@ const server = {
   // 订单管理 获取订单 list
   // getTradeList(params) {
   //   const { sendData } = params;
-  //   return Vue.http.get('/api/financial/trade', {
+  //   return Vue.http.get('${config.apiBase}/api/financial/trade', {
   //     params: sendData,
   //     headers: {
   //       'Content-Type': 'application/x-www-form-urlencoded',
@@ -221,7 +223,7 @@ const server = {
   // 订单管理 获取订单详情
   // getTradeDetail(params) {
   //   const { id, sendData } = params;
-  //   return Vue.http.get(`/api/financial/trade/${id}`, {
+  //   return Vue.http.get(`${config.apiBase}/api/financial/trade/${id}`, {
   //     params: sendData,
   //     headers: {
   //       'Content-Type': 'application/x-www-form-urlencoded',
@@ -232,7 +234,7 @@ const server = {
   // 订单管理 切换订单状态
   // changeTrade(params) {
   //   const { id, sendData } = params;
-  //   return Vue.http.put(`/api/financial/trade/${id}`, sendData, {
+  //   return Vue.http.put(`${config.apiBase}/api/financial/trade/${id}`, sendData, {
   //     headers: {
   //       'Content-Type': 'application/x-www-form-urlencoded',
   //     },
@@ -243,7 +245,7 @@ const server = {
   // 投资人审核 获取list
   getUserRealInfoList(params) {
     const { sendData } = params;
-    return Vue.http.get('/api/audit/user-real-info', {
+    return Vue.http.get(`${config.apiBase}/api/audit/user-real-info`, {
       params: sendData,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -254,7 +256,7 @@ const server = {
   // 投资人审核 获取详情
   getUserRealInfoDetail(params) {
     const { id, sendData } = params;
-    return Vue.http.get(`/api/audit/user-real-info/${id}`, {
+    return Vue.http.get(`${config.apiBase}/api/audit/user-real-info/${id}`, {
       params: sendData,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -265,7 +267,7 @@ const server = {
   // 投资人审核 修改 通过/驳回
   changeUser(params) {
     const { id, sendData } = params;
-    return Vue.http.put(`/api/audit/user-real-info/${id}`, sendData, {
+    return Vue.http.put(`${config.apiBase}/api/audit/user-real-info/${id}`, sendData, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
