@@ -72,7 +72,6 @@
   import mixins from './table/mixins';
   import PopMsg from '../../components/PopMsg';
 
-
   export default {
     name: 'InvestorDetail',
     props: {},
@@ -107,6 +106,7 @@
                     this.getDetailData();
                     this.popMsgConfig.dialogVisible = false;
                   },
+
                 });
               }
             });
