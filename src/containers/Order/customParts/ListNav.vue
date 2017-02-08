@@ -27,8 +27,12 @@
     },
     data() {
       return {
-        activeTab: this.$route.name,
       };
+    },
+    computed: {
+      activeTab() {
+        return this.$route.name;
+      },
     },
   };
 

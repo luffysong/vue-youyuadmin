@@ -24,7 +24,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://admintest07.corp.youyu.com',
+        target: 'http://admintest07.corp.youyu.top',
         changeOrigin: true
       }
     },
