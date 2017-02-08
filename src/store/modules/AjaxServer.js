@@ -209,7 +209,7 @@ const server = {
     });
   },
 
-  // 结算管理 获取订单 list
+  // 结算管理 收款 获取订单 list
   getTradeList(params) {
     const { sendData } = params;
     return Vue.http.get(`${config.apiBase}/api/financial/trade`, {
@@ -220,7 +220,7 @@ const server = {
       emulateJSON: true,
     });
   },
-  // 结算管理 获取订单详情
+  // 结算管理 收款 获取订单详情
   getTradeDetail(params) {
     const { id, sendData } = params;
     return Vue.http.get(`${config.apiBase}/api/financial/trade/${id}`, {
@@ -231,10 +231,43 @@ const server = {
       emulateJSON: true,
     });
   },
-  // 结算管理 切换订单状态
+  // 结算管理 收款 切换订单状态
   changeTrade(params) {
     const { id, sendData } = params;
     return Vue.http.put(`${config.apiBase}/api/financial/trade/${id}`, sendData, {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      emulateJSON: true,
+    });
+  },
+
+  // 结算管理 退款 获取订单 list
+  getRefundList(params) {
+    const { sendData } = params;
+    return Vue.http.get(`${config.apiBase}/api/financial/trade-refund`, {
+      params: sendData,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      emulateJSON: true,
+    });
+  },
+  // 结算管理 退款 获取订单详情
+  getRefundDetail(params) {
+    const { id, sendData } = params;
+    return Vue.http.get(`${config.apiBase}/api/financial/trade-refund/${id}`, {
+      params: sendData,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      emulateJSON: true,
+    });
+  },
+  // 结算管理 退款 切换订单状态
+  changeRefund(params) {
+    const { id, sendData } = params;
+    return Vue.http.put(`${config.apiBase}/api/financial/trade-refund/${id}`, sendData, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },

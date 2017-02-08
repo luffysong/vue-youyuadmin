@@ -5,8 +5,8 @@
   </div>
 </template>
 <script>
-//  import { mapGetters } from 'vuex';
-//  import * as types from '../../store/types';
+  //  import { mapGetters } from 'vuex';
+  //  import * as types from '../../store/types';
   import ListNav from '../customParts/ListNav';
 
   export default {

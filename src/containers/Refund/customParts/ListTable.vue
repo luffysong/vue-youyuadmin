@@ -8,14 +8,14 @@
         fixed
         sortable
         align="center"
-        prop="id"
-        label="订单ID"
+        prop="business_id"
+        label="退款订单号"
         width="150">
       </el-table-column>
       <el-table-column
         align="center"
-        prop="business_id"
-        label="订单号"
+        prop="trade.business_id"
+        label="子订单号"
         width="200">
       </el-table-column>
       <el-table-column
@@ -27,30 +27,22 @@
       <el-table-column
         sortable
         align="center"
-        prop="order_movie.movie.name"
+        prop="movie.name"
         label="项目"
         width="200">
       </el-table-column>
       <el-table-column
         sortable
         align="center"
-        prop="order_movie.share"
-        label="份额"
+        prop="amount"
+        label="实退"
         width="200">
       </el-table-column>
       <el-table-column
         sortable
         align="center"
-        prop="proceeds"
-        label="实收"
-        width="200">
-      </el-table-column>
-
-      <el-table-column
-        sortable
-        align="center"
-        prop="created_at"
-        label="下单时间"
+        prop="notify_time"
+        label="待退款时间"
         width="200">
       </el-table-column>
       <el-table-column
@@ -83,7 +75,7 @@
     methods: {
       toDetail(...cs) {
         this.$router.push({
-          name: 'TradeDetail',
+          name: 'RefundDetail',
           params: { id: cs[0] },
         });
       },

@@ -291,4 +291,35 @@ export default [
       },
     ],
   },
+  // 退款管理
+  {
+    name: 'Refund',
+    path: '/refund',
+    component: resolve => require(['../containers/Refund/index'], resolve), // eslint-disable-line
+    redirect: '/refund/list/unrefund',
+    children: [
+      {
+        name: 'RefundList',
+        path: 'list',
+        component: resolve => require(['../containers/Refund/list/listindex'], resolve), // eslint-disable-line
+        children: [
+          {
+            name: 'TradeListUnrefund',
+            path: 'unrefund',
+            component: resolve => require(['../containers/Refund/list/unrefund'], resolve), //eslint-disable-line
+          },
+          {
+            name: 'TradeListRefund',
+            path: 'refund',
+            component: resolve => require(['../containers/Refund/list/refund'], resolve), //eslint-disable-line
+          },
+        ],
+      },
+      {
+        name: 'RefundDetail',
+        path: 'detail/:id',
+        component: resolve => require(['../containers/Refund/detail'], resolve), // eslint-disable-line
+      },
+    ],
+  },
 ];

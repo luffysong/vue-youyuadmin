@@ -101,7 +101,22 @@ export const INVESTORGET = 'INVESTORGET';
 
 // ============
 
-// 收款管理
+// 收款管理 获取收款list
 export const TRADELIST_REQ = 'TRADELIST_REQ';
 export const TRADELIST_SUC = 'TRADELIST_SUC';
 export const TRADELIST_ERR = 'TRADELIST_ERR';
+
+// 收款管理 获取订单详情
+export const TRADEDETAIL_REQ = 'TRADEDETAIL_REQ';
+export const TRADEDETAIL_SUC = 'TRADEDETAIL_SUC';
+export const TRADEDETAIL_ERR = 'TRADEDETAIL_ERR';
+
+// 退款管理 获取收款list
+export const REFUNDLIST_REQ = 'REFUNDLIST_REQ';
+export const REFUNDLIST_SUC = 'REFUNDLIST_SUC';
+export const REFUNDLIST_ERR = 'REFUNDLIST_ERR';
+
+// 退款管理 获取订单详情
+export const REFUNDDETAIL_REQ = 'TREFUNDETAIL_REQ';
+export const REFUNDDETAIL_SUC = 'TREFUNDETAIL_SUC';
+export const REFUNDDETAIL_ERR = 'TREFUNDETAIL_ERR';

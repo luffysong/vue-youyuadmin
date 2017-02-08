@@ -1,19 +1,16 @@
 <template>
-  <div v-if="form && form.order_movie">
+  <div v-if="form && form.movie">
     <el-form :model="form" label-width="80px">
       <div class="whole-bill">
         <h5>总订单</h5>
         <el-form-item label="订单号">
-          <el-input v-model="form.id"></el-input>
+          <el-input v-model="form.trade.business_id"></el-input>
         </el-form-item>
         <el-form-item label="项目">
-          <el-input  v-model="form.order_movie.movie.name"></el-input>
+          <el-input  v-model="form.movie.name"></el-input>
         </el-form-item>
         <el-form-item label="制片方">
-          <el-input  v-model="form.order_movie.movie.producer"></el-input>
-        </el-form-item>
-        <el-form-item label="份额">
-          <el-input v-model="form.order_movie.share"></el-input>
+          <el-input  v-model="form.movie.producer"></el-input>
         </el-form-item>
         <el-form-item label="支付人">
           <el-input v-model="form.user.real_info.certificate_name"></el-input>
@@ -36,16 +33,16 @@
           <el-input v-model="form.notify_time"></el-input>
         </el-form-item>
         <el-form-item label="关闭时间">
-          <el-input v-model="form.order_movie.failure_time"></el-input>
+          <el-input v-model="form.trade.updated_at"></el-input>
         </el-form-item>
       </div>
 
       <div class="deposit-bill">
-        <h5>保证金订单</h5>
-        <el-form-item label="订单号">
+        <h5>退款订单</h5>
+        <el-form-item label="退款单号">
           <el-input v-model="form.business_id"></el-input>
         </el-form-item>
-        <el-form-item label="订单金额">
+        <el-form-item label="退款金额">
           <el-input v-model="form.amount"></el-input>
         </el-form-item>
         <el-form-item label="订单状态">
@@ -53,10 +50,10 @@
             <el-option v-for="it in childOrderStatus" :label="it.label" :value="it.value"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="开启时间">
+        <el-form-item label="待退款时间">
           <el-input v-model="form.created_at"></el-input>
         </el-form-item>
-        <el-form-item label="付款时间">
+        <el-form-item label="退款时间">
           <el-input v-model="form.notify_time"></el-input>
         </el-form-item>
       </div>
@@ -69,7 +66,7 @@
   import * as types from '../../store/types';
 
   export default {
-    name: 'TradeDetail',
+    name: 'RefundDetail',
     props: {},
     methods: {
 
@@ -117,17 +114,16 @@
             label: '已退款',
           },
         ],
-        form: undefined,
+        form: {},
       };
     },
     mounted() {
       // console.log('mounted');
       this.$store.dispatch(types.HIDE_SIDEBAR);
-      this.$store.dispatch(types.TRADEDETAIL_REQ, {
+      this.$store.dispatch(types.REFUNDDETAIL_REQ, {
         id: this.$route.params.id,
         sendData: {},
         callback: (data) => {
-          console.log(data);
           this.form = data.info;
         },
       });
