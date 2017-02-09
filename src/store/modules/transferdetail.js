@@ -3,7 +3,9 @@ import server from './AjaxServer';
 
 const initialState = {
   loading: false,
-  detail: {},
+  detail: {
+    info: [],
+  },
 };
 
 // const getters = {

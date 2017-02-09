@@ -98,6 +98,7 @@
 
   </div>
 </template>
+
 <script>
   // import { mapGetters } from 'vuex';
   import _ from 'lodash';
@@ -111,14 +112,6 @@
     props: {
       pDetailData: Object,
       getDetail: Function,
-    },
-    methods: {
-      handleReset() {
-        //        this.$refs.form.resetFields();
-      },
-      handleSubmit() {
-        //        this.$refs.form.validate();
-      },
     },
     computed: {
       detailData() {

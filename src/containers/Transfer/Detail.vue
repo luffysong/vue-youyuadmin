@@ -1,6 +1,6 @@
 <template>
-  <div v-if="detailData.info">
-    <DetailForm :pDetailData="detailData"/>
+  <div>
+    <DetailForm :pDetailData="detailData" :getDetail="getDetail"/>
   </div>
 
 </template>
@@ -12,7 +12,17 @@
   export default {
     name: 'TransferDetail',
     props: {},
-    methods: {},
+    methods: {
+      getDetail() {
+        const id = this.$route.params.id;
+        this.$store.dispatch(types.TRANSFERDETAIL_REQ, {
+          id,
+          sendData: {
+            id,
+          },
+        });
+      },
+    },
     computed: {
       detailData() {
         return this.$store.state.transferdetail.detail;
@@ -23,14 +33,7 @@
     },
     mounted() {
       this.$store.dispatch(types.HIDE_SIDEBAR);
-      const id = this.$route.params.id;
-      this.$store.dispatch(types.HIDE_SIDEBAR);
-      this.$store.dispatch(types.TRANSFERDETAIL_REQ, {
-        id,
-        sendData: {
-          id,
-        },
-      });
+      this.getDetail();
     },
     created() {
     },
