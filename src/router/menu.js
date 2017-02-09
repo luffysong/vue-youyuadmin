@@ -7,33 +7,51 @@ export default [
   {
     // 项目管理
     name: 'Project',
+    meta: {
+      label: '项目管理',
+    },
     path: '/project',
     component: resolve => require(['../containers/Project/index'], resolve), // eslint-disable-line
     redirect: '/project/list/unregistered',
     children: [
       {
         name: 'ProjectList',
+        meta: {
+          label: '列表',
+        },
         path: 'list',
         component: resolve => require(['../containers/Project/list/index'], resolve), // eslint-disable-line
         redirect: '/project/list/unregistered',
         children: [
           {
             name: 'ProjectListUnregistered',
+            meta: {
+              label: '草稿',
+            },
             path: 'unregistered',
             component: resolve => require(['../containers/Project/list/unregistered'], resolve), // eslint-disable-line
           },
           {
             name: 'ProjectListRegistered',
+            meta: {
+              label: '已登记',
+            },
             path: 'registered',
             component: resolve => require(['../containers/Project/list/registered'], resolve), // eslint-disable-line
           },
           {
             name: 'ProjectListRelease',
+            meta: {
+              label: '已上映',
+            },
             path: 'release',
             component: resolve => require(['../containers/Project/list/release'], resolve), // eslint-disable-line
           },
           {
             name: 'ProjectListLiquidation',
+            meta: {
+              label: '已清算',
+            },
             path: 'liquidation',
             component: resolve => require(['../containers/Project/list/liquidation'], resolve), // eslint-disable-line
           },
@@ -42,36 +60,57 @@ export default [
       {
         name: 'ProjectDetail',
         path: 'detail',
+        meta: {
+          label: '项目明细',
+        },
         component: resolve => require(['../containers/Project/detail/index'], resolve), // eslint-disable-line
         redirect: '/project/list/unregistered',
         children: [
           {
             name: 'ProjectCreate',
+            meta: {
+              label: '新建项目',
+            },
             path: 'create',
             component: resolve => require(['../containers/Project/detail/create'], resolve), // eslint-disable-line
           },
           {
             name: 'ProjectDetailDesc',
+            meta: {
+              label: '项目详情',
+            },
             path: 'desc/:id',
             component: resolve => require(['../containers/Project/detail/desc'], resolve), // eslint-disable-line
           },
           {
             name: 'ProjectDetailOriginShare',
+            meta: {
+              label: '原始份额',
+            },
             path: 'originShare/:id',
             component: resolve => require(['../containers/Project/detail/originShare'], resolve), // eslint-disable-line
           },
           {
             name: 'ProjectDetailTransferShare',
+            meta: {
+              label: '可转让份额',
+            },
             path: 'transferShare/:id',
             component: resolve => require(['../containers/Project/detail/transferShare'], resolve), // eslint-disable-line
           },
           {
             name: 'ProjectDetailTransferEarn',
+            meta: {
+              label: '可转让收益',
+            },
             path: 'transferEarn/:id',
             component: resolve => require(['../containers/Project/detail/transferEarn'], resolve), // eslint-disable-line
           },
           {
             name: 'ProjectDetailProgress',
+            meta: {
+              label: '进度',
+            },
             path: 'projectProgress/:id',
             component: resolve => require(['../containers/Project/detail/projectProgress'], resolve), // eslint-disable-line
           },

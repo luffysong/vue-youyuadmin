@@ -1,6 +1,6 @@
 <template>
   <div v-if="form && form.movie">
-    <el-form :model="form" label-width="80px">
+    <el-form :model="form" label-width="100px">
       <div class="whole-bill">
         <h5>总订单</h5>
         <el-form-item label="订单号">
