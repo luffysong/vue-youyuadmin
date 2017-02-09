@@ -57,6 +57,18 @@ export default {
           icon: 'more',
           type: 'item',
         },
+        {
+          name: '收款管理',
+          link: '/trade',
+          icon: 'more',
+          type: 'item',
+        },
+        {
+          name: '退款管理',
+          link: '/refund',
+          icon: 'more',
+          type: 'item',
+        },
       ],
     };
   },

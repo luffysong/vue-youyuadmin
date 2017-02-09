@@ -6,6 +6,8 @@
     <el-menu-item index="/transfer">影视收益权转让管理</el-menu-item>
     <el-menu-item index="/investor">投资人审核</el-menu-item>
     <el-menu-item index="/order">订单管理</el-menu-item>
+    <el-menu-item index="/trade">收款管理</el-menu-item>
+    <el-menu-item index="/refund">退款管理</el-menu-item>
   </el-menu>
 </template>
 
