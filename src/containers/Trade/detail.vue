@@ -85,6 +85,16 @@
       },
     },
     methods: {
+      getDetail() {
+        this.$store.dispatch(types.TRADEDETAIL_REQ, {
+          id: this.$route.params.id,
+          sendData: {},
+          callback: (data) => {
+            console.log(data);
+            this.form = data.info;
+          },
+        });
+      },
       submitHandle() {
         _.assign(this.popMsgConfig, this.popDefault, {
           dialogVisible: true,
@@ -106,6 +116,7 @@
                   title: '已付款确认操作',
                   desc: '操作成功',
                   sureCallback: () => {
+                    this.getDetail();
                     this.popMsgConfig.dialogVisible = false;
                   },
                 });
@@ -159,7 +170,7 @@
             label: '已退款',
           },
         ],
-        form: undefined,
+        form: {},
         popMsgConfig: {
           dialogVisible: false,
           type: 'alert', // alert | confirm
@@ -189,14 +200,7 @@
     mounted() {
       // console.log('mounted');
       this.$store.dispatch(types.HIDE_SIDEBAR);
-      this.$store.dispatch(types.TRADEDETAIL_REQ, {
-        id: this.$route.params.id,
-        sendData: {},
-        callback: (data) => {
-          console.log(data);
-          this.form = data.info;
-        },
-      });
+      this.getDetail();
     },
     components: {
       PopMsg,

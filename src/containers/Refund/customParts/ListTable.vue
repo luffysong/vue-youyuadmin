@@ -14,6 +14,13 @@
       </el-table-column>
       <el-table-column
         align="center"
+        inline-template
+        label="订单类型"
+        width="200">
+        <span>{{row.trade.type | filterOrderType}}</span>
+      </el-table-column>
+      <el-table-column
+        align="center"
         prop="trade.business_id"
         label="子订单号"
         width="200">
@@ -71,6 +78,15 @@
     name: 'ListTable',
     props: {
       pList: Object,
+    },
+    filters: {
+      filterOrderType(cs) {
+        const OrderType = {
+          1: '保证金',
+          2: '剩余款'
+        };
+        return OrderType[cs];
+      },
     },
     methods: {
       toDetail(...cs) {
