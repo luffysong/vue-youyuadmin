@@ -7,7 +7,7 @@
       <el-table-column
         fixed
         prop="id"
-        label="项目ID"
+        label="ID"
         width="150">
       </el-table-column>
       <el-table-column

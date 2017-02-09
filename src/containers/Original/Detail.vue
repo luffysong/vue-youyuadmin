@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="detailData.info">
-      <DetailForm :pDetailData="detailData"/>
+      <DetailForm :pDetailData="detailData" :getDetail="getDetail"/>
     </div>
   </div>
 
@@ -13,7 +13,17 @@
   export default {
     name: 'OriginalDetail',
     props: {},
-    methods: {},
+    methods: {
+      getDetail() {
+        const id = this.$route.params.id;
+        this.$store.dispatch(types.ORIGINDETAIL_REQ, {
+          id,
+          sendData: {
+            id,
+          },
+        });
+      },
+    },
     computed: {
       detailData() {
         return this.$store.state.origindetail.detail;
@@ -24,13 +34,7 @@
     },
     mounted() {
       this.$store.dispatch(types.HIDE_SIDEBAR);
-      const id = this.$route.params.id;
-      this.$store.dispatch(types.ORIGINDETAIL_REQ, {
-        id,
-        sendData: {
-          id,
-        },
-      });
+      this.getDetail();
     },
     created() {
     },

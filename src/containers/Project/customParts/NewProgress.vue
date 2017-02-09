@@ -8,7 +8,7 @@
 <script>
   //  import { mapGetters } from 'vuex';
   //  import * as types from '../../store/
-  import Buttons from '../customParts/Button';
+  import Buttons from '../../../components/Button';
   import server from '../../../store/modules/AjaxServer';
 
   export default {

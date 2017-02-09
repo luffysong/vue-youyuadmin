@@ -111,7 +111,7 @@
 
 <script>
   import Upload from '../../../components/Upload';
-  import Buttons from './Button';
+  import Buttons from '../../../components/Button';
 
   export default {
     name: 'CreateForm',
