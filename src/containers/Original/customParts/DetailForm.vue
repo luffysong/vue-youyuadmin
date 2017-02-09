@@ -223,7 +223,7 @@
                     server.changeQuoted({
                       id: this.$route.params.id,
                       sendData: {
-                        status: 1,
+                        status: 5,
                       },
                     }).then((res) => {
                       if (res.body.code === 0) {
@@ -236,39 +236,6 @@
                             this.getDetail();
                           },
 
-                        });
-                      }
-                    });
-                    this.popMsgConfig.dialogVisible = false;
-                  },
-                });
-              },
-            },
-            {
-              type: 'primary',
-              desc: '已成交',
-              callback: () => {
-                _.assign(this.popMsgConfig, this.popDefault, {
-                  dialogVisible: true,
-                  title: '操作提示',
-                  desc: '确定该项目已成交？',
-                  type: 'confirm',
-                  sureCallback: () => {
-                    server.changeQuoted({
-                      id: this.$route.params.id,
-                      sendData: {
-                        status: 4,
-                      },
-                    }).then((res) => {
-                      if (res.body.code === 0) {
-                        _.assign(this.popMsgConfig, this.popDefault, {
-                          dialogVisible: true,
-                          title: '项目操作',
-                          desc: '操作成功',
-                          sureCallback: () => {
-                            this.popMsgConfig.dialogVisible = false;
-                            this.getDetail();
-                          },
                         });
                       }
                     });
