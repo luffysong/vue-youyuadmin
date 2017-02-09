@@ -49,8 +49,9 @@ const server = {
   // status 目标状态
   changeProject(params) {
     const { id, sendData } = params;
+    const { status } = sendData;
     sendData.release_date = moment(sendData.release_date).format('YYYY-MM-DD');
-    return Vue.http.put(`${config.apiBase}/api/movie/${id}/status`, sendData, {
+    return Vue.http.put(`${config.apiBase}/api/movie/${id}/${status}`, sendData, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },

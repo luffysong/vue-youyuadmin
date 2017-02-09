@@ -44,7 +44,7 @@
               id,
               sendData: {
                 id,
-                status: 20,
+                status: 'publish',
               },
             }).then((res) => {
               if (res.body.code === 0) {
@@ -70,7 +70,7 @@
               id,
               sendData: {
                 id,
-                status: 30,
+                status: 'screening',
               },
             }).then((res) => {
               if (res.body.code === 0) {
@@ -96,7 +96,7 @@
               id,
               sendData: {
                 id,
-                status: 40,
+                status: 'clearing',
               },
             }).then((res) => {
               if (res.body.code === 0) {
