@@ -54,6 +54,7 @@ export const PROJECTCREATE_ERR = 'PROJECTCREATE_ERR';
 export const ProjectDetailReq = 'ProjectDetailReq';
 export const ProjectDetailSuc = 'ProjectDetailSuc';
 export const ProjectDetailErr = 'ProjectDetailErr';
+export const PROJECTDETAILDEL = 'PROJECTDETAILDEL';
 
 // 项目管理 初始份额登记
 export const PROJECTORIGINSHARE_REQ = 'PROJECTORIGINSHARE_REQ';

@@ -1,5 +1,4 @@
 <template>
-
   <el-form ref="form" :rules="rules" :model="origindata" label-width="160px">
     <el-form-item label="项目名称" prop="name">
       <el-col :span="8">
@@ -123,6 +122,7 @@
 
 <script>
   import _ from 'lodash';
+  import * as types from '../../../store/types';
   import Upload from '../../../components/Upload';
 
   export default {
@@ -237,6 +237,9 @@
         }
         return cs[0];
       },
+    },
+    destroyed() {
+      this.$store.dispatch(types.PROJECTDETAILDEL);
     },
     components: {
       Upload,

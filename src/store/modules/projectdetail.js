@@ -24,7 +24,6 @@ const initialState = {
 };
 
 const getters = {
-  [types.ProjectDetailData]: state => state.ProjectDetail,
   [types.PROJECTTRANSFERSHARE_GET]: state => state.ProjectTransferShare,
   [types.PROJECTTRANSFEREARN_GET]: state => state.ProjectTransferEarn,
 };
@@ -44,6 +43,11 @@ const actions = {
     }, (data) => {
       commit(types.ProjectDetailErr, data);
     });
+  },
+
+  // 表单组件销毁时，清理数据
+  [types.PROJECTDETAILDEL]({ commit }) {
+    commit(types.PROJECTDETAILDEL);
   },
 
   // 获取项目“初始份额登记”list
@@ -109,6 +113,10 @@ const mutations = {
   [types.ProjectDetailErr](state, data) {
     state.loading = false;
     state.ProjectDetail = data;
+  },
+  // 表单组件销毁时，清理数据
+  [types.PROJECTDETAILDEL](state) {
+    state.ProjectDetail = {};
   },
 
   // 获取项目原始份额list

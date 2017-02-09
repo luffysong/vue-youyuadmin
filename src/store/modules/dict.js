@@ -4,6 +4,7 @@ const initialState = {
     {
       label: '策划筹备期',
       value: 10,
+      eumn: 'READY',
     },
     {
       label: '拍摄制作期',
