@@ -1,18 +1,29 @@
 <template>
   <div v-if="list.data">
-    <InvestorList :plist="list"/>
+    <InvestorList :plist="list" :pageChange="pageChange"/>
   </div>
 </template>
 <script>
   //  import { mapGetters } from 'vuex';
   //  import _ from 'lodash';
   import * as types from '../../store/types';
+  import * as consts from '../../config/const';
   import InvestorList from './table/table';
 
   export default {
     name: 'InvestorListPass',
     props: {},
-    methods: {},
+    methods: {
+      pageChange(cur) {
+        this.$store.dispatch(types.INVESTORLIST_REQ, {
+          sendData: {
+            status: 2,
+            per_page: consts.PER_PAGE,
+            page: cur,
+          },
+        });
+      },
+    },
     computed: {
       //      ...mapGetters({
       //        listdata: [types.INVESTORGET],
@@ -27,19 +38,7 @@
     },
     mounted() {
       this.$store.dispatch(types.HIDE_SIDEBAR);
-      this.$store.dispatch(types.INVESTORLIST_REQ, {
-        sendData: {
-          status: 2,
-        },
-      });
-    },
-    created() {
-    },
-    beforeUpdate() {
-    },
-    beforeMount() {
-    },
-    updated() {
+      this.pageChange(1);
     },
     components: {
       InvestorList,

@@ -41,18 +41,19 @@
     </el-table>
 
     <div class="block">
+      <span class="demonstration"> </span>
       <el-pagination
-        layout="prev, pager, next, jumper"
-        :current-page="plist.page"
-        :page-size="10"
+        layout="prev, pager, next"
         :total="plist.total"
-        @current-change="dataChangePage"
+        :page-size="plist.per_page - 0"
+        :current-page="plist.current_page"
+        @current-change="pageChange"
       >
       </el-pagination>
     </div>
   </div>
 </template>
-<style src='' scoped lang="less"></style>
+<style scoped lang="less"></style>
 <script>
   import mixins from './mixins';
 
@@ -60,6 +61,7 @@
     name: 'InvestorListTable',
     props: {
       plist: Object,
+      pageChange: Function,
     },
     mixins: [mixins],
     methods: {
@@ -74,22 +76,6 @@
         });
       },
     },
-    computed: {},
-    data() {
-      return {
-      };
-    },
-    mounted() {
-    },
-    created() {
-    },
-    beforeUpdate() {
-    },
-    beforeMount() {
-    },
-    updated() {
-    },
-    components: {},
   };
 
 </script>
