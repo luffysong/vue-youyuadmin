@@ -25,7 +25,24 @@
   export default {
     name: 'Search',
     props: {
-      searchParams: Object,
+      searchParams: {
+        type: Object,
+        defalut: {
+          options: [
+            {
+              value: 'id',
+              label: '项目ID',
+            },
+            {
+              value: 'name',
+              label: '项目名称',
+            },
+          ],
+          select: 'name',
+          input: '',
+          commit: () => {},
+        },
+      },
     },
   };
 
