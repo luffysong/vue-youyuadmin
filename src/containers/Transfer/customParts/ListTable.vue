@@ -71,17 +71,17 @@
         </router-link>
       </el-table-column>
     </el-table>
-    <!--<div class="block">-->
-      <!--<span class="demonstration"> </span>-->
-      <!--<el-pagination-->
-        <!--layout="prev, pager, next, jumper"-->
-        <!--:current-page="dataTable.page"-->
-        <!--:page-size="10"-->
-        <!--:total="dataTable.total"-->
-        <!--@current-change="dataChangePage"-->
-      <!--&gt;-->
-      <!--</el-pagination>-->
-    <!--</div>-->
+    <div class="block">
+      <span class="demonstration"> </span>
+      <el-pagination
+        layout="prev, pager, next"
+        :total="pListData.total"
+        :page-size="pListData.per_page - 0"
+        :current-page="pListData.current_page"
+        @current-change="pageChange"
+      >
+      </el-pagination>
+    </div>
   </div>
 
 </template>
@@ -92,29 +92,7 @@
     name: 'TransferTable',
     props: {
       pListData: Object,
-    },
-    methods: {
-    },
-    computed: {
-    },
-    data() {
-      return {
-
-      };
-    },
-    mounted() {
-      // this.$store.dispatch(types.HIDE_SIDEBAR);
-    },
-    created() {
-    },
-    beforeUpdate() {
-    },
-    beforeMount() {
-    },
-    updated() {
-    },
-    components: {
-
+      pageChange: Function,
     },
   };
 

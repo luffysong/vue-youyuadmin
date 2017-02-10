@@ -1,17 +1,29 @@
 <template>
   <div>
-    <ListTable :pListData="listData"/>
+    <ListTable :pListData="listData" :pageChange="pageChange"/>
   </div>
 </template>
 <script>
   //  import { mapGetters } from 'vuex';
   import * as types from '../../../store/types';
+  import * as consts from '../../../config/const';
   import ListTable from '../customParts/ListTable';
 
   export default {
     name: 'TransferListInvalid',
     props: {},
-    methods: {},
+    methods: {
+      pageChange(cur) {
+        this.$store.dispatch(types.TRANSFERLIST_REQ, {
+          sendData: {
+            status: 5,
+            asset_type: 2,
+            per_page: consts.PER_PAGE,
+            page: cur,
+          },
+        });
+      },
+    },
     computed: {
       listData() {
         return this.$store.state.transferlist.invalid;
@@ -23,24 +35,7 @@
     mounted() {
       // console.log('mounted');
       this.$store.dispatch(types.HIDE_SIDEBAR);
-      this.$store.dispatch(types.TRANSFERLIST_REQ, {
-        sendData: {
-          status: 5,
-          asset_type: 2,
-        },
-      });
-    },
-    created() {
-      // console.log('created');
-    },
-    beforeUpdate() {
-      // console.log('beforeUpdate');
-    },
-    beforeMount() {
-      // console.log('beforeMount');
-    },
-    updated() {
-      // console.log('updated');
+      this.pageChange(1);
     },
     components: {
       ListTable,
