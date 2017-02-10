@@ -1,5 +1,6 @@
 <template>
   <div v-if="listData.data">
+    <Search :searchParams="searchParams"/>
     <ListTable :pList="listData" :pageChange="pageChange"/>
   </div>
 </template>
@@ -8,36 +9,55 @@
   import * as types from '../../../store/types';
   import * as consts from '../../../config/const';
   import ListTable from '../customParts/ListTable';
+  import Search from '../../../components/Search';
+  import mix from '../customParts/mixins';
 
   export default {
     name: 'TradeListUnpaid',
+    mixins: [mix],
     props: {},
-    methods: {
-      pageChange(cur) {
-        this.$store.dispatch(types.TRADELIST_REQ, {
-          sendData: {
-            status: 1,
-            per_page: consts.PER_PAGE,
-            page: cur,
-          },
-        });
-      },
-    },
     computed: {
       listData() {
         return this.$store.state.tradelist.unpaidList;
       },
     },
     data() {
-      return {};
+      const s = this;
+      return {
+        sdata: this.listdata,
+        sendData: {
+          status: 1,
+          per_page: consts.PER_PAGE,
+        },
+        searchParams: {
+          options: [
+            {
+              value: 'movie_id',
+              label: '项目ID',
+            },
+            {
+              value: 'uid',
+              label: '用户ID',
+            },
+            {
+              value: 'id',
+              label: '订单ID',
+            },
+          ],
+          select: 'movie_id',
+          input: '',
+          commit: s.searchCommit,
+        },
+      };
     },
     mounted() {
       // console.log('mounted');
       this.$store.dispatch(types.HIDE_SIDEBAR);
-      this.pageChange(1);
+      this.getData();
     },
     components: {
       ListTable,
+      Search,
     },
   };
 
