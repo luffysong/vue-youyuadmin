@@ -74,24 +74,33 @@
         </el-button-group>
       </el-table-column>
     </el-table>
-
+    <div class="block">
+      <span class="demonstration"> </span>
+      <el-pagination
+        layout="prev, pager, next"
+        :total="pList.total"
+        :page-size="pList.per_page - 0"
+        :current-page="pList.current_page"
+        @current-change="pageChange"
+      >
+      </el-pagination>
+    </div>
   </div>
 </template>
 
 <script>
-  /* eslint-disable */
-  import dict from '../../../store/modules/dict';
 
   export default {
     name: 'ListTable',
     props: {
       pList: Object,
+      pageChange: Function,
     },
     filters: {
       filterOrderType(cs) {
         const OrderType = {
           1: '保证金',
-          2: '剩余款'
+          2: '剩余款',
         };
         return OrderType[cs];
       },
