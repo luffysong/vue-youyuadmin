@@ -1,17 +1,28 @@
 <template>
   <div v-if="listData.data">
-    <ListTable :pList="listData"/>
+    <ListTable :pList="listData" :pageChange="pageChange"/>
   </div>
 </template>
 <script>
   //  import { mapGetters } from 'vuex';
   import * as types from '../../../store/types';
+  import * as consts from '../../../config/const';
   import ListTable from '../customParts/ListTable';
 
   export default {
     name: 'TradeListPaid',
     props: {},
-    methods: {},
+    methods: {
+      pageChange(cur) {
+        this.$store.dispatch(types.REFUNDLIST_REQ, {
+          sendData: {
+            status: 2,
+            per_page: consts.PER_PAGE,
+            page: cur,
+          },
+        });
+      },
+    },
     computed: {
       listData() {
         return this.$store.state.tradelist.refundList;
@@ -23,23 +34,7 @@
     mounted() {
       // console.log('mounted');
       this.$store.dispatch(types.HIDE_SIDEBAR);
-      this.$store.dispatch(types.REFUNDLIST_REQ, {
-        sendData: {
-          status: 2,
-        },
-      });
-    },
-    created() {
-      // console.log('created');
-    },
-    beforeUpdate() {
-      // console.log('beforeUpdate');
-    },
-    beforeMount() {
-      // console.log('beforeMount');
-    },
-    updated() {
-      // console.log('updated');
+      this.pageChange(1);
     },
     components: {
       ListTable,
