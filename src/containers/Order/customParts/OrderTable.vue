@@ -90,7 +90,17 @@
         </el-button-group>
       </el-table-column>
     </el-table>
-
+    <div class="block">
+      <span class="demonstration"> </span>
+      <el-pagination
+        layout="prev, pager, next"
+        :total="plist.total"
+        :page-size="plist.per_page - 0"
+        :current-page="plist.current_page"
+        @current-change="pageChange"
+      >
+      </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -102,6 +112,7 @@
     name: 'ProjectTable',
     props: {
       plist: Object,
+      pageChange: Function,
     },
     filters: {
       tradeStatus(val) {

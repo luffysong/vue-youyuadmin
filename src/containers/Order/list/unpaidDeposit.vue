@@ -1,8 +1,7 @@
 <template>
   <div>
-    <order-table :plist="list"/>
+    <order-table :plist="list" :pageChange="pageChange"/>
   </div>
-
 </template>
 
 <script>
@@ -11,6 +10,7 @@
    */
   import _ from 'lodash';
   import * as types from '../../../store/types';
+  import * as consts from '../../../config/const';
   import OrderTable from '../customParts/OrderTable';
   import ListNav from '../customParts/ListNav';
 
@@ -26,14 +26,20 @@
         return _.cloneDeep(this.$store.state.order.unpaidDepositList);
       },
     },
-    methods: {},
+    methods: {
+      pageChange(cur) {
+        this.$store.dispatch(types.ORDERLIST_REQ, {
+          sendData: {
+            status: 10,
+            per_page: consts.PER_PAGE,
+            page: cur,
+          },
+        });
+      },
+    },
     mounted() {
       this.$store.dispatch(types.HIDE_SIDEBAR);
-      this.$store.dispatch(types.ORDERLIST_REQ, {
-        sendData: {
-          status: 10,
-        },
-      });
+      this.pageChange(1);
     },
   };
 </script>
