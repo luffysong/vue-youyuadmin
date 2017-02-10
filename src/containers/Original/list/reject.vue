@@ -1,17 +1,29 @@
 <template>
   <div>
-    <ListTable :pListData="listData"/>
+    <ListTable :pListData="listData" :pageChange="pageChange"/>
   </div>
 </template>
 <script>
   //  import { mapGetters } from 'vuex';
   import * as types from '../../../store/types';
+  import * as consts from '../../../config/const';
   import ListTable from '../customParts/ListTable';
 
   export default {
     name: 'reject',
     props: {},
-    methods: {},
+    methods: {
+      pageChange(cur) {
+        this.$store.dispatch(types.ORIGINLIST_REQ, {
+          sendData: {
+            status: 2,
+            asset_type: 1,
+            per_page: consts.PER_PAGE,
+            page: cur,
+          },
+        });
+      },
+    },
     computed: {
       listData() {
         return this.$store.state.originlist.reject;
@@ -23,12 +35,7 @@
     mounted() {
       // console.log('mounted');
       this.$store.dispatch(types.HIDE_SIDEBAR);
-      this.$store.dispatch(types.ORIGINLIST_REQ, {
-        sendData: {
-          status: 2,
-          asset_type: 1,
-        },
-      });
+      this.pageChange(1);
     },
     created() {
       // console.log('created');
