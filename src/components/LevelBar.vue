@@ -27,7 +27,6 @@
     methods: {
       getList() {
         let matched = this.$route.matched;
-        console.log(this.$route.matched);
         const first = matched[0];
         if (first && (first.name !== 'Home' || first.path !== '')) {
           matched = [{ name: 'Home', path: '/' }].concat(matched);

@@ -90,7 +90,6 @@
           id: this.$route.params.id,
           sendData: {},
           callback: (data) => {
-            console.log(data);
             this.form = data.info;
           },
         });
