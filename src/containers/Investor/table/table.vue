@@ -47,7 +47,7 @@
         :total="plist.total"
         :page-size="plist.per_page - 0"
         :current-page="plist.current_page"
-        @current-change="pageChange"
+        @current-change="pPageChange"
       >
       </el-pagination>
     </div>
@@ -61,12 +61,10 @@
     name: 'InvestorListTable',
     props: {
       plist: Object,
-      pageChange: Function,
+      pPageChange: Function,
     },
     mixins: [mixins],
     methods: {
-      dataChangePage() {
-      },
       toDetail(...cs) {
         this.$router.push({
           name: 'InvestorDetail',
