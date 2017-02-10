@@ -8,7 +8,6 @@
   </el-tabs>
 </template>
 <script>
-  import * as types from '../../../store/types';
 
   export default {
     name: 'ListNav',
@@ -22,24 +21,11 @@
         }
       },
     },
-    computed: {},
-    data() {
-      return {
-        activeTab: this.$route.name,
-      };
+    computed: {
+      activeTab() {
+        return this.$route.name;
+      },
     },
-    mounted() {
-      this.$store.dispatch(types.HIDE_SIDEBAR);
-    },
-    created() {
-    },
-    beforeUpdate() {
-    },
-    beforeMount() {
-    },
-    updated() {
-    },
-    components: {},
   };
 </script>
 <style scoped lang="less">

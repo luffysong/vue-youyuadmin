@@ -1,5 +1,5 @@
 <template>
-  <el-tabs class="el-col-24" :active-name="activeTab" @tab-click="handleClick">
+  <el-tabs :active-name="activeTab" @tab-click="handleClick">
     <el-tab-pane label="待审核" name="TransferListPending"/>
     <el-tab-pane label="已挂牌" name="TransferListListed"/>
     <el-tab-pane label="已成交" name="TransferListComplete"/>
@@ -8,7 +8,6 @@
   </el-tabs>
 </template>
 <script>
-  import * as types from '../../../store/types';
 
   export default {
     name: 'ListNav',
@@ -22,24 +21,11 @@
         }
       },
     },
-    computed: {},
-    data() {
-      return {
-        activeTab: this.$route.name,
-      };
+    computed: {
+      activeTab() {
+        return this.$route.name;
+      },
     },
-    mounted() {
-      this.$store.dispatch(types.HIDE_SIDEBAR);
-    },
-    created() {
-    },
-    beforeUpdate() {
-    },
-    beforeMount() {
-    },
-    updated() {
-    },
-    components: {},
   };
 </script>
 <style scoped lang="less">
