@@ -2,7 +2,8 @@
   <div>
     <ProjectTable :data="listdata"
                   :displayHandle="displayHandle"
-                  :toDetail="toDetail"/>
+                  :toDetail="toDetail"
+                  :pageChange="pageChange"/>
 
   </div>
 </template>
@@ -22,6 +23,15 @@
           path: `/project/detail/desc/${cs[0]}`,
         });
       },
+      pageChange(cur) {
+        this.$store.dispatch(types.ProjectListReq, {
+          sendData: {
+            status: 30,
+            per_page: 1,
+            page: cur,
+          },
+        });
+      },
     },
     computed: {
       ...mapGetters({
@@ -38,7 +48,7 @@
     },
     mounted() {
       // this.$store.dispatch(types.HIDE_SIDEBAR);
-      this.$store.dispatch(types.ProjectListReq, { status: 30 });
+      this.pageChange(1);
     },
     created() {
     },

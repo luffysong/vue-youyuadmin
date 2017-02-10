@@ -23,10 +23,9 @@ const getters = {
 const actions = {
   // 获取list数据
   [types.ProjectListReq]({ commit }, params) {
+    const { sendData } = params;
     server.getProjectList({
-      sendData: {
-        status: params.status,
-      },
+      sendData,
     }).then((data) => {
       if (data.body.code === 0) {
         commit(types.ProjectListSuc, {

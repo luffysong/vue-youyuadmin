@@ -68,11 +68,11 @@
     <div class="block">
       <span class="demonstration"> </span>
       <el-pagination
-        layout="prev, pager, next, jumper"
-        :current-page="data.page"
-        :page-size="10"
+        layout="prev, pager, next"
         :total="data.total"
-        @current-change="dataChangePage"
+        :page-size="data.per_page - 0"
+        :current-page="data.current_page"
+        @current-change="pageChange"
       >
       </el-pagination>
     </div>
@@ -86,15 +86,7 @@ export default {
     data: Object,
     displayHandle: Function,
     toDetail: Function,
-  },
-  data() {
-    return {
-    };
-  },
-  methods: {
-    dataChangePage() {
-
-    },
+    pageChange: Function,
   },
 };
 </script>

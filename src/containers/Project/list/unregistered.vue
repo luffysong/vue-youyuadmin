@@ -2,8 +2,8 @@
   <div>
     <ProjectTable :data="listdata"
                   :displayHandle="displayHandle"
-                  :toDetail="toDetail"/>
-
+                  :toDetail="toDetail"
+                  :pageChange="pageChange"/>
   </div>
 </template>
 <script>
@@ -15,11 +15,20 @@
     name: 'Unregistered', // 未登记
     methods: {
       displayHandle() {
-//      this.$store.dispatch()
+        //      this.$store.dispatch()
       },
       toDetail(...cs) {
         this.$router.push({
           path: `/project/detail/desc/${cs[0]}`,
+        });
+      },
+      pageChange(cur) {
+        this.$store.dispatch(types.ProjectListReq, {
+          sendData: {
+            status: 10,
+            per_page: 1,
+            page: cur,
+          },
         });
       },
     },
@@ -29,24 +38,16 @@
       }),
     },
     data() {
-//    setTimeout(() => {
-//      console.log(this.listdata, this.sdata, 'data'); // 怎么赋值给 this.sdata ???
-//    }, 3000);
+      //    setTimeout(() => {
+      //      console.log(this.listdata, this.sdata, 'data'); // 怎么赋值给 this.sdata ???
+      //    }, 3000);
       return {
         sdata: this.listdata,
       };
     },
     mounted() {
       // this.$store.dispatch(types.HIDE_SIDEBAR);
-      this.$store.dispatch(types.ProjectListReq, { status: 10 });
-    },
-    created() {
-    },
-    beforeUpdate() {
-    },
-    beforeMount() {
-    },
-    updated() {
+      this.pageChange(1);
     },
     components: {
       ProjectTable,
