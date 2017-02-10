@@ -19,24 +19,4 @@ export default {
       });
     },
   },
-  data() {
-    const s = this;
-    return {
-      searchParams: {
-        options: [
-          {
-            value: 'id',
-            label: '项目ID',
-          },
-          {
-            value: 'name',
-            label: '项目名称',
-          },
-        ],
-        select: 'name',
-        input: '',
-        commit: s.searchCommit,
-      },
-    };
-  },
 };

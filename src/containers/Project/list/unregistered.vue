@@ -12,7 +12,7 @@
   import { mapGetters } from 'vuex';
   import * as types from '../../../store/types';
   import * as consts from '../../../config/const';
-  import * as Search from '../../../components/Search';
+  import Search from '../../../components/Search';
   import ProjectTable from '../customParts/ProjectTable';
   import mix from '../customParts/mixins';
 
@@ -35,11 +35,27 @@
       }),
     },
     data() {
+      const s = this;
       return {
         sdata: this.listdata,
         sendData: {
           status: 10,
           per_page: consts.PER_PAGE,
+        },
+        searchParams: {
+          options: [
+            {
+              value: 'id',
+              label: '项目ID',
+            },
+            {
+              value: 'name',
+              label: '项目名称',
+            },
+          ],
+          select: 'name',
+          input: '',
+          commit: s.searchCommit,
         },
       };
     },

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Search :searchParams="searchParams"/>
     <ProjectTable :data="listdata"
                   :displayHandle="displayHandle"
                   :toDetail="toDetail"
@@ -12,10 +13,13 @@
   import { mapGetters } from 'vuex';
   import * as types from '../../../store/types';
   import * as consts from '../../../config/const';
+  import Search from '../../../components/Search';
   import ProjectTable from '../customParts/ProjectTable';
+  import mix from '../customParts/mixins';
 
   export default {
     name: 'Liquidation', // 已结算
+    mixins: [mix],
     methods: {
       displayHandle() {
         //      this.$store.dispatch()
@@ -25,15 +29,6 @@
           path: `/project/detail/desc/${cs[0]}`,
         });
       },
-      pageChange(cur) {
-        this.$store.dispatch(types.ProjectListReq, {
-          sendData: {
-            status: 40,
-            per_page: consts.PER_PAGE,
-            page: cur,
-          },
-        });
-      },
     },
     computed: {
       ...mapGetters({
@@ -41,27 +36,37 @@
       }),
     },
     data() {
-      //    setTimeout(() => {
-      //      console.log(this.listdata, this.sdata, 'data'); // 怎么赋值给 this.sdata ???
-      //    }, 3000);
+      const s = this;
       return {
         sdata: this.listdata,
+        sendData: {
+          status: 40,
+          per_page: consts.PER_PAGE,
+        },
+        searchParams: {
+          options: [
+            {
+              value: 'id',
+              label: '项目ID',
+            },
+            {
+              value: 'name',
+              label: '项目名称',
+            },
+          ],
+          select: 'name',
+          input: '',
+          commit: s.searchCommit,
+        },
       };
     },
     mounted() {
       // this.$store.dispatch(types.HIDE_SIDEBAR);
-      this.pageChange(1);
-    },
-    created() {
-    },
-    beforeUpdate() {
-    },
-    beforeMount() {
-    },
-    updated() {
+      this.getData();
     },
     components: {
       ProjectTable,
+      Search,
     },
   };
 </script>
