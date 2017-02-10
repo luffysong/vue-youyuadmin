@@ -4,12 +4,12 @@
                   :displayHandle="displayHandle"
                   :toDetail="toDetail"
                   :pageChange="pageChange"/>
-
   </div>
 </template>
 <script>
   import { mapGetters } from 'vuex';
   import * as types from '../../../store/types';
+  import * as consts from '../../../config/const';
   import ProjectTable from '../customParts/ProjectTable';
 
   export default {
@@ -27,7 +27,7 @@
         this.$store.dispatch(types.ProjectListReq, {
           sendData: {
             status: 20,
-            per_page: 1,
+            per_page: consts.PER_PAGE,
             page: cur,
           },
         });
