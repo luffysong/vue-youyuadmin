@@ -89,6 +89,16 @@ const server = {
       emulateJSON: true,
     });
   },
+  // 项目管理 - 上首页
+  hotProject(params) {
+    const { id, sendData } = params;
+    return Vue.http.put(`${config.apiBase}/api/movie/${id}/hot`, sendData, {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      emulateJSON: true,
+    });
+  },
 
   // 原始份额管理 获取 list
   getOriginShareList(params) {

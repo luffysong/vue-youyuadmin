@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-table
-      :data="data.data"
+      :data="listdata.data"
       stripe
       border>
       <el-table-column
@@ -46,23 +46,49 @@
       </el-table-column>
 
       <el-table-column
+        v-if="listType==='all'"
+        fixed="right"
+        inline-template
+        align="center"
+        label="上首页"
+        width="90">
+        <div>
+          <el-switch
+            v-model="row.is_hot "
+            on-text=""
+            off-text=""
+          @change="upIndexHandle(row.is_hot , row.id)">
+          </el-switch>
+        </div>
+
+      </el-table-column>
+
+      <el-table-column
+        v-if="listType==='all'"
+        fixed="right"
+        inline-template
+        align="center"
+        label="显 / 隐"
+        width="90">
+        <el-switch
+          v-model="row.is_hide"
+          on-text=""
+          off-text=""
+        @change="displayHandle(row.is_hide, row.id)">
+        </el-switch>
+      </el-table-column>
+
+      <el-table-column
         fixed="right"
         inline-template
         align="center"
         label="操作"
-        width="200">
-        <el-button-group>
-          <el-button type="success"
-                     icon="circle-check" size="small"
-                     @click="displayHandle(row.id)">
-            显示
-          </el-button>
-          <el-button type="info"
-                     icon="view" size="small"
-                      @click="toDetail(row.id)">
-            查看
-          </el-button>
-        </el-button-group>
+        width="90">
+        <el-button type="info"
+                   icon="view" size="small"
+                   @click="toDetail(row.id)">
+          查看
+        </el-button>
       </el-table-column>
     </el-table>
     <div class="block">
@@ -80,15 +106,27 @@
 </template>
 
 <script>
-export default {
-  name: 'ProjectTable',
-  props: {
-    data: Object,
-    displayHandle: Function,
-    toDetail: Function,
-    pageChange: Function,
-  },
-};
+  import _ from 'lodash';
+
+  export default {
+    name: 'ProjectTable',
+    props: {
+      data: Object,
+      displayHandle: Function,
+      upIndexHandle: Function,
+      toDetail: Function,
+      pageChange: Function,
+      listType: {
+        type: String,
+        default: 'all',
+      },
+    },
+    data() {
+      return {
+        listdata: _.cloneDeep(this.data),
+      };
+    },
+  };
 </script>
 
 <style lang="less" scoped>

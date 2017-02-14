@@ -5,12 +5,6 @@ import server from './AjaxServer';
 const initialState = {
   loading: false,
   ProjectList: {
-    data: [
-      {
-        is_hide: false,
-        movie: {},
-      },
-    ],
   },
 };
 

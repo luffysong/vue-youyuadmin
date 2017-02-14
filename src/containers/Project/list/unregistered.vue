@@ -4,6 +4,7 @@
 
     <ProjectTable :data="listdata"
                   :displayHandle="displayHandle"
+                  listType="unregistered"
                   :toDetail="toDetail"
                   :pageChange="pageChange"/>
   </div>
