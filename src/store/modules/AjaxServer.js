@@ -1,13 +1,34 @@
 import Vue from 'vue';
 import moment from 'moment';
-
+import { Message } from 'element-ui';
 import config from '../../config';
+
+function ajax(method, ...params) {
+  const message = Vue.component(Message.name, Message);
+  Vue.http.interceptors.push((request, next) => {
+    next((res) => {
+      if (res.status === 401 || res.status === 403) {
+        location.href = res.body.redirect; // eslint-disable-line
+        return false;
+      } else if (res.body.code !== 0) {
+        message({
+          showClose: true,
+          message: `请求出错啦(>_<)，${res.body.msg}，请重试~~~`,
+          type: 'error',
+        });
+        return false;
+      }
+      return res;
+    });
+  });
+  return Vue.http[method](...params);
+}
 
 const server = {
   // 项目管理 - 获取 list 数据， 参数 status -> list 类型
   getProjectList(params) {
     const { sendData } = params;
-    return Vue.http.get(`${config.apiBase}/api/movie`, {
+    return ajax('get', `${config.apiBase}/api/movie`, {
       params: sendData,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
