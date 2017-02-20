@@ -15,7 +15,7 @@ export default {
       this.getData();
     },
     getData() {
-      this.$store.dispatch(types.ProjectListReq, {
+      this.$store.dispatch(types.PROJECTLIST_REQ, {
         sendData: this.sendData,
       });
     },

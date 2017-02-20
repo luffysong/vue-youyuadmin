@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-table
-      :data="listdata.data"
+      :data="data.data"
       stripe
       border>
       <el-table-column

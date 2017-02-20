@@ -36,9 +36,9 @@ export const ProjectListData = 'ProjectListData';
 export const ProjectDisplayData = 'ProjectDisplayData';
 
 // 项目管理 获取list 数据
-export const ProjectListReq = 'ProjectListReq';
-export const ProjectListSuc = 'ProjectListSuc';
-export const ProjectListErr = 'ProjectListErr';
+export const PROJECTLIST_REQ = 'PROJECTLIST_REQ';
+export const PROJECTLIST_SUC = 'PROJECTLIST_SUC';
+export const PROJECTLIST_ERR = 'PROJECTLIST_ERR';
 
 // 项目管理 项目显示、隐藏控制
 export const ProjectDisplayReq = 'ProjectDisplayReq';

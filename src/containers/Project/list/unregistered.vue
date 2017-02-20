@@ -1,7 +1,6 @@
 <template>
   <div>
     <Search :searchParams="searchParams"/>
-
     <ProjectTable :data="listdata"
                   :displayHandle="displayHandle"
                   listType="unregistered"
@@ -10,8 +9,8 @@
   </div>
 </template>
 <script>
-  import { mapGetters } from 'vuex';
-  import * as types from '../../../store/types';
+  import _ from 'lodash';
+//  import * as types from '../../../store/types';
   import * as consts from '../../../config/const';
   import Search from '../../../components/Search';
   import ProjectTable from '../customParts/ProjectTable';
@@ -22,7 +21,6 @@
     mixins: [mix],
     methods: {
       displayHandle() {
-        //      this.$store.dispatch()
       },
       toDetail(...cs) {
         this.$router.push({
@@ -31,14 +29,13 @@
       },
     },
     computed: {
-      ...mapGetters({
-        listdata: [types.ProjectListData],
-      }),
+      listdata() {
+        return _.cloneDeep(this.$store.state.projectlist.unregisteredData);
+      },
     },
     data() {
       const s = this;
       return {
-        sdata: this.listdata,
         sendData: {
           status: 10,
           per_page: consts.PER_PAGE,
