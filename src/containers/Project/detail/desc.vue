@@ -143,9 +143,6 @@
           if (res.body.code === 0) {
             this.popMsgConfig.desc = '操作成功';
             this.popMsgConfig.dialogVisible = true;
-          } else {
-            this.popMsgConfig.desc = '操作失败';
-            this.popMsgConfig.dialogVisible = true;
           }
         });
       },
