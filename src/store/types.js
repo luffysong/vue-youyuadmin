@@ -40,11 +40,6 @@ export const PROJECTLIST_REQ = 'PROJECTLIST_REQ';
 export const PROJECTLIST_SUC = 'PROJECTLIST_SUC';
 export const PROJECTLIST_ERR = 'PROJECTLIST_ERR';
 
-// 项目管理 项目显示、隐藏控制
-export const ProjectDisplayReq = 'ProjectDisplayReq';
-export const ProjectDisplaySuc = 'ProjectDisplaySuc';
-export const ProjectDisplayErr = 'ProjectDisplayErr';
-
 // 项目管理 创建项目
 export const PROJECTCREATE_REQ = 'PROJECTCREATE_REQ';
 export const PROJECTCREATE_SUC = 'PROJECTCREATE_SUC';
