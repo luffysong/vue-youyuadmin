@@ -1,5 +1,5 @@
 <template>
-  <div v-if="form">
+  <div v-if="form.status">
     <el-form :model="form" label-width="80px">
       <div class="whole-bill">
         <h5>总订单</h5>
@@ -7,10 +7,10 @@
           <el-input v-model="form.id"></el-input>
         </el-form-item>
         <el-form-item label="项目">
-          <el-input  v-model="form.movie.name"></el-input>
+          <el-input v-model="form.movie.name"></el-input>
         </el-form-item>
         <el-form-item label="制片方">
-          <el-input  v-model="form.movie.producer"></el-input>
+          <el-input v-model="form.movie.producer"></el-input>
         </el-form-item>
         <el-form-item label="支付人">
           <el-input v-model="form.user.real_info.certificate_name"></el-input>
@@ -23,7 +23,8 @@
         </el-form-item>
         <el-form-item label="订单状态">
           <el-select v-model="form.status" placeholder="--">
-            <el-option v-for="it in orderStatus" :label="it.label" :value="it.value"></el-option>
+            <el-option v-for="it in orderStatus" :label="it.label"
+                       :value="it.value"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="开启时间">
@@ -47,7 +48,8 @@
         </el-form-item>
         <el-form-item label="订单状态">
           <el-select v-model="form.trade_deposit.status" placeholder="订单状态">
-            <el-option v-for="it in childOrderStatus" :label="it.label" :value="it.value"></el-option>
+            <el-option v-for="it in childOrderStatus" :label="it.label"
+                       :value="it.value"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="开启时间">
@@ -68,7 +70,8 @@
         </el-form-item>
         <el-form-item label="订单状态">
           <el-select v-model="form.trade_balance.status" placeholder="订单状态">
-            <el-option v-for="it in childOrderStatus" :label="it.label" :value="it.value"></el-option>
+            <el-option v-for="it in childOrderStatus" :label="it.label"
+                       :value="it.value"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="开启时间">
@@ -79,19 +82,43 @@
         </el-form-item>
       </div>
     </el-form>
-
+    <Buttons :buttonData="buttonData"></Buttons>
   </div>
 </template>
 <script>
   import * as types from '../../store/types';
+  import Buttons from '../../components/Button';
+  import server from '../../store/modules/AjaxServer';
 
   export default {
     name: 'OrderDetail',
-    props: {},
-    methods: {
-
+    computed: {
+      buttonData() {
+        if (this.form.status === 10 || this.form.status === 20 || this.form.status === 30) {
+          return [
+            {
+              type: 'primary',
+              desc: '关闭订单',
+              callback: () => {
+                server.closeOrder({
+                  id: this.$route.params.id,
+                });
+              },
+            },
+            {
+              type: 'primary',
+              desc: '开启剩余款',
+              callback: () => {
+                server.openBalanceOrder({
+                  id: this.$route.params.id,
+                });
+              },
+            },
+          ];
+        }
+        return [];
+      },
     },
-    computed: {},
     data() {
       return {
         orderStatus: [
@@ -134,7 +161,7 @@
             label: '已退款',
           },
         ],
-        form: undefined,
+        form: {},
       };
     },
     mounted() {
@@ -148,19 +175,9 @@
         },
       });
     },
-    created() {
-      // console.log('created');
+    components: {
+      Buttons,
     },
-    beforeUpdate() {
-      // console.log('beforeUpdate');
-    },
-    beforeMount() {
-      // console.log('beforeMount');
-    },
-    updated() {
-      // console.log('updated');
-    },
-    components: {},
   };
 
 </script>
