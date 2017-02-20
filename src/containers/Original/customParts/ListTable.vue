@@ -93,11 +93,4 @@
   };
 
 </script>
-<style lang="less" scoped>
-  .block {
-    clear: both;
-    text-align: right;
-    padding: 10px 0 0;
-  }
-
-</style>
+<style lang="less" scoped></style>
