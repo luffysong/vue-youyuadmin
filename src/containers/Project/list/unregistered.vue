@@ -10,7 +10,6 @@
 </template>
 <script>
   import _ from 'lodash';
-//  import * as types from '../../../store/types';
   import * as consts from '../../../config/const';
   import Search from '../../../components/Search';
   import ProjectTable from '../customParts/ProjectTable';
