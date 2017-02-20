@@ -57,13 +57,12 @@
           <el-input v-model="form.notify_time" :disabled="true"></el-input>
         </el-form-item>
       </div>
-      <el-button v-if="form.status === 1" type="primary" @click="submitHandle">已退款</el-button>
+      <el-button v-if="form.status === 1" type="primary" @click="submitHandle">退款</el-button>
     </el-form>
     <PopMsg :popMsgConfig="popMsgConfig"/>
   </div>
 </template>
 <script>
-  /* eslint-disable */
   import _ from 'lodash';
   import * as types from '../../store/types';
   import server from '../../store/modules/AjaxServer';
@@ -92,10 +91,7 @@
             const id = this.$route.params.id;
             server.changeRefund({
               id,
-              sendData: {
-                id,
-                status: 2,
-              },
+              sendData: {},
             }).then((res) => {
               if (res.body.code === 0) {
                 _.assign(this.popMsgConfig, this.popDefault, {

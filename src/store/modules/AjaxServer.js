@@ -283,7 +283,7 @@ const server = {
   // 结算管理 收款 切换订单状态
   changeTrade(params) {
     const { id, sendData } = params;
-    return Vue.http.put(`${config.apiBase}/api/financial/trade/${id}`, sendData, {
+    return Vue.http.put(`${config.apiBase}/api/financial/trade/${id}/confirm-paid`, sendData, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -316,7 +316,7 @@ const server = {
   // 结算管理 退款 切换订单状态
   changeRefund(params) {
     const { id, sendData } = params;
-    return Vue.http.put(`${config.apiBase}/api/financial/trade-refund/${id}`, sendData, {
+    return Vue.http.put(`${config.apiBase}/api/financial/trade-refund/${id}/confirm-refunded`, sendData, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },

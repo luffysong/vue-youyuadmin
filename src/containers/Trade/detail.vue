@@ -104,10 +104,7 @@
             const id = this.$route.params.id;
             server.changeTrade({
               id,
-              sendData: {
-                id,
-                status: 2,
-              },
+              sendData: {},
             }).then((res) => {
               if (res.body.code === 0) {
                 _.assign(this.popMsgConfig, this.popDefault, {
