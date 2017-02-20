@@ -12,13 +12,6 @@ function ajax(method, ...params) {
       if (res.status === 401 || res.status === 403) {
         location.href = res.body.redirect; // eslint-disable-line
         return false;
-      } else if (res.body.code !== 0) {
-        message({
-          showClose: true,
-          message: `请求出错啦(>_<)，${res.body.msg}，请重试~~~`,
-          type: 'error',
-        });
-        return false;
       }
       return res;
     });
