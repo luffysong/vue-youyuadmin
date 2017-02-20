@@ -34,6 +34,10 @@ export default {
 <style lang="less" scoped>
   @import '../variables.less';
 
+  .animated {
+    animation-duration: 0.1s;
+  }
+
   .admin-sidebar {
     position: fixed;
     top: 60px;

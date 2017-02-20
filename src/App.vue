@@ -5,11 +5,7 @@
     <side-bar :show="sidebar.show" :data="sidebar.data"></side-bar>
     <el-col :span="sidebar.show ? 19 : 22" :offset="sidebar.show ? 4 : 1">
       <level-bar></level-bar>
-      <transition
-        mode="out-in"
-        appear>
-        <router-view class="animated"></router-view>
-      </transition>
+      <router-view></router-view>
     </el-col>
   </el-row>
 </div>
