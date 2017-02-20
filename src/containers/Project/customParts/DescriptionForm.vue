@@ -150,7 +150,11 @@
     data() {
       return {
         dict: _.cloneDeep(this.$store.state.dict),
-        origindata: _.cloneDeep(this.porigindata),
+        origindata: (() => {
+          const data = _.cloneDeep(this.porigindata);
+          data.transferable_ratio *= 100;
+          return data;
+        })(),
         rules: {
           name: [
             { required: true, message: '请输入项目名称', trigger: 'blur' },

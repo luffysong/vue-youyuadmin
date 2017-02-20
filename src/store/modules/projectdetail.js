@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import * as types from '../types';
 import server from './AjaxServer';
 
@@ -24,7 +25,9 @@ const initialState = {
 };
 
 const getters = {
-  [types.PROJECTTRANSFERSHARE_GET]: state => state.ProjectTransferShare,
+  [types.PROJECTTRANSFERSHARE_GET](state) {
+    return state.ProjectTransferShare;
+  },
   [types.PROJECTTRANSFEREARN_GET]: state => state.ProjectTransferEarn,
 };
 
@@ -44,12 +47,10 @@ const actions = {
       commit(types.ProjectDetailErr, data);
     });
   },
-
   // 表单组件销毁时，清理数据
   [types.PROJECTDETAILDEL]({ commit }) {
     commit(types.PROJECTDETAILDEL);
   },
-
   // 获取项目“初始份额登记”list
   [types.PROJECTORIGINSHARE_REQ]({ commit }, params) {
     commit(types.PROJECTORIGINSHARE_REQ);
@@ -64,7 +65,6 @@ const actions = {
     }, () => {
     });
   },
-
   // 获取“可转让初始份额、可转让收益”list
   [types.PROJECTTRANSFERSHARE_REQ]({ commit }, params) {
     commit(types.PROJECTTRANSFERSHARE_REQ, params);
@@ -158,6 +158,7 @@ const mutations = {
       state.ProjectTransferEarn.loading = false;
       state.ProjectTransferEarn.list = tempArr;
     }
+    state.ProjectTransferShare = _.clone(state.ProjectTransferShare);
   },
   [types.PROJECTTRANSFERSHARE_ERR](state, data) {
     const { type } = data.sendData;

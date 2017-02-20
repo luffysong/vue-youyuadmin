@@ -85,7 +85,14 @@
     data() {
       return {
         radio: 1,
-        localdata: _.cloneDeep(this.poriginData),
+        localdata: (() => {
+          const data = _.cloneDeep(this.poriginData);
+          data.list.forEach((el) => {
+            el.share *= 100;
+            el.share = el.share.toFixed(2);
+          });
+          return data;
+        })(),
         form: {
           totalPeople: 0,
           totalShare: 0,

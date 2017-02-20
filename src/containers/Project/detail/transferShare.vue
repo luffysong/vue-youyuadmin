@@ -9,6 +9,8 @@
 
 </template>
 <script>
+  /* eslint-disable */
+  import { mapGetters } from 'vuex';
   import * as types from '../../../store/types';
   import TotalInfo from '../customParts/TotalInfo';
   import ShareForm from '../customParts/ShareForm';
@@ -17,20 +19,9 @@
     name: 'transferShare',
     methods: {},
     computed: {
-      //      ...mapGetters({
-      //        listData: [types.PROJECTTRANSFERSHARE_GET],
-      //      }),
-      listData() {
-        const data = this.$store.state.projectdetail.ProjectTransferShare;
-        if (data.movie && data.movie.status === 10) {
-          this.buttonsIsHide = false;
-          this.editable = true;
-        } else {
-          this.buttonsIsHide = true;
-          this.editable = false;
-        }
-        return data;
-      },
+      ...mapGetters({
+        listData: types.PROJECTTRANSFERSHARE_GET,
+      }),
     },
     data() {
       return {
@@ -38,6 +29,17 @@
         buttonsIsHide: false,
         editable: false,
       };
+    },
+    watch: {
+      listData: function (newQuestion) {
+        if (this.listData.movie && this.listData.movie.status === 10) {
+          this.buttonsIsHide = false;
+          this.editable = true;
+        } else {
+          this.buttonsIsHide = true;
+          this.editable = false;
+        }
+      }
     },
     mounted() {
       // console.log('mounted');

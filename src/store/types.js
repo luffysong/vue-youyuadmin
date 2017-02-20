@@ -11,6 +11,7 @@ export const SET_SIDEBAR_DATA = 'youyu/SET_SIDEBAR_DATA';
 export const ORIGINLIST_REQ = 'ORIGINLIST_REQ';
 export const ORIGINLIST_SUC = 'ORIGINLIST_SUC';
 export const ORIGINLIST_ERR = 'ORIGINLIST_ERR';
+export const ORIGINLIST_DEL = 'ORIGINLIST_DEL';
 
 // 初始份额转让，获取详情数据
 export const ORIGINDETAIL_REQ = 'ORIGINDETAIL_REQ';
