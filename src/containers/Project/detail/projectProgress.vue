@@ -63,7 +63,7 @@
       },
       // 获取list 数据
       getlist() {
-        this.$store.dispatch(types.PROJECTPROGRESS_REQ, {
+        this.$store.dispatch(types.PROJECT_PROGRESS_REQ, {
           sendData: {
             movie_id: this.$route.params.id,
           },
@@ -95,16 +95,15 @@
         },
       };
     },
-    mounted() {
-      this.getlist();
-    },
-    created() {
-    },
-    beforeUpdate() {
-    },
-    beforeMount() {
-    },
-    updated() {
+    beforeCreate() {
+      this.$store.dispatch(types.PROJECT_PROGRESS_REQ, {
+        sendData: {
+          movie_id: this.$route.params.id,
+        },
+        callback: (data) => {
+          this.listData.list = _.cloneDeep(data);
+        },
+      });
     },
     components: {
       NewProgress,

@@ -12,8 +12,6 @@
 
   export default {
     name: 'transferEarn',
-    props: {},
-    methods: {},
     computed: {
       listData() {
         return this.$store.state.projectdetail.ProjectTransferEarn;
@@ -45,13 +43,11 @@
         },
       });
     },
-
     components: {
       TotalInfo,
       ShareForm,
     },
   };
-
 </script>
 <style scoped lang="less">
 </style>

@@ -1,4 +1,4 @@
-import _ from 'lodash';
+// import _ from 'lodash';
 import * as types from '../types';
 import server from './AjaxServer';
 
@@ -64,12 +64,12 @@ const actions = {
 
   // 获取“可转让初始份额、可转让收益”list
   [types.PROJECT_TRANSFERSHARE_REQ]({ commit }, params) {
-    commit(types.PROJECTTRANSFERSHARE_REQ, params);
+    commit(types.PROJECT_TRANSFERSHARE_REQ, params);
     server.getAssetsList({
       sendData: params.sendData,
     }).then((res) => {
       if (res.body.code === 0) {
-        commit(types.PROJECTTRANSFERSHARE_SUC, {
+        commit(types.PROJECT_TRANSFERSHARE_SUC, {
           ...res.body,
           ...params,
         });
@@ -78,13 +78,13 @@ const actions = {
     });
   },
   // 获取“项目进度”list
-  [types.PROJECTPROGRESS_REQ]({ commit }, params) {
-    commit(types.PROJECTPROGRESS_REQ, params);
+  [types.PROJECT_PROGRESS_REQ]({ commit }, params) {
+    commit(types.PROJECT_PROGRESS_REQ, params);
     server.getProjectProgressList({
       sendData: params.sendData,
     }).then((res) => {
       if (res.body.code === 0) {
-        commit(types.PROJECTPROGRESS_SUC, {
+        commit(types.PROJECT_PROGRESS_SUC, {
           ...res.body,
           ...params,
         });
@@ -129,10 +129,16 @@ const mutations = {
     state.ProjectOriginShare.loading = true;
   },
   [types.PROJECT_ORIGINSHARE_SUC](state, data) {
-    state.ProjectOriginShare = data;
+    state.ProjectOriginShare = {
+      loading: false,
+      ...data,
+    };
   },
-  [types.PROJECT_ORIGINSHARE_ERR](state, data) {
-    state.ProjectOriginShare = data;
+  [types.PROJECT_ORIGINSHARE_ERR](state, err) {
+    state.ProjectOriginShare = {
+      loading: false,
+      ...err,
+    };
   },
   [types.PROJECT_ORIGINSHARE_DEL](state) {
     state.ProjectOriginShare = {
@@ -141,7 +147,7 @@ const mutations = {
   },
 
   // 获取可转让初始份额list
-  [types.PROJECTTRANSFERSHARE_REQ](state, params) {
+  [types.PROJECT_TRANSFERSHARE_REQ](state, params) {
     const { type } = params.sendData;
     if (type === ENUM.SHARE) {
       state.ProjectTransferShare.loading = true;
@@ -149,7 +155,7 @@ const mutations = {
       state.ProjectTransferEarn.loading = true;
     }
   },
-  [types.PROJECTTRANSFERSHARE_SUC](state, data) {
+  [types.PROJECT_TRANSFERSHARE_SUC](state, data) {
     const { type } = data.sendData;
     const tempArr = [];
     data.data.forEach((el) => {
@@ -168,9 +174,9 @@ const mutations = {
       state.ProjectTransferEarn.loading = false;
       state.ProjectTransferEarn.list = tempArr;
     }
-    state.ProjectTransferShare = _.clone(state.ProjectTransferShare);
+    // state.ProjectTransferShare = _.clone(state.ProjectTransferShare);
   },
-  [types.PROJECTTRANSFERSHARE_ERR](state, data) {
+  [types.PROJECT_TRANSFERSHARE_ERR](state, data) {
     const { type } = data.sendData;
     if (type === ENUM.SHARE) {
       state.ProjectTransferShare.loading = false;
@@ -180,10 +186,10 @@ const mutations = {
   },
 
   // 获取项目进度
-  [types.PROJECTPROGRESS_REQ](state) {
+  [types.PROJECT_PROGRESS_REQ](state) {
     state.ProjectProgress.loading = true;
   },
-  [types.PROJECTPROGRESS_SUC](state, data) {
+  [types.PROJECT_PROGRESS_SUC](state, data) {
     state.ProjectProgress.loading = false;
     state.ProjectProgress.list = data.data.list;
   },

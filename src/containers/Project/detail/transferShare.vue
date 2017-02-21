@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="listData.list">
+    <div v-if="!listData.loading">
       <TotalInfo :poriginData="listData"></TotalInfo>
       <ShareForm :poriginData="listData" :buttonsIsHide="buttonsIsHide"
                  :editable="editable"></ShareForm>
@@ -9,8 +9,7 @@
 
 </template>
 <script>
-  /* eslint-disable */
-  import { mapGetters } from 'vuex';
+//  import { mapGetters } from 'vuex';
   import * as types from '../../../store/types';
   import TotalInfo from '../customParts/TotalInfo';
   import ShareForm from '../customParts/ShareForm';
@@ -19,9 +18,9 @@
     name: 'transferShare',
     methods: {},
     computed: {
-      ...mapGetters({
-        listData: types.PROJECTTRANSFERSHARE_GET,
-      }),
+      listData() {
+        return this.$store.state.projectdetail.ProjectTransferShare;
+      },
     },
     data() {
       return {
@@ -31,7 +30,7 @@
       };
     },
     watch: {
-      listData: function (newQuestion) {
+      listData() {
         if (this.listData.movie && this.listData.movie.status === 10) {
           this.buttonsIsHide = false;
           this.editable = true;
@@ -39,27 +38,15 @@
           this.buttonsIsHide = true;
           this.editable = false;
         }
-      }
+      },
     },
-    mounted() {
-      // console.log('mounted');
-      this.$store.dispatch(types.PROJECTTRANSFERSHARE_REQ, {
+    beforeCreate() {
+      this.$store.dispatch(types.PROJECT_TRANSFERSHARE_REQ, {
         sendData: {
           movie_id: this.$route.params.id,
           type: 1,
         },
       });
-    },
-    created() {
-      // console.log('created');
-    },
-    beforeUpdate() {
-      // console.log('beforeUpdate');
-    },
-    beforeMount() {
-      // console.log('beforeMount');
-    },
-    updated() {
     },
     components: {
       TotalInfo,

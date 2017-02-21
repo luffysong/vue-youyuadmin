@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="listData.list">
+    <div v-if="!listData.loading">
       <TotalInfo :poriginData="listData"></TotalInfo>
       <ShareForm :poriginData="listData" :buttonsIsHide="buttonsIsHide"
                  :editable="editable"></ShareForm>
@@ -8,6 +8,7 @@
   </div>
 </template>
 <script>
+  /* eslint-disable */
   import * as types from '../../../store/types';
   import TotalInfo from '../customParts/TotalInfo';
   import ShareForm from '../customParts/ShareForm';
