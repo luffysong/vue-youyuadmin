@@ -1,70 +1,70 @@
 <template>
   <div>
-    <el-form ref="form" :model="detailData.detail.info" :rules="rules" label-width="160px">
+    <el-form ref="form" :model="detailData.info" :rules="rules" label-width="160px">
       <el-form-item label="份额ID" prop="id">
         <el-col :span="8">
-          <el-input v-model="detailData.detail.info.id" :disabled="true">
+          <el-input v-model="detailData.info.id" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="项目名称" prop="name">
         <el-col :span="8">
-          <el-input v-model="detailData.detail.info.movie.name" :disabled="true">
+          <el-input v-model="detailData.info.movie.name" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="制片方" prop="producer">
         <el-col :span="8">
-          <el-input v-model="detailData.detail.info.movie.producer" :disabled="true">
+          <el-input v-model="detailData.info.movie.producer" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="转让方" prop="certificate_name">
         <el-col :span="8">
-          <el-input v-model="detailData.detail.info.user.real_info.certificate_name"
+          <el-input v-model="detailData.info.user.real_info.certificate_name"
                     :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="挂牌份额" prop="share">
         <el-col :span="8">
-          <el-input v-model="detailData.detail.info.share" :disabled="true">
+          <el-input v-model="detailData.info.share" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="挂牌价格" prop="price">
         <el-col :span="8">
-          <el-input v-model="detailData.detail.info.price" :disabled="true">
+          <el-input v-model="detailData.info.price" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="申请时间" prop="created_at">
         <el-col :span="8">
-          <el-input v-model="detailData.detail.info.created_at" :disabled="true">
+          <el-input v-model="detailData.info.created_at" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="挂牌天数" prop="days">
         <el-col :span="8">
-          <el-input v-model="detailData.detail.info.days" :disabled="true">
+          <el-input v-model="detailData.info.days" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="指定受让方名称" prop="transferee_certificate_name">
         <el-col :span="8">
-          <el-input v-model="detailData.detail.info.transferee_certificate_name" :disabled="true">
+          <el-input v-model="detailData.info.transferee_certificate_name" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="指定受让方证件号" prop="transferee_certificate_number">
         <el-col :span="8">
-          <el-input v-model="detailData.detail.info.transferee_certificate_number" :disabled="true">
+          <el-input v-model="detailData.info.transferee_certificate_number" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="挂牌时间" prop="created_at">
         <el-col :span="8">
-          <el-input v-model="detailData.detail.info.created_at" :disabled="true">
+          <el-input v-model="detailData.info.created_at" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
@@ -72,37 +72,37 @@
 
       <el-form-item label="成交时间" prop="updated_at">
         <el-col :span="8">
-          <el-input v-model="detailData.detail.info.updated_at" :disabled="true">
+          <el-input v-model="detailData.info.updated_at" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
-      <el-form-item label="受让方姓名" prop="name" v-if="detailData.detail.info.transferee">
+      <el-form-item label="受让方姓名" prop="name" v-if="detailData.info.transferee">
         <el-col :span="8">
-          <el-input v-model="detailData.detail.info.transferee.name" :disabled="true">
+          <el-input v-model="detailData.info.transferee.name" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
-      <el-form-item label="受让方ID" prop="uid" v-if="detailData.detail.info.transferee">
+      <el-form-item label="受让方ID" prop="uid" v-if="detailData.info.transferee">
         <el-col :span="8">
-          <el-input v-model="detailData.detail.info.transferee.uid" :disabled="true">
+          <el-input v-model="detailData.info.transferee.uid" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="失效时间" prop="updated_at">
         <el-col :span="8">
-          <el-input v-model="detailData.detail.info.updated_at" :disabled="true">
+          <el-input v-model="detailData.info.updated_at" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="驳回时间" prop="updated_at">
         <el-col :span="8">
-          <el-input v-model="detailData.detail.info.updated_at" :disabled="true">
+          <el-input v-model="detailData.info.updated_at" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="驳回理由" prop="operate_comment">
         <el-col :span="8">
-          <el-input v-model="detailData.detail.info.operate_comment" type="textarea"/>
+          <el-input v-model="detailData.info.operate_comment" type="textarea"/>
         </el-col>
       </el-form-item>
       <el-form-item>
@@ -131,7 +131,7 @@
     },
     computed: {
       detailData() {
-        if (this.pDetailData.detail.info.status === 1) {
+        if (this.pDetailData.info.status === 1) {
           this.buttons = [
             {
               type: 'primary',
@@ -208,15 +208,8 @@
               },
             },
           ];
-        } else if (this.pDetailData.info.status === 2) {
-          this.buttons = [
-            //            {
-            //              desc: '返回',
-            //              callback: (...child) => {
-            //                this.handleSubmit.apply(this, [...child]);
-            //              },
-            //            },
-          ];
+        } else if (this.pDetailData.info.status === 2 || this.pDetailData.info.status === 4 || this.pDetailData.info.status === 5) {
+          this.buttons = [];
         } else if (this.pDetailData.info.status === 3) {
           this.buttons = [
             {
@@ -253,24 +246,6 @@
                 });
               },
             },
-            //            {
-            //              desc: '返回',
-            //              callback: (...child) => {
-            //                this.handleSubmit.apply(this, [...child]);
-            //              },
-            //            },
-          ];
-        } else if (this.pDetailData.info.status === 4) {
-          this.buttons = [
-            //            {
-            //              desc: '返回',
-            //              callback: (...child) => {
-            //                this.handleSubmit.apply(this, [...child]);
-            //              },
-            //            },
-          ];
-        } else if (this.pDetailData.info.status === 5) {
-          this.buttons = [
             //            {
             //              desc: '返回',
             //              callback: (...child) => {

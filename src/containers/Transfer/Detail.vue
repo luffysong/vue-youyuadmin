@@ -1,6 +1,6 @@
 <template>
   <div v-if="!detailData.loading">
-    <DetailForm :pDetailData="detailData" :getDetail="getDetail"/>
+    <DetailForm :pDetailData="detailData.detail" :getDetail="getDetail"/>
   </div>
 
 </template>
@@ -11,7 +11,6 @@
 
   export default {
     name: 'TransferDetail',
-    props: {},
     methods: {
       getDetail() {
         const id = this.$route.params.id;
