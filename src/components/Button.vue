@@ -27,22 +27,6 @@
       sendData: Object,
       form: Object,
     },
-    methods: {},
-    computed: {},
-    data() {
-      return {};
-    },
-    mounted() {
-    },
-    created() {
-    },
-    beforeUpdate() {
-    },
-    beforeMount() {
-    },
-    updated() {
-    },
-    components: {},
   };
 
 </script>

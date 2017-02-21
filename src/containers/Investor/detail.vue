@@ -1,23 +1,23 @@
 <template>
-  <div v-if="detailData.info" class="investor-detail">
-    <el-form ref="form" :model="detailData.info" :rules="rules"
+  <div v-if="!detailData.detailLoading" class="investor-detail">
+    <el-form ref="form" :model="detailData.detail.info" :rules="rules"
              label-width="160px">
       <el-form-item label="申请人" prop="certificate_name">
         <el-col :span="8">
-          <el-input v-model="detailData.info.certificate_name" :disabled="true">
+          <el-input v-model="detailData.detail.info.certificate_name" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="证件号" prop="certificate_number">
         <el-col :span="8">
-          <el-input v-model="detailData.info.certificate_number"
+          <el-input v-model="detailData.detail.info.certificate_number"
                     :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="会员类型" prop="member_type">
         <el-col :span="8">
-          <el-select v-model="detailData.info.member_type" placeholder="请选择"
+          <el-select v-model="detailData.detail.info.member_type" placeholder="请选择"
                      :disabled="true">
             <el-option
               v-for="item in memberTypes"
@@ -29,24 +29,24 @@
       </el-form-item>
       <el-form-item label="申请时间" prop="created_at">
         <el-col :span="8">
-          <el-input v-model="detailData.info.created_at" :disabled="true">
+          <el-input v-model="detailData.detail.info.created_at" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="开户类型" prop="identity_type">
         <el-col :span="8">
-          <el-input v-model="detailData.info.identity_type" :disabled="true">
+          <el-input v-model="detailData.detail.info.identity_type" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="个人名片" prop="business_card">
         <el-col :span="8">
           <img class="business_card"
-               :src="detailData.info.business_card"
+               :src="detailData.detail.info.business_card"
                alt="">
         </el-col>
       </el-form-item>
-      <el-form-item v-if="detailData.info.status === 1">
+      <el-form-item v-if="detailData.detail.info.status === 1">
         <el-button type="primary" @click="handlePass">通过</el-button>
         <el-button @click="handleReject">驳回</el-button>
       </el-form-item>
@@ -146,7 +146,7 @@
     },
     computed: {
       detailData() {
-        return this.$store.state.investor.detail;
+        return this.$store.state.investor;
       },
     },
     data() {
@@ -192,16 +192,11 @@
         },
       };
     },
-    mounted() {
-      this.getDetailData();
-    },
-    created() {
-    },
-    beforeUpdate() {
-    },
-    beforeMount() {
-    },
-    updated() {
+    beforeCreate() {
+      this.$store.dispatch(types.INVESTORDETAIL_REQ, {
+        id: this.$route.params.id,
+        sendData: {},
+      });
     },
     components: {
       PopMsg,
