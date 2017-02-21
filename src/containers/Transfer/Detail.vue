@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!detailData.loading">
     <DetailForm :pDetailData="detailData" :getDetail="getDetail"/>
   </div>
 
@@ -15,7 +15,7 @@
     methods: {
       getDetail() {
         const id = this.$route.params.id;
-        this.$store.dispatch(types.TRANSFERDETAIL_REQ, {
+        this.$store.dispatch(types.TRANSFER_DETAIL_REQ, {
           id,
           sendData: {
             id,
@@ -25,23 +25,18 @@
     },
     computed: {
       detailData() {
-        return this.$store.state.transferdetail.detail;
+        return this.$store.state.transferdetail;
       },
     },
-    data() {
-      return {};
-    },
-    mounted() {
+    beforeCreate() {
       this.$store.dispatch(types.HIDE_SIDEBAR);
-      this.getDetail();
-    },
-    created() {
-    },
-    beforeUpdate() {
-    },
-    beforeMount() {
-    },
-    updated() {
+      const id = this.$route.params.id;
+      this.$store.dispatch(types.TRANSFER_DETAIL_REQ, {
+        id,
+        sendData: {
+          id,
+        },
+      });
     },
     components: {
       DetailForm,

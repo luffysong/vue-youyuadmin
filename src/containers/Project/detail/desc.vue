@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="detaildata.id">
+    <div v-if="!detaildata.loading">
       <DescriptionForm :porigindata="detaildata" :pbuttons="buttons"/>
     </div>
     <PopMsg :popMsgConfig="popMsgConfig"/>
@@ -11,7 +11,6 @@
   /**
    * Internal dependencies
    */
-  import _ from 'lodash';
   import * as types from '../../../store/types';
   import server from '../../../store/modules/AjaxServer';
   import DescriptionForm from '../customParts/DescriptionForm';
@@ -21,7 +20,12 @@
     name: 'desc',
     computed: {
       detaildata() {
-        const cObject = _.cloneDeep(this.$store.state.projectdetail.ProjectDetail);
+        return this.$store.state.projectdetail.ProjectDetail;
+      },
+    },
+    watch: {
+      detaildata() {
+        const cObject = this.detaildata;
         if (cObject.status === 10) {
           this.buttons = [
             {
@@ -109,13 +113,10 @@
         } else if (cObject.status === 40) {
           this.buttons = [];
         }
-        return cObject;
       },
     },
     data() {
       return {
-        // 因为是值类型，所以会报出警告;
-        // dialogVisible: false,
         popMsgConfig: {
           dialogVisible: false,
           type: 'alert', // alert | confirm
@@ -153,8 +154,8 @@
       DescriptionForm,
       PopMsg,
     },
-    mounted() {
-      this.$store.dispatch(types.ProjectDetailReq, {
+    beforeCreate() {
+      this.$store.dispatch(types.PROJECT_DETAIL_REQ, {
         id: this.$route.params.id,
       });
     },

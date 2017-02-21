@@ -18,15 +18,7 @@
     methods: {},
     computed: {
       listData() {
-        const data = this.$store.state.projectdetail.ProjectOriginShare;
-        if (data.movie && data.movie.status === 10) {
-          this.buttonsIsHide = false;
-          this.editable = true;
-        } else {
-          this.buttonsIsHide = true;
-          this.editable = false;
-        }
-        return data;
+        return this.$store.state.projectdetail.ProjectOriginShare;
       },
     },
     data() {
@@ -36,9 +28,20 @@
         editable: false,
       };
     },
-    mounted() {
-      this.$store.dispatch(types.PROJECTORIGINSHARE_REQ, {
-        movie_id: this.id,
+    watch: {
+      listData() {
+        if (this.listData.movie && this.listData.movie.status === 10) {
+          this.buttonsIsHide = false;
+          this.editable = true;
+        } else {
+          this.buttonsIsHide = true;
+          this.editable = false;
+        }
+      },
+    },
+    beforeCreate() {
+      this.$store.dispatch(types.PROJECT_ORIGINSHARE_REQ, {
+        movie_id: this.$route.params.id,
       });
     },
     components: {

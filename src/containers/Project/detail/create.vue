@@ -48,16 +48,8 @@
         },
       };
     },
-    mounted() {
+    beforeCreate() {
       this.$store.dispatch(types.HIDE_SIDEBAR);
-    },
-    created() {
-    },
-    beforeUpdate() {
-    },
-    beforeMount() {
-    },
-    updated() {
     },
     components: {
       CreateForm,

@@ -1,5 +1,5 @@
 // Constants of mutation types
-
+/* eslint-disable */
 // Sidebar control
 export const HIDE_SIDEBAR = 'youyu/HIDE_SIDEBAR';
 export const TOGGLE_SIDEBAR = 'youyu/TOGGLE_SIDEBAR';
@@ -11,12 +11,12 @@ export const SET_SIDEBAR_DATA = 'youyu/SET_SIDEBAR_DATA';
 export const ORIGINLIST_REQ = 'ORIGINLIST_REQ';
 export const ORIGINLIST_SUC = 'ORIGINLIST_SUC';
 export const ORIGINLIST_ERR = 'ORIGINLIST_ERR';
-export const ORIGINLIST_DEL = 'ORIGINLIST_DEL';
 
 // 初始份额转让，获取详情数据
 export const ORIGINDETAIL_REQ = 'ORIGINDETAIL_REQ';
 export const ORIGINDETAIL_SUC = 'ORIGINDETAIL_SUC';
 export const ORIGINDETAIL_ERR = 'ORIGINDETAIL_ERR';
+export const ORIGINDETAIL_DEL = 'ORIGINDETAIL_DEL';
 
 // ========================
 
@@ -26,9 +26,9 @@ export const TRANSFERLIST_SUC = 'TRANSFERLIST_SUC';
 export const TRANSFERLIST_ERR = 'TRANSFERLIST_ERR';
 
 // TransferDetail getdata '影视收益权转让管理' 获取详情数据
-export const TRANSFERDETAIL_REQ = 'TRANSFERDETAIL_REQ';
-export const TRANSFERDETAIL_SUC = 'TRANSFERDETAIL_SUC';
-export const TRANSFERDETAIL_ERR = 'TRANSFERDETAIL_ERR';
+export const TRANSFER_DETAIL_REQ = 'TRANSFER_DETAIL_REQ';
+export const TRANSFER_DETAIL_SUC = 'TRANSFER_DETAIL_SUC';
+export const TRANSFER_DETAIL_ERR = 'TRANSFER_DETAIL_ERR';
 
 // =========================
 
@@ -46,21 +46,33 @@ export const PROJECTCREATE_REQ = 'PROJECTCREATE_REQ';
 export const PROJECTCREATE_SUC = 'PROJECTCREATE_SUC';
 export const PROJECTCREATE_ERR = 'PROJECTCREATE_ERR';
 
-// 项目管理 项目详情
-export const ProjectDetailReq = 'ProjectDetailReq';
-export const ProjectDetailSuc = 'ProjectDetailSuc';
-export const ProjectDetailErr = 'ProjectDetailErr';
-export const PROJECTDETAILDEL = 'PROJECTDETAILDEL';
 
-// 项目管理 初始份额登记
-export const PROJECTORIGINSHARE_REQ = 'PROJECTORIGINSHARE_REQ';
-export const PROJECTORIGINSHARE_SUC = 'PROJECTORIGINSHARE_SUC';
-export const PROJECTORIGINSHARE_ERR = 'PROJECTORIGINSHARE_ERR';
+
+
+// 项目管理 项目详情 ok
+export const PROJECT_DETAIL_REQ = 'PROJECT_DETAIL_REQ';
+export const PROJECT_DETAIL_SUC = 'PROJECT_DETAIL_SUC';
+export const PROJECT_DETAIL_ERR = 'PROJECT_DETAIL_ERR';
+export const PROJECT_DETAIL_DEL = 'PROJECT_DETAIL_DEL';
+
+// 项目管理 初始份额登记 ok
+export const PROJECT_ORIGINSHARE_REQ = 'PROJECT_ORIGINSHARE_REQ';
+export const PROJECT_ORIGINSHARE_SUC = 'PROJECT_ORIGINSHARE_SUC';
+export const PROJECT_ORIGINSHARE_ERR = 'PROJECT_ORIGINSHARE_ERR';
+export const PROJECT_ORIGINSHARE_DEL = 'PROJECT_ORIGINSHARE_DEL';
+
+
+
+
+
+
+
+
 
 // 项目管理 可转让初始份额、可转让收益
-export const PROJECTTRANSFERSHARE_REQ = 'PROJECTTRANSFERSHARE_REQ';
-export const PROJECTTRANSFERSHARE_SUC = 'PROJECTTRANSFERSHARE_SUC';
-export const PROJECTTRANSFERSHARE_ERR = 'PROJECTTRANSFERSHARE_ERR';
+export const PROJECT_TRANSFERSHARE_REQ = 'PROJECT_TRANSFERSHARE_REQ';
+export const PROJECT_TRANSFERSHARE_SUC = 'PROJECT_TRANSFERSHARE_SUC';
+export const PROJECT_TRANSFERSHARE_ERR = 'PROJECT_TRANSFERSHARE_ERR';
 // getter 可转让初始份额
 export const PROJECTTRANSFERSHARE_GET = 'PROJECTTRANSFERSHARE_GET';
 // getter 可转让收益

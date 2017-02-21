@@ -13,15 +13,15 @@ const initialState = {
 // };
 
 const actions = {
-  [types.TRANSFERDETAIL_REQ]({ commit }, params) {
+  [types.TRANSFER_DETAIL_REQ]({ commit }, params) {
     const { id, sendData } = params;
-    commit(types.TRANSFERDETAIL_REQ);
+    commit(types.TRANSFER_DETAIL_REQ);
     server.getQuotedDetail({
       id,
       sendData,
     }).then((res) => {
       if (res.body.code === 0) {
-        commit(types.TRANSFERDETAIL_SUC, {
+        commit(types.TRANSFER_DETAIL_SUC, {
           resdata: res.body.data,
         });
       }
@@ -30,14 +30,14 @@ const actions = {
 };
 
 const mutations = {
-  [types.TRANSFERDETAIL_REQ](state) {
+  [types.TRANSFER_DETAIL_REQ](state) {
     state.loading = true;
   },
-  [types.TRANSFERDETAIL_SUC](state, data) {
+  [types.TRANSFER_DETAIL_SUC](state, data) {
     state.loading = false;
     state.detail = data.resdata;
   },
-  [types.TRANSFERDETAIL_ERR](state, data) {
+  [types.TRANSFER_DETAIL_ERR](state, data) {
     state.loading = false;
     state.data = data;
   },

@@ -29,13 +29,13 @@
       </el-form-item>
       <el-form-item label="原始份额" prop="share">
         <el-col :span="8">
-          <el-input v-model="detailData.info.asset.share" :disabled="true">
+          <el-input :value="detailData.info.asset.share*100" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="现持有原始份额" prop="share">
         <el-col :span="8">
-          <el-input v-model="detailData.info.asset.share"
+          <el-input :value="detailData.info.asset.share*100"
                     :disabled="true">
           </el-input>
         </el-col>
@@ -193,14 +193,7 @@
             },
           ];
         } else if (this.pDetailData.info.status === 2) {
-          this.buttons = [
-            //            {
-            //              desc: '返回',
-            //              callback: (...child) => {
-            //                this.handleSubmit.apply(this, [...child]);
-            //              },
-            //            },
-          ];
+          this.buttons = [];
         } else if (this.pDetailData.info.status === 3) {
           this.buttons = [
             {
@@ -237,31 +230,11 @@
                 });
               },
             },
-            //            {
-            //              desc: '返回',
-            //              callback: (...child) => {
-            //                this.handleSubmit.apply(this, [...child]);
-            //              },
-            //            },
           ];
         } else if (this.pDetailData.info.status === 4) {
-          this.buttons = [
-            //            {
-            //              desc: '返回',
-            //              callback: (...child) => {
-            //                this.handleSubmit.apply(this, [...child]);
-            //              },
-            //            },
-          ];
+          this.buttons = [];
         } else if (this.pDetailData.info.status === 5) {
-          this.buttons = [
-            //            {
-            //              desc: '返回',
-            //              callback: (...child) => {
-            //                this.handleSubmit.apply(this, [...child]);
-            //              },
-            //            },
-          ];
+          this.buttons = [];
         }
         return this.pDetailData;
       },

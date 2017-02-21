@@ -36,14 +36,6 @@
       this.$store.dispatch(types.HIDE_SIDEBAR);
       this.getDetail();
     },
-    created() {
-    },
-    beforeUpdate() {
-    },
-    beforeMount() {
-    },
-    updated() {
-    },
     components: {
       DetailForm,
     },

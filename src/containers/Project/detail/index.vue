@@ -11,27 +11,10 @@
 
   export default {
     name: 'detailindex',
-    props: {},
-    methods: {},
     computed: {
       hideNav() {
         return this.$route.name === 'ProjectCreate';
       },
-    },
-    data() {
-      return {
-      };
-    },
-    mounted() {
-      // this.$store.dispatch(types.HIDE_SIDEBAR);
-    },
-    created() {
-    },
-    beforeUpdate() {
-    },
-    beforeMount() {
-    },
-    updated() {
     },
     components: {
       DetailNav,

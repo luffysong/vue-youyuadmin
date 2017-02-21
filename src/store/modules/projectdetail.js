@@ -5,22 +5,18 @@ import server from './AjaxServer';
 const initialState = {
   ProjectDetail: {
     loading: false,
-    data: {},
   },
   ProjectOriginShare: {
     loading: false,
   },
   ProjectTransferShare: {
     loading: false,
-    list: [],
   },
   ProjectTransferEarn: {
     loading: false,
-    list: [],
   },
   ProjectProgress: {
     loading: false,
-    list: [],
   },
 };
 
@@ -33,40 +29,41 @@ const getters = {
 
 const actions = {
   // 获取项目描述详情detail 数据
-  [types.ProjectDetailReq]({ commit }, params) {
-    commit(types.ProjectDetailReq);
+  [types.PROJECT_DETAIL_REQ]({ commit }, params) {
+    commit(types.PROJECT_DETAIL_REQ);
     server.getProjectDetail({
       id: params.id,
     }).then((data) => {
-      if (data.body.code === 0) {
-        commit(types.ProjectDetailSuc, {
-          data: data.body.data,
-        });
-      }
+      commit(types.PROJECT_DETAIL_SUC, {
+        data: data.body.data,
+      });
     }, (data) => {
-      commit(types.ProjectDetailErr, data);
+      commit(types.PROJECT_DETAIL_ERR, data);
     });
   },
   // 表单组件销毁时，清理数据
-  [types.PROJECTDETAILDEL]({ commit }) {
-    commit(types.PROJECTDETAILDEL);
+  [types.PROJECT_DETAIL_DEL]({ commit }) {
+    commit(types.PROJECT_DETAIL_DEL);
   },
-  // 获取项目“初始份额登记”list
-  [types.PROJECTORIGINSHARE_REQ]({ commit }, params) {
-    commit(types.PROJECTORIGINSHARE_REQ);
+
+  // 项目详情 “初始份额登记”
+  [types.PROJECT_ORIGINSHARE_REQ]({ commit }, params) {
+    commit(types.PROJECT_ORIGINSHARE_REQ);
+    const { movie_id } = params;
     server.getOriginShareList({
       sendData: {
-        movie_id: params.movie_id,
+        movie_id,
       },
     }).then((res) => {
       if (res.body.code === 0) {
-        commit(types.PROJECTORIGINSHARE_SUC, res.body.data);
+        commit(types.PROJECT_ORIGINSHARE_SUC, res.body.data);
       }
     }, () => {
     });
   },
+
   // 获取“可转让初始份额、可转让收益”list
-  [types.PROJECTTRANSFERSHARE_REQ]({ commit }, params) {
+  [types.PROJECT_TRANSFERSHARE_REQ]({ commit }, params) {
     commit(types.PROJECTTRANSFERSHARE_REQ, params);
     server.getAssetsList({
       sendData: params.sendData,
@@ -103,31 +100,44 @@ const ENUM = {
 };
 const mutations = {
   // 获取项目描述详情detail 数据
-  [types.ProjectDetailReq](state) {
-    state.loading = true;
+  [types.PROJECT_DETAIL_REQ](state) {
+    state.ProjectDetail.loading = true;
   },
-  [types.ProjectDetailSuc](state, data) {
-    state.loading = false;
-    state.ProjectDetail = data.data;
+  [types.PROJECT_DETAIL_SUC](state, params) {
+    const { data } = params;
+    state.ProjectDetail.loading = false;
+    state.ProjectDetail = {
+      ...state.ProjectDetail,
+      ...data,
+    };
   },
-  [types.ProjectDetailErr](state, data) {
-    state.loading = false;
-    state.ProjectDetail = data;
+  [types.PROJECT_DETAIL_ERR](state, err) {
+    state.ProjectDetail = {
+      ...err,
+      loading: false,
+    };
   },
   // 表单组件销毁时，清理数据
-  [types.PROJECTDETAILDEL](state) {
-    state.ProjectDetail = {};
+  [types.PROJECT_DETAIL_DEL](state) {
+    state.ProjectDetail = {
+      loading: false,
+    };
   },
 
-  // 获取项目原始份额list
-  [types.PROJECTORIGINSHARE_REQ](state) {
+  // 项目详情 初始份额登记 project origin share
+  [types.PROJECT_ORIGINSHARE_REQ](state) {
     state.ProjectOriginShare.loading = true;
   },
-  [types.PROJECTORIGINSHARE_SUC](state, data) {
+  [types.PROJECT_ORIGINSHARE_SUC](state, data) {
     state.ProjectOriginShare = data;
   },
-  [types.PROJECTORIGINSHARE_ERR](state, data) {
+  [types.PROJECT_ORIGINSHARE_ERR](state, data) {
     state.ProjectOriginShare = data;
+  },
+  [types.PROJECT_ORIGINSHARE_DEL](state) {
+    state.ProjectOriginShare = {
+      loading: false,
+    };
   },
 
   // 获取可转让初始份额list
