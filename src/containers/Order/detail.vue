@@ -88,6 +88,7 @@
   </div>
 </template>
 <script>
+  import _ from 'lodash';
   import * as types from '../../store/types';
   import Buttons from '../../components/Button';
   import server from '../../store/modules/AjaxServer';
@@ -95,29 +96,96 @@
 
   export default {
     name: 'OrderDetail',
+    methods: {
+      getDetail() {
+        this.$store.dispatch(types.ORDERDETAIL_REQ, {
+          id: this.$route.params.id,
+          sendData: {},
+          callback: (data) => {
+            this.form = data;
+          },
+        });
+      },
+      closeOrder() {
+        _.assign(this.popMsgConfig, this.popDefault, {
+          dialogVisible: true,
+          title: '操作提示',
+          desc: '确定关闭订单？',
+          type: 'confirm',
+          sureCallback: () => {
+            server.closeOrder({
+              id: this.$route.params.id,
+            }).then((res) => {
+              if (res.body.code === 0) {
+                _.assign(this.popMsgConfig, this.popDefault, {
+                  dialogVisible: true,
+                  type: 'alert',
+                  title: '项目操作',
+                  desc: '操作成功',
+                  sureCallback: () => {
+                    this.popMsgConfig.dialogVisible = false;
+                    this.getDetail();
+                  },
+                });
+              }
+            });
+            this.popMsgConfig.dialogVisible = false;
+          },
+        });
+      },
+      openBalance() {
+        _.assign(this.popMsgConfig, this.popDefault, {
+          dialogVisible: true,
+          title: '操作提示',
+          desc: '确定打开剩余款？',
+          type: 'confirm',
+          sureCallback: () => {
+            server.openBalanceOrder({
+              id: this.$route.params.id,
+            }).then((res) => {
+              if (res.body.code === 0) {
+                _.assign(this.popMsgConfig, this.popDefault, {
+                  dialogVisible: true,
+                  type: 'alert',
+                  title: '项目操作',
+                  desc: '操作成功',
+                  sureCallback: () => {
+                    this.popMsgConfig.dialogVisible = false;
+                    this.getDetail();
+                  },
+                });
+              }
+            });
+            this.popMsgConfig.dialogVisible = false;
+          },
+        });
+      },
+    },
     watch: {
       form() {
-        if (this.form.status === 10 || this.form.status === 20 || this.form.status === 30) {
+        if (this.form.status === 10 || this.form.status === 30) {
           this.buttonData = [
             {
-              type: 'primary',
+              type: 'danger',
               desc: '关闭订单',
-              callback: () => {
-                server.closeOrder({
-                  id: this.$route.params.id,
-                });
-              },
+              callback: this.closeOrder,
+            },
+          ];
+        } else if (this.form.status === 20) {
+          this.buttonData = [
+            {
+              type: 'danger',
+              desc: '关闭订单',
+              callback: this.closeOrder,
             },
             {
               type: 'primary',
               desc: '开启剩余款',
-              callback: () => {
-                server.openBalanceOrder({
-                  id: this.$route.params.id,
-                });
-              },
+              callback: this.openBalance,
             },
           ];
+        } else {
+          this.buttonData = [];
         }
       },
     },
@@ -178,6 +246,7 @@
             this.popMsgConfig.dialogVisible = false;
           },
         },
+        popDefault: _.cloneDeep(this.popMsgConfig),
       };
     },
     beforeCreate() {

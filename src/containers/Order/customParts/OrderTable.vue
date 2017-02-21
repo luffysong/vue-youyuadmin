@@ -26,18 +26,18 @@
       </el-table-column>
       <el-table-column
         align="center"
-        prop="bill"
+        prop="status"
         label="支付状态"
         inline-template
         width="200">
         <ul class="split">
-          <li>{{row.bill.trade_deposit.type | tradeStatus}}</li>
-          <li>{{row.bill.trade_balance.type | tradeStatus}}</li>
+          <li>{{row.bill.trade_deposit.status | tradeStatus}}</li>
+          <li>{{row.bill.trade_balance.status | tradeStatus}}</li>
         </ul>
       </el-table-column>
       <el-table-column
         align="center"
-        prop="bill"
+        prop="type"
         label="类型"
         inline-template
         width="200">
