@@ -122,7 +122,6 @@
 
 <script>
   import _ from 'lodash';
-  import * as types from '../../../store/types';
   import Upload from '../../../components/Upload';
 
   export default {
@@ -241,9 +240,6 @@
         }
         return cs[0];
       },
-    },
-    destroyed() {
-      this.$store.dispatch(types.PROJECTDETAILDEL);
     },
     components: {
       Upload,
