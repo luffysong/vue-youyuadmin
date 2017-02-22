@@ -65,6 +65,7 @@
    * Internal dependencies
    */
   import _ from 'lodash';
+  import { moneyMul } from '../../../utils/math';
   import NewShareFormPop from './NewShareFormPop';
   import server from '../../../store/modules/AjaxServer';
 
@@ -88,8 +89,7 @@
         localdata: (() => {
           const data = _.cloneDeep(this.poriginData);
           data.list.forEach((el) => {
-            el.share *= 100;
-            el.share = el.share.toFixed(2);
+            el.share = moneyMul(el.share, 100);
           });
           return data;
         })(),
