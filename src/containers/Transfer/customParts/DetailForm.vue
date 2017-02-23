@@ -150,15 +150,14 @@
                       },
                     }).then((res) => {
                       if (res.body.code === 0) {
+                        this.getDetail();
                         _.assign(this.popMsgConfig, this.popDefault, {
                           dialogVisible: true,
                           title: '项目操作',
                           desc: '操作成功',
                           sureCallback: () => {
                             this.popMsgConfig.dialogVisible = false;
-                            this.getDetail();
                           },
-
                         });
                       }
                     });
@@ -184,15 +183,14 @@
                       },
                     }).then((res) => {
                       if (res.body.code === 0) {
+                        this.getDetail();
                         _.assign(this.popMsgConfig, this.popDefault, {
                           dialogVisible: true,
                           title: '项目操作',
                           desc: '操作成功',
                           sureCallback: () => {
                             this.popMsgConfig.dialogVisible = false;
-                            this.getDetail();
                           },
-
                         });
                       }
                     });
@@ -229,15 +227,14 @@
                       },
                     }).then((res) => {
                       if (res.body.code === 0) {
+                        this.getDetail();
                         _.assign(this.popMsgConfig, this.popDefault, {
                           dialogVisible: true,
                           title: '项目操作',
                           desc: '操作成功',
                           sureCallback: () => {
                             this.popMsgConfig.dialogVisible = false;
-                            this.getDetail();
                           },
-
                         });
                       }
                     });
@@ -246,12 +243,6 @@
                 });
               },
             },
-            //            {
-            //              desc: '返回',
-            //              callback: (...child) => {
-            //                this.handleSubmit.apply(this, [...child]);
-            //              },
-            //            },
           ];
         }
         return this.pDetailData;

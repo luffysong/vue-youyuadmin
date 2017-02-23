@@ -117,6 +117,7 @@
               id: this.$route.params.id,
             }).then((res) => {
               if (res.body.code === 0) {
+                this.getDetail();
                 _.assign(this.popMsgConfig, this.popDefault, {
                   dialogVisible: true,
                   type: 'alert',
@@ -124,7 +125,6 @@
                   desc: '操作成功',
                   sureCallback: () => {
                     this.popMsgConfig.dialogVisible = false;
-                    this.getDetail();
                   },
                 });
               }
@@ -144,6 +144,7 @@
               id: this.$route.params.id,
             }).then((res) => {
               if (res.body.code === 0) {
+                this.getDetail();
                 _.assign(this.popMsgConfig, this.popDefault, {
                   dialogVisible: true,
                   type: 'alert',
@@ -151,7 +152,6 @@
                   desc: '操作成功',
                   sureCallback: () => {
                     this.popMsgConfig.dialogVisible = false;
-                    this.getDetail();
                   },
                 });
               }

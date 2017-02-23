@@ -107,12 +107,12 @@
               sendData: {},
             }).then((res) => {
               if (res.body.code === 0) {
+                this.getDetail();
                 _.assign(this.popMsgConfig, this.popDefault, {
                   dialogVisible: true,
                   title: '已付款确认操作',
                   desc: '操作成功',
                   sureCallback: () => {
-                    this.getDetail();
                     this.popMsgConfig.dialogVisible = false;
                   },
                 });

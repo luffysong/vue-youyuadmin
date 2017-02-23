@@ -112,13 +112,13 @@
               },
             }).then((res) => {
               if (res.body.code === 0) {
+                this.getDetailData();
                 _.assign(this.popMsgConfig, this.popDefault, {
                   dialogVisible: true,
                   title: '用户驳回操作',
                   desc: '操作成功',
                   sureCallback: () => {
                     this.popMsgConfig.dialogVisible = false;
-                    this.getDetailData();
                   },
 
                 });
@@ -142,13 +142,13 @@
               },
             }).then((res) => {
               if (res.body.code === 0) {
+                this.getDetailData();
                 _.assign(this.popMsgConfig, this.popDefault, {
                   dialogVisible: true,
                   title: '用户通过操作',
                   desc: '操作成功',
                   sureCallback: () => {
                     this.popMsgConfig.dialogVisible = false;
-                    this.getDetailData();
                   },
                 });
               }
