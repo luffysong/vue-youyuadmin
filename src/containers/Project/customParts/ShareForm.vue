@@ -84,7 +84,6 @@
     },
     computed: {},
     data() {
-      console.log(this.buttonsIsHide);
       return {
         radio: 1,
         localdata: (() => {

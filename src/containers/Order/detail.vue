@@ -36,6 +36,9 @@
         <el-form-item label="关闭时间">
           <el-input v-model="form.failure_time" disabled></el-input>
         </el-form-item>
+        <el-form-item label="认购陈述">
+          <el-input type="textarea.reason" v-model="form.reason" disabled></el-input>
+        </el-form-item>
       </div>
 
       <div class="deposit-bill">

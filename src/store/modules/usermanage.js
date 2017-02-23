@@ -42,7 +42,6 @@ const mutations = {
     state.listLoading = true;
   },
   [types.USER_MANAGER_SUC](state, data) {
-    console.log('manage', data.resdata);
     state.listLoading = false;
     state.userlist = data.resdata;
   },

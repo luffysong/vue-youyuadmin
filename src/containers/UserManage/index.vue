@@ -79,7 +79,6 @@ export default {
       const data = this.$store.state.usermanage;
       let copy;
       if (data.userlist) {
-        console.log(data.userlist, 'ddd');
         copy = _.cloneDeep(data);
         const arr = copy.userlist.data;
         arr.forEach((el) => {
