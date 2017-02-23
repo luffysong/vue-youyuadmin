@@ -35,7 +35,7 @@
       </el-form-item>
       <el-form-item label="开户类型" prop="identity_type">
         <el-col :span="8">
-          <el-input v-model="detailData.detail.info.identity_type" :disabled="true">
+          <el-input :value="detailData.detail.info.identity_type | identityTransfer" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>

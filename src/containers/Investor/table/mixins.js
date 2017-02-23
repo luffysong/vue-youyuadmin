@@ -7,6 +7,14 @@ export default {
       const type = dict.state.member_type;
       return type[cs];
     },
+    identityTransfer(cs) {
+      const type = dict.state.identity_type;
+      return type[cs];
+    },
+    statusTransfer(cs) {
+      const type = dict.state.member_status;
+      return type[cs];
+    },
   },
   methods: {
     pageChange(cur) {

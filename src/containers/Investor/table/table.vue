@@ -28,6 +28,19 @@
         width="200">
       </el-table-column>
       <el-table-column
+        prop="updated_at"
+        label="操作时间"
+        width="200">
+      </el-table-column>
+      <el-table-column
+        label="状态"
+        width="200"
+        inline-template>
+        <div>
+          {{row.status | statusTransfer}}
+        </div>
+      </el-table-column>
+      <el-table-column
         fixed="right"
         inline-template
         align="center"
