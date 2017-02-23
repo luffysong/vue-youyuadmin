@@ -8,6 +8,7 @@
     <el-menu-item index="/order">订单管理</el-menu-item>
     <el-menu-item index="/trade">收款管理</el-menu-item>
     <el-menu-item index="/refund">退款管理</el-menu-item>
+    <el-menu-item index="/usermanage">用户管理</el-menu-item>
   </el-menu>
 </template>
 

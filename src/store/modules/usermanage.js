@@ -10,12 +10,12 @@ const actions = {
   // 获取用户列表
   [types.USER_MANAGER_REQ]({ commit }, params) {
     const { sendData } = params;
-    commit(types.USER_MANAGER_CHANGE_REQ);
+    commit(types.USER_MANAGER_REQ);
     server.getUserManage({
       sendData,
     }).then((res) => {
       if (res.body.code === 0) {
-        commit(types.USER_MANAGER_CHANGE_SUC, {
+        commit(types.USER_MANAGER_SUC, {
           resdata: res.body.data,
         });
       }
