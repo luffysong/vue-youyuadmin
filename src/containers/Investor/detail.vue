@@ -135,24 +135,24 @@
           desc: '确定批准该用户成为投资人？',
           type: 'confirm',
           sureCallback: () => {
-            // server.changeUser({
-            //   id: this.$route.params.id,
-            //   sendData: {
-            //     status: 2,
-            //   },
-            // }).then((res) => {
-            //   if (res.body.code === 0) {
-            //     _.assign(this.popMsgConfig, this.popDefault, {
-            //       dialogVisible: true,
-            //       title: '用户通过操作',
-            //       desc: '操作成功',
-            //       sureCallback: () => {
-            //         this.popMsgConfig.dialogVisible = false;
-            //         this.getDetailData();
-            //       },
-            //     });
-            //   }
-            // });
+            server.changeUser({
+              id: this.$route.params.id,
+              sendData: {
+                status: 2,
+              },
+            }).then((res) => {
+              if (res.body.code === 0) {
+                _.assign(this.popMsgConfig, this.popDefault, {
+                  dialogVisible: true,
+                  title: '用户通过操作',
+                  desc: '操作成功',
+                  sureCallback: () => {
+                    this.popMsgConfig.dialogVisible = false;
+                    this.getDetailData();
+                  },
+                });
+              }
+            });
             this.popMsgConfig.dialogVisible = false;
           },
         });
