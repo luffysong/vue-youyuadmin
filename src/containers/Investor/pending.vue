@@ -43,7 +43,7 @@
             },
             {
               value: 'certificate_name',
-              label: '证件名称',
+              label: '名称',
             },
             {
               value: 'certificate_type',

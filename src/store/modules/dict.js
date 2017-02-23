@@ -1,7 +1,5 @@
 /* eslint-disable */
 const initialState = {
-    "code": 0,
-    "data": {
         "movie_status": {
             "10": "草稿 ",
             "20": "已上线",
@@ -98,7 +96,6 @@ const initialState = {
             "2": "下单购买所得",
             "3": "挂牌卖出"
         }
-    }
 };
 export default {
   state: initialState,
