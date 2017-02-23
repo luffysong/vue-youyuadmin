@@ -20,10 +20,8 @@
     watch: {
       listData() {
         if (this.listData.movie && this.listData.movie.status === 10) {
-          this.buttonsIsHide = false;
           this.editable = true;
         } else {
-          this.buttonsIsHide = true;
           this.editable = false;
         }
       },
@@ -31,7 +29,7 @@
     data() {
       return {
         id: this.$route.params.id,
-        buttonsIsHide: false,
+        buttonsIsHide: true,
         editable: false,
       };
     },

@@ -15,7 +15,6 @@ function ajax(method, ...params) {
           location.href = res.body.redirect; // eslint-disable-line
           return false;
         }
-        console.log(new Date());
         if (res.body.code !== 0) {
           message({
             showClose: true,
@@ -364,6 +363,27 @@ const server = {
   changeUser(params) {
     const { id, sendData } = params;
     return ajax('put', `${config.apiBase}/api/audit/user-real-info/${id}`, sendData, {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      emulateJSON: true,
+    });
+  },
+  // 用户管理，获取用户list
+  getUserManage(params) {
+    const { sendData } = params;
+    return ajax('get', `${config.apiBase}/api/system/user`, {
+      params: sendData,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      emulateJSON: true,
+    });
+  },
+  // 用户管理，修改用户激活状态
+  putUserActiveStatus(params) {
+    const { id, sendData } = params;
+    return ajax('put', `${config.apiBase}/api/system/user/${id}`, sendData, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },

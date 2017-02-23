@@ -39,10 +39,17 @@
           </el-input>
         </el-col>
       </el-form-item>
-      <el-form-item label="个人名片" prop="business_card">
+      <el-form-item label="身份证复印件" prop="copies_identity_card">
         <el-col :span="8">
           <img class="business_card"
-               :src="detailData.detail.info.business_card"
+               :src="detailData.detail.info.copies_identity_card"
+               alt="">
+        </el-col>
+      </el-form-item>
+      <el-form-item label="个人名片" prop="copies_ic_business_license">
+        <el-col :span="8">
+          <img class="business_card"
+               :src="detailData.detail.info.copies_ic_business_license"
                alt="">
         </el-col>
       </el-form-item>

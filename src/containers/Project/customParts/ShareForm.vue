@@ -40,12 +40,12 @@
             </el-input>
           </el-col>
         </el-form-item>
-        <el-button v-if="buttonsIsHide" type="danger" @click="del(index)">删除
+        <el-button v-if="!buttonsIsHide" type="danger" @click="del(index)">删除
         </el-button>
 
       </div>
 
-      <div class="whole-form-operate" v-if="buttonsIsHide">
+      <div class="whole-form-operate" v-if="!buttonsIsHide">
         <el-form-item>
           <el-button type="primary" @click="addShare">新建份额</el-button>
           <el-button type="primary" @click="handleSubmit">保存</el-button>
@@ -84,6 +84,7 @@
     },
     computed: {},
     data() {
+      console.log(this.buttonsIsHide);
       return {
         radio: 1,
         localdata: (() => {

@@ -24,6 +24,7 @@ import order from './modules/order';
 import tradelist from './modules/tradelist';
 import tradedetail from './modules/tradedetail';
 import investor from './modules/investor';
+import usermanage from './modules/usermanage';
 
 Vue.use(Vuex);
 
@@ -46,6 +47,7 @@ const store = new Vuex.Store({
     tradelist,
     tradedetail,
     investor,
+    usermanage,
   },
   strict: debug,
   plugins: debug ? [createLogger()] : [],

@@ -361,4 +361,10 @@ export default [
       },
     ],
   },
+  // 用户管理
+  {
+    name: 'UserManage',
+    path: '/usermanage',
+    component: resolve => require(['../containers/UserManage/index'], resolve), // eslint-disable-line
+  },
 ];
