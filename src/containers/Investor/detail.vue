@@ -46,10 +46,17 @@
                alt="">
         </el-col>
       </el-form-item>
-      <el-form-item label="个人名片" prop="copies_ic_business_license">
+      <el-form-item label="营业执照" prop="copies_ic_business_license">
         <el-col :span="8">
           <img class="business_card"
                :src="detailData.detail.info.copies_ic_business_license"
+               alt="">
+        </el-col>
+      </el-form-item>
+      <el-form-item label="个人名片" prop="business_card">
+        <el-col :span="8">
+          <img class="business_card"
+               :src="detailData.detail.info.business_card"
                alt="">
         </el-col>
       </el-form-item>
@@ -110,8 +117,8 @@
                   title: '用户驳回操作',
                   desc: '操作成功',
                   sureCallback: () => {
-                    this.getDetailData();
                     this.popMsgConfig.dialogVisible = false;
+                    this.getDetailData();
                   },
 
                 });
@@ -128,24 +135,24 @@
           desc: '确定批准该用户成为投资人？',
           type: 'confirm',
           sureCallback: () => {
-            server.changeUser({
-              id: this.$route.params.id,
-              sendData: {
-                status: 2,
-              },
-            }).then((res) => {
-              if (res.body.code === 0) {
-                _.assign(this.popMsgConfig, this.popDefault, {
-                  dialogVisible: true,
-                  title: '用户通过操作',
-                  desc: '操作成功',
-                  sureCallback: () => {
-                    this.getDetailData();
-                    this.popMsgConfig.dialogVisible = false;
-                  },
-                });
-              }
-            });
+            // server.changeUser({
+            //   id: this.$route.params.id,
+            //   sendData: {
+            //     status: 2,
+            //   },
+            // }).then((res) => {
+            //   if (res.body.code === 0) {
+            //     _.assign(this.popMsgConfig, this.popDefault, {
+            //       dialogVisible: true,
+            //       title: '用户通过操作',
+            //       desc: '操作成功',
+            //       sureCallback: () => {
+            //         this.popMsgConfig.dialogVisible = false;
+            //         this.getDetailData();
+            //       },
+            //     });
+            //   }
+            // });
             this.popMsgConfig.dialogVisible = false;
           },
         });
