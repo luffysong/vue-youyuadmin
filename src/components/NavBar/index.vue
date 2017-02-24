@@ -1,5 +1,5 @@
 <template>
-  <el-menu theme="dark" :default-active="$route.path" class="admin-nav-bar" mode="horizontal"
+  <el-menu theme="dark" :default-active="activeIndex" class="admin-nav-bar" mode="horizontal"
     :router="true">
     <a class="logo" href="/">
       <img :src="require('./imgs/logo.svg')" alt="LOGO" />
@@ -14,6 +14,22 @@
     <el-menu-item index="/usermanage">用户管理</el-menu-item>
   </el-menu>
 </template>
+
+<script>
+  export default {
+    name: 'NavBar',
+    data() {
+      return {
+        activeIndex: this.$route.path,
+      };
+    },
+    watch: {
+      $route(to) {
+        this.activeIndex = `/${to.path.split('/')[1]}`;
+      },
+    },
+  };
+</script>
 
 <style lang="less" scoped>
 .admin-nav-bar {
