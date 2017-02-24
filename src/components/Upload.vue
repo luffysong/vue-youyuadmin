@@ -3,9 +3,9 @@
     <div v-if="!pDisabled">
       <el-upload
         :action="action"
-        type="drag"
-        :default-file-list="fileList"
-        :show-upload-list=false
+        drag
+        :file-list="fileList"
+        :show-file-list=false
         :data="dataParams"
         :multiple="false"
         :on-progress="handleProgress"
