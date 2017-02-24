@@ -1,6 +1,9 @@
 <template>
-  <el-menu :default-active="$route.path" class="admin-nav-bar" mode="horizontal"
+  <el-menu theme="dark" :default-active="$route.path" class="admin-nav-bar" mode="horizontal"
     :router="true">
+    <a class="logo" href="/">
+      <img :src="require('./imgs/logo.svg')" alt="LOGO" />
+    </a>
     <el-menu-item index="/project">项目管理</el-menu-item>
     <el-menu-item index="/original">初始份额转让管理</el-menu-item>
     <el-menu-item index="/transfer">影视收益权转让管理</el-menu-item>
@@ -18,6 +21,19 @@
   top: 0;
   left: 0;
   right: 0;
+  padding-left: 180px;
   z-index: 999;
+
+  .logo {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    display: block;
+    width: 120px;
+
+    img {
+      width: 100%;
+    }
+  }
 }
 </style>
