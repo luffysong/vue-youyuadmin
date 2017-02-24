@@ -87,7 +87,7 @@
         <el-select v-model="origindata.stage" placeholder="项目阶段"
                    :disabled="origindata.status !== 10"
                    @change="changes">
-          <el-option v-for="it in dict.stage"
+          <el-option v-for="it in dict"
                      :label="it.label" :value="it.value"></el-option>
         </el-select>
       </el-col>
@@ -148,7 +148,28 @@
     },
     data() {
       return {
-        dict: _.cloneDeep(this.$store.state.dict),
+        dict: [
+          {
+            label: '策划筹备期',
+            value: 10,
+          },
+          {
+            label: '拍摄制作期',
+            value: 20,
+          },
+          {
+            label: '宣传期',
+            value: 30,
+          },
+          {
+            label: '上映期',
+            value: 40,
+          },
+          {
+            label: '回款期',
+            value: 50,
+          },
+        ],
         origindata: (() => {
           const data = _.cloneDeep(this.porigindata);
           data.transferable_ratio *= 100;

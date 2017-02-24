@@ -77,7 +77,7 @@
           <el-select v-model="pOriginData.stage" placeholder="项目阶段"
                      @change="changeProjectStage">
             <el-option v-for="it in dict"
-                       :label="it.label" :value="it.value"></el-option>
+                       :label="it.label" :value="Number(it.value)"></el-option>
           </el-select>
         </el-col>
       </el-form-item>
@@ -127,11 +127,11 @@
         dict: [
           {
             label: '策划筹备期',
-            value: 10,
+            value: '10',
           },
           {
             label: '拍摄制作期',
-            value: 20,
+            value: '20',
           },
           {
             label: '宣传期',
