@@ -1,10 +1,5 @@
 export default [
   {
-    name: 'Demo',
-    path: '/demo',
-    component: resolve => require(['../containers/Demo/demo'], resolve), // eslint-disable-line
-  },
-  {
     // 项目管理
     name: 'Project',
     meta: {
