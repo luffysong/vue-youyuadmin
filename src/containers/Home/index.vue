@@ -23,18 +23,18 @@ export default {
           sub: [
             {
               name: '新建项目',
-              link: '/project/create',
+              link: '/project/detail/create',
               icon: 'plus',
             },
             {
-              name: '项目登记',
-              link: '/project/register',
+              name: '项目列表',
+              link: '/project/list',
               icon: 'document',
             },
           ],
         },
         {
-          name: '初始份额转让',
+          name: '初始份额',
           link: '/original',
           icon: 'menu',
           type: 'item',
@@ -54,19 +54,19 @@ export default {
         {
           name: '订单管理',
           link: '/order',
-          icon: 'more',
+          icon: 'message',
           type: 'item',
         },
         {
           name: '收款管理',
           link: '/trade',
-          icon: 'more',
+          icon: 'check',
           type: 'item',
         },
         {
           name: '退款管理',
           link: '/refund',
-          icon: 'more',
+          icon: 'upload2',
           type: 'item',
         },
       ],
