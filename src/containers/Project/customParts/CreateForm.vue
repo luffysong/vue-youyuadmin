@@ -76,7 +76,7 @@
         <el-col :span="8">
           <el-select v-model="pOriginData.stage" placeholder="项目阶段"
                      @change="changeProjectStage">
-            <el-option v-for="it in dict.stage"
+            <el-option v-for="it in dict"
                        :label="it.label" :value="it.value"></el-option>
           </el-select>
         </el-col>
@@ -112,6 +112,7 @@
 <script>
   import Upload from '../../../components/Upload';
   import Buttons from '../../../components/Button';
+  // import dict from '../../../store/modules/dict';
 
   export default {
     name: 'CreateForm',
@@ -123,7 +124,28 @@
     },
     data() {
       return {
-        dict: this.$store.state.dict,
+        dict: [
+          {
+            label: '策划筹备期',
+            value: 10,
+          },
+          {
+            label: '拍摄制作期',
+            value: 20,
+          },
+          {
+            label: '宣传期',
+            value: 30,
+          },
+          {
+            label: '上映期',
+            value: 40,
+          },
+          {
+            label: '回款期',
+            value: 50,
+          },
+        ],
         buttonData: (() => {
           const params = [];
           params.push({

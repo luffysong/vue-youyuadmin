@@ -234,5 +234,6 @@
 
   .el-dragger .el-icon-upload {
     margin: 10px 0;
+    font-size: 66px;
   }
 </style>
