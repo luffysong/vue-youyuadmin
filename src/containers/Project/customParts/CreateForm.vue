@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="project-mgr-form">
     <el-form ref="form" :rules="rules" :model="pOriginData" label-width="160px">
       <el-form-item label="项目名称" prop="name">
         <el-col :span="8">
@@ -84,6 +84,7 @@
       <el-form-item label="首页列表图">
         <Upload :pFileList="fileListFn(pOriginData.list_img)"
                 :pCallback="uploadCallback" pType="list_img"
+                prop="header_img"
                 :pDisabled="false"/>
       </el-form-item>
 
@@ -110,6 +111,7 @@
 </template>
 
 <script>
+  import { Message } from 'element-ui';
   import Upload from '../../../components/Upload';
   import Buttons from '../../../components/Button';
   // import dict from '../../../store/modules/dict';
@@ -127,11 +129,11 @@
         dict: [
           {
             label: '策划筹备期',
-            value: '10',
+            value: 10,
           },
           {
             label: '拍摄制作期',
-            value: '20',
+            value: 20,
           },
           {
             label: '宣传期',
@@ -181,7 +183,7 @@
             { required: true, message: '请输入电影类型', trigger: 'blur' },
           ],
           release_date: [
-            { required: true, message: '请输入上映时间', trigger: 'blur' },
+            { required: true, message: '请输入上映时间', trigger: 'change' },
           ],
           story_description: [
             { required: true, message: '请输入剧情简介', trigger: 'blur' },
@@ -199,7 +201,7 @@
             { required: true, message: '请输入拍摄许可证号', trigger: 'blur' },
           ],
           stage: [
-            { required: true, message: '请输入项目阶段', trigger: 'blur' },
+            { type: 'number', required: true, message: '请输入项目阶段', trigger: 'change' },
           ],
         },
       };
@@ -212,9 +214,36 @@
       changeProjectStage() {
 
       },
+      checkUpload() {
+        if (!this.pOriginData.list_img
+        || !this.pOriginData.header_img
+        || this.pOriginData.desc_img.length === 0) {
+          return '请上传相关图片';
+        }
+        return false;
+      },
+      errPop(msg) {
+        Message({ // eslint-disable-line
+          showClose: true,
+          message: `出错啦：${msg}`,
+          type: 'error',
+          duration: 4000,
+          customClass: 'ajaxErrorMsg',
+        });
+      },
       handleSubmit() {
-        // this.$refs.form.validate();
-        this.submitCallback(this.pOriginData);
+        this.$refs.form.validate((cs) => {
+          if (!cs) {
+            this.errPop('表单填写有误，请检查');
+            return;
+          }
+          const uploadMsg = this.checkUpload();
+          if (uploadMsg) {
+            this.errPop(uploadMsg);
+            return;
+          }
+          this.submitCallback(this.pOriginData);
+        });
       },
       // upload 组件使用 callback
       uploadCallback(params) {
@@ -257,4 +286,5 @@
   .el-textarea.is-disabled .el-textarea__inner {
     color: #434343;
   }
+
 </style>
