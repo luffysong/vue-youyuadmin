@@ -24,6 +24,14 @@
         prop="business_id"
         label="订单号"
         width="200">
+        <template scope="scope">
+          <el-popover trigger="click" placement="top">
+            <p>订单号: {{ scope.row.business_id }}</p>
+            <div slot="reference" class="name-wrapper">
+              <el-tag>{{ scope.row.business_id }}</el-tag>
+            </div>
+          </el-popover>
+        </template>
       </el-table-column>
       <el-table-column
         align="center"
@@ -37,6 +45,14 @@
         prop="order_movie.movie.name"
         label="项目"
         width="200">
+        <template scope="scope">
+          <el-popover trigger="click" placement="top">
+            <p>项目: {{ scope.row.order_movie.movie.name }}</p>
+            <div slot="reference" class="name-wrapper">
+              <el-tag>{{ scope.row.order_movie.movie.name }}</el-tag>
+            </div>
+          </el-popover>
+        </template>
       </el-table-column>
       <el-table-column
         sortable
@@ -120,4 +136,11 @@
 </script>
 
 <style lang="less" scoped>
+  .el-tag {
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    margin-top: 6px;
+  }
 </style>

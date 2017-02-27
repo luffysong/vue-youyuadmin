@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="order-table">
     <el-table
       :data="plist.data"
       stripe
@@ -17,6 +17,14 @@
         prop="movie.name"
         label="项目名称"
         width="200">
+        <template scope="scope">
+          <el-popover trigger="click" placement="top">
+            <p>项目: {{ scope.row.movie.name }}</p>
+            <div slot="reference" class="name-wrapper">
+              <el-tag>{{ scope.row.movie.name }}</el-tag>
+            </div>
+          </el-popover>
+        </template>
       </el-table-column>
       <el-table-column
         align="center"
@@ -145,5 +153,19 @@
 
   li:first-child {
     border-bottom: 1px solid #e1e1e1;
+  }
+
+  .el-tag {
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    margin-top: 6px;
+  }
+</style>
+
+<style>
+  .order-table .el-table_1_column_1 .cell {
+    line-height: 89px;
   }
 </style>
