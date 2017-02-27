@@ -54,6 +54,24 @@
     components: {
       CreateForm,
     },
+    mounted() {
+      const data = [
+        {
+          name: '新建项目',
+          link: '/project/detail/create',
+          icon: 'plus',
+          type: 'item',
+        },
+        {
+          name: '项目列表',
+          link: '/project/list',
+          icon: 'document',
+          type: 'item',
+        },
+      ];
+
+      this.$store.dispatch(types.SET_SIDEBAR_DATA, data);
+    },
   };
 
 </script>
