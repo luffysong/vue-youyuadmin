@@ -57,8 +57,8 @@ const ENUM_ORDER_STATUS = {
   10: 'unpaidDepositList',
   20: 'paidDepositList',
   30: 'unpaidBalanceList',
-  40: 'paidList',
-  50: 'closedList',
+  50: 'paidList',
+  60: 'closedList',
 };
 const mutations = {
   // 获取订单list
