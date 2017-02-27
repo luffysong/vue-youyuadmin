@@ -165,7 +165,11 @@
 </style>
 
 <style>
-  .order-table .el-table_1_column_1 .cell {
+  .order-table .el-table__fixed-body-wrapper td:first-child .cell {
+    line-height: 89px;
+  }
+
+  .order-table .el-table__fixed-right td:last-child .cell {
     line-height: 89px;
   }
 </style>
