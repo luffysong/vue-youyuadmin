@@ -3,8 +3,8 @@
     <el-form :model="form" label-width="80px">
       <div class="whole-bill">
         <h5>总订单</h5>
-        <el-form-item label="订单号">
-          <el-input v-model="form.id" :disabled="true"></el-input>
+        <el-form-item label="订单ID">
+          <el-input v-model="form.business_id" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="项目">
           <el-input  v-model="form.order_movie.movie.name" :disabled="true"></el-input>
@@ -44,7 +44,7 @@
       <div class="deposit-bill">
         <h5>{{form.type | billType}}</h5>
         <el-form-item label="订单号">
-          <el-input v-model="form.business_id" :disabled="true"></el-input>
+          <el-input v-model="form.id" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="订单金额">
           <el-input v-model="form.amount" :disabled="true"></el-input>
