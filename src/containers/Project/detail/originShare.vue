@@ -2,8 +2,10 @@
   <div>
     <div v-if="!listData.loading">
       <TotalInfo :poriginData="listData"></TotalInfo>
-      <ShareForm :poriginData="listData" :buttonsIsHide="buttonsIsHide"
-                 :editable="editable"></ShareForm>
+      <ShareForm :poriginData="listData"
+                 :buttonsIsHide="buttonsIsHide"
+                 :editable="editable"
+                 :getData="getData"></ShareForm>
     </div>
   </div>
 </template>
@@ -16,7 +18,13 @@
   export default {
     name: 'originShareRegister',
     props: {},
-    methods: {},
+    methods: {
+      getData() {
+        this.$store.dispatch(types.PROJECT_ORIGINSHARE_REQ, {
+          movie_id: this.$route.params.id,
+        });
+      },
+    },
     computed: {
       listData() {
         return this.$store.state.projectdetail.ProjectOriginShare;

@@ -16,11 +16,27 @@
         prop="name"
         label="项目名称"
         width="200">
+        <template scope="scope">
+          <el-popover trigger="click" placement="top">
+            <p>项目: {{ scope.row.name }}</p>
+            <div slot="reference" class="name-wrapper">
+              <el-tag>{{ scope.row.name }}</el-tag>
+            </div>
+          </el-popover>
+        </template>
       </el-table-column>
       <el-table-column
         prop="producer"
         label="制片方"
         width="200">
+        <template scope="scope">
+          <el-popover trigger="click" placement="top">
+            <p>项目: {{ scope.row.producer }}</p>
+            <div slot="reference" class="name-wrapper">
+              <el-tag>{{ scope.row.producer }}</el-tag>
+            </div>
+          </el-popover>
+        </template>
       </el-table-column>
       <el-table-column
         sortable
@@ -130,5 +146,11 @@
 </script>
 
 <style lang="less" scoped>
-
+  .el-tag {
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    margin-top: 6px;
+  }
 </style>

@@ -14,11 +14,27 @@
         prop="movie.name"
         label="项目名称"
         width="200">
+        <template scope="scope">
+          <el-popover trigger="click" placement="top">
+            <p>项目: {{ scope.row.movie.name }}</p>
+            <div slot="reference" class="name-wrapper">
+              <el-tag>{{ scope.row.movie.name }}</el-tag>
+            </div>
+          </el-popover>
+        </template>
       </el-table-column>
       <el-table-column
         prop="movie.producer"
         label="制片方"
         width="200">
+        <template scope="scope">
+          <el-popover trigger="click" placement="top">
+            <p>项目: {{ scope.row.movie.producer }}</p>
+            <div slot="reference" class="name-wrapper">
+              <el-tag>{{ scope.row.movie.producer }}</el-tag>
+            </div>
+          </el-popover>
+        </template>
       </el-table-column>
       <el-table-column
         prop="created_at"
@@ -93,4 +109,12 @@
   };
 
 </script>
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+  .el-tag {
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    margin-top: 6px;
+  }
+</style>

@@ -137,7 +137,7 @@
 
 <style lang="less" scoped>
   .el-tag {
-    max-width: 140px;
+    width: 90%;
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;
