@@ -4,7 +4,7 @@
       <div class="whole-bill">
         <h5>总订单</h5>
         <el-form-item label="订单ID">
-          <el-input v-model="form.trade_deposit.business_id" disabled></el-input>
+          <el-input v-model="form.id" disabled></el-input>
         </el-form-item>
         <el-form-item label="项目">
           <el-input v-model="form.movie.name" disabled></el-input>
@@ -44,7 +44,7 @@
       <div class="deposit-bill">
         <h5>保证金订单</h5>
         <el-form-item label="订单号">
-          <el-input v-model="form.id" disabled></el-input>
+          <el-input v-model="form.trade_deposit.business_id" disabled></el-input>
         </el-form-item>
         <el-form-item label="订单金额">
           <el-input v-model="form.trade_deposit.amount" disabled></el-input>
