@@ -1,4 +1,5 @@
 import * as types from '../types';
+import { moneyMul } from '../../utils/math';
 import server from './AjaxServer';
 
 const initialState = {
@@ -33,6 +34,8 @@ const mutations = {
   },
   [types.ORIGINDETAIL_SUC](state, data) {
     state.loading = false;
+    data.resdata.info.asset.share = moneyMul(data.resdata.info.asset.share, 100);
+    data.resdata.info.share = moneyMul(data.resdata.info.share, 100);
     state.detail = data.resdata;
   },
   [types.ORIGINDETAIL_ERR](state) {

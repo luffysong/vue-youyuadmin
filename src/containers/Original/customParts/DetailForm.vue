@@ -27,28 +27,25 @@
           </el-input>
         </el-col>
       </el-form-item>
-      <el-form-item label="原始份额" prop="share">
-        <el-col :span="8">
-          <el-input :value="detailData.info.asset.share*100" :disabled="true">
-          </el-input>
-        </el-col>
-      </el-form-item>
       <el-form-item label="现持有原始份额" prop="share">
         <el-col :span="8">
-          <el-input :value="detailData.info.asset.share*100"
+          <el-input :value="detailData.info.asset.share"
                     :disabled="true">
+                    <template slot="append">%</template>
           </el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="挂牌份额" prop="share">
         <el-col :span="8">
           <el-input v-model="detailData.info.share" :disabled="true">
+            <template slot="append">%</template>
           </el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="挂牌价格" prop="price">
         <el-col :span="8">
           <el-input v-model="detailData.info.price" :disabled="true">
+            <template slot="append">元</template>
           </el-input>
         </el-col>
       </el-form-item>
@@ -61,6 +58,7 @@
       <el-form-item label="挂牌天数" prop="days">
         <el-col :span="8">
           <el-input v-model="detailData.info.days" :disabled="true">
+            <template slot="append">天</template>
           </el-input>
         </el-col>
       </el-form-item>
