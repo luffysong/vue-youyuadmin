@@ -65,6 +65,7 @@
    * Internal dependencies
    */
   import _ from 'lodash';
+  import { Message } from 'element-ui';
   import NewShareFormPop from './NewShareFormPop';
   import server from '../../../store/modules/AjaxServer';
 
@@ -112,6 +113,14 @@
             movie_id: this.$route.params.id,
             items: this.poriginData.list,
           },
+        }).then(() => {
+          Message({ // eslint-disable-line
+            showClose: true,
+            message: '保存成功',
+            type: 'success',
+            duration: 4000,
+            customClass: 'ajaxErrorMsg',
+          });
         });
       },
       addShare() {
