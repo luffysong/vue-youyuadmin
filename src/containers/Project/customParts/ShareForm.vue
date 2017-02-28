@@ -106,7 +106,6 @@
       },
       handleSubmit() {
         this.$refs.form.validate();
-        console.log(this.poriginData.list, 'submit');
         server.fixOriginShare({
           movie_id: this.$route.params.id,
           sendData: {

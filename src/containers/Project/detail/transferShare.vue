@@ -19,7 +19,6 @@
     methods: {},
     computed: {
       listData() {
-        console.log(this.$store.state.projectdetail.ProjectTransferShare);
         return this.$store.state.projectdetail.ProjectTransferShare;
       },
     },

@@ -1,4 +1,5 @@
 import * as types from '../types';
+import { toPercent } from '../../utils/math';
 import server from './AjaxServer';
 
 const initialState = {
@@ -73,6 +74,9 @@ const mutations = {
     const loading = `${ENUM_LIST_TRADE_STATUS[status]}Loading`;
     const list = `${ENUM_LIST_TRADE_STATUS[status]}List`;
     state[loading] = false;
+    resdata.data.forEach((el) => {
+      el.order_movie.share = toPercent(el.order_movie.share);
+    });
     state[list] = resdata;
   },
 

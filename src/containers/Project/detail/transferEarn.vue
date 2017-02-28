@@ -14,7 +14,6 @@
     name: 'transferEarn',
     computed: {
       listData() {
-        console.log(this.$store.state.projectdetail.ProjectTransferEarn, 'll');
         return this.$store.state.projectdetail.ProjectTransferEarn;
       },
     },
