@@ -1,6 +1,6 @@
 <template>
   <div class="share-form">
-    <el-form ref="form" :model="form" :rules="rules" label-width="160px">
+    <el-form ref="form" :model="poriginData" label-width="160px">
       <div class="wrap" v-for="(item, index) in poriginData.list">
         <el-form-item label="身份类型">
           <el-col>
@@ -11,29 +11,29 @@
               </el-radio>
               <el-radio class="radio" v-model="item.certificate_type" :label="2"
                         :disabled="!editable">
-                企业（社会统一信用代码）
+                企业（社会统一信用代码
               </el-radio>
             </template>
           </el-col>
         </el-form-item>
-        <el-form-item label="证件名称" prop="certificate_name">
+        <el-form-item label="证件名称" :prop="checkName(index)" :rules="[{ required: true, message: '请输入证件名称'}]">
           <el-col :span="8">
             <el-input v-model="item.certificate_name" :disabled="!editable"/>
           </el-col>
         </el-form-item>
-        <el-form-item label="证件号码" prop="certificate_number">
+        <el-form-item label="证件号码" :prop="checkNumber(index)" :rules="[{ required: true, message: '请输入证件号码'}]">
           <el-col :span="8">
             <el-input v-model="item.certificate_number" :disabled="!editable"/>
           </el-col>
         </el-form-item>
-        <el-form-item label="所占份额" prop="share">
+        <el-form-item label="所占份额" :prop="checkShare(index)" :rules="[{ required: true, message: '请输入所占份额'}]">
           <el-col :span="8">
             <el-input v-model="item.share" :disabled="!editable">
               <template slot="append">%</template>
             </el-input>
           </el-col>
         </el-form-item>
-        <el-form-item label="投资金额" prop="price" v-if="!priceIsHide">
+        <el-form-item label="投资金额" v-if="!priceIsHide" :prop="checkPrice(index)" :rules="[{ required: true, message: '请输入投资金额'}]">
           <el-col :span="8">
             <el-input v-model="item.price" :disabled="!editable">
               <template slot="append">元</template>
@@ -83,26 +83,11 @@
       },
       priceIsHide: Boolean,
     },
-    computed: {},
     data() {
       return {
         form: null,
         resetData: _.cloneDeep(this.poriginData),
         radio: 1,
-        rules: {
-          certificate_name: [
-            { required: true, message: '请输入姓名/企业全称', trigger: 'blur' },
-          ],
-          certificate_number: [
-            { required: true, message: '请输入身份证/信用代码', trigger: 'blur' },
-          ],
-          share: [
-            { required: true, message: '请输入所占份额', trigger: 'blur' },
-          ],
-          price: [
-            { required: true, message: '请输入投资金额', trigger: 'blur' },
-          ],
-        },
         dialog: {
           name: '新建份额',
           visible: false,
@@ -110,26 +95,43 @@
       };
     },
     methods: {
+      checkName(cs) {
+        return `list[${cs}].certificate_name`;
+      },
+      checkNumber(cs) {
+        return `list[${cs}].certificate_number`;
+      },
+      checkShare(cs) {
+        return `list[${cs}].share`;
+      },
+      checkPrice(cs) {
+        return `list[${cs}].price`;
+      },
       handleReset() {
         this.poriginData.totalInfo = this.resetData.totalInfo;
         this.poriginData.list.splice(0, this.resetData.totalInfo.totalPeople, ...this.resetData.list);
       },
       handleSubmit() {
-        this.$refs.form.validate();
-        server.fixOriginShare({
-          movie_id: this.$route.params.id,
-          sendData: {
-            movie_id: this.$route.params.id,
-            items: this.poriginData.list,
-          },
-        }).then(() => {
-          Message({ // eslint-disable-line
-            showClose: true,
-            message: '保存成功',
-            type: 'success',
-            duration: 4000,
-            customClass: 'ajaxErrorMsg',
-          });
+        this.$refs.form.validate((val) => {
+          if (val) {
+            server.fixOriginShare({
+              movie_id: this.$route.params.id,
+              sendData: {
+                movie_id: this.$route.params.id,
+                items: this.poriginData.list,
+              },
+            }).then((res) => {
+              if (res.code === 0) {
+                Message({ // eslint-disable-line
+                  showClose: true,
+                  message: '保存成功',
+                  type: 'success',
+                  duration: 4000,
+                  customClass: 'ajaxErrorMsg',
+                });
+              }
+            });
+          }
         });
       },
       addShare() {
