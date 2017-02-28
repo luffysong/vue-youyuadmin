@@ -33,7 +33,7 @@
             </el-input>
           </el-col>
         </el-form-item>
-        <el-form-item label="投资金额" prop="price">
+        <el-form-item label="投资金额" prop="price" v-if="price">
           <el-col :span="8">
             <el-input v-model="item.price" :disabled="!editable">
               <template slot="append">元</template>
