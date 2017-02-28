@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="!listData.loading">
-      <TotalInfo :poriginData="listData"></TotalInfo>
+      <TotalInfo :data="listData"></TotalInfo>
       <ShareForm :poriginData="listData" :buttonsIsHide="buttonsIsHide"
                  :editable="editable"></ShareForm>
     </div>
@@ -19,6 +19,7 @@
     methods: {},
     computed: {
       listData() {
+        console.log(this.$store.state.projectdetail.ProjectTransferShare);
         return this.$store.state.projectdetail.ProjectTransferShare;
       },
     },

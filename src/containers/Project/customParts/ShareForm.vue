@@ -1,7 +1,7 @@
 <template>
   <div class="share-form">
     <el-form ref="form" :model="form" :rules="rules" label-width="160px">
-      <div class="wrap" v-for="(item, index) in localdata.list">
+      <div class="wrap" v-for="(item, index) in poriginData.list">
         <el-form-item label="身份类型">
           <el-col>
             <template>
@@ -65,7 +65,6 @@
    * Internal dependencies
    */
   import _ from 'lodash';
-  import { moneyMul } from '../../../utils/math';
   import NewShareFormPop from './NewShareFormPop';
   import server from '../../../store/modules/AjaxServer';
 
@@ -85,18 +84,9 @@
     computed: {},
     data() {
       return {
+        form: null,
+        resetData: _.cloneDeep(this.poriginData),
         radio: 1,
-        localdata: (() => {
-          const data = _.cloneDeep(this.poriginData);
-          data.list.forEach((el) => {
-            el.share = moneyMul(el.share, 100);
-          });
-          return data;
-        })(),
-        form: {
-          totalPeople: 0,
-          totalShare: 0,
-        },
         rules: {
           availablePercent: [
             { required: true, message: '请输入项目名称', trigger: 'blur' },
@@ -110,16 +100,17 @@
     },
     methods: {
       handleReset() {
-        this.$refs.form.resetFields();
-        this.localdata = _.cloneDeep(this.poriginData);
+        this.poriginData.totalInfo = this.resetData.totalInfo;
+        this.poriginData.list.splice(0, this.resetData.totalInfo.totalPeople, ...this.resetData.list);
       },
       handleSubmit() {
         this.$refs.form.validate();
+        console.log(this.poriginData.list, 'submit');
         server.fixOriginShare({
           movie_id: this.$route.params.id,
           sendData: {
             movie_id: this.$route.params.id,
-            items: this.localdata.list,
+            items: this.poriginData.list,
           },
         });
       },
@@ -128,14 +119,15 @@
       },
       addCallback(data) {
         data.certificate_type -= 0;
+        data.share -= 0;
         this.$refs.dia.close();
-        this.localdata.list.push(data);
+        this.poriginData.list.push(data);
       },
       cancelCallback() {
         this.$refs.dia.close();
       },
       del(index) {
-        this.localdata.list.splice(index, 1);
+        this.poriginData.list.splice(index, 1);
       },
     },
   };

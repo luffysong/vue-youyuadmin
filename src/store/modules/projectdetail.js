@@ -1,6 +1,7 @@
 // import _ from 'lodash';
 import * as types from '../types';
 import server from './AjaxServer';
+import { moneyMul } from '../../utils/math';
 
 const initialState = {
   ProjectDetail: {
@@ -129,6 +130,15 @@ const mutations = {
     state.ProjectOriginShare.loading = true;
   },
   [types.PROJECT_ORIGINSHARE_SUC](state, data) {
+    let totalShare = 0;
+    data.list.forEach((el) => {
+      el.share = moneyMul(el.share, 100);
+      totalShare += el.share;
+    });
+    data.totalInfo = {
+      totalPeople: data.list.length,
+      totalShare,
+    };
     state.ProjectOriginShare = {
       loading: false,
       ...data,
@@ -164,17 +174,26 @@ const mutations = {
       tempInfo.certificate_number = el.user.real_info.certificate_number;
       tempInfo.certificate_type = el.user.real_info.certificate_type;
       tempInfo.share = el.share;
-      tempInfo.price = '接口文档没有这个字段';
       tempArr.push(tempInfo);
     });
+    let totalShare = 0;
+    data.data.forEach((el) => {
+      el.share = moneyMul(el.share, 100);
+      totalShare += el.share;
+    });
+    data.totalInfo = {
+      totalPeople: data.data.length,
+      totalShare,
+    };
     if (type === ENUM.SHARE) {
       state.ProjectTransferShare.loading = false;
       state.ProjectTransferShare.list = tempArr;
+      state.ProjectTransferShare.totalInfo = data.totalInfo;
     } else if (type === ENUM.EARN) {
       state.ProjectTransferEarn.loading = false;
       state.ProjectTransferEarn.list = tempArr;
+      state.ProjectTransferEarn.totalInfo = data.totalInfo;
     }
-    // state.ProjectTransferShare = _.clone(state.ProjectTransferShare);
   },
   [types.PROJECT_TRANSFERSHARE_ERR](state, data) {
     const { type } = data.sendData;

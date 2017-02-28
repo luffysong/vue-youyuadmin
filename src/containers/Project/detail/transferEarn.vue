@@ -1,6 +1,6 @@
 <template>
   <div v-if="!listData.loading">
-    <TotalInfo :poriginData="listData"></TotalInfo>
+    <TotalInfo :data="listData"></TotalInfo>
     <ShareForm :poriginData="listData" :buttonsIsHide="buttonsIsHide"
                :editable="editable"></ShareForm>
   </div>
@@ -14,6 +14,7 @@
     name: 'transferEarn',
     computed: {
       listData() {
+        console.log(this.$store.state.projectdetail.ProjectTransferEarn, 'll');
         return this.$store.state.projectdetail.ProjectTransferEarn;
       },
     },

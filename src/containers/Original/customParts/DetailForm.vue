@@ -186,8 +186,10 @@
             },
             {
               desc: '查看项目登记页',
-              callback: (...child) => {
-                this.handleSubmit.apply(this, [...child]);
+              callback: () => {
+                this.$router.push({
+                  name: 'OriginShareTransfer',
+                });
               },
             },
           ];
