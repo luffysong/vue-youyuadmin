@@ -29,12 +29,14 @@
       <el-form-item label="挂牌份额" prop="share">
         <el-col :span="8">
           <el-input v-model="detailData.info.share" :disabled="true">
+            <template slot="append">%</template>
           </el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="挂牌价格" prop="price">
         <el-col :span="8">
           <el-input v-model="detailData.info.price" :disabled="true">
+            <template slot="append">元</template>
           </el-input>
         </el-col>
       </el-form-item>
