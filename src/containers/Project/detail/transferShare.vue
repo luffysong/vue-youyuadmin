@@ -3,7 +3,7 @@
     <div v-if="!listData.loading">
       <TotalInfo :data="listData"></TotalInfo>
       <ShareForm :poriginData="listData" :buttonsIsHide="buttonsIsHide"
-                 :editable="editable"></ShareForm>
+                 :editable="editable" :priceIsHide="priceIsHide"></ShareForm>
     </div>
   </div>
 
@@ -27,6 +27,7 @@
         id: this.$route.params.id,
         buttonsIsHide: true,
         editable: false,
+        priceIsHide: true,
       };
     },
     watch: {

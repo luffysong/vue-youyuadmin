@@ -5,6 +5,7 @@
       <ShareForm :poriginData="listDataCopy"
                  :buttonsIsHide="buttonsIsHide"
                  :editable="editable"
+                 :priceIsHide="priceIsHide"
                  :getData="getData"></ShareForm>
     </div>
   </div>
@@ -59,6 +60,7 @@
         id: this.$route.params.id,
         buttonsIsHide: false,
         editable: false,
+        priceIsHide: false,
       };
     },
     beforeCreate() {

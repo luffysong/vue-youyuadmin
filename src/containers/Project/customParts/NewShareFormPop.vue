@@ -63,16 +63,16 @@ export default {
         price: '',
       },
       rules: {
-        name: [
+        certificate_name: [
           { required: true, message: '请输入姓名/企业全称', trigger: 'blur' },
         ],
-        number: [
+        certificate_number: [
           { required: true, message: '请输入身份证/信用代码', trigger: 'blur' },
         ],
         share: [
           { required: true, message: '请输入所占份额', trigger: 'blur' },
         ],
-        count: [
+        price: [
           { required: true, message: '请输入投资金额', trigger: 'blur' },
         ],
       },
@@ -84,10 +84,12 @@ export default {
       this.$refs.form.resetFields();
     },
     handleSubmit() {
-//      this.$refs.form.validate();
       const result = _.cloneDeep(this.form);
-      this.$refs.form.resetFields();
-      this.addCallback(result);
+      this.$refs.form.validate((val) => {
+        if (val) {
+          this.addCallback(result);
+        }
+      });
     },
   },
 };

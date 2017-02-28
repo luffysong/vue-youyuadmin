@@ -33,7 +33,7 @@
             </el-input>
           </el-col>
         </el-form-item>
-        <el-form-item label="投资金额" prop="price" v-if="item.price">
+        <el-form-item label="投资金额" prop="price" v-if="!priceIsHide">
           <el-col :span="8">
             <el-input v-model="item.price" :disabled="!editable">
               <template slot="append">元</template>
@@ -81,6 +81,7 @@
         type: Boolean,
         default: true,
       },
+      priceIsHide: Boolean,
     },
     computed: {},
     data() {
@@ -89,8 +90,17 @@
         resetData: _.cloneDeep(this.poriginData),
         radio: 1,
         rules: {
-          availablePercent: [
-            { required: true, message: '请输入项目名称', trigger: 'blur' },
+          certificate_name: [
+            { required: true, message: '请输入姓名/企业全称', trigger: 'blur' },
+          ],
+          certificate_number: [
+            { required: true, message: '请输入身份证/信用代码', trigger: 'blur' },
+          ],
+          share: [
+            { required: true, message: '请输入所占份额', trigger: 'blur' },
+          ],
+          price: [
+            { required: true, message: '请输入投资金额', trigger: 'blur' },
           ],
         },
         dialog: {
