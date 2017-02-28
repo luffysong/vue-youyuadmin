@@ -78,7 +78,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="开启时间">
-          <el-input v-model="form.trade_balance.created_at" disabled></el-input>
+          <el-input v-model="form.open_balance_time" disabled></el-input>
         </el-form-item>
         <el-form-item label="付款时间">
           <el-input v-model="form.trade_balance.notify_time" disabled></el-input>
