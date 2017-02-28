@@ -22,7 +22,7 @@
           <el-input v-model="form.user.base.phone" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="订单总额">
-          <el-input v-model="form.amount" :disabled="true"></el-input>
+          <el-input v-model="form.order_movie.amount" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="订单状态">
           <el-select v-model="form.order_movie.status" placeholder="--" :disabled="true">
