@@ -104,7 +104,7 @@
         <el-col :span="8">
           <el-input type="textarea" :rows="4"
                     v-model="pOriginData.notice"
-                    ></el-input>
+          ></el-input>
         </el-col>
       </el-form-item>
       <el-form-item>
@@ -121,7 +121,7 @@
   import { Message } from 'element-ui';
   import Upload from '../../../components/Upload';
   import Buttons from '../../../components/Button';
-  // import dict from '../../../store/modules/dict';
+  import dict from '../../../store/modules/dictLabel';
 
   export default {
     name: 'CreateForm',
@@ -133,28 +133,7 @@
     },
     data() {
       return {
-        dict: [
-          {
-            label: '策划筹备期',
-            value: 10,
-          },
-          {
-            label: '拍摄制作期',
-            value: 20,
-          },
-          {
-            label: '宣传期',
-            value: 30,
-          },
-          {
-            label: '上映期',
-            value: 40,
-          },
-          {
-            label: '回款期',
-            value: 50,
-          },
-        ],
+        dict: dict.state.movie_status,
         buttonData: (() => {
           const params = [];
           params.push({
@@ -223,8 +202,8 @@
       },
       checkUpload() {
         if (!this.pOriginData.list_img
-        || !this.pOriginData.header_img
-        || this.pOriginData.desc_img.length === 0) {
+          || !this.pOriginData.header_img
+          || this.pOriginData.desc_img.length === 0) {
           return '请上传相关图片';
         }
         return false;

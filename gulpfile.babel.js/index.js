@@ -23,7 +23,7 @@ gulp.task('dict', () => {
     // });
 
     const jsonStr = JSON.stringify(data);
-    const str = `export defalut { state: ${jsonStr}}`;
+    const str = `/* eslint-disable */ \n export default { state: ${jsonStr}}`;
     const filePath = path.join(path.dirname(__dirname), 'src', 'store', 'modules', 'dict.js');
     fs.writeFile(filePath, str, 'utf8', () => {
       // console.log('字典文件写入成功~');
@@ -32,15 +32,18 @@ gulp.task('dict', () => {
 
     const obj = {};
     Object.keys(data).forEach((el) => {
-      obj[el] = {};
+      obj[el] = [];
       Object.keys(data[el]).forEach((cel) => {
-        obj[el].value = cel;
-        obj[el].label = data[el][cel];
+        const temp = {
+          value: cel,
+          label: data[el][cel],
+        };
+        obj[el].push(temp);
       });
     });
 
     const jsonLabelStr = JSON.stringify(obj);
-    const strLabel = `export defalut { state: ${jsonLabelStr}}`;
+    const strLabel = `/* eslint-disable */ \n export default { state: ${jsonLabelStr}}`;
     const filePathLabel = path.join(path.dirname(__dirname), 'src', 'store', 'modules', 'dictLabel.js');
     fs.writeFile(filePathLabel, strLabel, 'utf8', () => {
       // console.log('字典文件写入成功~');
