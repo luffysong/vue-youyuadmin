@@ -2,7 +2,6 @@
   <div>
     <el-table
       :data="plist.data"
-      stripe
       border>
       <el-table-column
         fixed
