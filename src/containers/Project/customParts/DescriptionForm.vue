@@ -54,7 +54,7 @@
     </el-form-item>
     <el-form-item label="初始份额可转让比例" prop="transferable_ratio">
       <el-col :span="8">
-        <el-input v-model="origindata.transferable_ratio"
+        <el-input v-model.number="origindata.transferable_ratio"
                   :disabled="origindata.status !== 10">
           <template slot="append">%</template>
         </el-input>
@@ -200,7 +200,7 @@
             { required: true, message: '请输入剧情简介', trigger: 'blur' },
           ],
           transferable_ratio: [
-            { required: true, message: '请输入份额', trigger: 'blur' },
+            { required: true, message: '请输入份额', trigger: 'blur', type: 'number' },
           ],
           budget: [
             { required: true, message: '请输入项目预算金额', trigger: 'blur' },
@@ -212,7 +212,7 @@
             { required: true, message: '请输入拍摄许可证号', trigger: 'blur' },
           ],
           stage: [
-            { required: true, message: '请输入项目阶段', trigger: 'blur' },
+            { required: true, message: '请输入项目阶段', trigger: 'blur', type: 'number' },
           ],
         },
       };

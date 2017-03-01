@@ -141,15 +141,17 @@
     },
     methods: {
       handleSubmit(...cs) {
-        cs[1].form.validate();
-        //        cs[1].form.resetFields();
-        server.fixProject({
-          id: this.$route.params.id,
-          sendData: cs[0],
-        }).then((res) => {
-          if (res.body.code === 0) {
-            this.popMsgConfig.desc = '操作成功';
-            this.popMsgConfig.dialogVisible = true;
+        cs[1].form.validate((val) => {
+          if (val) {
+            server.fixProject({
+              id: this.$route.params.id,
+              sendData: cs[0],
+            }).then((res) => {
+              if (res.body.code === 0) {
+                this.popMsgConfig.desc = '操作成功';
+                this.popMsgConfig.dialogVisible = true;
+              }
+            });
           }
         });
       },
