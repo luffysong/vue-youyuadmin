@@ -172,7 +172,6 @@
         ],
         origindata: (() => {
           const data = _.cloneDeep(this.porigindata);
-          data.transferable_ratio *= 100;
           return data;
         })(),
         rules: {

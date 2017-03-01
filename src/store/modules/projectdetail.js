@@ -107,6 +107,7 @@ const mutations = {
   [types.PROJECT_DETAIL_SUC](state, params) {
     const { data } = params;
     state.ProjectDetail.loading = false;
+    data.transferable_ratio = moneyMul(data.transferable_ratio, 100);
     state.ProjectDetail = {
       ...state.ProjectDetail,
       ...data,
