@@ -62,6 +62,13 @@ export default {
         share: '',
         price: '',
       },
+      defaultForm: {
+        certificate_type: '1',
+        certificate_name: '',
+        certificate_number: '',
+        share: '',
+        price: '',
+      },
       rules: {
         certificate_name: [
           { required: true, message: '请输入姓名/企业全称', trigger: 'blur' },
@@ -88,6 +95,7 @@ export default {
       this.$refs.form.validate((val) => {
         if (val) {
           this.addCallback(result);
+          this.form = _.cloneDeep(this.defaultForm);
         }
       });
     },
