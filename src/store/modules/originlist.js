@@ -2,6 +2,7 @@
  * Internal dependencies
  */
 // import Vue from 'vue';
+import { toPercent } from '../../utils/math';
 import * as types from '../types';
 import server from './AjaxServer';
 
@@ -61,6 +62,10 @@ const mutations = {
     const { status } = sendData;
     const loading = `${ENUM_LIST_STATUS[status]}Loading`;
     const list = ENUM_LIST_STATUS[status];
+    resdata.data.forEach((el) => {
+      el.asset.share = toPercent(el.asset.share);
+      el.share = toPercent(el.share);
+    });
     state[loading] = false;
     state[list] = resdata;
   },
