@@ -13,6 +13,7 @@
 <script>
   import _ from 'lodash';
   import * as types from '../../../store/types';
+  import { moneyAdd } from '../../../utils/math';
   import TotalInfo from '../customParts/TotalInfo';
   import ShareForm from '../customParts/ShareForm';
 
@@ -39,7 +40,7 @@
         handler() {
           let totalShare = 0;
           this.listDataCopy.list.forEach((el) => {
-            totalShare += el.share - 0;
+            totalShare = moneyAdd(el.share, totalShare);
           });
           this.listDataCopy.totalInfo.totalPeople = this.listDataCopy.list.length;
           this.listDataCopy.totalInfo.totalShare = totalShare;
