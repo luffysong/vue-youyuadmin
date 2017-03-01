@@ -97,6 +97,7 @@
 </template>
 
 <script>
+  import dict from '../../../store/modules/dict';
 
   export default {
     name: 'ListTable',
@@ -106,10 +107,7 @@
     },
     filters: {
       filterOrderType(cs) {
-        const OrderType = {
-          1: '保证金',
-          2: '剩余款',
-        };
+        const OrderType = dict.state.trade_type;
         return OrderType[cs];
       },
     },

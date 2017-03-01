@@ -22,7 +22,7 @@
             <el-option
               v-for="item in memberTypes"
               :label="item.label"
-              :value="item.value">
+              :value="Number(item.value)">
             </el-option>
           </el-select>
         </el-col>
@@ -85,6 +85,7 @@
   import server from '../../store/modules/AjaxServer';
   import mixins from './table/mixins';
   import PopMsg from '../../components/PopMsg';
+  import dict from '../../store/modules/dictLabel';
 
   export default {
     name: 'InvestorDetail',
@@ -165,16 +166,7 @@
     },
     data() {
       return {
-        memberTypes: [
-          {
-            label: '普通交易会员',
-            value: 1,
-          },
-          {
-            label: '综合会员',
-            value: 2,
-          },
-        ],
+        memberTypes: dict.state.member_type,
         rules: {
           id: [
             { required: true, message: '请输入份额ID', trigger: 'blur' },
