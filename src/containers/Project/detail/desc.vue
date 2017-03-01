@@ -93,6 +93,12 @@
         } else if (cObject.status === 30) {
           this.buttons = [
             {
+              desc: '保存',
+              callback: (...child) => {
+                this.handleSubmit.apply(this, [...child]);
+              },
+            },
+            {
               type: 'success',
               desc: '已清算',
               callback: (...child) => {
@@ -117,7 +123,14 @@
             });
           };
         } else if (cObject.status === 40) {
-          this.buttons = [];
+          this.buttons = [
+            {
+              desc: '保存',
+              callback: (...child) => {
+                this.handleSubmit.apply(this, [...child]);
+              },
+            },
+          ];
         }
       },
     },

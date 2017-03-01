@@ -45,6 +45,7 @@
           header_img: '',
           stage: '',
           desc_img: [],
+          notice: '',
         },
       };
     },

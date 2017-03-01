@@ -100,6 +100,13 @@
                 :pDisabled="false"/>
       </el-form-item>
 
+      <el-form-item label="重要公告">
+        <el-col :span="8">
+          <el-input type="textarea" :rows="4"
+                    v-model="pOriginData.notice"
+                    ></el-input>
+        </el-col>
+      </el-form-item>
       <el-form-item>
         <!--<el-button type="primary" @click="handleSubmit">保存</el-button>-->
         <!--<el-button @click="handlePublish">发布</el-button>-->

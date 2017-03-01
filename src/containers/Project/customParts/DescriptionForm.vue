@@ -109,7 +109,13 @@
               :pCallback="uploadCallback" pType="desc_img"
               :pDisabled="origindata.status !== 10 && origindata.status !== 20"/>
     </el-form-item>
-
+    <el-form-item label="重要公告">
+      <el-col :span="8">
+        <el-input type="textarea" :rows="4"
+                  v-model="origindata.notice"
+                  ></el-input>
+      </el-col>
+    </el-form-item>
     <el-form-item>
       <div class="buttons">
         <span v-for="it in pbuttons" class="button-wrap">

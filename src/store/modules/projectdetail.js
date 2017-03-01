@@ -174,7 +174,7 @@ const mutations = {
       tempInfo.certificate_name = el.user.real_info.certificate_name;
       tempInfo.certificate_number = el.user.real_info.certificate_number;
       tempInfo.certificate_type = el.user.real_info.certificate_type;
-      tempInfo.share = el.share;
+      tempInfo.share = moneyMul(el.share, 100);
       tempArr.push(tempInfo);
     });
     let totalShare = 0;
