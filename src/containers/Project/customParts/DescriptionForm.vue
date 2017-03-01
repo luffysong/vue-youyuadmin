@@ -3,43 +3,43 @@
     <el-form-item label="项目名称" prop="name">
       <el-col :span="8">
         <el-input v-model="origindata.name"
-                  :disabled="origindata.status !== 10"></el-input>
+                  :disabled="origindata.status !== 10 && origindata.status !== 20"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="制片方" prop="producer">
       <el-col :span="8">
         <el-input v-model="origindata.producer"
-                  :disabled="origindata.status !== 10"></el-input>
+                  :disabled="origindata.status !== 10 && origindata.status !== 20"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="导演" prop="director">
       <el-col :span="8">
         <el-input v-model="origindata.director"
-                  :disabled="origindata.status !== 10"></el-input>
+                  :disabled="origindata.status !== 10 && origindata.status !== 20"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="编剧" prop="scriptwriter">
       <el-col :span="8">
         <el-input v-model="origindata.scriptwriter"
-                  :disabled="origindata.status !== 10"></el-input>
+                  :disabled="origindata.status !== 10 && origindata.status !== 20"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="主演" prop="protagonist">
       <el-col :span="8">
         <el-input v-model="origindata.protagonist"
-                  :disabled="origindata.status !== 10"></el-input>
+                  :disabled="origindata.status !== 10 && origindata.status !== 20"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="电影类型" prop="type">
       <el-col :span="8">
         <el-input v-model="origindata.type"
-                  :disabled="origindata.status !== 10"></el-input>
+                  :disabled="origindata.status !== 10 && origindata.status !== 20"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="上映时间" prop="release_date">
       <el-col :span="8">
         <el-date-picker type="date" placeholder="选择日期"
-                        :disabled="origindata.status !== 10"
+                        :disabled="origindata.status !== 10 && origindata.status !== 20"
                         v-model="origindata.release_date"
                         @change="changeDateVal"
                         style="width: 100%;"></el-date-picker>
@@ -49,13 +49,13 @@
       <el-col :span="8">
         <el-input type="textarea" :rows="4"
                   v-model="origindata.story_description"
-                  :disabled="origindata.status !== 10"></el-input>
+                  :disabled="origindata.status !== 10 && origindata.status !== 20"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="初始份额可转让比例" prop="transferable_ratio">
       <el-col :span="8">
         <el-input v-model="origindata.transferable_ratio"
-                  :disabled="origindata.status !== 10">
+                  :disabled="origindata.status !== 10 && origindata.status !== 20">
           <template slot="append">%</template>
         </el-input>
       </el-col>
@@ -64,7 +64,7 @@
     <el-form-item label="项目预算金额" prop="budget">
       <el-col :span="8">
         <el-input v-model="origindata.budget"
-                  :disabled="origindata.status !== 10">
+                  :disabled="origindata.status !== 10 && origindata.status !== 20">
           <template slot="prepend">￥</template>
           <template slot="append">元</template>
         </el-input>
@@ -73,19 +73,19 @@
     <el-form-item label="备案立项号" prop="record_number">
       <el-col :span="8">
         <el-input v-model="origindata.record_number"
-                  :disabled="origindata.status !== 10"></el-input>
+                  :disabled="origindata.status !== 10 && origindata.status !== 20"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="拍摄许可证号" prop="shoot_licence_number">
       <el-col :span="8">
         <el-input v-model="origindata.shoot_licence_number"
-                  :disabled="origindata.status !== 10"></el-input>
+                  :disabled="origindata.status !== 10 && origindata.status !== 20"></el-input>
       </el-col>
     </el-form-item>
     <el-form-item label="项目阶段" prop="stage">
       <el-col :span="8">
         <el-select v-model="origindata.stage" placeholder="项目阶段"
-                   :disabled="origindata.status !== 10"
+                   :disabled="origindata.status !== 10 && origindata.status !== 20"
                    @change="changes">
           <el-option v-for="it in dict"
                      :label="it.label" :value="it.value"></el-option>
@@ -95,19 +95,19 @@
     <el-form-item label="首页列表图">
       <Upload :pFileList="fileListFn(origindata.list_img)"
               :pCallback="uploadCallback" pType="list_img"
-              :pDisabled="origindata.status !== 10"/>
+              :pDisabled="origindata.status !== 10 && origindata.status !== 20"/>
     </el-form-item>
 
     <el-form-item label="详情页头图">
       <Upload :pFileList="fileListFn(origindata.header_img)"
               :pCallback="uploadCallback" pType="header_img"
-              :pDisabled="origindata.status !== 10"/>
+              :pDisabled="origindata.status !== 10 && origindata.status !== 20"/>
     </el-form-item>
 
     <el-form-item label="详情页项目介绍图">
       <Upload :pFileList="fileListFn(origindata.desc_img)"
               :pCallback="uploadCallback" pType="desc_img"
-              :pDisabled="origindata.status !== 10"/>
+              :pDisabled="origindata.status !== 10 && origindata.status !== 20"/>
     </el-form-item>
 
     <el-form-item>

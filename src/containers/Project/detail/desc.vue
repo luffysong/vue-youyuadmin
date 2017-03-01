@@ -61,6 +61,12 @@
         } else if (cObject.status === 20) {
           this.buttons = [
             {
+              desc: '保存',
+              callback: (...child) => {
+                this.handleSubmit.apply(this, [...child]);
+              },
+            },
+            {
               type: 'success',
               desc: '已上映',
               callback: (...child) => {
