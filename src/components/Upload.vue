@@ -9,8 +9,6 @@
         :data="dataParams"
         :multiple="false"
         :on-progress="handleProgress"
-        :on-preview="handlePreview"
-        :on-remove="handleRemove"
         :on-success="handleSuccess"
         :on-error="handleError"
         :before-upload="handleBefore"
@@ -25,9 +23,8 @@
         <div class="bar" :style="progressWidth"></div>
       </div>
     </div>
-
     <ul>
-      <li v-for="(it, i) in fileList">
+      <li v-for="(it, i) in shadowFileList">
         <div class="img" :style="backgroundFn(it.url)">
         </div>
         <p class="del" @click="del(i)" v-if="!pDisabled">删除</p>
@@ -38,9 +35,8 @@
 
 <script>
   import Vue from 'vue';
-  // import { mapGetters } from 'vuex';
-  // import * as types from '../store/types';
   import _ from 'lodash';
+  import { Message } from 'element-ui';
 
   const uploadUrlParams = {
     token: '//rongtest07.36kr.com/api/upload/form-api',
@@ -81,12 +77,35 @@
       pDisabled: Boolean,
     },
     methods: {
+      initList() {
+        const arrNew = [];
+        if (_.isPlainObject(this.pFileList[0])) {
+          this.pFileList.forEach((el) => {
+            arrNew.push(el);
+          });
+          this.fileList = arrNew;
+          return;
+        }
+        this.pFileList.forEach((el) => {
+          const item = {
+            name: '',
+            url: el,
+          };
+          arrNew.push(item);
+        });
+        this.shadowFileList = _.cloneDeep(arrNew);
+        this.fileList = arrNew;
+      },
       handleBefore(...cs) {
         const vm = this;
         return getToken().then((res) => {
           if (res.body.code === 0) {
             vm.dataParams.policy = res.body.data.policy;
             vm.dataParams.signature = res.body.data.signature;
+            const url = window.URL.createObjectURL(cs[0]); // eslint-disable-line
+            this.tempCache = {
+              url,
+            };
             return cs[0];
           }
           return false;
@@ -97,6 +116,8 @@
         const p = {
           url: `${uploadUrlParams.url}${cs[0].url}`,
         };
+        this.shadowFileList.push(this.tempCache);
+        this.tempCache = null;
         this.fileList.push(p);
         this.percent = 0;
         this.pCallback({
@@ -104,12 +125,15 @@
           value: this.fileList,
         });
       },
-      handleRemove(...cs) {
-        this.fileList = cs[1];
-      },
-      handlePreview() {
-      },
-      handleError() {
+      handleError(...cs) {
+        Message({ // eslint-disable-line
+          showClose: true,
+          message: cs[0].message.match(/"message":"([^"]+)"/)[1],
+          type: 'error',
+          duration: 4000,
+          customClass: 'ajaxErrorMsg',
+        });
+        this.tempCache = null;
       },
       handleProgress(e) {
         this.percent = e.percent;
@@ -118,7 +142,8 @@
         return `background-image:url(${cs[0]});`;
       },
       del(...cs) {
-        this.fileList.splice(cs, 1);
+        this.shadowFileList.splice(cs[0], 1);
+        this.fileList.splice(cs[0], 1);
         this.pCallback({
           type: this.pType,
           value: this.fileList,
@@ -138,43 +163,13 @@
           policy: '',
           signature: '',
         },
-        fileList: (() => {
-          const arrNew = [];
-          if (_.isPlainObject(this.pFileList[0])) {
-            //            a = this.pFileList;
-            //            return a;
-
-            this.pFileList.forEach((el) => {
-              arrNew.push(el);
-            });
-            return arrNew;
-            //            return this.pFileList;
-          }
-          this.pFileList.forEach((el) => {
-            const item = {
-              name: '',
-              url: el,
-            };
-            arrNew.push(item);
-          });
-          return arrNew;
-        })(),
+        shadowFileList: [],
+        fileList: [],
+        tempCache: null,
       };
     },
     mounted() {
-      // this.$store.dispatch(types.HIDE_SIDEBAR);
-    },
-    created() {
-      // console.log('created');
-    },
-    beforeUpdate() {
-      // console.log('beforeUpdate');
-    },
-    beforeMount() {
-      // console.log('beforeMount');
-    },
-    updated() {
-      // console.log('updated');
+      this.initList();
     },
     components: {},
   };
