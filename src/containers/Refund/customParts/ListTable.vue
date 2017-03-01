@@ -2,7 +2,6 @@
   <div>
     <el-table
       :data="pList.data"
-      stripe
       border>
       <el-table-column
         fixed
@@ -10,7 +9,7 @@
         align="center"
         prop="business_id"
         label="退款订单号"
-        width="150">
+        width="250">
       </el-table-column>
       <el-table-column
         align="center"
@@ -68,6 +67,7 @@
         label="待退款时间"
         width="200">
       </el-table-column>
+
       <el-table-column
         fixed="right"
         inline-template
@@ -81,6 +81,7 @@
           </el-button>
         </el-button-group>
       </el-table-column>
+
     </el-table>
     <div class="block">
       <span class="demonstration"> </span>
@@ -89,8 +90,7 @@
         :total="pList.total"
         :page-size="pList.per_page - 0"
         :current-page="pList.current_page"
-        @current-change="pageChange"
-      >
+        @current-change="pageChange">
       </el-pagination>
     </div>
   </div>
