@@ -55,7 +55,7 @@
     <el-form-item label="初始份额可转让比例" prop="transferable_ratio">
       <el-col :span="8">
         <el-input v-model="origindata.transferable_ratio"
-                  :disabled="origindata.status !== 10 && origindata.status !== 20">
+                  :disabled="origindata.status !== 10">
           <template slot="append">%</template>
         </el-input>
       </el-col>
