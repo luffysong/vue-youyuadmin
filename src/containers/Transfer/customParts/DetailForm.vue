@@ -72,7 +72,7 @@
       </el-form-item>
 
 
-      <el-form-item label="成交时间" prop="updated_at">
+      <el-form-item label="成交时间" prop="updated_at" v-if="detailData.info.status === 4">
         <el-col :span="8">
           <el-input v-model="detailData.info.updated_at" :disabled="true">
           </el-input>
@@ -90,13 +90,13 @@
           </el-input>
         </el-col>
       </el-form-item>
-      <el-form-item label="失效时间" prop="updated_at">
+      <el-form-item label="失效时间" prop="updated_at" v-if="detailData.info.status === 5">
         <el-col :span="8">
           <el-input v-model="detailData.info.updated_at" :disabled="true">
           </el-input>
         </el-col>
       </el-form-item>
-      <el-form-item label="驳回时间" prop="updated_at">
+      <el-form-item label="驳回时间" prop="updated_at" v-if="detailData.info.status === 2">
         <el-col :span="8">
           <el-input v-model="detailData.info.updated_at" :disabled="true">
           </el-input>
