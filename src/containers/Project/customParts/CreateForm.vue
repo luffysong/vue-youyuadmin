@@ -133,7 +133,7 @@
     },
     data() {
       return {
-        dict: dict.state.movie_status,
+        dict: dict.state.movie_stage,
         buttonData: (() => {
           const params = [];
           params.push({

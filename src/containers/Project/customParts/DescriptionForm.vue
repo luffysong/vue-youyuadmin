@@ -155,7 +155,7 @@
     },
     data() {
       return {
-        dict: dict.state.movie_status,
+        dict: dict.state.movie_stage,
         origindata: (() => {
           const data = _.cloneDeep(this.porigindata);
           return data;
