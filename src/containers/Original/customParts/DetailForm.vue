@@ -186,7 +186,10 @@
               desc: '查看项目登记页',
               callback: () => {
                 this.$router.push({
-                  name: 'OriginShareTransfer',
+                  name: 'ProjectDetailDesc',
+                  params: {
+                    id: this.pDetailData.info.movie_id,
+                  },
                 });
               },
             },
