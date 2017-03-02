@@ -22,8 +22,8 @@
           <el-input v-model="form.trade.amount" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="订单状态">
-          <el-select v-model="form.status" placeholder="--" :disabled="true">
-            <el-option v-for="it in tradeStatus" :label="it.label" :value="it.value"></el-option>
+          <el-select v-model="form.trade.status" placeholder="--" :disabled="true">
+            <el-option v-for="it in tradeStatus" :label="it.label" :value="Number(it.value)"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="开启时间">
@@ -47,7 +47,7 @@
         </el-form-item>
         <el-form-item label="订单状态">
           <el-select v-model="form.status" placeholder="订单状态" :disabled="true">
-            <el-option v-for="it in orderStatus" :label="it.label" :value="it.value"></el-option>
+            <el-option v-for="it in orderStatus" :label="it.label" :value="Number(it.value)"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="待退款时间">
@@ -64,6 +64,7 @@
 </template>
 <script>
   import _ from 'lodash';
+  import dict from '../../store/modules/dictLabel';
   import * as types from '../../store/types';
   import server from '../../store/modules/AjaxServer';
   import PopMsg from '../../components/PopMsg';
@@ -122,46 +123,8 @@
     computed: {},
     data() {
       return {
-        tradeStatus: [
-          {
-            value: 1,
-            label: '待付款',
-          },
-          {
-            value: 2,
-            label: '已付款',
-          },
-          {
-            value: 3,
-            label: '退款中',
-          },
-          {
-            value: 4,
-            label: '已退款',
-          },
-        ],
-        orderStatus: [
-          {
-            value: 1,
-            label: '退款中',
-          },
-          {
-            value: 2,
-            label: '已退款',
-          },
-          {
-            value: 3,
-            label: '退款失败',
-          },
-          {
-            value: 4,
-            label: '已取消',
-          },
-          {
-            value: 5,
-            label: '已删除',
-          },
-        ],
+        tradeStatus: dict.state.trade_status,
+        orderStatus: dict.state.trade_refund_status,
         form: {},
         popMsgConfig: {
           dialogVisible: false,
