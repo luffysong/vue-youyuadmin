@@ -37,23 +37,28 @@
         <el-col :span="8">
           <el-input :value="detailData.detail.info.identity_type | identityTransfer" :disabled="true">
           </el-input>
+          <div v-if="detailData.detail.info.identity_type === 2">
+            <a class="link" href="http://www.gsxt.gov.cn/index.html" target="_blank">国家企业信用信息公示系统</a>
+            <a class="link" href="http://www.tianyancha.com/" target="_blank">天眼查</a>
+          </div>
+
         </el-col>
       </el-form-item>
-      <el-form-item label="身份证复印件" prop="copies_identity_card">
+      <el-form-item label="身份证复印件" prop="copies_identity_card" v-if="detailData.detail.info.identity_type === 1">
         <el-col :span="8">
           <img class="business_card"
                :src="detailData.detail.info.copies_identity_card"
                alt="">
         </el-col>
       </el-form-item>
-      <el-form-item label="营业执照" prop="copies_ic_business_license">
+      <el-form-item label="营业执照" prop="copies_ic_business_license" v-if="detailData.detail.info.identity_type === 2">
         <el-col :span="8">
           <img class="business_card"
                :src="detailData.detail.info.copies_ic_business_license"
                alt="">
         </el-col>
       </el-form-item>
-      <el-form-item label="个人名片" prop="business_card">
+      <el-form-item label="个人名片" prop="business_card" v-if="detailData.detail.info.identity_type === 1">
         <el-col :span="8">
           <img class="business_card"
                :src="detailData.detail.info.business_card"
@@ -76,6 +81,16 @@
 
   .business_card {
     max-width: 300px;
+  }
+
+  .investor-detail .link {
+    text-decoration: none;
+    color: #777;
+    display: inline-block;
+    margin-top: 10px;
+    padding: 0 10px;
+    border: 1px solid #aaa;
+    border-radius: 3px;
   }
 </style>
 <script>
