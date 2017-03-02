@@ -7,7 +7,7 @@
         fixed
         prop="certificate_name"
         label="申请人"
-        width="150">
+        width="250">
       </el-table-column>
       <el-table-column
         prop="member_type"
@@ -40,8 +40,8 @@
         </div>
       </el-table-column>
       <el-table-column
-        fixed="right"
         inline-template
+        fixed="right"
         align="center"
         label="操作"
         width="200">
@@ -65,7 +65,9 @@
     </div>
   </div>
 </template>
-<style scoped lang="less"></style>
+<style lang="less">
+
+</style>
 <script>
   import mixins from './mixins';
 
