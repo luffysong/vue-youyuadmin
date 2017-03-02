@@ -16,18 +16,13 @@ gulp.task('dict', () => {
     if (!data) {
       return false;
     }
-    // const filePath = path.join(__dirname, 'dict.json');
-    // fs.writeFile(filePath, JSON.stringify(data), 'utf8', () => {
-    //   // console.log('字典文件写入成功~');
-    //   // console.log(`保存路径：${filePath}`);
-    // });
 
     const jsonStr = JSON.stringify(data);
     const str = `/* eslint-disable */ \n export default { state: ${jsonStr}}`;
     const filePath = path.join(path.dirname(__dirname), 'src', 'store', 'modules', 'dict.js');
     fs.writeFile(filePath, str, 'utf8', () => {
-      // console.log('字典文件写入成功~');
-      // console.log(`保存路径：${filePathLabel}`);
+      console.log('字典文件写入成功~');
+      console.log(`保存路径：${filePath}`);
     });
 
     const obj = {};
@@ -46,8 +41,8 @@ gulp.task('dict', () => {
     const strLabel = `/* eslint-disable */ \n export default { state: ${jsonLabelStr}}`;
     const filePathLabel = path.join(path.dirname(__dirname), 'src', 'store', 'modules', 'dictLabel.js');
     fs.writeFile(filePathLabel, strLabel, 'utf8', () => {
-      // console.log('字典文件写入成功~');
-      // console.log(`保存路径：${filePathLabel}`);
+      console.log('字典文件写入成功~');
+      console.log(`保存路径：${filePathLabel}`);
     });
   });
 });
