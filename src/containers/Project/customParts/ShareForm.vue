@@ -11,7 +11,7 @@
               </el-radio>
               <el-radio class="radio" v-model="item.certificate_type" :label="2"
                         :disabled="!editable">
-                企业（社会统一信用代码
+                企业（社会统一信用代码）
               </el-radio>
             </template>
           </el-col>
