@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "dll": "webpack --display-chunks --color --config build/webpack.dll.conf.js",
-    "build": "node build/build.js",
+    "build": "API_ENV=prod node build/build.js",
     "build:test01": "API_ENV=test01 node build/build.js",
     "build:test02": "API_ENV=test02 node build/build.js",
     "build:test03": "API_ENV=test03 node build/build.js",
