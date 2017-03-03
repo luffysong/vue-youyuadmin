@@ -10,7 +10,7 @@ gulp.task('dict', () => {
     console.log('请提供 API 环境 <test 01~12, prod>');
     return false;
   }
-  const dictApi = `http://${API_ENV === 'prod' ? '' : API_ENV + '.'}youyu.top/api/dict`;
+  const dictApi = `http://${API_ENV === 'prod' ? '' : API_ENV + '.'}youyutouzi.com/api/dict`;
   axios.get(dictApi).then(res => {
     const data = _.get(res, 'data.data');
     if (!data) {
