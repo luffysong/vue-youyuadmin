@@ -1,5 +1,15 @@
+<a name="1.1.1"></a>
+## [1.1.1](https://gitlab.corp.36kr.com/f2e/youyu-admin/compare/v1.1.0...v1.1.1) (2017-03-03)
+
+
+### Bug Fixes
+
+* remove chromedriver ([19f70f2](https://gitlab.corp.36kr.com/f2e/youyu-admin/commit/19f70f2))
+
+
+
 <a name="1.1.0"></a>
-# 1.1.0 (2017-03-03)
+# [1.1.0](https://gitlab.corp.36kr.com/f2e/youyu-admin/compare/5970e4d...v1.1.0) (2017-03-03)
 
 
 ### Bug Fixes
