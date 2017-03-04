@@ -74,7 +74,13 @@
   </div>
 </template>
 <style lang="less">
-
+  .el-tag {
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    margin-top: 6px;
+  }
 </style>
 <script>
   import mixins from './mixins';
