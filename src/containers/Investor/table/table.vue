@@ -8,6 +8,14 @@
         prop="certificate_name"
         label="申请人"
         width="250">
+        <template scope="scope">
+          <el-popover trigger="click" placement="top">
+            <p>项目: {{ scope.row.certificate_name }}</p>
+            <div slot="reference" class="name-wrapper">
+              <el-tag>{{ scope.row.certificate_name }}</el-tag>
+            </div>
+          </el-popover>
+        </template>
       </el-table-column>
       <el-table-column
         prop="member_type"
