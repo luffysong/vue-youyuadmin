@@ -32,6 +32,8 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 ---
 
 ## Nginx 配置
+
+```bash
 server {
   listen       80;
   server_name  admin.local.youyu.com;
@@ -56,6 +58,7 @@ server {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
   }
 }
+```
 
 ---
 
