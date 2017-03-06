@@ -4,4 +4,5 @@ var prodEnv = require('./prod.env')
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
   API_HOST: '""',
+  UPLOAD_TOKEN: '"//test07.youyutouzi.com"',
 })

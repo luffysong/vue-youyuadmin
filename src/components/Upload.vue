@@ -37,30 +37,33 @@
   import Vue from 'vue';
   import _ from 'lodash';
   import { Message } from 'element-ui';
+  import config from '../config';
 
   const uploadUrlParams = {
-    token: '//rongtest07.36kr.com/api/upload/form-api',
+    token: `${config.uploadToken}/api/upload/upyun-token`,
     api: '//v0.api.upyun.com',
     name: 'krplus-pic',
+    // name: 'krplus-priv',
     url: 'https://pic.36krcnd.com',
+    // url: 'https://krplus-priv.b0.upaiyun.com',
   };
   function getToken() {
     const time = 3600 * 1000 * 24 * 365;
-    return Vue.http.post(uploadUrlParams.token, {
-      param: JSON.stringify({
-        bucket: 'krplus-pic',
-        expiration: parseInt((new Date().getTime() + time) / 1000, 10),
-        'save-key': '/{year}{mon}{day}/{filemd5}{.suffix}',
-        'x-gmkerl-thumb': '/rotate/auto',
-        'x-gmkerl-type': 'fix_width',
-        'x-gmkerl-unsharp': true,
-        'allow-file-type': 'jpg,jpeg,png,gif',
-        'content-length-range': '5120, 5120000',
-        'image-width-range': '20, 1024',
-      }),
-      type: 'pic',
-      useOwnOrder: 1,
-    }, {
+    return Vue.http.get(uploadUrlParams.token, {
+      params: {
+        param: JSON.stringify({
+          bucket: 'krplus-pic',
+          // bucket: 'krplus-priv',
+          expiration: parseInt((new Date().getTime() + time) / 1000, 10),
+          'save-key': '/{year}{mon}{day}/{filemd5}{.suffix}',
+          'x-gmkerl-thumb': '/rotate/auto',
+          'x-gmkerl-type': 'fix_width',
+          'x-gmkerl-unsharp': true,
+          'allow-file-type': 'jpg,jpeg,png,gif',
+          'content-length-range': '5120, 5120000',
+          'image-width-range': '20, 1024',
+        }),
+      },
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
