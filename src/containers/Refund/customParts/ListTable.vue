@@ -10,6 +10,14 @@
         prop="business_id"
         label="退款订单号"
         width="250">
+        <template scope="scope">
+          <el-popover trigger="click" placement="top">
+            <p>项目: {{ scope.row.business_id }}</p>
+            <div slot="reference" class="name-wrapper">
+              <el-tag>{{ scope.row.business_id }}</el-tag>
+            </div>
+          </el-popover>
+        </template>
       </el-table-column>
       <el-table-column
         align="center"
