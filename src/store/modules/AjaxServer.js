@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import axios from 'axios';
+import qs from 'qs';
 import moment from 'moment';
 import { Message } from 'element-ui';
 import config from '../../config';
@@ -7,7 +8,15 @@ import '../../global.less';
 
 const message = Vue.component(Message.name, Message);
 axios.interceptors.response.use((res) => {
-  // console.log(res, '全局正确拦截');
+  if (res.data.code !== 0) {
+    message({
+      showClose: true,
+      message: `出错啦: ${res.data.msg}`,
+      type: 'error',
+      duration: 4000,
+      customClass: 'ajaxErrorMsg',
+    });
+  }
   return res;
 }, (...err) => {
   const res = err[0].response;
@@ -83,22 +92,20 @@ const server = {
   createProject(params) {
     const { sendData } = params;
     sendData.release_date = moment(sendData.release_date).format('YYYY-MM-DD');
-    return ajax('post', `${config.apiBase}/api/movie`, sendData, {
+    return ajax('post', `${config.apiBase}/api/movie`, qs.stringify(sendData), {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
   // 项目管理 - 修改项目
   fixProject(params) {
     const { id, sendData } = params;
     sendData.release_date = moment(sendData.release_date).format('YYYY-MM-DD');
-    return ajax('put', `${config.apiBase}/api/movie/${id}`, sendData, {
+    return ajax('put', `${config.apiBase}/api/movie/${id}`, qs.stringify(sendData), {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
   // 项目管理 - 项目转换 - 项目详情最下面的操作按钮
@@ -107,31 +114,28 @@ const server = {
     const { id, sendData } = params;
     const { status } = sendData;
     sendData.release_date = moment(sendData.release_date).format('YYYY-MM-DD');
-    return ajax('put', `${config.apiBase}/api/movie/${id}/${status}`, sendData, {
+    return ajax('put', `${config.apiBase}/api/movie/${id}/${status}`, qs.stringify(sendData), {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
   // 项目管理 - 项目显隐
   displayProject(params) {
     const { id, sendData } = params;
-    return ajax('put', `${config.apiBase}/api/movie/${id}/hide`, sendData, {
+    return ajax('put', `${config.apiBase}/api/movie/${id}/hide`, qs.stringify(sendData), {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
   // 项目管理 - 上首页
   hotProject(params) {
     const { id, sendData } = params;
-    return ajax('put', `${config.apiBase}/api/movie/${id}/hot`, sendData, {
+    return ajax('put', `${config.apiBase}/api/movie/${id}/hot`, qs.stringify(sendData), {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
 
@@ -148,21 +152,19 @@ const server = {
   // 原始份额管理 创建份额 - 一次传递所有数据，因为有总量相关的校验
   createOriginShare(params) {
     const { sendData } = params;
-    return ajax('post', `${config.apiBase}/api/movie-initial-share`, sendData, {
+    return ajax('post', `${config.apiBase}/api/movie-initial-share`, qs.stringify(sendData), {
       headers: {
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
-      // emulateJSON: false,
     });
   },
   // 原始份额管理 修改份额信息
   fixOriginShare(params) {
     const { movie_id, sendData } = params;
-    return ajax('put', `${config.apiBase}/api/movie-initial-share/${movie_id}`, sendData, { // eslint-disable-line
+    return ajax('put', `${config.apiBase}/api/movie-initial-share/${movie_id}`, qs.stringify(sendData), { // eslint-disable-line
       headers: {
         //   // 'Content-Type': 'application/x-www-form-urlencoded',
       },
-      // emulateJSON: true,
     });
   },
   // 项目进展 获取 list
@@ -173,27 +175,24 @@ const server = {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
   // 项目进展 创建
   createProjectProgress(params) {
     const { sendData } = params;
-    return ajax('post', `${config.apiBase}/api/movie-progress`, sendData, {
+    return ajax('post', `${config.apiBase}/api/movie-progress`, qs.stringify(sendData), {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
   // 项目进展 修改 todo: method err
   fixProjectProgress(params) {
     const { id, sendData } = params;
-    return ajax('put', `${config.apiBase}/api/movie-progress/${id}`, sendData, {
+    return ajax('put', `${config.apiBase}/api/movie-progress/${id}`, qs.stringify(sendData), {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
   // 项目进展 删除
@@ -204,7 +203,6 @@ const server = {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
 
@@ -216,7 +214,6 @@ const server = {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
   // 挂牌 详情
@@ -227,17 +224,15 @@ const server = {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
   // 挂牌 状态转换 驳回 挂牌中
   changeQuoted(params) {
     const { id, sendData } = params;
-    return ajax('put', `${config.apiBase}/api/movie-listing/${id}`, sendData, {
+    return ajax('put', `${config.apiBase}/api/movie-listing/${id}`, qs.stringify(sendData), {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
   // 订单 获取 list
@@ -248,7 +243,6 @@ const server = {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
   // 订单 详情
@@ -259,29 +253,26 @@ const server = {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
 
   // 订单管理 关闭订单
   closeOrder(params) {
     const { id, sendData } = params;
-    return ajax('put', `${config.apiBase}/api/movie-order/${id}/close`, sendData, {
+    return ajax('put', `${config.apiBase}/api/movie-order/${id}/close`, qs.stringify(sendData), {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
 
   // 订单管理 开启剩余款
   openBalanceOrder(params) {
     const { id, sendData } = params;
-    return ajax('put', `${config.apiBase}/api/movie-order/${id}/open-balance`, sendData, {
+    return ajax('put', `${config.apiBase}/api/movie-order/${id}/open-balance`, qs.stringify(sendData), {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
 
@@ -294,7 +285,6 @@ const server = {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
 
@@ -306,7 +296,6 @@ const server = {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
   // 结算管理 收款 获取订单详情
@@ -317,17 +306,15 @@ const server = {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
   // 结算管理 收款 切换订单状态
   changeTrade(params) {
     const { id, sendData } = params;
-    return ajax('put', `${config.apiBase}/api/financial/trade/${id}/confirm-paid`, sendData, {
+    return ajax('put', `${config.apiBase}/api/financial/trade/${id}/confirm-paid`, qs.stringify(sendData), {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
 
@@ -339,7 +326,6 @@ const server = {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
   // 结算管理 退款 获取订单详情
@@ -350,17 +336,15 @@ const server = {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
   // 结算管理 退款 切换订单状态
   changeRefund(params) {
     const { id, sendData } = params;
-    return ajax('put', `${config.apiBase}/api/financial/trade-refund/${id}/confirm-refunded`, sendData, {
+    return ajax('put', `${config.apiBase}/api/financial/trade-refund/${id}/confirm-refunded`, qs.stringify(sendData), {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
 
@@ -372,7 +356,6 @@ const server = {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
   // 投资人审核 获取详情
@@ -383,17 +366,15 @@ const server = {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
   // 投资人审核 修改 通过/驳回
   changeUser(params) {
     const { id, sendData } = params;
-    return ajax('put', `${config.apiBase}/api/audit/user-real-info/${id}`, sendData, {
+    return ajax('put', `${config.apiBase}/api/audit/user-real-info/${id}`, qs.stringify(sendData), {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
   // 用户管理，获取用户list
@@ -404,17 +385,15 @@ const server = {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
   // 用户管理，修改用户激活状态
   putUserActiveStatus(params) {
     const { id, sendData } = params;
-    return ajax('put', `${config.apiBase}/api/system/user/${id}`, sendData, {
+    return ajax('put', `${config.apiBase}/api/system/user/${id}`, qs.stringify(sendData), {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      emulateJSON: true,
     });
   },
 };
