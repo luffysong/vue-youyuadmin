@@ -30,10 +30,10 @@ const actions = {
     server.getQuotedList({
       sendData,
     }).then((res) => {
-      if (res.body.code === 0) {
+      if (res.data.code === 0) {
         commit(types.TRANSFERLIST_SUC, {
           sendData,
-          resdata: res.body.data,
+          resdata: res.data.data,
         });
       }
     });

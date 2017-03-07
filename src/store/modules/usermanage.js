@@ -14,9 +14,9 @@ const actions = {
     server.getUserManage({
       sendData,
     }).then((res) => {
-      if (res.body.code === 0) {
+      if (res.data.code === 0) {
         commit(types.USER_MANAGER_SUC, {
-          resdata: res.body.data,
+          resdata: res.data.data,
         });
       }
     });
@@ -28,9 +28,9 @@ const actions = {
       id,
       sendData,
     }).then((res) => {
-      if (res.body.code === 0) {
+      if (res.data.code === 0) {
         commit(types.USER_MANAGER_CHANGE_SUC, {
-          resdata: res.body.data,
+          resdata: res.data.data,
         });
       }
     });

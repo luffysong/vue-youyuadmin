@@ -17,9 +17,9 @@ const actions = {
     server.createProject({
       sendData,
     }).then((res) => {
-      if (res.body.code === 0) {
+      if (res.data.code === 0) {
         commit(types.PROJECTCREATE_SUC, {
-          resdata: res.body.data,
+          resdata: res.data.data,
           callback,
         });
       }

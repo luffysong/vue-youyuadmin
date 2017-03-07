@@ -51,7 +51,7 @@
                 status: 'publish',
               },
             }).then((res) => {
-              if (res.body.code === 0) {
+              if (res.data.code === 0) {
                 this.$router.push({
                   name: 'ProjectListRegistered',
                 });
@@ -83,7 +83,7 @@
                 status: 'screening',
               },
             }).then((res) => {
-              if (res.body.code === 0) {
+              if (res.data.code === 0) {
                 this.$router.push({
                   name: 'ProjectListRelease',
                 });
@@ -115,7 +115,7 @@
                 status: 'clearing',
               },
             }).then((res) => {
-              if (res.body.code === 0) {
+              if (res.data.code === 0) {
                 this.$router.push({
                   name: 'ProjectListLiquidation',
                 });
@@ -160,7 +160,7 @@
               id: this.$route.params.id,
               sendData: cs[0],
             }).then((res) => {
-              if (res.body.code === 0) {
+              if (res.data.code === 0) {
                 this.popMsgConfig.desc = '操作成功';
                 this.popMsgConfig.dialogVisible = true;
               }
