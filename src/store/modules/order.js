@@ -27,10 +27,10 @@ const actions = {
     server.getOrderList({
       sendData,
     }).then((res) => {
-      if (res.body.code === 0) {
+      if (res.data.code === 0) {
         commit(types.ORDERLIST_SUC, {
           sendData,
-          data: res.body.data,
+          data: res.data.data,
         });
       }
     });
@@ -43,11 +43,11 @@ const actions = {
       id,
       sendData,
     }).then((res) => {
-      if (res.body.code === 0) {
+      if (res.data.code === 0) {
         commit(types.ORDERDETAIL_SUC, {
           id,
           callback,
-          data: res.body.data,
+          data: res.data.data,
         });
       }
     });

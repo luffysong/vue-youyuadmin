@@ -24,10 +24,10 @@ const actions = {
     server.getUserRealInfoList({
       sendData,
     }).then((res) => {
-      if (res.body.code === 0) {
+      if (res.data.code === 0) {
         commit(types.INVESTORLIST_SUC, {
           sendData,
-          data: res.body.data,
+          data: res.data.data,
         });
       }
     });
@@ -41,9 +41,9 @@ const actions = {
       id,
       sendData,
     }).then((res) => {
-      if (res.body.code === 0) {
+      if (res.data.code === 0) {
         commit(types.INVESTORDETAIL_SUC, {
-          data: res.body.data,
+          data: res.data.data,
         });
       }
     });

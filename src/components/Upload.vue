@@ -34,7 +34,8 @@
 </template>
 
 <script>
-  import Vue from 'vue';
+  // import Vue from 'vue';
+  import axios from 'axios';
   import _ from 'lodash';
   import { Message } from 'element-ui';
   import config from '../config';
@@ -49,7 +50,7 @@
   };
   function getToken() {
     const time = 3600 * 1000 * 24 * 365;
-    return Vue.http.get(uploadUrlParams.token, {
+    return axios.get(uploadUrlParams.token, {
       params: {
         param: JSON.stringify({
           bucket: 'krplus-pic',
@@ -102,9 +103,9 @@
       handleBefore(...cs) {
         const vm = this;
         return getToken().then((res) => {
-          if (res.body.code === 0) {
-            vm.dataParams.policy = res.body.data.policy;
-            vm.dataParams.signature = res.body.data.signature;
+          if (res.data.code === 0) {
+            vm.dataParams.policy = res.data.data.policy;
+            vm.dataParams.signature = res.data.data.signature;
             const url = window.URL.createObjectURL(cs[0]); // eslint-disable-line
             this.tempCache = {
               url,

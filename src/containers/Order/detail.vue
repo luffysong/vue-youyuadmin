@@ -119,7 +119,7 @@
             server.closeOrder({
               id: this.$route.params.id,
             }).then((res) => {
-              if (res.body.code === 0) {
+              if (res.data.code === 0) {
                 this.getDetail();
                 _.assign(this.popMsgConfig, this.popDefault, {
                   dialogVisible: true,
@@ -146,7 +146,7 @@
             server.openBalanceOrder({
               id: this.$route.params.id,
             }).then((res) => {
-              if (res.body.code === 0) {
+              if (res.data.code === 0) {
                 this.getDetail();
                 _.assign(this.popMsgConfig, this.popDefault, {
                   dialogVisible: true,

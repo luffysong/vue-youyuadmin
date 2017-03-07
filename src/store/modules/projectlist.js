@@ -23,10 +23,10 @@ const actions = {
     server.getProjectList({
       sendData,
     }).then((data) => {
-      if (data.body.code === 0) {
+      if (data.data.code === 0) {
         commit(types.PROJECTLIST_SUC, {
           sendData,
-          data: data.body.data,
+          data: data.data.data,
         });
       }
     }, () => {

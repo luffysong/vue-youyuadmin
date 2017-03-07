@@ -121,7 +121,7 @@
                 items: this.poriginData.list,
               },
             }).then((res) => {
-              if (res.body.code === 0) {
+              if (res.data.code === 0) {
                 Message({ // eslint-disable-line
                   showClose: true,
                   message: '保存成功',

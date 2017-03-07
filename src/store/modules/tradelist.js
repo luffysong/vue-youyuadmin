@@ -30,10 +30,10 @@ const actions = {
     server.getTradeList({
       sendData,
     }).then((res) => {
-      if (res.body.code === 0) {
+      if (res.data.code === 0) {
         commit(types.TRADELIST_SUC, {
           sendData,
-          resdata: res.body.data,
+          resdata: res.data.data,
         });
       }
     });
@@ -44,10 +44,10 @@ const actions = {
     server.getRefundList({
       sendData,
     }).then((res) => {
-      if (res.body.code === 0) {
+      if (res.data.code === 0) {
         commit(types.REFUNDLIST_SUC, {
           sendData,
-          resdata: res.body.data,
+          resdata: res.data.data,
         });
       }
     });

@@ -1,36 +1,75 @@
 import Vue from 'vue';
+import axios from 'axios';
 import moment from 'moment';
 import { Message } from 'element-ui';
 import config from '../../config';
 import '../../global.less';
 
 const message = Vue.component(Message.name, Message);
-let midflag = false;
-function ajax(method, ...params) {
-  if (!midflag) {
-    midflag = true;
-    Vue.http.interceptors.push((request, next) => {
-      next((res) => {
-        if (res.status === 401 || res.status === 403) {
-          location.href = res.body.redirect; // eslint-disable-line
-          return false;
-        }
-        if (res.body.code !== 0) {
-          message({
-            showClose: true,
-            message: `出错啦: ${res.body.msg}`,
-            type: 'error',
-            duration: 4000,
-            customClass: 'ajaxErrorMsg',
-          });
-          return false;
-        }
-        return res;
-      });
+axios.interceptors.response.use((res) => {
+  console.log(res, '全局正确拦截');
+  return res;
+}, (...err) => {
+  const res = err[0].response;
+  console.log(err[0].response, '全局捕获错误');
+  if (res.status === 401 || res.status === 403) {
+    location.href = res.data.redirect; // eslint-disable-line
+  } else {
+    message({
+      showClose: true,
+      message: `出错啦: ${res.data.msg}`,
+      type: 'error',
+      duration: 4000,
+      customClass: 'ajaxErrorMsg',
     });
   }
-  return Vue.http[method](...params);
+  return Promise.reject('出错误了, 全局捕获return');
+});
+
+axios.get(`${config.apiBase}/api/movie/1`, {
+  params: {
+  },
+}).then((data) => {
+  console.log(data, 'data1');
+  return 11;
+}).then((data) => {
+  console.log(data, 'data2');
+}).catch((...err) => {
+  console.log(err[0].response, 'err');
+});
+
+function ajax(method, ...params) {
+  console.log(method, params);
+  return axios[method](...params);
 }
+
+// const message = Vue.component(Message.name, Message);
+// let midflag = false;
+// function ajax(method, ...params) {
+//   if (!midflag) {
+//     midflag = true;
+//     Vue.http.interceptors.push((request, next) => {
+//       next((res) => {
+//         if (res.status === 401 || res.status === 403) {
+//           location.href = res.body.redirect; // eslint-disable-line
+//           return false;
+//         }
+//         if (res.body.code !== 0) {
+//           message({
+//             showClose: true,
+//             message: `出错啦: ${res.body.msg}`,
+//             type: 'error',
+//             duration: 4000,
+//             customClass: 'ajaxErrorMsg',
+//           });
+//           return false;
+//         }
+//         return res;
+//       });
+//     });
+//   }
+//   return Vue.http[method](...params);
+// }
 
 const server = {
   // 项目管理 - 获取 list 数据， 参数 status -> list 类型

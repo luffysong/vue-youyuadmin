@@ -35,7 +35,7 @@
                   description: this.form.description,
                 },
               }).then((res) => {
-                if (res.body.code === 0) {
+                if (res.data.code === 0) {
                   this.closeDialog();
                   this.getlist();
                 }

@@ -127,7 +127,7 @@
                 status: 3,
               },
             }).then((res) => {
-              if (res.body.code === 0) {
+              if (res.data.code === 0) {
                 this.getDetailData();
                 _.assign(this.popMsgConfig, this.popDefault, {
                   dialogVisible: true,
@@ -157,7 +157,7 @@
                 status: 2,
               },
             }).then((res) => {
-              if (res.body.code === 0) {
+              if (res.data.code === 0) {
                 this.getDetailData();
                 _.assign(this.popMsgConfig, this.popDefault, {
                   dialogVisible: true,

@@ -16,12 +16,12 @@ const actions = {
       id,
       sendData,
     }).then((res) => {
-      if (res.body.code === 0) {
+      if (res.data.code === 0) {
         commit(types.TRADEDETAIL_SUC, {
           sendData,
-          resdata: res.body.data,
+          resdata: res.data.data,
         });
-        callback(res.body.data);
+        callback(res.data.data);
       }
     });
   },
@@ -33,12 +33,12 @@ const actions = {
       id,
       sendData,
     }).then((res) => {
-      if (res.body.code === 0) {
+      if (res.data.code === 0) {
         commit(types.REFUNDDETAIL_SUC, {
           sendData,
-          resdata: res.body.data,
+          resdata: res.data.data,
         });
-        callback(res.body.data);
+        callback(res.data.data);
       }
     });
   },

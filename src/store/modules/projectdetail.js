@@ -36,7 +36,7 @@ const actions = {
       id: params.id,
     }).then((data) => {
       commit(types.PROJECT_DETAIL_SUC, {
-        data: data.body.data,
+        data: data.data.data,
       });
     }, (data) => {
       commit(types.PROJECT_DETAIL_ERR, data);
@@ -56,8 +56,8 @@ const actions = {
         movie_id,
       },
     }).then((res) => {
-      if (res.body.code === 0) {
-        commit(types.PROJECT_ORIGINSHARE_SUC, res.body.data);
+      if (res.data.code === 0) {
+        commit(types.PROJECT_ORIGINSHARE_SUC, res.data.data);
       }
     }, () => {
     });
@@ -69,9 +69,9 @@ const actions = {
     server.getAssetsList({
       sendData: params.sendData,
     }).then((res) => {
-      if (res.body.code === 0) {
+      if (res.data.code === 0) {
         commit(types.PROJECT_TRANSFERSHARE_SUC, {
-          ...res.body,
+          ...res.data,
           ...params,
         });
       }
@@ -84,12 +84,12 @@ const actions = {
     server.getProjectProgressList({
       sendData: params.sendData,
     }).then((res) => {
-      if (res.body.code === 0) {
+      if (res.data.code === 0) {
         commit(types.PROJECT_PROGRESS_SUC, {
-          ...res.body,
+          ...res.data,
           ...params,
         });
-        params.callback(res.body.data.list);
+        params.callback(res.data.data.list);
       }
     }, () => {
     });
