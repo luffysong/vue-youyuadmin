@@ -7,11 +7,11 @@ import '../../global.less';
 
 const message = Vue.component(Message.name, Message);
 axios.interceptors.response.use((res) => {
-  console.log(res, '全局正确拦截');
+  // console.log(res, '全局正确拦截');
   return res;
 }, (...err) => {
   const res = err[0].response;
-  console.log(err[0].response, '全局捕获错误');
+  // console.log(err[0].response, '全局捕获错误');
   if (res.status === 401 || res.status === 403) {
     location.href = res.data.redirect; // eslint-disable-line
   } else {
@@ -24,18 +24,6 @@ axios.interceptors.response.use((res) => {
     });
   }
   return Promise.reject('出错误了, 全局捕获return');
-});
-
-axios.get(`${config.apiBase}/api/movie/1`, {
-  params: {
-  },
-}).then((data) => {
-  console.log(data, 'data1');
-  return 11;
-}).then((data) => {
-  console.log(data, 'data2');
-}).catch((...err) => {
-  console.log(err[0].response, 'err');
 });
 
 function ajax(method, ...params) {
