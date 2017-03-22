@@ -2,18 +2,16 @@
   <div>
     <el-table
       :data="pListData.data"
-      stripe
       border>
       <el-table-column
-        fixed
         prop="id"
         label="ID"
-        width="150">
+        width="60">
       </el-table-column>
       <el-table-column
         prop="movie.name"
         label="项目名称"
-        width="200">
+        width="180">
         <template scope="scope">
           <el-popover trigger="click" placement="top">
             <p>项目: {{ scope.row.movie.name }}</p>
@@ -26,7 +24,7 @@
       <el-table-column
         prop="movie.producer"
         label="制片方"
-        width="200">
+        width="180">
         <template scope="scope">
           <el-popover trigger="click" placement="top">
             <p>项目: {{ scope.row.movie.producer }}</p>
@@ -39,29 +37,28 @@
       <el-table-column
         prop="created_at"
         label="登记时间"
-        width="200">
+        width="120">
       </el-table-column>
       <el-table-column
         prop="user.real_info.certificate_name"
         label="转让人"
-        width="200">
+        width="120">
       </el-table-column>
       <el-table-column
         prop="asset.share"
         label="原始份额"
-        width="200">
+        width="100">
       </el-table-column>
       <el-table-column
         prop="share"
         label="挂牌份额"
-        width="200">
+        width="100">
       </el-table-column>
       <el-table-column
-        fixed="right"
         inline-template
         align="center"
         label="操作"
-        width="200">
+        width="100">
         <el-button-group>
           <!-- <el-button type="success"
 			icon="circle-check" size="small">
@@ -111,7 +108,7 @@
 </script>
 <style lang="less" scoped>
   .el-tag {
-    width: 90%;
+    width: 95%;
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;

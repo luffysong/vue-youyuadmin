@@ -2,28 +2,25 @@
   <div>
     <el-table
       :data="pList.data"
-      stripe
       border>
       <el-table-column
-        fixed
-        sortable
         align="center"
         prop="id"
         label="订单ID"
-        width="150">
+        width="80">
       </el-table-column>
       <el-table-column
         align="center"
         inline-template
         label="订单类型"
-        width="200">
+        width="100">
         <span>{{row.type | filterOrderType}}</span>
       </el-table-column>
       <el-table-column
         align="center"
         prop="business_id"
         label="订单号"
-        width="200">
+        width="180">
         <template scope="scope">
           <el-popover trigger="click" placement="top">
             <p>订单号: {{ scope.row.business_id }}</p>
@@ -37,14 +34,13 @@
         align="center"
         label="支付人"
         prop="user.real_info.certificate_name"
-        width="200">
+        width="120">
       </el-table-column>
       <el-table-column
-        sortable
         align="center"
         prop="order_movie.movie.name"
         label="项目"
-        width="200">
+        width="180">
         <template scope="scope">
           <el-popover trigger="click" placement="top">
             <p>项目: {{ scope.row.order_movie.movie.name }}</p>
@@ -55,33 +51,29 @@
         </template>
       </el-table-column>
       <el-table-column
-        sortable
         align="center"
         prop="order_movie.share"
         label="份额"
-        width="200">
+        width="100">
       </el-table-column>
       <el-table-column
-        sortable
         align="center"
         prop="proceeds"
         label="实收"
-        width="200">
+        width="120">
       </el-table-column>
 
       <el-table-column
-        sortable
         align="center"
         prop="created_at"
         label="下单时间"
-        width="200">
+        width="180">
       </el-table-column>
       <el-table-column
-        fixed="right"
         inline-template
         align="center"
         label="操作"
-        width="200">
+        width="100">
         <el-button-group>
           <el-button type="info" @click="toDetail(row.id)"
                      icon="view" size="small">
@@ -135,7 +127,7 @@
 
 <style lang="less" scoped>
   .el-tag {
-    width: 90%;
+    width: 95%;
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;

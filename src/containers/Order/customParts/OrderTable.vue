@@ -2,21 +2,18 @@
   <div class="order-table">
     <el-table
       :data="plist.data"
-      stripe
       border>
       <el-table-column
-        fixed
-        sortable
         align="center"
         prop="id"
         label="订单号"
-        width="150">
+        width="80">
       </el-table-column>
       <el-table-column
         align="center"
         prop="movie.name"
         label="项目名称"
-        width="200">
+        width="180">
         <template scope="scope">
           <el-popover trigger="click" placement="top">
             <p>项目: {{ scope.row.movie.name }}</p>
@@ -30,14 +27,14 @@
         align="center"
         label="支付人"
         prop="user.real_info.certificate_name"
-        width="200">
+        width="120">
       </el-table-column>
       <el-table-column
         align="center"
         prop="status"
         label="支付状态"
         inline-template
-        width="200">
+        width="100">
         <ul class="split">
           <li>{{row.bill.trade_deposit.status | tradeStatus}}</li>
           <li>{{row.bill.trade_balance.status | tradeStatus}}</li>
@@ -48,48 +45,44 @@
         prop="type"
         label="类型"
         inline-template
-        width="200">
+        width="100">
         <ul class="split">
           <li>保证金</li>
           <li>尾款</li>
         </ul>
       </el-table-column>
       <el-table-column
-        sortable
         align="center"
         prop="accept"
         label="实收"
         inline-template
-        width="200">
+        width="120">
         <ul class="split">
           <li>{{row.bill.trade_deposit.proceeds}}</li>
           <li>{{row.bill.trade_balance.proceeds}}</li>
         </ul>
       </el-table-column>
       <el-table-column
-        sortable
         align="center"
         label="开启时间"
         inline-template
-        width="200">
+        width="170">
         <ul class="split">
           <li>{{row.bill.trade_deposit.created_at}}</li>
           <li>{{row.open_balance_time}}</li>
         </ul>
       </el-table-column>
       <el-table-column
-        sortable
         align="center"
         prop="amount"
         label="总额"
-        width="200">
+        width="130">
       </el-table-column>
       <el-table-column
-        fixed="right"
         inline-template
         align="center"
         label="操作"
-        width="200">
+        width="100">
         <el-button-group>
           <el-button type="info" @click="toDetail(row.id)"
                      icon="view" size="small">
@@ -156,7 +149,7 @@
   }
 
   .el-tag {
-    width: 90%;
+    width: 95%;
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;

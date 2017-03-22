@@ -2,21 +2,18 @@
   <div>
     <el-table
       :data="pListData.data"
-      stripe
       border>
       <el-table-column
-        fixed
-        sortable
         align="center"
         prop="id"
         label="份额ID"
-        width="150">
+        width="80">
       </el-table-column>
       <el-table-column
         align="center"
         prop="movie.name"
         label="项目名称"
-        width="200">
+        width="180">
         <template scope="scope">
           <el-popover trigger="click" placement="top">
             <p>订单号: {{ scope.row.movie.name}}</p>
@@ -30,7 +27,7 @@
         align="center"
         label="制片方"
         prop="movie.producer"
-        width="200">
+        width="180">
         <template scope="scope">
           <el-popover trigger="click" placement="top">
             <p>订单号: {{ scope.row.movie.producer }}</p>
@@ -44,41 +41,37 @@
         align="center"
         label="转让人"
         prop="user.real_info.certificate_name"
-        width="200">
+        width="150">
       </el-table-column>
       <el-table-column
-        sortable
         align="center"
         prop="share"
         label="挂牌份额"
-        width="200">
+        width="100">
       </el-table-column>
       <el-table-column
-        sortable
         align="center"
         prop="price"
         label="挂牌价格"
-        width="200">
+        width="120">
       </el-table-column>
       <el-table-column
-        sortable
         align="center"
         prop="created_at"
         label="申请时间"
-        width="200">
+        width="120">
       </el-table-column>
       <el-table-column
         align="center"
         prop="operator.name"
         label="审核人"
-        width="200">
+        width="100">
       </el-table-column>
       <el-table-column
-        fixed="right"
         inline-template
         align="center"
         label="操作"
-        width="200">
+        width="100">
         <router-link :to='{name: "TransferDetail", params: {id: row.id}}'>
           <el-button type="info"
                      icon="view" size="small">
@@ -116,7 +109,7 @@
 
 <style lang="less" scoped>
   .el-tag {
-    width: 90%;
+    width: 95%;
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;

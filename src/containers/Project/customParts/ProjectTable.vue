@@ -1,21 +1,17 @@
 <template>
   <div>
     <el-table
-      :data="data.data"
-      stripe
-      border>
+      :data="data.data" border>
       <el-table-column
-        fixed
-        sortable
         align="center"
         prop="id"
         label="项目ID"
-        width="150">
+        width="80">
       </el-table-column>
       <el-table-column
         prop="name"
         label="项目名称"
-        width="200">
+        width="180">
         <template scope="scope">
           <el-popover trigger="click" placement="top">
             <p>项目: {{ scope.row.name }}</p>
@@ -28,7 +24,7 @@
       <el-table-column
         prop="producer"
         label="制片方"
-        width="200">
+        width="150">
         <template scope="scope">
           <el-popover trigger="click" placement="top">
             <p>项目: {{ scope.row.producer }}</p>
@@ -43,7 +39,7 @@
         align="center"
         prop="publish_time"
         label="登记时间"
-        width="200">
+        width="120">
       </el-table-column>
 
       <el-table-column
@@ -51,19 +47,18 @@
         align="center"
         prop="release_date"
         label="上映时间"
-        width="200">
+        width="120">
       </el-table-column>
       <el-table-column
         sortable
         align="center"
         prop="settlement_time"
         label="清算时间"
-        width="200">
+        width="120">
       </el-table-column>
 
       <el-table-column
         v-if="listType==='all'"
-        fixed="right"
         inline-template
         align="center"
         label="上首页"
@@ -81,7 +76,6 @@
 
       <el-table-column
         v-if="listType==='all'"
-        fixed="right"
         inline-template
         align="center"
         label="显 / 隐"
@@ -95,7 +89,6 @@
       </el-table-column>
 
       <el-table-column
-        fixed="right"
         inline-template
         align="center"
         label="操作"
@@ -147,7 +140,7 @@
 
 <style lang="less" scoped>
   .el-tag {
-    width: 90%;
+    width: 95%;
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;

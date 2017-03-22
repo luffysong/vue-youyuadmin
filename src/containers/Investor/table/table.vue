@@ -4,10 +4,10 @@
       :data="plist.data"
       border>
       <el-table-column
-        fixed
         prop="certificate_name"
         label="申请人"
-        width="250">
+        align=center
+        width="150">
         <template scope="scope">
           <el-popover trigger="click" placement="top">
             <p>项目: {{ scope.row.certificate_name }}</p>
@@ -20,28 +20,33 @@
       <el-table-column
         prop="member_type"
         label="会员类型"
+        align=center
         inline-template
-        width="200">
+        width="130">
         <span>{{row.member_type | memberTransfer}}</span>
       </el-table-column>
       <el-table-column
         prop="created_at"
+        align=center
         label="申请时间"
-        width="200">
+        width="170">
       </el-table-column>
       <el-table-column
         prop="operator.name"
         label="审核人"
-        width="200">
+        align=center
+        width="120">
       </el-table-column>
       <el-table-column
         prop="updated_at"
+        align=center
         label="操作时间"
-        width="200">
+        width="170">
       </el-table-column>
       <el-table-column
         label="状态"
-        width="200"
+        width="80"
+        align=center
         inline-template>
         <div>
           {{row.status | statusTransfer}}
@@ -49,10 +54,9 @@
       </el-table-column>
       <el-table-column
         inline-template
-        fixed="right"
         align="center"
         label="操作"
-        width="200">
+        width="100">
         <el-button type="info" @click="toDetail(row.uid)"
                    icon="view" size="small">
           查看
@@ -75,7 +79,7 @@
 </template>
 <style lang="less">
   .el-tag {
-    width: 90%;
+    width: 95%;
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;

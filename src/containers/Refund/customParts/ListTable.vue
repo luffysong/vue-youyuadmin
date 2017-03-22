@@ -4,12 +4,10 @@
       :data="pList.data"
       border>
       <el-table-column
-        fixed
-        sortable
         align="center"
         prop="business_id"
         label="退款订单号"
-        width="250">
+        width="200">
         <template scope="scope">
           <el-popover trigger="click" placement="top">
             <p>项目: {{ scope.row.business_id }}</p>
@@ -23,14 +21,14 @@
         align="center"
         inline-template
         label="订单类型"
-        width="200">
+        width="100">
         <span>{{row.trade.type | filterOrderType}}</span>
       </el-table-column>
       <el-table-column
         align="center"
         prop="trade.business_id"
         label="子订单号"
-        width="200">
+        width="180">
         <template scope="scope">
           <el-popover trigger="click" placement="top">
             <p>项目: {{ scope.row.trade.business_id }}</p>
@@ -44,10 +42,9 @@
         align="center"
         label="支付人"
         prop="user.real_info.certificate_name"
-        width="200">
+        width="100">
       </el-table-column>
       <el-table-column
-        sortable
         align="center"
         prop="movie.name"
         label="项目"
@@ -62,26 +59,23 @@
         </template>
       </el-table-column>
       <el-table-column
-        sortable
         align="center"
         prop="amount"
         label="实退"
-        width="200">
+        width="120">
       </el-table-column>
       <el-table-column
-        sortable
         align="center"
         prop="notify_time"
         label="待退款时间"
-        width="200">
+        width="120">
       </el-table-column>
 
       <el-table-column
-        fixed="right"
         inline-template
         align="center"
         label="操作"
-        width="200">
+        width="100">
         <el-button-group>
           <el-button type="info" @click="toDetail(row.id)"
                      icon="view" size="small">
@@ -135,7 +129,7 @@
 
 <style lang="less" scoped>
   .el-tag {
-    width: 90%;
+    width: 95%;
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;
