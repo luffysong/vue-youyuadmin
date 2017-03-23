@@ -16,7 +16,7 @@
         <i class="el-icon-upload"></i>
         <div class="el-dragger__text">
           将文件拖到此处，或<em>点击上传</em>
-          <p class="tip">只能上传jpg/png文件，且不超过500kb</p>
+          <p class="tip">{{ pTip || '只能上传jpg/png文件，且不超过500kb' }}</p>
         </div>
       </el-upload>
       <div class="progress" :span="8">
@@ -79,6 +79,7 @@
       pCallback: Function,
       pType: String,
       pDisabled: Boolean,
+      pTip: String,
     },
     methods: {
       initList() {

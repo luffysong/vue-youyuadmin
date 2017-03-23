@@ -95,18 +95,21 @@
     <el-form-item label="首页列表图">
       <Upload :pFileList="fileListFn(origindata.list_img)"
               :pCallback="uploadCallback" pType="list_img"
+              pTip="上传格式 jpg, png; 尺寸：210x294px"
               :pDisabled="origindata.status !== 10 && origindata.status !== 20"/>
     </el-form-item>
 
     <el-form-item label="详情页头图">
       <Upload :pFileList="fileListFn(origindata.header_img)"
               :pCallback="uploadCallback" pType="header_img"
+              pTip="上传格式 jpg, png; 尺寸：212x296px"
               :pDisabled="origindata.status !== 10 && origindata.status !== 20"/>
     </el-form-item>
 
     <el-form-item label="详情页项目介绍图">
       <Upload :pFileList="fileListFn(origindata.desc_img)"
               :pCallback="uploadCallback" pType="desc_img"
+              pTip="上传格式 jpg, png; 尺寸：宽度小于680px"
               :pDisabled="origindata.status !== 10 && origindata.status !== 20"/>
     </el-form-item>
     <el-form-item label="重要公告">
