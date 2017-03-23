@@ -11,6 +11,12 @@
       </el-table-column>
       <el-table-column
         align="center"
+        prop="listing_id"
+        label="新增挂牌ID"
+        width="110">
+      </el-table-column>
+      <el-table-column
+        align="center"
         prop="movie.name"
         label="项目名称"
         width="180">
@@ -64,7 +70,7 @@
       </el-table-column>
       <el-table-column
         align="center"
-        label="开启时间"
+        :label="timeTypeSelect()"
         inline-template
         width="170">
         <ul class="split">
@@ -126,6 +132,13 @@
           name: 'OrderDetail',
           params: { id: cs[0] },
         });
+      },
+      timeTypeSelect() {
+        if (this.$route.name === 'orderPaidDeposit') {
+          return '付款时间';
+        } else {
+          return '开启时间';
+        }
       },
     },
     data() {

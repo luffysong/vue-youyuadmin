@@ -192,10 +192,10 @@
             { required: true, message: '请输入项目预算金额', trigger: 'blur' },
           ],
           record_number: [
-            { required: true, message: '请输入备案立项号', trigger: 'blur' },
+            { required: false, message: '请输入备案立项号', trigger: 'blur' },
           ],
           shoot_licence_number: [
-            { required: true, message: '请输入拍摄许可证号', trigger: 'blur' },
+            { required: false, message: '请输入拍摄许可证号', trigger: 'blur' },
           ],
           stage: [
             { required: true, message: '请输入项目阶段', trigger: 'blur', type: 'number' },
