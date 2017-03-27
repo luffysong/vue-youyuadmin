@@ -356,10 +356,28 @@ export default [
       },
     ],
   },
-  // 用户管理
+  // 权限管理
   {
-    name: 'UserManage',
-    path: '/usermanage',
-    component: resolve => require(['../containers/UserManage/index'], resolve), // eslint-disable-line
+    name: 'Permission',
+    path: '/permission',
+    component: resolve => require(['../containers/Permission/index'], resolve), // eslint-disable-line
+    redirect: '/permission/usermanage',
+    children: [
+      {
+        name: 'UserManage',
+        path: 'usermanage',
+        component: resolve => require(['../containers/Permission/usermanage'], resolve), // eslint-disable-line
+      },
+      {
+        name: 'UserPermissionDetail',
+        path: 'userpermissiondetail/:id',
+        component: resolve => require(['../containers/Permission/userpermissiondetail'], resolve), // eslint-disable-line
+      },
+      {
+        name: 'RoleManage', // 角色管理
+        path: 'rolemanage',
+        component: resolve => require(['../containers/Permission/rolemanage'], resolve), // eslint-disable-line
+      },
+    ],
   },
 ];
