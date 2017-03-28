@@ -377,6 +377,13 @@ const server = {
       },
     });
   },
+  getPermissionList() {
+    return ajax('get', `${config.apiBase}/api/system/permissions`, {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+  },
   // 用户管理，获取用户list
   getUserManage(params) {
     const { sendData } = params;

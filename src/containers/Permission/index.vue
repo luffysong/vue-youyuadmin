@@ -26,8 +26,10 @@
         ],
       };
     },
+    beforeCreate() {
+      this.$store.dispatch(types.PERMISSION_LIST_REQ);
+    },
     mounted() {
-//      this.$store.dispatch(types.HIDE_SIDEBAR);
       this.$store.dispatch(types.SET_SIDEBAR_DATA, this.sidebarData);
     },
   };

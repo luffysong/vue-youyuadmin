@@ -4,6 +4,8 @@ import server from './AjaxServer';
 const initialState = {
   listLoading: false,
   userlist: null,
+  permissionListLoading: false,
+  permissionList: null,
 };
 
 const actions = {
@@ -35,6 +37,15 @@ const actions = {
       }
     });
   },
+  // 获取权限list
+  [types.PERMISSION_LIST_REQ]({ commit }) {
+    commit(types.PERMISSION_LIST_REQ);
+    server.getPermissionList().then((res) => {
+      commit(types.PERMISSION_LIST_SUC, {
+        resdata: res.data.data,
+      });
+    });
+  },
 };
 
 const mutations = {
@@ -60,6 +71,15 @@ const mutations = {
   [types.USER_MANAGER_CHANGE_ERR](state, data) {
     state.loading = false;
     state.data = data;
+  },
+
+  [types.PERMISSION_LIST_REQ](state) {
+    state.permissionListLoading = true;
+  },
+  [types.PERMISSION_LIST_SUC](state, data) {
+    state.permissionListLoading = false;
+    console.log(data.resdata, 'data');
+    state.permissionList = data.resdata;
   },
 };
 
