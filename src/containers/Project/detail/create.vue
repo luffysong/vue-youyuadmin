@@ -36,7 +36,7 @@
           protagonist: '',
           transferable_ratio: '',
           type: '',
-          release_date: '',
+          release_date: '0000-00-00',
           story_description: '',
           budget: '',
           record_number: '',

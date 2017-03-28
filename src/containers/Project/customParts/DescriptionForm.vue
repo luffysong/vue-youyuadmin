@@ -38,8 +38,9 @@
     </el-form-item>
     <el-form-item label="上映时间" prop="release_date">
       <el-col :span="8">
-        <el-date-picker type="date" placeholder="选择日期"
+        <el-date-picker type="date" placeholder="待定"
                         :disabled="origindata.status !== 10 && origindata.status !== 20"
+                        :editable=false
                         v-model="origindata.release_date"
                         @change="changeDateVal"
                         style="width: 100%;"></el-date-picker>
@@ -182,9 +183,9 @@
           type: [
             { required: true, message: '请输入电影类型', trigger: 'blur' },
           ],
-          release_date: [
-            { required: true, message: '请输入上映时间', trigger: 'blur' },
-          ],
+//          release_date: [
+//            { required: false, message: '请输入上映时间', trigger: 'blur' },
+//          ],
           story_description: [
             { required: true, message: '请输入剧情简介', trigger: 'blur' },
           ],
@@ -209,7 +210,8 @@
     methods: {
       // datepicker change
       changeDateVal(...cs) {
-        this.origindata.release_date = cs[0];
+        const tempVal = cs[0] ? cs[0] : '0000-00-00';
+        this.origindata.release_date = tempVal;
       },
       //      handleReset() {
       //        this.$refs.form.resetFields();

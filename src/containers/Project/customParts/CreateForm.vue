@@ -33,7 +33,8 @@
       </el-form-item>
       <el-form-item label="上映时间" prop="release_date">
         <el-col :span="8">
-          <el-date-picker type="date" placeholder="选择日期"
+          <el-date-picker type="date" placeholder="待定"
+                          :editable=false
                           v-model="pOriginData.release_date"
                           @change="changeDateVal"
                           :picker-options="pickerOptions"
@@ -171,7 +172,7 @@
             { required: true, message: '请输入电影类型', trigger: 'blur' },
           ],
           release_date: [
-            { required: true, message: '请输入上映时间', trigger: 'change' },
+            { required: false, message: '请输入上映时间', trigger: 'change' },
           ],
           story_description: [
             { required: true, message: '请输入剧情简介', trigger: 'blur' },
