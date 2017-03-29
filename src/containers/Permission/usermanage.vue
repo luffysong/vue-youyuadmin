@@ -1,7 +1,7 @@
 <template>
   <div>
     <Search :searchParams="searchParams"/>
-    <el-table v-if="!listData.listLoading" :data="listData.userlist.data">
+    <el-table v-if="!listData.userListLoading" :data="listData.userlist.data">
       <el-table-column
         align="center"
         label="ID"
@@ -85,7 +85,7 @@
     },
     computed: {
       listData() {
-        const data = this.$store.state.usermanage;
+        const data = this.$store.state.permission;
         let copy;
         if (data.userlist) {
           copy = _.cloneDeep(data);

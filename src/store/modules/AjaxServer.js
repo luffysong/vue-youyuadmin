@@ -377,6 +377,7 @@ const server = {
       },
     });
   },
+  // 权限管理，获取完整权限类目及明细
   getPermissionList() {
     return ajax('get', `${config.apiBase}/api/system/permissions`, {
       headers: {
@@ -384,7 +385,7 @@ const server = {
       },
     });
   },
-  // 用户管理，获取用户list
+  // 权限管理，获取用户list
   getUserManage(params) {
     const { sendData } = params;
     return ajax('get', `${config.apiBase}/api/system/user`, {
@@ -394,7 +395,7 @@ const server = {
       },
     });
   },
-  // 用户管理，修改用户激活状态
+  // 权限管理，修改用户激活状态
   putUserActiveStatus(params) {
     const { id, sendData } = params;
     return ajax('put', `${config.apiBase}/api/system/user/${id}`, qs.stringify(sendData), {
@@ -402,6 +403,24 @@ const server = {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
     });
+  },
+  // 权限管理，获取个人权限详情
+  getPermissionDetail(params) {
+    const { id } = params;
+    return ajax('get', `${config.apiBase}/api/system/user/${id}`);
+  },
+  // 权限管理，获取当前用户权限
+  getPermissionSelf() {
+    return ajax('get', `${config.apiBase}/api/system/user/self`);
+  },
+  // 权限管理，获取所有角色列表
+  getRoleList() {
+    return ajax('get', `${config.apiBase}/api/system/roles`);
+  },
+  // 权限管理，修改用户角色
+  putUserRole(params) {
+    const { id, sendData } = params;
+    return ajax('put', `${config.apiBase}/api/system/user/${id}/role`, sendData);
   },
 };
 export default server;
