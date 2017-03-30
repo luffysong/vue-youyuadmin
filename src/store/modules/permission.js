@@ -1,3 +1,4 @@
+import axios from 'axios';
 import * as types from '../types';
 import server from './AjaxServer';
 
@@ -17,6 +18,8 @@ const initialState = {
   // 获取所有角色
   roleListLoading: false,
   roleList: null,
+  // 用户详情页，用户权限明细，拥有权限与
+  userPermissionExtend: null,
 };
 
 const actions = {
@@ -86,6 +89,25 @@ const actions = {
       });
     });
   },
+  // 用户详情 用户权限明细
+  [types.USER_PERMISSION_EXTEND]({ commit }, params) {
+    const { id } = params;
+    commit(types.PERMISSION_LIST_REQ);
+    commit(types.PERMISSION_DETAIL_REQ);
+    axios.all([server.getPermissionDetail({ id }), server.getPermissionList()])
+    .then(axios.spread((detail, list) => {
+      commit(types.PERMISSION_DETAIL_SUC, {
+        resdata: detail.data.data,
+      });
+      commit(types.PERMISSION_LIST_SUC, {
+        resdata: list.data.data,
+      });
+      commit(types.USER_PERMISSION_EXTEND, {
+        detail: detail.data.data,
+        list: list.data.data,
+      });
+    }));
+  },
 };
 
 const mutations = {
@@ -143,6 +165,13 @@ const mutations = {
   [types.ROLE_LIST_SUC](state, data) {
     state.roleListLoading = false;
     state.roleList = data.resdata;
+  },
+
+  [types.USER_PERMISSION_EXTEND](state, data) {
+    state.userPermissionExtend = '';
+    Object.keys(data.detail.my_permissions).forEach((i, el) => {
+      console.log(i, 'i', el, 'el');
+    });
   },
 
 };

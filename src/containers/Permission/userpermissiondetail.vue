@@ -1,5 +1,5 @@
 <template>
-  <div class="promission-detail" v-if="!promissionData.permissionDetailLoading">
+  <div class="permission-detail" v-if="!permissionData.permissionDetailLoading">
     <el-row class="row">
       <el-col :span="4">
         <el-button type="primary" @click="allotRole()">分配角色</el-button>
@@ -10,7 +10,7 @@
         用户名称：
       </el-col>
       <el-col :span="22">
-        {{promissionData.permissionDetail.base.name}}
+        {{permissionData.permissionDetail.base.name}}
       </el-col>
     </el-row>
     <el-row class="row">
@@ -18,7 +18,7 @@
         用户角色：
       </el-col>
       <el-col :span="22">
-        <b v-for="item in promissionData.permissionDetail.my_roles">{{item.role.name}} &nbsp;</b>
+        <b v-for="item in permissionData.permissionDetail.my_roles">{{item.role.name}} &nbsp;</b>
       </el-col>
     </el-row>
     <el-row class="row">
@@ -27,14 +27,14 @@
       </el-col>
       <el-col :span="22">
         <div>
-          {{ promissionList() }}
+          {{ permissionList() }}
         </div>
       </el-col>
     </el-row>
     <el-dialog title="分配权限" v-model="dialogVisible">
-      <div v-if="!promissionData.roleListLoading">
+      <div v-if="!permissionData.roleListLoading">
         <el-checkbox-group v-model="roleArr">
-          <el-checkbox v-for="item in promissionData.roleList"
+          <el-checkbox v-for="item in permissionData.roleList"
                        :label="item.id">{{item.name}}</el-checkbox>
         </el-checkbox-group>
       </div>
@@ -43,7 +43,6 @@
         <el-button type="primary" @click="confirmRole">确 定</el-button>
       </span>
     </el-dialog>
-
   </div>
 </template>
 <script>
@@ -54,7 +53,7 @@
   export default {
     name: 'UserPermissionDetail',
     methods: {
-      promissionList() {
+      permissionList() {
 
       },
       allotRole() {
@@ -74,19 +73,30 @@
       },
     },
     computed: {
-      promissionData() {
+      permissionData() {
+        this.localPermissionData = this.$store.state.permission;
         return this.$store.state.permission;
+      },
+    },
+    watch: {
+      localPermissionData: {
+        handler: function ex() {
+
+        },
+        deep: true,
       },
     },
     data() {
       return {
         dialogVisible: false,
         roleArr: [],
+        localPermissionData: null,
       };
     },
     created() {
-      this.$store.dispatch(types.PERMISSION_DETAIL_REQ, { id: this.$route.params.id });
-      this.$store.dispatch(types.PERMISSION_SELF_REQ);
+//      this.$store.dispatch(types.PERMISSION_DETAIL_REQ, { id: this.$route.params.id });
+//      this.$store.dispatch(types.PERMISSION_SELF_REQ);
+      this.$store.dispatch(types.USER_PERMISSION_EXTEND, { id: this.$route.params.id });
       this.$store.dispatch(types.ROLE_LIST_REQ);
     },
     components: {
@@ -95,11 +105,11 @@
   };
 </script>
 <style>
-  .promission-detail .el-checkbox {
+  .permission-detail .el-checkbox {
     margin-bottom: 10px;
   }
 
-  .promission-detail .row {
+  .permission-detail .row {
     margin: 20px 0;
   }
 </style>

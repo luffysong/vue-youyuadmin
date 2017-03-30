@@ -149,5 +149,5 @@ export const ROLE_LIST_REQ = 'ROLE_LIST_REQ';
 export const ROLE_LIST_SUC = 'ROLE_LIST_SUC';
 // export const ROLE_LIST_ERR = 'ROLE_LIST_ERR';
 
-
+export const USER_PERMISSION_EXTEND = 'USER_PERMISSION_EXTEND';
 
