@@ -195,7 +195,9 @@ const mutations = {
     if (data.detail.my_permissions.super) {
       Object.keys(data.list).forEach((cel) => {
         Object.keys(data.list[cel].children).forEach((ccel) => {
+          // 叶子节点 增加属性
           data.list[cel].children[ccel].status = 1;
+          // 叶子节点的父节点增加拥有权限数量的统计字段
           if (data.list[cel].status) {
             data.list[cel].status += 1;
           } else {
