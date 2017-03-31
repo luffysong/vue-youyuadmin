@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as types from '../types';
 import server from './AjaxServer';
-
+/* eslint-disable */
 const initialState = {
   // 所有用户
   userListLoading: false,
@@ -20,6 +20,10 @@ const initialState = {
   roleList: null,
   // 用户详情页，用户权限明细，拥有权限与
   userPermissionExtend: null,
+
+  // 角色对应权限
+  rolePermissionLoading: false,
+  rolePermission: null,
 };
 
 const actions = {
@@ -54,7 +58,7 @@ const actions = {
   // 获取权限list
   [types.PERMISSION_LIST_REQ]({ commit }) {
     commit(types.PERMISSION_LIST_REQ);
-    server.getPermissionList().then((res) => {
+    return server.getPermissionList().then((res) => {
       commit(types.PERMISSION_LIST_SUC, {
         resdata: res.data.data,
       });
@@ -83,18 +87,28 @@ const actions = {
   // 获取所有角色
   [types.ROLE_LIST_REQ]({ commit }) {
     commit(types.ROLE_LIST_REQ);
-    server.getRoleList().then((res) => {
+    return server.getRoleList().then((res) => {
       commit(types.ROLE_LIST_SUC, {
         resdata: res.data.data,
       });
     });
   },
-  // 用户详情 用户权限明细
+  // 获取角色对应权限
+  [types.ROLE_PERMISSION_REQ]({ commit }, params) {
+    commit(types.ROLE_PERMISSION_REQ);
+    return server.getRolePermission(params).then((res) => {
+      commit(types.ROLE_PERMISSION_SUC, {
+        resdata: res.data.data,
+      });
+    });
+  },
+
+  // 权限管理 用户详情 用户权限明细
   [types.USER_PERMISSION_EXTEND]({ commit }, params) {
     const { id } = params;
     commit(types.PERMISSION_LIST_REQ);
     commit(types.PERMISSION_DETAIL_REQ);
-    axios.all([server.getPermissionDetail({ id }), server.getPermissionList()])
+    return axios.all([server.getPermissionDetail({ id }), server.getPermissionList()])
     .then(axios.spread((detail, list) => {
       commit(types.PERMISSION_DETAIL_SUC, {
         resdata: detail.data.data,
@@ -135,6 +149,7 @@ const mutations = {
     state.data = data;
   },
 
+  // 所有权限
   [types.PERMISSION_LIST_REQ](state) {
     state.permissionListLoading = true;
   },
@@ -167,12 +182,33 @@ const mutations = {
     state.roleList = data.resdata;
   },
 
+  [types.ROLE_PERMISSION_REQ](state) {
+    state.rolePermissionLoading = true;
+  },
+  [types.ROLE_PERMISSION_SUC](state, data) {
+    state.rolePermission = data.resdata;
+  },
+
+  // 权限管理，人对应的权限
   [types.USER_PERMISSION_EXTEND](state, data) {
     state.userPermissionExtend = '';
-    Object.keys(data.detail.my_permissions).forEach((i, el) => {
-      console.log(i, 'i', el, 'el');
+    Object.keys(data.detail.my_permissions).forEach((el) => {
+      Object.keys(data.list).forEach((cel) => {
+        Object.keys(data.list[cel].children).forEach((ccel) => {
+          if (el === ccel) {
+            data.list[cel].children[ccel].status = 1;
+            if (data.list[cel].status) {
+              data.list[cel].status += 1;
+            } else {
+              data.list[cel].status = 1;
+            }
+          }
+        });
+      });
     });
+    state.userPermissionExtend = data.list;
   },
+  // 权限管理，角色对应的权限
 
 };
 

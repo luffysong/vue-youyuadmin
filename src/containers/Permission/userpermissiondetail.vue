@@ -18,7 +18,8 @@
         用户角色：
       </el-col>
       <el-col :span="22">
-        <b v-for="item in permissionData.permissionDetail.my_roles">{{item.role.name}} &nbsp;</b>
+        <b v-for="item in permissionData.permissionDetail.my_roles">{{item.role.name}}
+          &nbsp;</b>
       </el-col>
     </el-row>
     <el-row class="row">
@@ -27,15 +28,23 @@
       </el-col>
       <el-col :span="22">
         <div>
-          {{ permissionList() }}
+          <dl v-for="item in localPermissionData.userPermissionExtend"
+              v-if="item.status">
+            <dt>{{item.name}}</dt>
+            <dd v-for="citem in item.children" v-if="citem.status">
+              {{citem.name}}
+            </dd>
+          </dl>
         </div>
       </el-col>
     </el-row>
+
     <el-dialog title="分配权限" v-model="dialogVisible">
       <div v-if="!permissionData.roleListLoading">
         <el-checkbox-group v-model="roleArr">
           <el-checkbox v-for="item in permissionData.roleList"
-                       :label="item.id">{{item.name}}</el-checkbox>
+                       :label="item.id">{{item.name}}
+          </el-checkbox>
         </el-checkbox-group>
       </div>
       <span slot="footer" class="dialog-footer">
@@ -48,7 +57,6 @@
 <script>
   import * as types from '../../store/types';
   import ajax from '../../store/modules/AjaxServer';
-  // import PopMsg from '../../components/PopMsg';
 
   export default {
     name: 'UserPermissionDetail',
@@ -69,6 +77,16 @@
           sendData: {
             roles: this.roleArr,
           },
+        }).then((res) => {
+          if (res.data.code === 0) {
+            this.$store.dispatch(types.USER_PERMISSION_EXTEND, { id: this.$route.params.id })
+            .then(() => {
+              this.roleArr = [];
+              this.$store.state.permission.permissionDetail.my_roles.forEach((el) => {
+                this.roleArr.push(el.role_id);
+              });
+            });
+          }
         });
       },
     },
@@ -76,14 +94,6 @@
       permissionData() {
         this.localPermissionData = this.$store.state.permission;
         return this.$store.state.permission;
-      },
-    },
-    watch: {
-      localPermissionData: {
-        handler: function ex() {
-
-        },
-        deep: true,
       },
     },
     data() {
@@ -94,14 +104,14 @@
       };
     },
     created() {
-//      this.$store.dispatch(types.PERMISSION_DETAIL_REQ, { id: this.$route.params.id });
-//      this.$store.dispatch(types.PERMISSION_SELF_REQ);
-      this.$store.dispatch(types.USER_PERMISSION_EXTEND, { id: this.$route.params.id });
+      this.$store.dispatch(types.USER_PERMISSION_EXTEND, { id: this.$route.params.id }).then(() => {
+        this.$store.state.permission.permissionDetail.my_roles.forEach((el) => {
+          this.roleArr.push(el.role_id);
+        });
+      });
       this.$store.dispatch(types.ROLE_LIST_REQ);
     },
-    components: {
-      // PopMsg
-    },
+    components: {},
   };
 </script>
 <style>
@@ -111,5 +121,18 @@
 
   .permission-detail .row {
     margin: 20px 0;
+  }
+
+  .permission-detail dl {
+    margin: 0 0 20px;
+  }
+
+  .permission-detail dd {
+    display: inline-block;
+    margin: 10px 10px 0 0;
+  }
+
+  .permission-detail dt + dd {
+    padding-left: 20px;
   }
 </style>

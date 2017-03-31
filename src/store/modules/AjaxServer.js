@@ -420,7 +420,22 @@ const server = {
   // 权限管理，修改用户角色
   putUserRole(params) {
     const { id, sendData } = params;
-    return ajax('put', `${config.apiBase}/api/system/user/${id}/role`, sendData);
+    return ajax('put', `${config.apiBase}/api/system/user/${id}/roles`, sendData);
+  },
+  // 权限管理，创建新角色
+  postRole(params) {
+    const { sendData } = params;
+    return ajax('post', `${config.apiBase}/api/system/roles`, sendData);
+  },
+  // 权限管理，获取角色对应的权限
+  getRolePermission(params) {
+    const { id } = params;
+    return ajax('get', `${config.apiBase}/api/system/roles/${id}`);
+  },
+  // 权限管理，修改角色对应的权限
+  putRolePermission(params) {
+    const { id, sendData } = params;
+    return ajax('put', `${config.apiBase}/api/system/roles/${id}`, sendData);
   },
 };
 export default server;
