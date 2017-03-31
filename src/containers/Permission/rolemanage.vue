@@ -4,26 +4,26 @@
       <el-col :span="4">
         <h3>角色管理</h3>
       </el-col>
-      <el-col :span="2" :offset="18">
+      <el-col :span="2" :offset="2">
         <el-button type="success" @click="createRole()">新建角色</el-button>
       </el-col>
     </el-row>
-    <el-table v-if="!tableData.roleListLoading"
-              :data="tableData.roleList" :stripe="true" :border="true">
-      <el-table-column label="角色" prop="name"></el-table-column>
-      <el-table-column label="操作">
-        <template scope="scope">
-          <el-button-group v-if="scope.row.name !== '超级管理员'">
-            <el-button type="primary" @click="edit(scope.row.id, scope.row.name)">
-              查看
-            </el-button>
-            <el-button type="danger" @click="del(scope.row.id, scope.row.name)">
-              删除
-            </el-button>
-          </el-button-group>
-        </template>
-      </el-table-column>
-    </el-table>
+    <el-row>
+      <el-col :span="8">
+        <el-table v-if="!tableData.roleListLoading"
+                  :data="tableData.roleList" :stripe="true" :border="true">
+          <el-table-column label="角色" prop="name"></el-table-column>
+          <el-table-column label="操作" width="100">
+            <template scope="scope">
+              <el-button v-if="scope.row.name !== '超级管理员'" type="primary"
+                         @click="edit(scope.row.id, scope.row.name)">
+                查看
+              </el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+      </el-col>
+    </el-row>
 
     <el-dialog title="分配权限" v-model="dialogVisible"
                @close="diaClose()">
@@ -79,15 +79,12 @@
           this.dialogVisible = true;
         });
       },
-      del(id, name) {
-        console.log(id, name);
-      },
       createRole() {
         this.dialogType = 'create';
         this.dialogVisible = true;
       },
       cancelRole() {
-
+        this.dialogVisible = false;
       },
       confirmRole() {
         let permissions = {};
@@ -102,6 +99,11 @@
               name: this.dialogRoleName,
               permissions,
             },
+          }).then((res) => {
+            if (res.data.code === 0) {
+              this.dialogVisible = false;
+              this.$store.dispatch(types.ROLE_LIST_REQ);
+            }
           });
         } else if (this.dialogType === 'create') {
           ajax.postRole({
