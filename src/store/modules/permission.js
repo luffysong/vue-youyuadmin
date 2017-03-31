@@ -192,20 +192,33 @@ const mutations = {
   // 权限管理，人对应的权限
   [types.USER_PERMISSION_EXTEND](state, data) {
     state.userPermissionExtend = '';
-    Object.keys(data.detail.my_permissions).forEach((el) => {
+    if (data.detail.my_permissions.super) {
       Object.keys(data.list).forEach((cel) => {
         Object.keys(data.list[cel].children).forEach((ccel) => {
-          if (el === ccel) {
-            data.list[cel].children[ccel].status = 1;
-            if (data.list[cel].status) {
-              data.list[cel].status += 1;
-            } else {
-              data.list[cel].status = 1;
-            }
+          data.list[cel].children[ccel].status = 1;
+          if (data.list[cel].status) {
+            data.list[cel].status += 1;
+          } else {
+            data.list[cel].status = 1;
           }
         });
       });
-    });
+    } else {
+      Object.keys(data.detail.my_permissions).forEach((el) => {
+        Object.keys(data.list).forEach((cel) => {
+          Object.keys(data.list[cel].children).forEach((ccel) => {
+            if (el === ccel) {
+              data.list[cel].children[ccel].status = 1;
+              if (data.list[cel].status) {
+                data.list[cel].status += 1;
+              } else {
+                data.list[cel].status = 1;
+              }
+            }
+          });
+        });
+      });
+    }
     state.userPermissionExtend = data.list;
   },
   // 权限管理，角色对应的权限
