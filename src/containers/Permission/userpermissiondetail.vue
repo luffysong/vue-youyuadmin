@@ -2,7 +2,9 @@
   <div class="permission-detail" v-if="!permissionData.permissionDetailLoading">
     <el-row class="row">
       <el-col :span="4">
-        <el-button type="primary" @click="allotRole()">分配角色</el-button>
+        <el-button type="primary" @click="allotRole()"
+                   v-if="permissionCheck(['api.system.user.roles'])"
+        >分配角色</el-button>
       </el-col>
     </el-row>
     <el-row class="row">
@@ -57,6 +59,7 @@
 <script>
   import * as types from '../../store/types';
   import ajax from '../../store/modules/AjaxServer';
+  import permissionCheck from '../../utils/permissionCheck';
 
   export default {
     name: 'UserPermissionDetail',
@@ -101,6 +104,7 @@
         dialogVisible: false,
         roleArr: [],
         localPermissionData: null,
+        permissionCheck,
       };
     },
     created() {

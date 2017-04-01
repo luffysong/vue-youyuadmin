@@ -1,3 +1,5 @@
+import permissionCheck from '../utils/permissionCheck';
+
 export default [
   {
     // 项目管理
@@ -17,6 +19,15 @@ export default [
         path: 'list',
         component: resolve => require(['../containers/Project/list/index'], resolve), // eslint-disable-line
         redirect: '/project/list/unregistered',
+        beforeEnter: (to, from, next) => {
+          if (permissionCheck(['api.movie.index'])) {
+            next();
+          } else {
+            next({
+              path: '/noauth',
+            });
+          }
+        },
         children: [
           {
             name: 'ProjectListUnregistered',
@@ -60,6 +71,15 @@ export default [
         },
         component: resolve => require(['../containers/Project/detail/index'], resolve), // eslint-disable-line
         redirect: '/project/list/unregistered',
+        beforeEnter: (to, from, next) => {
+          if (permissionCheck(['api.movie.show'])) {
+            next();
+          } else {
+            next({
+              path: '/noauth',
+            });
+          }
+        },
         children: [
           {
             name: 'ProjectCreate',
@@ -68,6 +88,15 @@ export default [
             },
             path: 'create',
             component: resolve => require(['../containers/Project/detail/create'], resolve), // eslint-disable-line
+            beforeEnter: (to, from, next) => {
+              if (permissionCheck(['api.movie.store'])) {
+                next();
+              } else {
+                next({
+                  path: '/noauth',
+                });
+              }
+            },
           },
           {
             name: 'ProjectDetailDesc',
@@ -76,6 +105,15 @@ export default [
             },
             path: 'desc/:id',
             component: resolve => require(['../containers/Project/detail/desc'], resolve), // eslint-disable-line
+            beforeEnter: (to, from, next) => {
+              if (permissionCheck(['api.movie.show'])) {
+                next();
+              } else {
+                next({
+                  path: '/noauth',
+                });
+              }
+            },
           },
           {
             name: 'ProjectDetailOriginShare',
@@ -108,17 +146,35 @@ export default [
             },
             path: 'projectProgress/:id',
             component: resolve => require(['../containers/Project/detail/projectProgress'], resolve), // eslint-disable-line
+            beforeEnter: (to, from, next) => {
+              if (permissionCheck(['api.movie-progress.index'])) {
+                next();
+              } else {
+                next({
+                  path: '/noauth',
+                });
+              }
+            },
           },
         ],
       },
     ],
   },
+  // 初始份额转让管理
   {
-    // 初始份额转让管理
     name: 'OriginShareTransfer',
     path: '/original',
     component: resolve => require(['../containers/Original/index'], resolve), // eslint-disable-line
     redirect: '/original/list/pending',
+    beforeEnter: (to, from, next) => {
+      if (permissionCheck(['api.movie-listing.index'])) {
+        next();
+      } else {
+        next({
+          path: '/noauth',
+        });
+      }
+    },
     children: [
       {
         name: 'OriginalList',
@@ -157,15 +213,33 @@ export default [
         name: 'OriginDetail',
         path: 'detail/:id',
         component: resolve => require(['../containers/Original/Detail'], resolve), // eslint-disable-line
+        beforeEnter: (to, from, next) => {
+          if (permissionCheck(['api.movie-listing.show'])) {
+            next();
+          } else {
+            next({
+              path: '/noauth',
+            });
+          }
+        },
       },
     ],
   },
+  // 可转让影视收益权
   {
-    // 影视类收益权转让管理
     name: 'Transfer',
     path: '/transfer',
     component: resolve => require(['../containers/Transfer/index'], resolve), // eslint-disable-line
     redirect: '/transfer/list/pending',
+    beforeEnter: (to, from, next) => {
+      if (permissionCheck(['api.movie-listing.index'])) {
+        next();
+      } else {
+        next({
+          path: '/noauth',
+        });
+      }
+    },
     children: [
       {
         name: 'TransferList',
@@ -204,20 +278,48 @@ export default [
         name: 'TransferDetail',
         path: 'detail/:id',
         component: resolve => require(['../containers/Transfer/Detail.vue'], resolve), // eslint-disable-line
+        beforeEnter: (to, from, next) => {
+          if (permissionCheck(['api.movie-listing.show'])) {
+            next();
+          } else {
+            next({
+              path: '/noauth',
+            });
+          }
+        },
       },
     ],
   },
+  // 投资人审核
   {
     name: 'Investor',
     path: '/investor',
     component: resolve => require(['../containers/Investor/index'], resolve), // eslint-disable-line
     redirect: '/investor/list/pending',
+    beforeEnter: (to, from, next) => {
+      if (permissionCheck(['api.audit.user-real-info.index'])) {
+        next();
+      } else {
+        next({
+          path: '/noauth',
+        });
+      }
+    },
     children: [
       {
         name: 'InvestorList',
         path: 'list',
         component: resolve => require(['../containers/Investor/list'], resolve), // eslint-disable-line
         redirect: '/investor/list/pending',
+        beforeEnter: (to, from, next) => {
+          if (permissionCheck(['api.financial.trade-refund.index'])) {
+            next();
+          } else {
+            next({
+              path: '/noauth',
+            });
+          }
+        },
         children: [
           {
             name: 'InvestorPending',
@@ -245,9 +347,19 @@ export default [
         name: 'InvestorDetail',
         path: 'detail/:id',
         component: resolve => require(['../containers/Investor/detail'], resolve), // eslint-disable-line
+        beforeEnter: (to, from, next) => {
+          if (permissionCheck(['api.audit.user-real-info.show'])) {
+            next();
+          } else {
+            next({
+              path: '/noauth',
+            });
+          }
+        },
       },
     ],
   },
+  // 订单管理
   {
     name: 'Order',
     path: '/order',
@@ -259,6 +371,15 @@ export default [
         path: 'list',
         component: resolve => require(['../containers/Order/list/listindex'], resolve), // eslint-disable-line
         redirect: '/order/list/unpaidDeposit',
+        beforeEnter: (to, from, next) => {
+          if (permissionCheck(['api.movie-order.index'])) {
+            next();
+          } else {
+            next({
+              path: '/noauth',
+            });
+          }
+        },
         children: [
           {
             name: 'orderUnpaidDeposit',
@@ -291,6 +412,15 @@ export default [
         name: 'OrderDetail',
         path: 'detail/:id',
         component: resolve => require(['../containers/Order/detail'], resolve), // eslint-disable-line
+        beforeEnter: (to, from, next) => {
+          if (permissionCheck(['api.movie-order.show'])) {
+            next();
+          } else {
+            next({
+              path: '/noauth',
+            });
+          }
+        },
       },
     ],
   },
@@ -300,6 +430,15 @@ export default [
     path: '/trade',
     component: resolve => require(['../containers/Trade/index'], resolve), // eslint-disable-line
     redirect: '/trade/list/unpaid',
+    beforeEnter: (to, from, next) => {
+      if (permissionCheck(['api.financial.trade.index'])) {
+        next();
+      } else {
+        next({
+          path: '/noauth',
+        });
+      }
+    },
     children: [
       {
         name: 'TradeList',
@@ -322,6 +461,15 @@ export default [
         name: 'TradeDetail',
         path: 'detail/:id',
         component: resolve => require(['../containers/Trade/detail'], resolve), // eslint-disable-line
+        beforeEnter: (to, from, next) => {
+          if (permissionCheck(['api.financial.trade.show'])) {
+            next();
+          } else {
+            next({
+              path: '/noauth',
+            });
+          }
+        },
       },
     ],
   },
@@ -331,6 +479,15 @@ export default [
     path: '/refund',
     component: resolve => require(['../containers/Refund/index'], resolve), // eslint-disable-line
     redirect: '/refund/list/unrefund',
+    beforeEnter: (to, from, next) => {
+      if (permissionCheck(['api.financial.trade-refund.index'])) {
+        next();
+      } else {
+        next({
+          path: '/noauth',
+        });
+      }
+    },
     children: [
       {
         name: 'RefundList',
@@ -353,6 +510,15 @@ export default [
         name: 'RefundDetail',
         path: 'detail/:id',
         component: resolve => require(['../containers/Refund/detail'], resolve), // eslint-disable-line
+        beforeEnter: (to, from, next) => {
+          if (permissionCheck(['api.financial.trade-refund.show'])) {
+            next();
+          } else {
+            next({
+              path: '/noauth',
+            });
+          }
+        },
       },
     ],
   },
@@ -362,6 +528,15 @@ export default [
     path: '/permission',
     component: resolve => require(['../containers/Permission/index'], resolve), // eslint-disable-line
     redirect: '/permission/usermanage',
+    beforeEnter: (to, from, next) => {
+      if (permissionCheck(['api.system.user.index'])) {
+        next();
+      } else {
+        next({
+          path: '/noauth',
+        });
+      }
+    },
     children: [
       {
         name: 'UserManage',
@@ -372,6 +547,15 @@ export default [
         name: 'UserPermissionDetail',
         path: 'userpermissiondetail/:id',
         component: resolve => require(['../containers/Permission/userpermissiondetail'], resolve), // eslint-disable-line
+        beforeEnter: (to, from, next) => {
+          if (permissionCheck(['api.system.user.show'])) {
+            next();
+          } else {
+            next({
+              path: '/noauth',
+            });
+          }
+        },
       },
       {
         name: 'RoleManage', // 角色管理

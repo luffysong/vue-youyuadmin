@@ -8,6 +8,8 @@ import VueRouter from 'vue-router';
  * Internal dependencies
  */
 import menus from './menu';
+import store from '../store/index';
+import * as types from '../store/types';
 
 Vue.use(VueRouter);
 
@@ -23,7 +25,6 @@ function generateRoutesFromMenu(menu = [], routes = []) {
   }
   return routes;
 }
-
 const routes = [
   {
     name: 'Home',
@@ -47,6 +48,11 @@ const router = new VueRouter({
   linkActiveClass: 'is-active',
   scrollBehavior: () => ({ y: 0 }),
   routes,
+});
+router.beforeEach((to, from, next) => {
+  store.dispatch(types.PERMISSION_SELF_REQ).then(() => {
+    next();
+  });
 });
 
 export default router;

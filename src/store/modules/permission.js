@@ -14,7 +14,10 @@ const initialState = {
   permissionDetail: null,
   // 获取当前用户详情
   permissionSelfLoading: false,
-  permissionSelf: null,
+  permissionSelf: {
+    my_permissions: {},
+  },
+  permissionSelfPromise: null,
   // 获取所有角色
   roleListLoading: false,
   roleList: null,
@@ -77,12 +80,13 @@ const actions = {
   },
   // 获取当前用户权限详情
   [types.PERMISSION_SELF_REQ]({ commit }) {
-    commit(types.PERMISSION_SELF_REQ);
-    server.getPermissionSelf().then((res) => {
+    const promise = server.getPermissionSelf().then((res) => {
       commit(types.PERMISSION_SELF_SUC, {
         resdata: res.data.data,
       });
     });
+    commit(types.PERMISSION_SELF_REQ, promise);
+    return promise;
   },
   // 获取所有角色
   [types.ROLE_LIST_REQ]({ commit }) {
@@ -166,8 +170,9 @@ const mutations = {
     state.permissionDetail = data.resdata;
   },
 
-  [types.PERMISSION_SELF_REQ](state) {
+  [types.PERMISSION_SELF_REQ](state, data) {
     state.permissionSelfLoading = true;
+    state.permissionSelfPromise = data;
   },
   [types.PERMISSION_SELF_SUC](state, data) {
     state.permissionSelfLoading = false;
@@ -192,6 +197,7 @@ const mutations = {
   // 权限管理，人对应的权限
   [types.USER_PERMISSION_EXTEND](state, data) {
     state.userPermissionExtend = '';
+
     if (data.detail.my_permissions.super) {
       Object.keys(data.list).forEach((cel) => {
         Object.keys(data.list[cel].children).forEach((ccel) => {

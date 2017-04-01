@@ -1,5 +1,5 @@
 <template>
-<h1>NoAuth</h1>
+<h1>没有权限</h1>
 </template>
 
 <script>

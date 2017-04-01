@@ -36,7 +36,8 @@
                        width="100"
                        inline-template
       >
-        <router-link :to="`/permission/userpermissiondetail/${row.id}`">查看详情
+        <router-link :to="`/permission/userpermissiondetail/${row.id}`"
+        v-if="permissionCheck(['api.system.user.show'])">查看详情
         </router-link>
       </el-table-column>
       <el-table-column
@@ -65,6 +66,7 @@
   import server from '../../store/modules/AjaxServer';
   import mix from './mixins';
   import Search from '../../components/Search';
+  import permissionCheck from '../../utils/permissionCheck';
 
   export default {
     name: 'UserManageList',
@@ -123,6 +125,7 @@
           input: '',
           commit: s.searchCommit,
         },
+        permissionCheck,
       };
     },
     beforeCreate() {

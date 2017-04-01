@@ -24,6 +24,8 @@ import LevelBar from './components/LevelBar';
 
 export default {
   name: 'app',
+  created() {
+  },
   components: {
     NavBar,
     SideBar,
