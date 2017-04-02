@@ -58,6 +58,7 @@
         label="操作"
         width="100">
         <el-button type="info" @click="toDetail(row.uid)"
+                   v-if="permissionCheck(['api.audit.user-real-info.show'])"
                    icon="view" size="small">
           查看
         </el-button>
@@ -88,6 +89,7 @@
 </style>
 <script>
   import mixins from './mixins';
+  import permissionCheck from '../../../utils/permissionCheck';
 
   export default {
     name: 'InvestorListTable',
@@ -96,6 +98,11 @@
       pPageChange: Function,
     },
     mixins: [mixins],
+    data() {
+      return {
+        permissionCheck,
+      }
+    },
     methods: {
       toDetail(...cs) {
         this.$router.push({

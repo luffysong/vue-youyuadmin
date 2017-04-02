@@ -65,7 +65,7 @@
                alt="">
         </el-col>
       </el-form-item>
-      <el-form-item v-if="detailData.detail.info.status === 1">
+      <el-form-item v-if="detailData.detail.info.status === 1 && permissionCheck(['api.audit.user-real-info.update'])">
         <el-button type="primary" @click="handlePass">通过</el-button>
         <el-button @click="handleReject">驳回</el-button>
       </el-form-item>
@@ -101,6 +101,7 @@
   import mixins from './table/mixins';
   import PopMsg from '../../components/PopMsg';
   import dict from '../../store/modules/dictLabel';
+  import permissionCheck from '../../utils/permissionCheck';
 
   export default {
     name: 'InvestorDetail',
@@ -181,6 +182,7 @@
     },
     data() {
       return {
+        permissionCheck,
         memberTypes: dict.state.member_type,
         rules: {
           id: [
