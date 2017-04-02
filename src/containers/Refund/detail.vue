@@ -57,7 +57,8 @@
           <el-input v-model="form.notify_time" :disabled="true"></el-input>
         </el-form-item>
       </div>
-      <el-button v-if="form.status === 1" type="primary" @click="submitHandle">退款</el-button>
+      <el-button v-if="form.status === 1 && permissionCheck(['api.financial.trade-refund.confirm-refunded'])"
+                 type="primary" @click="submitHandle">退款</el-button>
     </el-form>
     <PopMsg :popMsgConfig="popMsgConfig"/>
   </div>
@@ -68,6 +69,7 @@
   import * as types from '../../store/types';
   import server from '../../store/modules/AjaxServer';
   import PopMsg from '../../components/PopMsg';
+  import permissionCheck from '../../utils/permissionCheck';
 
   export default {
     name: 'RefundDetail',
@@ -123,6 +125,7 @@
     computed: {},
     data() {
       return {
+        permissionCheck,
         tradeStatus: dict.state.trade_status,
         orderStatus: dict.state.trade_refund_status,
         form: {},

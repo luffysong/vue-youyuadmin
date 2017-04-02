@@ -61,7 +61,7 @@
           <el-input v-model="form.notify_time" :disabled="true"></el-input>
         </el-form-item>
       </div>
-      <el-button v-if="form.status === 1" type="primary" @click="submitHandle">已付款</el-button>
+      <el-button v-if="form.status === 1 && permissionCheck(['api.financial.trade.confirm-paid'])" type="primary" @click="submitHandle">已付款</el-button>
     </el-form>
     <PopMsg :popMsgConfig="popMsgConfig"/>
   </div>
@@ -71,6 +71,7 @@
   import * as types from '../../store/types';
   import server from '../../store/modules/AjaxServer';
   import PopMsg from '../../components/PopMsg';
+  import permissionCheck from '../../utils/permissionCheck';
 
   export default {
     name: 'TradeDetail',
@@ -126,6 +127,7 @@
     computed: {},
     data() {
       return {
+        permissionCheck,
         orderStatus: [
           {
             value: 10,

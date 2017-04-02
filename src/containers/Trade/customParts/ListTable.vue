@@ -74,7 +74,7 @@
         align="center"
         label="操作"
         width="100">
-        <el-button-group>
+        <el-button-group v-if="permissionCheck(['api.financial.trade.show'])">
           <el-button type="info" @click="toDetail(row.id)"
                      icon="view" size="small">
             查看
@@ -98,6 +98,7 @@
 
 <script>
   import dict from '../../../store/modules/dict';
+  import permissionCheck from '../../../utils/permissionCheck';
 
   export default {
     name: 'ListTable',
@@ -120,7 +121,9 @@
       },
     },
     data() {
-      return {};
+      return {
+        permissionCheck,
+      };
     },
   };
 </script>
