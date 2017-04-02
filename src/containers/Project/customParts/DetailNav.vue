@@ -12,6 +12,7 @@
 
   //  import { mapGetters } from 'vuex';
   //  import * as types from '../../store/types';
+//  import permissionCheck from '../../../utils/permissionCheck';
 
   export default {
     name: 'DetailNav',
@@ -34,6 +35,7 @@
     },
     data() {
       return {
+//        permissionCheck,
       };
     },
     mounted() {

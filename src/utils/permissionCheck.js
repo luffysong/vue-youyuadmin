@@ -12,6 +12,6 @@ export default function (permissionArr) {
       }
     });
   // }
-  console.log(status, 'status, check');
+  // console.log(status, 'status, check');
   return status;
 }

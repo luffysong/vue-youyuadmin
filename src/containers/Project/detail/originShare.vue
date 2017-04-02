@@ -2,11 +2,13 @@
   <div>
     <div v-if="!listData.loading">
       <TotalInfo :data="listDataCopy"/>
-      <ShareForm :poriginData="listDataCopy"
-                 :buttonsIsHide="buttonsIsHide"
-                 :editable="editable"
-                 :priceIsHide="priceIsHide"
-                 :getData="getData"></ShareForm>
+      <ShareForm
+        v-if="permissionCheck(['api.movie-initial-share.show'])"
+        :poriginData="listDataCopy"
+        :buttonsIsHide="buttonsIsHide"
+        :editable="editable"
+        :priceIsHide="priceIsHide"
+        :getData="getData"></ShareForm>
     </div>
   </div>
 </template>
@@ -16,6 +18,7 @@
   import { moneyAdd } from '../../../utils/math';
   import TotalInfo from '../customParts/TotalInfo';
   import ShareForm from '../customParts/ShareForm';
+  import permissionCheck from '../../../utils/permissionCheck';
 
   export default {
     name: 'originShareRegister',
@@ -44,7 +47,8 @@
           });
           this.listDataCopy.totalInfo.totalPeople = this.listDataCopy.list.length;
           this.listDataCopy.totalInfo.totalShare = totalShare;
-          if (this.listDataCopy.movie && this.listDataCopy.movie.status === 10) {
+
+          if (_.get(this.listDataCopy.movie, 'status') === 10 && permissionCheck(['api.movie-initial-share.update'])) {
             this.buttonsIsHide = false;
             this.editable = true;
           } else {
@@ -62,6 +66,7 @@
         buttonsIsHide: false,
         editable: false,
         priceIsHide: false,
+        permissionCheck,
       };
     },
     beforeCreate() {

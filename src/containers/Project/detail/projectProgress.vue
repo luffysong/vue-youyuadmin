@@ -1,15 +1,19 @@
 <template>
   <div>
-    <el-button class="create" @click="add">新建进度</el-button>
+    <el-button class="create"
+               v-if="permissionCheck(['api.movie-progress.store'])"
+               @click="add">新建进度</el-button>
 
-    <div>
+    <div v-if="permissionCheck(['api.movie-progress.show'])">
       <div v-for="it in listData.list" class="mod">
         <el-input type="textarea" :rows="4" class="textarea"
                   placeholder="请输入进度"
                   v-model="it.description"
         />
         <span>{{it.updated_at}}</span>
-        <el-button class="del-btn" type="danger" @click="del(it.id)">删除
+        <el-button class="del-btn" type="danger"
+                   v-if="permissionCheck(['api.movie-progress.update'])"
+                   @click="del(it.id)">删除
         </el-button>
       </div>
     </div>
@@ -22,7 +26,9 @@
       </span>
     </el-dialog>
     <!--添加新进度-->
-    <el-dialog ref="dia" :title="dialog.name" v-model="dialog.visible">
+    <el-dialog ref="dia" :title="dialog.name"
+               v-if="permissionCheck(['api.movie-progress.update'])"
+               v-model="dialog.visible">
       <NewProgress :closeDialog="closeDialog" :getlist="getlist"></NewProgress>
     </el-dialog>
   </div>
@@ -32,6 +38,7 @@
   import * as types from '../../../store/types';
   import server from '../../../store/modules/AjaxServer';
   import NewProgress from '../customParts/NewProgress';
+  import permissionCheck from '../../../utils/permissionCheck';
 
   export default {
     name: 'projectProgress',
@@ -93,6 +100,7 @@
           visible: false,
           delId: '',
         },
+        permissionCheck,
       };
     },
     beforeCreate() {
