@@ -15,6 +15,7 @@
   import server from '../../../store/modules/AjaxServer';
   import DescriptionForm from '../customParts/DescriptionForm';
   import PopMsg from '../../../components/PopMsg';
+  import permissionCheck from '../../../utils/permissionCheck';
 
   export default {
     name: 'desc',
@@ -26,22 +27,33 @@
     watch: {
       detaildata() {
         const cObject = this.detaildata;
+        // 修改
+        const permissionChange = permissionCheck(['api.movie.update']);
+        // 上映
+        const permissionScreen = permissionCheck(['api.movie.screening']);
+        // 发布
+        const permissionPublish = permissionCheck(['api.movie.publish']);
+        // 结算
+        const permissionClearing = permissionCheck(['api.movie.clearing']);
         if (cObject.status === 10) {
-          this.buttons = [
-            {
+          this.buttons = [];
+          if (permissionChange) {
+            this.buttons.push({
               desc: '保存',
               callback: (...child) => {
                 this.handleSubmit.apply(this, [...child]);
               },
-            },
-            {
+            });
+          }
+          if (permissionPublish) {
+            this.buttons.push({
               type: 'success',
               desc: '发布上线',
               callback: (...child) => {
                 this.handlePublish.apply(this, [...child]);
               },
-            },
-          ];
+            });
+          }
           this.handlePublish = () => {
             const id = this.$route.params.id;
             server.changeProject({
@@ -59,21 +71,25 @@
             });
           };
         } else if (cObject.status === 20) {
-          this.buttons = [
-            {
+          this.buttons = [];
+          if (permissionChange) {
+            this.buttons.push({
               desc: '保存',
               callback: (...child) => {
                 this.handleSubmit.apply(this, [...child]);
               },
-            },
-            {
+            });
+          }
+          if (permissionScreen) {
+            this.buttons.push({
               type: 'success',
               desc: '已上映',
               callback: (...child) => {
                 this.handlePublish.apply(this, [...child]);
               },
-            },
-          ];
+            });
+          }
+
           this.handlePublish = () => {
             const id = this.$route.params.id;
             server.changeProject({
@@ -91,21 +107,24 @@
             });
           };
         } else if (cObject.status === 30) {
-          this.buttons = [
-            {
+          this.buttons = [];
+          if (permissionChange) {
+            this.buttons.push({
               desc: '保存',
               callback: (...child) => {
                 this.handleSubmit.apply(this, [...child]);
               },
-            },
-            {
+            });
+          }
+          if (permissionClearing) {
+            this.buttons.push({
               type: 'success',
               desc: '已清算',
               callback: (...child) => {
                 this.handlePublish.apply(this, [...child]);
               },
-            },
-          ];
+            });
+          }
           this.handlePublish = () => {
             const id = this.$route.params.id;
             server.changeProject({
@@ -123,14 +142,15 @@
             });
           };
         } else if (cObject.status === 40) {
-          this.buttons = [
-            {
+          this.buttons = [];
+          if (permissionChange) {
+            this.buttons.push({
               desc: '保存',
               callback: (...child) => {
                 this.handleSubmit.apply(this, [...child]);
               },
-            },
-          ];
+            });
+          }
         }
       },
     },
@@ -150,6 +170,7 @@
         },
         activeTab: 'desc',
         buttons: [],
+        permissionCheck,
       };
     },
     methods: {

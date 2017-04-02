@@ -35,7 +35,6 @@
         </template>
       </el-table-column>
       <el-table-column
-        sortable
         align="center"
         prop="publish_time"
         label="登记时间"
@@ -43,14 +42,15 @@
       </el-table-column>
 
       <el-table-column
-        sortable
         align="center"
         prop="release_date"
         label="上映时间"
         width="120">
+        <template scope="scope">
+          <p>{{scope.row.release_date === '0000-00-00' ? '待定' : scope.row.release_date}}</p>
+        </template>
       </el-table-column>
       <el-table-column
-        sortable
         align="center"
         prop="settlement_time"
         label="清算时间"
@@ -58,7 +58,7 @@
       </el-table-column>
 
       <el-table-column
-        v-if="listType==='all'"
+        v-if="listType==='all' && permissionCheck(['api.movie.hot'])"
         inline-template
         align="center"
         label="上首页"
@@ -75,7 +75,7 @@
       </el-table-column>
 
       <el-table-column
-        v-if="listType==='all'"
+        v-if="listType==='all' && permissionCheck(['api.movie.hide'])"
         inline-template
         align="center"
         label="显 / 隐"
@@ -94,6 +94,7 @@
         label="操作"
         width="90">
         <el-button type="info"
+                   v-if="permissionCheck(['api.movie.show'])"
                    icon="view" size="small"
                    @click="toDetail(row.id)">
           查看
@@ -116,6 +117,7 @@
 
 <script>
   import _ from 'lodash';
+  import permissionCheck from '../../../utils/permissionCheck';
 
   export default {
     name: 'ProjectTable',
@@ -133,6 +135,7 @@
     data() {
       return {
         listdata: _.cloneDeep(this.data),
+        permissionCheck,
       };
     },
   };
