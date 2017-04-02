@@ -96,6 +96,7 @@
   import Buttons from '../../components/Button';
   import server from '../../store/modules/AjaxServer';
   import PopMsg from '../../components/PopMsg';
+  import permissionCheck from '../../utils/permissionCheck';
 
   export default {
     name: 'OrderDetail',
@@ -166,27 +167,34 @@
     },
     watch: {
       form() {
+        const permissionClose = permissionCheck(['api.movie-order.close']);
+        const permissionBalance = permissionCheck(['api.movie-order.open-balance']);
         if (this.form.status === 10 || this.form.status === 30) {
-          this.buttonData = [
-            {
-              type: 'danger',
-              desc: '关闭订单',
-              callback: this.closeOrder,
-            },
-          ];
+          if (permissionClose) {
+            this.buttonData = [
+              {
+                type: 'danger',
+                desc: '关闭订单',
+                callback: this.closeOrder,
+              },
+            ];
+          }
         } else if (this.form.status === 20) {
-          this.buttonData = [
-            {
+          this.buttonData = [];
+          if (permissionClose) {
+            this.buttonData.push({
               type: 'danger',
               desc: '关闭订单',
               callback: this.closeOrder,
-            },
-            {
+            });
+          }
+          if (permissionBalance) {
+            this.buttonData.push({
               type: 'primary',
               desc: '开启剩余款',
               callback: this.openBalance,
-            },
-          ];
+            });
+          }
         } else {
           this.buttonData = [];
         }
@@ -196,7 +204,7 @@
       return {
         form: {},
         buttonData: [],
-
+        permissionCheck,
         orderStatus: [
           {
             value: 10,
