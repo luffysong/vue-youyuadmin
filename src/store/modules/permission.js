@@ -176,7 +176,15 @@ const mutations = {
   },
   [types.PERMISSION_SELF_SUC](state, data) {
     state.permissionSelfLoading = false;
-    state.permissionSelf = data.resdata;
+    let tempdata;
+    if (!data.resdata) {
+      tempdata = {
+        my_permissions: {},
+      };
+    } else {
+      tempdata = data.resdata;
+    }
+    state.permissionSelf = tempdata;
   },
 
   [types.ROLE_LIST_REQ](state) {

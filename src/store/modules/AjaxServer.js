@@ -16,7 +16,12 @@ axios.interceptors.response.use((res) => {
       duration: 4000,
       customClass: 'ajaxErrorMsg',
     });
-    location.href = res.data.redirect; // eslint-disable-line
+    if (res.data.redirect) {
+      location.href = res.data.redirect; // eslint-disable-line
+    }
+    if (res.data.msg && res.data.msg.indexOf('禁用') > -1 && location.pathname !== '/noauth') { // eslint-disable-line
+      location.href = '/noauth'; // eslint-disable-line
+    }
   }
   return res;
 }, (...err) => {
