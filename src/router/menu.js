@@ -330,7 +330,7 @@ export default [
         component: resolve => require(['../containers/Investor/list'], resolve), // eslint-disable-line
         redirect: '/investor/list/pending',
         beforeEnter: (to, from, next) => {
-          if (permissionCheck(['api.financial.trade-refund.index'])) {
+          if (permissionCheck(['api.audit.user-real-info.index'])) {
             next();
           } else {
             next({
