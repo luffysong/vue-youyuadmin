@@ -101,7 +101,7 @@
     data() {
       return {
         permissionCheck,
-      }
+      };
     },
     methods: {
       toDetail(...cs) {

@@ -122,6 +122,15 @@ export default [
             },
             path: 'originShare/:id',
             component: resolve => require(['../containers/Project/detail/originShare'], resolve), // eslint-disable-line
+            beforeEnter: (to, from, next) => {
+              if (permissionCheck(['api.movie-initial-share.show'])) {
+                next();
+              } else {
+                next({
+                  path: '/noauth',
+                });
+              }
+            },
           },
           {
             name: 'ProjectDetailTransferShare',
