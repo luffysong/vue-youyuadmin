@@ -27,7 +27,6 @@
     </el-dialog>
     <!--添加新进度-->
     <el-dialog ref="dia" :title="dialog.name"
-               v-if="permissionCheck(['api.movie-progress.update'])"
                v-model="dialog.visible">
       <NewProgress :closeDialog="closeDialog" :getlist="getlist"></NewProgress>
     </el-dialog>

@@ -5,9 +5,9 @@
       <img :src="require('./imgs/logo.svg')" alt="LOGO" />
     </a>
     <el-menu-item v-if="permissionCheckBind(['api.movie.index'])" index="/project">项目管理</el-menu-item>
-    <el-menu-item v-if="permissionCheckBind(['api.movie-initial-share.index'])" index="/original">初始份额转让管理</el-menu-item>
+    <el-menu-item v-if="permissionCheckBind(['api.movie-listing.index'])" index="/original">初始份额转让管理</el-menu-item>
     <el-menu-item v-if="permissionCheckBind(['api.movie-listing.index'])" index="/transfer">影视收益权转让管理</el-menu-item>
-    <el-menu-item v-if="permissionCheckBind(['api.movie-listing.index'])" index="/investor">投资人审核</el-menu-item>
+    <el-menu-item v-if="permissionCheckBind(['api.audit.user-real-info.index'])" index="/investor">投资人审核</el-menu-item>
     <el-menu-item v-if="permissionCheckBind(['api.movie-order.index'])" index="/order">订单管理</el-menu-item>
     <el-menu-item v-if="permissionCheckBind(['api.financial.trade.index'])" index="/trade">收款管理</el-menu-item>
     <el-menu-item v-if="permissionCheckBind(['api.financial.trade-refund.index'])" index="/refund">退款管理</el-menu-item>
