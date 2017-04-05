@@ -98,12 +98,12 @@
 </template>
 
 <script>
-  // import { mapGetters } from 'vuex';
   import _ from 'lodash';
   import * as types from '../../../store/types';
   import Buttons from '../../../components/Button';
   import PopMsg from '../../../components/PopMsg';
   import server from '../../../store/modules/AjaxServer';
+  import permissionCheck from '../../../utils/permissionCheck';
 
   export default {
     name: 'OriginDetail',
@@ -113,90 +113,107 @@
     },
     computed: {
       detailData() {
+        const permissionChange = permissionCheck(['api.movie-listing.update']);
         if (this.pDetailData.info.status === 1) {
-          this.buttons = [
-            {
-              type: 'primary',
-              desc: '通过',
-              callback: () => {
-                _.assign(this.popMsgConfig, this.popDefault, {
-                  dialogVisible: true,
-                  title: '操作提示',
-                  desc: '确定通过该项目？',
-                  type: 'confirm',
-                  sureCallback: () => {
-                    server.changeQuoted({
-                      id: this.$route.params.id,
-                      sendData: {
-                        status: 3,
-                      },
-                    }).then((res) => {
-                      if (res.data.code === 0) {
-                        this.getDetail();
-                        _.assign(this.popMsgConfig, this.popDefault, {
-                          dialogVisible: true,
-                          title: '项目操作',
-                          desc: '操作成功',
-                          sureCallback: () => {
-                            this.popMsgConfig.dialogVisible = false;
-                          },
+          if (permissionChange) {
+            this.buttons = [
+              {
+                type: 'primary',
+                desc: '通过',
+                callback: () => {
+                  _.assign(this.popMsgConfig, this.popDefault, {
+                    dialogVisible: true,
+                    title: '操作提示',
+                    desc: '确定通过该项目？',
+                    type: 'confirm',
+                    sureCallback: () => {
+                      server.changeQuoted({
+                        id: this.$route.params.id,
+                        sendData: {
+                          status: 3,
+                        },
+                      }).then((res) => {
+                        if (res.data.code === 0) {
+                          this.getDetail();
+                          _.assign(this.popMsgConfig, this.popDefault, {
+                            dialogVisible: true,
+                            title: '项目操作',
+                            desc: '操作成功',
+                            sureCallback: () => {
+                              this.popMsgConfig.dialogVisible = false;
+                            },
 
-                        });
-                      }
-                    });
-                    this.popMsgConfig.dialogVisible = false;
-                  },
-                });
+                          });
+                        }
+                      });
+                      this.popMsgConfig.dialogVisible = false;
+                    },
+                  });
+                },
               },
-            },
-            {
-              type: 'danger',
-              desc: '驳回',
-              callback: () => {
-                _.assign(this.popMsgConfig, this.popDefault, {
-                  dialogVisible: true,
-                  title: '操作提示',
-                  desc: '确定驳回该项目？',
-                  type: 'confirm',
-                  sureCallback: () => {
-                    server.changeQuoted({
-                      id: this.$route.params.id,
-                      sendData: {
-                        status: 2,
-                      },
-                    }).then((res) => {
-                      if (res.data.code === 0) {
-                        this.getDetail();
-                        _.assign(this.popMsgConfig, this.popDefault, {
-                          dialogVisible: true,
-                          title: '项目操作',
-                          desc: '操作成功',
-                          sureCallback: () => {
-                            this.popMsgConfig.dialogVisible = false;
-                          },
-                        });
-                      }
-                    });
-                    this.popMsgConfig.dialogVisible = false;
-                  },
-                });
+              {
+                type: 'danger',
+                desc: '驳回',
+                callback: () => {
+                  _.assign(this.popMsgConfig, this.popDefault, {
+                    dialogVisible: true,
+                    title: '操作提示',
+                    desc: '确定驳回该项目？',
+                    type: 'confirm',
+                    sureCallback: () => {
+                      server.changeQuoted({
+                        id: this.$route.params.id,
+                        sendData: {
+                          status: 2,
+                        },
+                      }).then((res) => {
+                        if (res.data.code === 0) {
+                          this.getDetail();
+                          _.assign(this.popMsgConfig, this.popDefault, {
+                            dialogVisible: true,
+                            title: '项目操作',
+                            desc: '操作成功',
+                            sureCallback: () => {
+                              this.popMsgConfig.dialogVisible = false;
+                            },
+                          });
+                        }
+                      });
+                      this.popMsgConfig.dialogVisible = false;
+                    },
+                  });
+                },
               },
-            },
-            {
-              desc: '查看项目登记页',
-              callback: () => {
-                this.$router.push({
-                  name: 'ProjectDetailDesc',
-                  params: {
-                    id: this.pDetailData.info.movie_id,
-                  },
-                });
+              {
+                desc: '查看项目登记页',
+                callback: () => {
+                  this.$router.push({
+                    name: 'ProjectDetailDesc',
+                    params: {
+                      id: this.pDetailData.info.movie_id,
+                    },
+                  });
+                },
               },
-            },
-          ];
+            ];
+          } else {
+            this.buttons = [
+              {
+                desc: '查看项目登记页',
+                callback: () => {
+                  this.$router.push({
+                    name: 'ProjectDetailDesc',
+                    params: {
+                      id: this.pDetailData.info.movie_id,
+                    },
+                  });
+                },
+              },
+            ];
+          }
         } else if (this.pDetailData.info.status === 2) {
           this.buttons = [];
-        } else if (this.pDetailData.info.status === 3) {
+        } else if (this.pDetailData.info.status === 3 && permissionChange) {
           this.buttons = [
             {
               type: 'danger',
@@ -242,6 +259,7 @@
     },
     data() {
       return {
+        permissionCheck,
         reason: '',
         buttons: [],
         popMsgConfig: {
