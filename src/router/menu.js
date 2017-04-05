@@ -71,15 +71,6 @@ export default [
         },
         component: resolve => require(['../containers/Project/detail/index'], resolve), // eslint-disable-line
         redirect: '/project/list/unregistered',
-        beforeEnter: (to, from, next) => {
-          if (permissionCheck(['api.movie.show'])) {
-            next();
-          } else {
-            next({
-              path: '/noauth',
-            });
-          }
-        },
         children: [
           {
             name: 'ProjectCreate',
@@ -139,6 +130,15 @@ export default [
             },
             path: 'transferShare/:id',
             component: resolve => require(['../containers/Project/detail/transferShare'], resolve), // eslint-disable-line
+            beforeEnter: (to, from, next) => {
+              if (permissionCheck(['api.movie.show'])) {
+                next();
+              } else {
+                next({
+                  path: '/noauth',
+                });
+              }
+            },
           },
           {
             name: 'ProjectDetailTransferEarn',
@@ -147,6 +147,15 @@ export default [
             },
             path: 'transferEarn/:id',
             component: resolve => require(['../containers/Project/detail/transferEarn'], resolve), // eslint-disable-line
+            beforeEnter: (to, from, next) => {
+              if (permissionCheck(['api.movie.show'])) {
+                next();
+              } else {
+                next({
+                  path: '/noauth',
+                });
+              }
+            },
           },
           {
             name: 'ProjectDetailProgress',
