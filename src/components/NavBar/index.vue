@@ -42,6 +42,7 @@
   right: 0;
   padding-left: 180px;
   z-index: 999;
+  min-height: 60px;
 
   .logo {
     position: absolute;
