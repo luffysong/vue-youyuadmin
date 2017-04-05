@@ -16,6 +16,7 @@ axios.interceptors.response.use((res) => {
       duration: 4000,
       customClass: 'ajaxErrorMsg',
     });
+    location.href = res.data.redirect; // eslint-disable-line
   }
   return res;
 }, (...err) => {
