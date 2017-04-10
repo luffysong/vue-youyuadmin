@@ -113,7 +113,11 @@
           this.roleArr.push(el.role_id);
         });
       });
-      this.$store.dispatch(types.ROLE_LIST_REQ);
+      this.$store.dispatch(types.ROLE_LIST_REQ, {
+        sendData: {
+          type: 'all',
+        },
+      });
     },
     components: {},
   };

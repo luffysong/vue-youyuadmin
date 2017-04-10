@@ -89,9 +89,9 @@ const actions = {
     return promise;
   },
   // 获取所有角色
-  [types.ROLE_LIST_REQ]({ commit }) {
+  [types.ROLE_LIST_REQ]({ commit }, params) {
     commit(types.ROLE_LIST_REQ);
-    return server.getRoleList().then((res) => {
+    return server.getRoleList(params).then((res) => {
       commit(types.ROLE_LIST_SUC, {
         resdata: res.data.data,
       });

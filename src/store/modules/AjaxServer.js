@@ -420,8 +420,11 @@ const server = {
     return ajax('get', `${config.apiBase}/api/system/user/self`);
   },
   // 权限管理，获取所有角色列表
-  getRoleList() {
-    return ajax('get', `${config.apiBase}/api/system/roles`);
+  getRoleList(params) {
+    const { sendData } = params;
+    return ajax('get', `${config.apiBase}/api/system/roles`, {
+      params: sendData,
+    });
   },
   // 权限管理，修改用户角色
   putUserRole(params) {
