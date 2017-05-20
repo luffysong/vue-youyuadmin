@@ -158,3 +158,28 @@ export const ROLE_PERMISSION_SUC = 'ROLE_PERMISSION_SUC';
 // 权限管理，修改 角色拥有的权限详情
 export const ROLE_PERMISSION_CHANGE_REQ = 'ROLE_PERMISSION_CHANGE_REQ';
 export const ROLE_PERMISSION_CHANGE_SUC = 'ROLE_PERMISSION_CHANGE_SUC';
+
+// 友情链接，添加链接
+export const LINKSCREATE_REQ = 'LINKSCREATE_REQ';
+export const LINKSCREATE_SUC = 'LINKSCREATE_SUC';
+export const LINKSCREATE_ERR = 'LINKSCREATE_ERR';
+
+// 友情链接，删除链接
+export const LINKSDELETE_REQ = 'LINKSDELETE_REQ';
+export const LINKSDELETE_SUC = 'LINKSDELETE_SUC';
+export const LINKSDELETE_ERR = 'LINKSDELETE_ERR';
+
+// 友情链接，修改链接
+export const LINKSEDIT_REQ = 'LINKSEDIT_REQ';
+export const LINKSEDIT_SUC = 'LINKSEDIT_SUC';
+export const LINKSEDIT_ERR = 'LINKSEDIT_ERR';
+
+// 友情链接，链接详情
+export const LINKSDETAIL_REQ = 'LINKSDETAIL_REQ';
+export const LINKSDETAIL_SUC = 'LINKSDETAIL_SUC';
+export const LINKSDETAIL_ERR = 'LINKSDETAIL_ERR';
+
+// 友情链接，链接列表
+export const LINKSLIST_REQ = 'LINKSLIST_REQ';
+export const LINKSLIST_SUC = 'LINKSLIST_SUC';
+export const LINKSLIST_ERR = 'LINKSLIST_ERR';

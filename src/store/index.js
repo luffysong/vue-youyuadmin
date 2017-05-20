@@ -25,6 +25,10 @@ import tradelist from './modules/tradelist';
 import tradedetail from './modules/tradedetail';
 import investor from './modules/investor';
 import permission from './modules/permission';
+import linkscreate from './modules/linkscreate';
+import linkslist from './modules/linkslist';
+import linksdelete from './modules/linksdelete';
+import linksedit from './modules/linkedit';
 
 Vue.use(Vuex);
 
@@ -48,6 +52,10 @@ const store = new Vuex.Store({
     tradedetail,
     investor,
     permission,
+    linkscreate,
+    linkslist,
+    linksdelete,
+    linksedit,
   },
   strict: debug,
   plugins: debug ? [createLogger()] : [],

@@ -446,5 +446,25 @@ const server = {
     const { id, sendData } = params;
     return ajax('put', `${config.apiBase}/api/system/roles/${id}`, sendData);
   },
+  // 友情链接 - 添加链接
+  createLink(params) {
+    const { sendData } = params;
+    return ajax('post', `${config.apiBase}/api/link/store`, qs.stringify(sendData));
+  },
+  // 友情链接 - 删除链接
+  deleteLink(params) {
+    const { id } = params;
+    return ajax('get', `${config.apiBase}/api/link/delete/${id}`);
+  },
+  // 友情链接 - 修改链接
+  updateLink(params) {
+    const { id, sendData } = params;
+    return ajax('post', `${config.apiBase}/api/link/update/${id}`, qs.stringify(sendData));
+  },
+  // 友情链接 - 链接列表
+  getLinksList(params = {}) {
+    const { sendData } = params;
+    return ajax('get', `${config.apiBase}/api/link/index?page=${sendData.page}&limit=${sendData.limit}`);
+  },
 };
 export default server;

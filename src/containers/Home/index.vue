@@ -69,6 +69,12 @@ export default {
           icon: 'upload2',
           type: 'item',
         },
+        {
+          name: '友情链接',
+          link: '/links',
+          icon: 'share',
+          type: 'item',
+        },
       ],
     };
   },

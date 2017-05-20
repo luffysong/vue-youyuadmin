@@ -12,6 +12,7 @@
     <el-menu-item v-if="permissionCheckBind(['api.financial.trade.index'])" index="/trade">收款管理</el-menu-item>
     <el-menu-item v-if="permissionCheckBind(['api.financial.trade-refund.index'])" index="/refund">退款管理</el-menu-item>
     <el-menu-item v-if="permissionCheckBind(['api.system.user.index'])" index="/permission/usermanage">权限管理</el-menu-item>
+    <el-menu-item v-if="permissionCheckBind(['api.system.user.index'])" index="/links">友情链接</el-menu-item>
   </el-menu>
 </template>
 

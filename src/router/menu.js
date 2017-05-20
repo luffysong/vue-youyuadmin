@@ -582,4 +582,56 @@ export default [
       },
     ],
   },
+  // 友情链接
+  {
+    name: 'Links',
+    path: '/links',
+    meta: {
+      label: 'test',
+    },
+    component: resolve => require(['../containers/Links/index'], resolve), // eslint-disable-line
+    redirect: '/links/list',
+    children: [
+      {
+        name: 'LinksCreate',
+        path: 'create',
+        meta: {
+          label: '添加链接',
+        },
+        component: resolve => require(['../containers/Links/customParts/createForm'], resolve), // eslint-disable-line
+      },
+      {
+        name: 'LinksList',
+        path: 'list',
+        meta: {
+          label: '链接列表',
+        },
+        component: resolve => require(['../containers/Links/list/list'], resolve), // eslint-disable-line
+      },
+      {
+        name: 'LinksEdit',
+        path: 'edit/:id',
+        meta: {
+          label: '链接修改',
+        },
+        component: resolve => require(['../containers/Links/customParts/editForm'], resolve), // eslint-disable-line
+      },
+      {
+        name: 'LinksListReload',
+        path: 'listreload',
+        meta: {
+          label: '重新加载list',
+        },
+        component: resolve => require(['../containers/Links/list/listReload'], resolve), // eslint-disable-line
+      },
+      {
+        name: 'linksDetail',
+        path: 'detail/:id',
+        meta: {
+          label: '链接详情',
+        },
+        component: resolve => require(['../containers/Links/detail/index'], resolve), // eslint-disable-line
+      },
+    ],
+  },
 ];
